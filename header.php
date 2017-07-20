@@ -26,6 +26,7 @@
 
 	<header id="masthead" class="site-header">
 		<div class="site-branding">
+            <div class="marketpier-logo"><span>Market</span><span>Pier</span></div>
 			<?php
 			the_custom_logo();
 			if ( is_front_page() && is_home() ) : ?>

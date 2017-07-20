@@ -133,6 +133,19 @@ function marketpier_scripts() {
 	wp_register_style( 'marketpier-styles', get_template_directory_uri() . '/assets/css/main.min.css', '', '1.0.1' );
 
 	wp_enqueue_style( 'marketpier-styles' );
+
+	$google_fonts_open_sans = 'https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i,800,800i';
+
+	wp_register_style( 'google-fonts-open-sans', $google_fonts_open_sans, '', '1.0.1' );
+
+	wp_enqueue_style( 'google-fonts-open-sans' );
+	                                                                                                                                 $google_font_work_sans = 'https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700,800,900';
+
+	wp_register_style( 'google-fonts-work-sans', $google_font_work_sans, '', '1.0.1' );
+
+	wp_enqueue_style( 'google-fonts-work-sans' );
+
+
 }
 add_action( 'wp_enqueue_scripts', 'marketpier_scripts' );
 
