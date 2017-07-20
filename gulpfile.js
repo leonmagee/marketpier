@@ -29,7 +29,7 @@ gulp.task('browser-sync', function() {
     browserSync.init({
         proxy: "www.marketpier.dev", // this proxys my dev site to localhost:3000
         open: false,
-        port: 1112
+        port: 1113
     });
 });
 

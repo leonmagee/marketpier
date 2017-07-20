@@ -126,6 +126,13 @@ function marketpier_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+	/**
+	 * Custom Styles
+	 */
+	wp_register_style( 'marketpier-styles', get_template_directory_uri() . '/assets/css/main.min.css', '', '1.0.1' );
+
+	wp_enqueue_style( 'marketpier-styles' );
 }
 add_action( 'wp_enqueue_scripts', 'marketpier_scripts' );
 
