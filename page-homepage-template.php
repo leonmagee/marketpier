@@ -5,19 +5,31 @@
  * @package MarketPier
  */
 
-get_header(); ?>
+get_header();
+
+//$bg_string = "style='background-image: url(" . $area_3_bg . ")'";
+
+if ( $background = get_field( 'homepage_background_image', 'option' ) ) {
+	$bg_style = "style='background-image: url(" . $background . ")'";
+	//var_dump( $bg_style );
+} else {
+	$bg_style = '';
+}
+
+?>
 
     <div class="homepage-wrap-outer">
-
-        <div class="homepage-slider">
-            <h1>Main CTA</h1>
-            <h4>Main Tagline</h4>
-            <div class="search-form-wrap">
-                <input type="text" placeholder="search commercial listings"/>
+        <div class="homepage-slider" <?php echo $bg_style; ?>>
+            <div class="homepage-slider-overlay">
+                <div class="homepage-slider-inner">
+                    <h1>Main CTA</h1>
+                    <h4>Main Tagline</h4>
+                    <div class="search-form-wrap">
+                        <input type="text" placeholder="search commercial listings"/>
+                    </div>
+                </div>
             </div>
         </div>
-
-
 
 
     </div>

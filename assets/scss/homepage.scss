@@ -1,0 +1,36 @@
+.homepage-slider {
+  background: #444;
+  background-size: cover;
+  @media(min-width: $screen-lg) {
+    //background-attachment: fixed;
+    //min-height: 100vh;
+
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .homepage-slider-overlay {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  .homepage-slider-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    min-height: 88vh;
+
+    h1 {
+      color: #FFF;
+      text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+      text-transform: uppercase;
+    }
+
+    h4 {
+      color: #FFF;
+      text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+      text-transform: uppercase;
+    }
+  }
+}
