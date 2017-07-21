@@ -1,32 +1,53 @@
+header#masthead {
+
+  border-bottom: 1px solid #111;
+  background-image: url('../)
+
+  .header-inner {
+    max-width: 1100px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+
+    nav {
+      margin: 0 15px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      li {
+        a {
+          color: #333;
+          text-transform: uppercase;
+          font-family: 'Open Sans';
+          font-weight: 600;
+          &:hover {
+            color: $brand-primary;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+
+
 .marketpier-logo {
   color: blue;
   font-size: 30px;
   padding: 10px;
-  //font-family: 'Work Sans';
   font-family: 'Open Sans';
   font-weight: 700;
   display: flex;
   align-items: center;
-  span {
-    padding: 2px 5px;
+  a {
+    text-decoration: none;
   }
   span:first-child {
     color: $brand-primary;
-    background-color: #DDD;
   }
-  //span:nth-child(2) {
-  //  //color: $brand-primary;
-  //  //color: darken( $brand-primary, 5% );
-  //  font-weight: 600;
-  //  color: #AAA;
-  //  font-size: 0.9em;
-  //  //color: $brand-second;
-  //  display: none;
-  //}
   span:nth-child(2) {
-    //color: $brand-primary;
     color: darken( $brand-primary, 5% );
-    background-color: #EEE;
-    //color: $brand-second;
   }
 }
+
