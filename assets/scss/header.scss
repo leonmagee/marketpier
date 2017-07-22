@@ -1,6 +1,6 @@
 header#masthead {
 
-  border-bottom: 1px solid rgba(0,0,0,0.3);
+  //border-bottom: 1px solid rgba(0,0,0,0.3);
 
 @include header_footer_bg;
 
@@ -10,29 +10,9 @@ header#masthead {
     justify-content: space-between;
     align-items: center;
     @include max_width;
-
-    nav {
-      margin: 0 15px;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      li {
-        a {
-          color: #333;
-          text-transform: uppercase;
-          font-family: 'Open Sans';
-          font-weight: 600;
-          &:hover {
-            color: $brand-primary;
-          }
-        }
-      }
-    }
   }
 
 }
-
-
 
 .marketpier-logo {
   color: blue;

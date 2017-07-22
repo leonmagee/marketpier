@@ -1,0 +1,22 @@
+nav.main-navigation {
+
+  margin: 0 15px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  ul {
+    li {
+      a {
+        margin: 0 10px;
+        color: $brand-primary;
+        text-transform: uppercase;
+        font-family: 'Open Sans';
+        font-weight: 600;
+        &:hover {
+          color: lighten($brand-primary, 5%);
+        }
+      }
+    }
+  }
+}
