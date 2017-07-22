@@ -31,6 +31,32 @@ if ( $background = get_field( 'homepage_background_image', 'option' ) ) {
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="homepage-section homepage-section-1">
+
+    </div>
+
+    <div class="homepage-section homepage-section-2">
+
+
+        <div class="homepage-cta-boxes-outer">
+		    <?php
+		    $homepage_cta_boxes = get_field( 'homepage_cta_boxes', 'option' );
+		    if ( $homepage_cta_boxes ) { ?>
+                <div class="homepage-cta-boxes-wrap">
+				    <?php foreach ( $homepage_cta_boxes as $cta_box ) { ?>
+                        <div class="homepage-cta-boxes-inner" style="background-image: url(<?php echo $cta_box['image']; ?>)">
+                            <div class="cta-inside">
+                                <h3><?php echo $cta_box['title']; ?></h3>
+                                <p><?php echo $cta_box['excerpt']; ?></p>
+                            </div>
+                        </div>
+				    <?php } ?>
+                </div>
+		    <?php } ?>
+        </div>
+
 
 
     </div>
