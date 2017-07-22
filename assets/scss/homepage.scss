@@ -12,8 +12,6 @@
     background-color: rgba(0, 0, 0, 0.2);
   }
   .homepage-slider-inner {
-    //max-width: 1100px;
-    //margin: 0 auto;
     padding: 15px;
     display: flex;
     justify-content: flex-start;
@@ -28,11 +26,15 @@
       margin: 100px 0;
       font-family: 'Open Sans';
       font-weight: 800;
-      font-size: 50px;
+      font-size: 30px;
+
+      @media(min-width: $screen-sm) {
+        font-size: 50px;
+      }
     }
 
     input {
-      min-width: 400px;
+      //min-width: 400px;
       padding: 10px 20px;
     }
 
@@ -50,11 +52,26 @@
 
 .homepage-section {
   min-height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .section-title {
+    font-family: 'Open Sans';
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #222;
+    margin: 0;
+    padding: 0;
+  }
+  h2 {
+    font-size: 40px;
+    font-style: italic;
+  }
 }
 
 .homepage-cta-boxes-outer {
   @media(min-width: $screen-sm) {
-    padding: 40px 0;
+    //padding: 40px 0;
   }
   .homepage-cta-boxes-wrap {
     display: flex;
@@ -75,23 +92,23 @@
         justify-content: center;
         flex-direction: column;
         text-align: center;
-        background-color: rgba(0,0,0,0.4);
+        background-color: rgba(0, 0, 0, 0.4);
         transition: 1s;
         &:hover {
-          background-color: rgba(0,0,0,0.1);
+          background-color: rgba(0, 0, 0, 0.1);
         }
         h3 {
           color: #FFF;
           font-size: 30px;
           margin: 0;
-          text-shadow: 1px 1px rgba(0,0,0,0.2);
+          text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
         }
         p {
           color: #DDD;
           font-size: 17px;
           margin: 0;
           padding: 0 20px;
-          text-shadow: 1px 1px rgba(0,0,0,0.2);
+          text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
         }
       }
     }

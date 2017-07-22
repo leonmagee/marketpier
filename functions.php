@@ -130,6 +130,11 @@ function marketpier_scripts() {
 	/**
 	 * Custom Styles
 	 */
+
+	wp_register_style( 'font-awesome', get_template_directory_uri() . '/vendor/font-awesome/css/font-awesome.min.css', array() );
+
+	wp_enqueue_style( 'font-awesome' );
+
 	wp_register_style( 'marketpier-styles', get_template_directory_uri() . '/assets/css/main.min.css', '', '1.0.1' );
 
 	wp_enqueue_style( 'marketpier-styles' );

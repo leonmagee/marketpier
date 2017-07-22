@@ -1,0 +1,25 @@
+footer.site-footer {
+  padding: 20px 0;
+  @include header_footer_bg;
+  .site-footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include max_width;
+
+    .attribution {
+      text-transform: uppercase;
+      color: #555;
+    }
+
+    .social {
+      display: flex;
+      a {
+        margin: 0 10px;
+        font-size: 28px;
+      }
+    }
+  }
+}
+
+

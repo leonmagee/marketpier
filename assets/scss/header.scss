@@ -1,19 +1,15 @@
 header#masthead {
 
   border-bottom: 1px solid rgba(0,0,0,0.3);
-  //background-image: url('../img/square_bg.png'); // 504 x 460 // 252 x 230
-  //background-size: 252px 230px;
 
-  background-image: url('../img/shattered-light.png'); // 1000 x 1000
-  background-size: 100px 100px;
+@include header_footer_bg;
 
   .header-inner {
-    max-width: 1100px;
     height: 12vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 auto;
+    @include max_width;
 
     nav {
       margin: 0 15px;
