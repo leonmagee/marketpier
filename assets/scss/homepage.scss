@@ -25,12 +25,25 @@
       color: #FFF;
       text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
       text-transform: uppercase;
+      margin-bottom: 75px;
+      font-family: 'Open Sans';
+      font-weight: 600;
+      font-size: 50px;
     }
 
-    h4 {
-      color: #FFF;
-      text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
-      text-transform: uppercase;
+    input {
+      min-width: 400px;
+      padding: 10px 20px;
+    }
+
+    //h4 {
+    //  color: #FFF;
+    //  text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+    //  text-transform: uppercase;
+    //}
+
+    .slider-items {
+      text-align: center;
     }
   }
 }

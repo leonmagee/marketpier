@@ -22,10 +22,11 @@ if ( $background = get_field( 'homepage_background_image', 'option' ) ) {
         <div class="homepage-slider" <?php echo $bg_style; ?>>
             <div class="homepage-slider-overlay">
                 <div class="homepage-slider-inner">
-                    <h1>Main CTA</h1>
-                    <h4>Main Tagline</h4>
-                    <div class="search-form-wrap">
-                        <input type="text" placeholder="search commercial listings"/>
+                    <div class="slider-items">
+						<?php if ( $main_tagline = get_field( 'main_tagline', 'option' ) ) { ?>
+                            <h1><?php echo $main_tagline; ?></h1>
+						<?php }
+						get_template_part( 'template-parts/homepage-form' ); ?>
                     </div>
                 </div>
             </div>
