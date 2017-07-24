@@ -1,6 +1,7 @@
 footer.site-footer {
   padding: 20px 0;
   @include header_footer_bg;
+  border-top: 1px solid #F4F4F4;
   .site-footer-inner {
     @media(min-width: $screen-sm) {
       display: flex;

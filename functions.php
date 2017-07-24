@@ -8,78 +8,78 @@
  */
 
 if ( ! function_exists( 'marketpier_setup' ) ) :
-/**
- * Sets up theme defaults and registers support for various WordPress features.
- *
- * Note that this function is hooked into the after_setup_theme hook, which
- * runs before the init hook. The init hook is too late for some features, such
- * as indicating support for post thumbnails.
- */
-function marketpier_setup() {
-	/*
-	 * Make theme available for translation.
-	 * Translations can be filed in the /languages/ directory.
-	 * If you're building a theme based on MarketPier, use a find and replace
-	 * to change 'marketpier' to the name of your theme in all the template files.
-	 */
-	load_theme_textdomain( 'marketpier', get_template_directory() . '/languages' );
-
-	// Add default posts and comments RSS feed links to head.
-	add_theme_support( 'automatic-feed-links' );
-
-	/*
-	 * Let WordPress manage the document title.
-	 * By adding theme support, we declare that this theme does not use a
-	 * hard-coded <title> tag in the document head, and expect WordPress to
-	 * provide it for us.
-	 */
-	add_theme_support( 'title-tag' );
-
-	/*
-	 * Enable support for Post Thumbnails on posts and pages.
-	 *
-	 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
-	 */
-	add_theme_support( 'post-thumbnails' );
-
-	// This theme uses wp_nav_menu() in one location.
-	register_nav_menus( array(
-		'menu-1' => esc_html__( 'Primary', 'marketpier' ),
-	) );
-
-	/*
-	 * Switch default core markup for search form, comment form, and comments
-	 * to output valid HTML5.
-	 */
-	add_theme_support( 'html5', array(
-		'search-form',
-		'comment-form',
-		'comment-list',
-		'gallery',
-		'caption',
-	) );
-
-	// Set up the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( 'marketpier_custom_background_args', array(
-		'default-color' => 'ffffff',
-		'default-image' => '',
-	) ) );
-
-	// Add theme support for selective refresh for widgets.
-	add_theme_support( 'customize-selective-refresh-widgets' );
-
 	/**
-	 * Add support for core custom logo.
+	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
-	 * @link https://codex.wordpress.org/Theme_Logo
+	 * Note that this function is hooked into the after_setup_theme hook, which
+	 * runs before the init hook. The init hook is too late for some features, such
+	 * as indicating support for post thumbnails.
 	 */
-	add_theme_support( 'custom-logo', array(
-		'height'      => 250,
-		'width'       => 250,
-		'flex-width'  => true,
-		'flex-height' => true,
-	) );
-}
+	function marketpier_setup() {
+		/*
+		 * Make theme available for translation.
+		 * Translations can be filed in the /languages/ directory.
+		 * If you're building a theme based on MarketPier, use a find and replace
+		 * to change 'marketpier' to the name of your theme in all the template files.
+		 */
+		load_theme_textdomain( 'marketpier', get_template_directory() . '/languages' );
+
+		// Add default posts and comments RSS feed links to head.
+		add_theme_support( 'automatic-feed-links' );
+
+		/*
+		 * Let WordPress manage the document title.
+		 * By adding theme support, we declare that this theme does not use a
+		 * hard-coded <title> tag in the document head, and expect WordPress to
+		 * provide it for us.
+		 */
+		add_theme_support( 'title-tag' );
+
+		/*
+		 * Enable support for Post Thumbnails on posts and pages.
+		 *
+		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
+		 */
+		add_theme_support( 'post-thumbnails' );
+
+		// This theme uses wp_nav_menu() in one location.
+		register_nav_menus( array(
+			'menu-1' => esc_html__( 'Primary', 'marketpier' ),
+		) );
+
+		/*
+		 * Switch default core markup for search form, comment form, and comments
+		 * to output valid HTML5.
+		 */
+		add_theme_support( 'html5', array(
+			'search-form',
+			'comment-form',
+			'comment-list',
+			'gallery',
+			'caption',
+		) );
+
+		// Set up the WordPress core custom background feature.
+		add_theme_support( 'custom-background', apply_filters( 'marketpier_custom_background_args', array(
+			'default-color' => 'ffffff',
+			'default-image' => '',
+		) ) );
+
+		// Add theme support for selective refresh for widgets.
+		add_theme_support( 'customize-selective-refresh-widgets' );
+
+		/**
+		 * Add support for core custom logo.
+		 *
+		 * @link https://codex.wordpress.org/Theme_Logo
+		 */
+		add_theme_support( 'custom-logo', array(
+			'height'      => 250,
+			'width'       => 250,
+			'flex-width'  => true,
+			'flex-height' => true,
+		) );
+	}
 endif;
 add_action( 'after_setup_theme', 'marketpier_setup' );
 
@@ -93,6 +93,7 @@ add_action( 'after_setup_theme', 'marketpier_setup' );
 function marketpier_content_width() {
 	$GLOBALS['content_width'] = apply_filters( 'marketpier_content_width', 640 );
 }
+
 add_action( 'after_setup_theme', 'marketpier_content_width', 0 );
 
 /**
@@ -111,6 +112,7 @@ function marketpier_widgets_init() {
 		'after_title'   => '</h2>',
 	) );
 }
+
 add_action( 'widgets_init', 'marketpier_widgets_init' );
 
 /**
@@ -130,10 +132,13 @@ function marketpier_scripts() {
 	/**
 	 * Custom Styles
 	 */
-
 	wp_register_style( 'font-awesome', get_template_directory_uri() . '/vendor/font-awesome/css/font-awesome.min.css', array() );
 
 	wp_enqueue_style( 'font-awesome' );
+
+	wp_register_style( 'foundation', get_template_directory_uri() . '/vendor/foundation/css/foundation.css', array() );
+
+	wp_enqueue_style( 'foundation' );
 
 	wp_register_style( 'marketpier-styles', get_template_directory_uri() . '/assets/css/main.min.css', '', '1.0.1' );
 
@@ -144,14 +149,24 @@ function marketpier_scripts() {
 	wp_register_style( 'google-fonts-open-sans', $google_fonts_open_sans, '', '1.0.1' );
 
 	wp_enqueue_style( 'google-fonts-open-sans' );
-	                                                                                                                                 $google_font_work_sans = 'https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700,800,900';
+	$google_font_work_sans = 'https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700,800,900';
 
 	wp_register_style( 'google-fonts-work-sans', $google_font_work_sans, '', '1.0.1' );
 
 	wp_enqueue_style( 'google-fonts-work-sans' );
 
+	/**
+	 * Custom Scripts
+	 */
+	wp_register_script( 'foundation-js', get_template_directory_uri() . '/vendor/foundation/js/vendor/foundation.js', '', '1.1.1', true );
+	wp_register_script( 'custom-js', get_template_directory_uri() . '/js/custom.js', array( 'jquery','foundation-js' ), '1.1.1', true );
+	wp_enqueue_script( 'custom-js' );
+
+
+	wp_enqueue_script( 'foundation-js' );
 
 }
+
 add_action( 'wp_enqueue_scripts', 'marketpier_scripts' );
 
 /**
