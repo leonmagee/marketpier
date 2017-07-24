@@ -55,13 +55,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
   .section-title {
+    text-align: center;
     font-family: 'Open Sans';
     font-weight: 700;
     text-transform: uppercase;
     color: #222;
     margin: 0;
-    padding: 0;
+    padding: 15px;
+    @media(min-width: $screen-sm) {
+      padding: 0;
+    }
   }
   h2 {
     font-size: 40px;

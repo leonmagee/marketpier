@@ -16,9 +16,13 @@
 <footer id="colophon" class="site-footer">
     <div class="site-footer-inner">
         <div class="attribution">
-			<?php echo bloginfo( 'site_title' ); ?> <?php echo date( 'Y' ); ?> All Rights Reserved
+            <div class="attribution-line">
+				<?php echo bloginfo( 'site_title' ); ?> <?php echo date( 'Y' ); ?> All Rights Reserved
+            </div>
             <span class="sep"> | </span>
-            Site by <a href="https://levon.io" target="_blank">Levon.io</a>
+            <div class="attribution-line">
+                Site by <a href="https://levon.io" target="_blank">Levon.io</a>
+            </div>
         </div>
 
         <div class="social">

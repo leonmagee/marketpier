@@ -15,21 +15,32 @@ header#masthead {
 }
 
 .marketpier-logo {
-  color: blue;
-  font-size: 33px;
+  font-size: 30px;
   padding: 10px;
   font-family: 'Open Sans';
   font-weight: 700;
-  display: flex;
-  align-items: center;
   a {
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
   }
-  span:first-child {
-    color: $brand-primary;
+  span {
+    color: $logo-color;
+    display: block;
   }
-  span:nth-child(2) {
-    color: darken( $brand-primary, 5% );
+  i {
+    margin: 5px 3px 0;
+    color: #AAA;
+    font-size: 28px;
+    display: block;
   }
+  //span:first-child {
+  //  color: $logo-color;
+  //}
+  //span:nth-child(2) {
+  //  color: $logo-color;
+  //  //color: lighten( $logo-color, 10% );
+  //}
 }
 

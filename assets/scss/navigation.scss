@@ -10,9 +10,10 @@ nav.main-navigation {
       a {
         margin: 0 10px;
         color: $brand-primary;
+        color: #AAA;
         text-transform: uppercase;
         font-family: 'Open Sans';
-        font-weight: 600;
+        font-weight: 700;
         &:hover {
           color: lighten($brand-primary, 5%);
         }
