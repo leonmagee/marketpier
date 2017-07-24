@@ -12,3 +12,9 @@
   max-width: 1100px;
   margin: 0 auto;
 }
+
+@mixin form_text() {
+  color: #444;
+  font-family: 'Open Sans';
+  font-weight: 600;
+}
