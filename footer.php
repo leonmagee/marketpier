@@ -17,6 +17,14 @@
     <div class="site-footer-inner">
         <div class="attribution">
             <div class="attribution-line">
+                <a href="<?php echo site_url(); ?>/about">About</a>
+            </div>
+            <span class="sep"> | </span>
+            <div class="attribution-line">
+                <a href="<?php echo site_url(); ?>/contact">Contact</a>
+            </div>
+            <span class="sep"> | </span>
+            <div class="attribution-line">
 				<?php echo bloginfo( 'site_title' ); ?> <?php echo date( 'Y' ); ?> All Rights Reserved
             </div>
             <span class="sep"> | </span>

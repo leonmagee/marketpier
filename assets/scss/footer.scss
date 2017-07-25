@@ -19,14 +19,22 @@ footer.site-footer {
       }
       span.sep {
         display: none;
+        //padding: 0;
+        //margin: 0;
       }
       @media(min-width: $screen-sm) {
         display: flex;
+        align-items: center;
         .attribution-line {
           padding: 0;
         }
         span.sep {
           display: block;
+          margin: -2px 3px 0;
+          color: #AAA;
+          //font-size: 30px;
+          line-height: 20px;
+          //margin-top: -3px;
         }
       }
     }
