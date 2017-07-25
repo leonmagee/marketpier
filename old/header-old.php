@@ -33,14 +33,17 @@
                     </a>
                 </div>
             </div><!-- .site-branding -->
-            <div class="header-right">
-                <div class="sign-in-links">
-                    <a href="#">Log In</a>
-                    <sep>|</sep>
-                    <a href="#">Sign In</a>
-                </div>
-                <button class="mp-button">Create Listing</button>
-            </div>
+
+            <nav id="site-navigation" class="main-navigation">
+                <button class="menu-toggle" aria-controls="primary-menu"
+                        aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'marketpier' ); ?></button>
+				<?php
+				wp_nav_menu( array(
+					'theme_location' => 'menu-1',
+					'menu_id'        => 'primary-menu',
+				) );
+				?>
+            </nav><!-- #site-navigation -->
         </div>
     </header><!-- #masthead -->
 

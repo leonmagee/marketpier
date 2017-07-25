@@ -9,6 +9,7 @@ header#masthead {
     @include max_width;
   }
 }
+
 .marketpier-logo {
   font-size: 30px;
   padding: 10px;
@@ -38,4 +39,44 @@ header#masthead {
   //  //color: lighten( $logo-color, 10% );
   //}
 }
+
+.header-right {
+  display: flex;
+  align-items: center;
+
+  .sign-in-links {
+    margin: 0 5px;
+    a {
+      color: #333;
+      &:hover {
+        color: $brand-primary;
+      }
+    }
+    sep {
+      color: #AAA;
+    }
+  }
+}
+
+button.mp-button {
+  background: $brand-primary;
+  color: #FFF;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-family: 'Open Sans';
+  font-weight: 700;
+  font-size: 17px;
+  margin: 0 5px;
+  &:hover {
+    background: lighten($brand-primary, 5%);
+  }
+}
+
+//<div class="header-right">
+//<div class="sign-in-links">
+//<a href="#">Log In</a>
+//<sep>|</sep>
+//<a href="#">Sign In</a>
+//</div>
+//<button class="mp-button">Create Listing</button>
 
