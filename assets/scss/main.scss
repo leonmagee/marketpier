@@ -5,6 +5,7 @@ html, body {
 body {
   font-family: 'Open Sans';
   font-weight: 500;
+  @include header_footer_bg;
   div#page.site {
     @media(min-width: $screen-sm) {
       height: 100%;
