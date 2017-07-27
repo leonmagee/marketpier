@@ -149,6 +149,14 @@ function marketpier_scripts() {
 	wp_register_style( 'google-fonts-open-sans', $google_fonts_open_sans, '', '1.0.1' );
 
 	wp_enqueue_style( 'google-fonts-open-sans' );
+	//$google_font_work_sans = 'https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700,800,900';
+
+	$google_fonts_libre_baskerville = 'https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700';
+
+	wp_register_style( 'google-fonts-libre-baskerville', $google_fonts_libre_baskerville, '', '1.0.1' );
+
+	wp_enqueue_style( 'google-fonts-libre-baskerville' );
+
 	$google_font_work_sans = 'https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700,800,900';
 
 	wp_register_style( 'google-fonts-work-sans', $google_font_work_sans, '', '1.0.1' );
@@ -159,7 +167,10 @@ function marketpier_scripts() {
 	 * Custom Scripts
 	 */
 	wp_register_script( 'foundation-js', get_template_directory_uri() . '/vendor/foundation/js/vendor/foundation.js', '', '1.1.1', true );
-	wp_register_script( 'custom-js', get_template_directory_uri() . '/js/custom.js', array( 'jquery','foundation-js' ), '1.1.1', true );
+	wp_register_script( 'custom-js', get_template_directory_uri() . '/js/custom.js', array(
+		'jquery',
+		'foundation-js'
+	), '1.1.1', true );
 	wp_enqueue_script( 'custom-js' );
 
 
@@ -195,6 +206,26 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+
+
+/**
+ * Custom Post Types
+ */
+include_once( 'inc/cpt.php' );
+function lv_register_post_types() {
+	//lv_create_wp_cpt::create_post_type( 'mp-testimonials', 'Testimonial', 'Testimonials', 'testimonials', 'format-quote' );
+
+	lv_create_wp_cpt::create_post_type( 'mp-listing', 'Listing', 'Listings', 'listings', 'location' );
+
+	//lv_create_wp_cpt::create_post_type( 'mp-building', 'Building', 'Buildings', 'buildings', 'building' );
+
+	//lv_create_wp_cpt::create_post_type( 'mp-cities', 'City', 'Cities', 'cities', 'location-alt' );
+
+
+}
+
+add_action( 'init', 'lv_register_post_types' );
+
 
 /**
  * Add ACF Theme Options Page

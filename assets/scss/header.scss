@@ -13,7 +13,8 @@ header#masthead {
 .marketpier-logo {
   font-size: 30px;
   padding: 10px;
-  font-family: 'Open Sans';
+  //font-family: 'Open Sans';
+  font-family: 'Libre Baskerville';
   font-weight: 700;
   a {
     text-decoration: none;
@@ -26,9 +27,10 @@ header#masthead {
     display: block;
   }
   i {
-    margin: 5px 3px 0;
+    //margin: 5px 3px 0;
+    margin: 0 0 0 3px;
     color: #AAA;
-    font-size: 28px;
+    font-size: 31px;
     display: block;
   }
   //span:first-child {
