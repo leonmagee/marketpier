@@ -57,7 +57,6 @@ $apn_parcel_id = get_field( 'apnparcel_id' );
 
 $type     = get_field( 'type' );
 $sub_type = get_field( 'sub_type' );
-$use      = get_field( 'use' );
 
 $building_size   = get_field( 'building_size' );
 $lot_size        = get_field( 'lot_size' );

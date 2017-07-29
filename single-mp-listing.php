@@ -44,10 +44,6 @@ $title = get_the_title();
                             <div class="detail-label">Sub Type</div>
                             <div class="detail-content"><?php echo $sub_type; ?></div>
                         </div>
-                        <div class="detail">
-                            <div class="detail-label">Use</div>
-                            <div class="detail-content"><?php echo $use; ?></div>
-                        </div>
                     </div>
                 </div>
 
