@@ -29,7 +29,7 @@
             <div class="site-branding">
                 <div class="marketpier-logo">
                     <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-                        <span>Market</span><span>Pier</span><i class="fa fa-map-marker" aria-hidden="true"></i>
+                        <span>Market</span><span>Pier</span>
                     </a>
                 </div>
             </div><!-- .site-branding -->

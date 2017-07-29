@@ -174,7 +174,7 @@ function marketpier_scripts() {
 	wp_enqueue_script( 'custom-js' );
 
 
-	wp_enqueue_script( 'foundation-js' );
+	//wp_enqueue_script( 'foundation-js' );
 
 }
 
@@ -207,6 +207,14 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+/**
+ * Image Sizes
+ */
+function mp_custom_image_sizes() {
+	add_image_size( 'listing-gallery', 600, 430, true );
+}
+
+add_action( 'after_setup_theme', 'mp_custom_image_sizes' );
 
 /**
  * Custom Post Types

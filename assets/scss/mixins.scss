@@ -2,14 +2,18 @@
 * Backgrounds
 **/
 @mixin header_footer_bg() {
-  background-image: url('../img/square_bg.png'); // 504 x 460 // 252 x 230
-  background-size: 252px 230px;
+  //background-image: url('../img/square_bg.png'); // 504 x 460 // 252 x 230
+  //background-size: 252px 230px;
+  //background-color: #FCFCFC;
+  background-color: #FBFBFB;
+  //background-color: red;
+  //background-repeat: no-repeat;
   //background: #EEE url('../img/shattered-light.png'); // 1000 x 1000
   //background-size: 100px 100px;
 }
 
-@mixin max_width() {
-  max-width: 1100px;
+@mixin max_width($width: 1250px) {
+  max-width: $width;
   margin: 0 auto;
 }
 
@@ -17,4 +21,8 @@
   color: #444;
   font-family: 'Open Sans';
   font-weight: 600;
+}
+
+@mixin listing_border_bottom() {
+  border-bottom: 1px solid #EBEBEB;
 }

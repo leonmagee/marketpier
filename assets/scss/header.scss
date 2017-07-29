@@ -1,6 +1,7 @@
 header#masthead {
   @include header_footer_bg;
   border-bottom: 1px solid #F4F4F4;
+  //background-color: #FAFAFA;
   .header-inner {
     height: 12vh;
     display: flex;
