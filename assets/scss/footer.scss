@@ -2,6 +2,7 @@ footer.site-footer {
   padding: 20px 0;
   @include header_footer_bg;
   border-top: 1px solid #F4F4F4;
+  font-size: 13px;
   .site-footer-inner {
     @media(min-width: $screen-sm) {
       display: flex;
@@ -19,8 +20,6 @@ footer.site-footer {
       }
       span.sep {
         display: none;
-        //padding: 0;
-        //margin: 0;
       }
       @media(min-width: $screen-sm) {
         display: flex;
@@ -32,9 +31,7 @@ footer.site-footer {
           display: block;
           margin: -2px 3px 0;
           color: #AAA;
-          //font-size: 30px;
           line-height: 20px;
-          //margin-top: -3px;
         }
       }
     }
@@ -44,7 +41,7 @@ footer.site-footer {
       justify-content: center;
       a {
         margin: 0 10px;
-        font-size: 28px;
+        font-size: 26px;
       }
     }
   }

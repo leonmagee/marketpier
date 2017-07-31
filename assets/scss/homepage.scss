@@ -2,9 +2,6 @@
   background: #444;
   background-size: cover;
   @media(min-width: $screen-lg) {
-    //background-attachment: fixed;
-    //min-height: 100vh;
-
     background-repeat: no-repeat;
     background-position: center;
   }
@@ -17,8 +14,7 @@
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    min-height: 88vh;
-
+    min-height: 70vh;
     h1 {
       color: #FFF;
       text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
@@ -69,11 +65,10 @@
   }
 }
 
-
-
 // @todo testing - two cta sections
-.homepage-section-2 {
-  margin-bottom: 100px;
+.homepage-section-cta {
+  //margin-bottom: 100px;
+  margin-top: 10px;
 
   .homepage-cta-boxes-outer {
     @media(min-width: $screen-sm) {
@@ -82,6 +77,7 @@
     .homepage-cta-boxes-wrap {
       display: flex;
       flex-direction: column;
+      @include max_width;
       @media(min-width: $screen-sm) {
         flex-direction: row;
       }
@@ -91,34 +87,44 @@
         background-size: cover;
         flex: 1;
         background-position: center;
-        padding: 0 30px;
+        //padding: 0 30px;
         .cta-inside {
-          background: #FFF;
+          //background: #FFF;
           min-height: 250px;
-          flex: 1;
-          display: flex;
-          //justify-content: center;
+          //flex: 1;
+          //display: flex;
           padding: 15px;
-          flex-direction: column;
+          //flex-direction: column;
           text-align: center;
-          border: 1px solid #DDD;
-          border-radius: 7px;
-          //background-color: rgba(0, 0, 0, 0.6);
+          //border: 1px solid #DDD;
+          //border-radius: 7px;
           transition: 1s;
           font-family: 'Open Sans';
           font-weight: 600;
           &:hover {
-            // background-color: rgba(0, 0, 0, 0.4);
+          }
+
+          a.cta-link {
+            color: #222;
+            border: 2px solid #222;
+            padding: 5px 15px;
+            transition: 0.1s;
+            margin: 15px auto;
+            display: block;
+            max-width: 50%;
+            &:hover {
+              color: #FFF;
+              background-color: $brand-primary;
+              border-color: $brand-primary;
+            }
           }
 
           .title-wrap {
             display: flex;
             justify-content: center;
-            //justify-content: space-around;
-            border-bottom: 1px solid lighten( $brand-primary, 45% );
-            padding-bottom: 5px;
-            margin-bottom: 8px;
-            //text-align: center;
+            //border-bottom: 1px solid lighten( $brand-primary, 45% );
+            //padding-bottom: 5px;
+            //margin-bottom: 8px;
             img {
               max-height: 40px;
               margin-right: 10px;
@@ -127,17 +133,17 @@
           h3 {
             color: #222;
             font-size: 25px;
-            margin: 0 0 10px;
-            font-weight: 700;
-            //text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+            //margin: 0 0 10px;
+            font-weight: 600;
+            font-style: italic;
+            text-transform: uppercase;
           }
           p {
             color: #444;
-            font-size: 17px;
+            font-size: 14px;
             margin: 0;
             padding: 0 20px;
-            text-align: left;
-            //text-shadow: 1px 1px rgba(0, 0, 0, 0.4);
+            //text-align: left;
           }
         }
       }
@@ -146,56 +152,53 @@
 
 }
 
-
-
-
-
-.homepage-section-3 {
-  .homepage-cta-boxes-outer {
-    @media(min-width: $screen-sm) {
-      //padding: 40px 0;
-    }
-    .homepage-cta-boxes-wrap {
-      display: flex;
-      flex-direction: column;
-      @media(min-width: $screen-sm) {
-        flex-direction: row;
-      }
-      .homepage-cta-boxes-inner {
-        background: #333;
-        background-repeat: no-repeat;
-        background-size: cover;
-        flex: 1;
-        background-position: center;
-        .cta-inside {
-          min-height: 250px;
-          flex: 1;
-          display: flex;
-          justify-content: center;
-          flex-direction: column;
-          text-align: center;
-          background-color: rgba(0, 0, 0, 0.6);
-          transition: 1s;
-          font-family: 'Open Sans';
-          font-weight: 600;
-          &:hover {
-            background-color: rgba(0, 0, 0, 0.4);
-          }
-          h3 {
-            color: #FFF;
-            font-size: 30px;
-            margin: 0;
-            text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
-          }
-          p {
-            color: #DDD;
-            font-size: 17px;
-            margin: 0;
-            padding: 0 20px;
-            text-shadow: 1px 1px rgba(0, 0, 0, 0.4);
-          }
-        }
-      }
-    }
-  }
-}
+//
+//.homepage-section-3 {
+//  .homepage-cta-boxes-outer {
+//    @media(min-width: $screen-sm) {
+//      //padding: 40px 0;
+//    }
+//    .homepage-cta-boxes-wrap {
+//      display: flex;
+//      flex-direction: column;
+//      @media(min-width: $screen-sm) {
+//        flex-direction: row;
+//      }
+//      .homepage-cta-boxes-inner {
+//        background: #333;
+//        background-repeat: no-repeat;
+//        background-size: cover;
+//        flex: 1;
+//        background-position: center;
+//        .cta-inside {
+//          min-height: 250px;
+//          flex: 1;
+//          display: flex;
+//          justify-content: center;
+//          flex-direction: column;
+//          text-align: center;
+//          background-color: rgba(0, 0, 0, 0.6);
+//          transition: 1s;
+//          font-family: 'Open Sans';
+//          font-weight: 600;
+//          &:hover {
+//            background-color: rgba(0, 0, 0, 0.4);
+//          }
+//          h3 {
+//            color: #FFF;
+//            font-size: 30px;
+//            margin: 0;
+//            text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+//          }
+//          p {
+//            color: #DDD;
+//            font-size: 17px;
+//            margin: 0;
+//            padding: 0 20px;
+//            text-shadow: 1px 1px rgba(0, 0, 0, 0.4);
+//          }
+//        }
+//      }
+//    }
+//  }
+//}
