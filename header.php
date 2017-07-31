@@ -34,12 +34,14 @@
                 </div>
             </div><!-- .site-branding -->
             <div class="header-right">
-                <div class="sign-in-links">
-                    <a href="#">Log In</a>
-                    <sep>|</sep>
-                    <a href="#">Sign In</a>
+                <div class="create-listing-link">
+                    <a href="#">Create Listing</a>
                 </div>
-                <button class="mp-button">Create Listing</button>
+                <div class="login-sign-in">
+                    <a href="#">
+                        <span>Log In</span><span>Sign In</span>
+                    </a>
+                </div>
             </div>
         </div>
     </header><!-- #masthead -->

@@ -47,7 +47,7 @@ header#masthead {
   display: flex;
   align-items: center;
 
-  .sign-in-links {
+  .create-listing-link {
     margin: 0 5px;
     a {
       color: #333;
@@ -55,10 +55,37 @@ header#masthead {
         color: $brand-primary;
       }
     }
-    sep {
-      color: #AAA;
+  }
+
+  .login-sign-in {
+    background: $brand-primary;
+    color: #FFF;
+    //border-radius: 5px;
+    //padding: 10px 15px;
+    font-family: 'Open Sans';
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 15px;
+    margin: 0 15px;
+    padding: 0;
+    a {
+      color: #FFF;
+      &:hover {
+        color: #FFF;
+      }
+      span {
+        padding: 7px 15px;
+        background: $brand-primary;
+        //&:first-child {
+        //  border-right: 1px solid darken( $brand-primary, 10% );
+        //}
+        &:nth-child(2) {
+          background: darken( $brand-primary, 4%);
+        }
+      }
     }
   }
+
 }
 
 button.mp-button {
