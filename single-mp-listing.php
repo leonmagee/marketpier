@@ -6,6 +6,7 @@
  */
 get_header();
 
+require_once( 'inc/lv_google_map.php' );
 require_once( 'inc/listing_data.php' );
 $listing_data = new listing_data();
 $listing_data->listing_data_from_WP();
@@ -13,7 +14,13 @@ $listing_data->listing_data_from_WP();
     <div class="single-listing-wrap">
         <div class="single-listing-details"><h2 class="listing-title"><?php echo $listing_data->title; ?></h2>
 
-            <div class="address-details"><?php echo $listing_data->city_state_zip; ?></div>
+            <div class="address-details">
+				<?php if ( $address = $listing_data->combined_address ) {
+					echo $address;
+				} elseif ( $address = $listing_data->city_state_zip ) {
+					echo $address;
+				} ?>
+            </div>
 
             <div class="listing-price"><?php echo '$' . number_format( $listing_data->price ); ?></div>
 
@@ -30,6 +37,10 @@ $listing_data->listing_data_from_WP();
             <div class="details-wrap-outer">
                 <h5 class="section-title">Details</h5>
                 <div class="details-wrap">
+                    <div class="detail">
+                        <div class="detail-label">MLS Number</div>
+                        <div class="detail-content"><?php echo $listing_data->mls; ?></div>
+                    </div>
                     <div class="detail">
                         <div class="detail-label">APN/Parcel ID</div>
                         <div class="detail-content"><?php echo $listing_data->apn_parcel_id; ?></div>
@@ -122,6 +133,23 @@ $listing_data->listing_data_from_WP();
                                                      href="<?php echo $listing_data->image_gallery[8]['link']; ?>"><img
                                 src="<?php echo $listing_data->image_gallery[8]['image']; ?>"/></a></div>
             </div>
+        </div>
+
+
+        <div class="google-map-wrapper">
+			<?php
+			if ( ( $listing_data->lat && $listing_data->long ) || $listing_data->combined_address ) {
+
+				$google_map = new lv_google_map(
+					$listing_data->lat,
+					$listing_data->long,
+					$listing_data->title,
+					$listing_data->combined_address
+				);
+
+				$google_map->output_map();
+			}
+			?>
         </div>
     </div>
 <?php

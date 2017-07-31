@@ -89,7 +89,7 @@ class listing_data {
 		$this->standardize_image_gallery_WP( get_field( 'listing_image_gallery' ) );
 
 		if ( $this->address && $this->city && $this->state && $this->zip ) {
-			$this->combined_address = $this->address . ' ' . $this->city . ', ' . $this->state . ' ' . $this->zip;
+			$this->combined_address = $this->address . ' - ' . $this->city . ', ' . $this->state . ' ' . $this->zip;
 		} else {
 			$this->combined_address = false;
 		}
