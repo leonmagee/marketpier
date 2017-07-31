@@ -30,12 +30,12 @@ $listing_data->listing_data_from_WP();
             </div>
 
             <div class="description">
-                <h5 class="section-title">Description</h5>
+                <h5 class="section-title">Listing Description</h5>
                 <p><?php echo $listing_data->description; ?></p>
             </div>
 
             <div class="details-wrap-outer">
-                <h5 class="section-title">Details</h5>
+                <h5 class="section-title">Listing Information</h5>
                 <div class="details-wrap">
                     <div class="detail">
                         <div class="detail-label">MLS Number</div>
