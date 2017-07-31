@@ -173,6 +173,10 @@ function marketpier_scripts() {
 	), '1.1.1', true );
 	wp_enqueue_script( 'custom-js' );
 
+//	$google_maps_url = "https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyCicY4hdtrXeGNvBQSivkxAKOseNIDWZdc";
+//	wp_register_script( 'google-maps-api', $google_maps_url, '1.0.0', false );
+//	wp_enqueue_script( 'google-maps-api' );
+
 
 	//wp_enqueue_script( 'foundation-js' );
 
