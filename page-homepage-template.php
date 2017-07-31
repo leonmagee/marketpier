@@ -41,10 +41,15 @@ if ( $background = get_field( 'homepage_background_image', 'option' ) ) {
                                 <div class="cta-inside">
                                     <div class="title-wrap">
                                         <img src="<?php echo $cta_box['icon']; ?>"/>
-                                        <h3><?php echo $cta_box['title']; ?></h3>
+                                        <h3>
+                                            <a href="<?php echo site_url() . '/' . $cta_box['url']; ?>">
+												<?php echo $cta_box['title']; ?>
+                                            </a>
+                                        </h3>
                                     </div>
                                     <p><?php echo $cta_box['excerpt']; ?></p>
-                                    <a class='cta-link' href="<?php echo site_url()  . '/' . $cta_box['url']; ?>"><?php echo $cta_box['link_text']; ?></a>
+                                    <a class='cta-link'
+                                       href="<?php echo site_url() . '/' . $cta_box['url']; ?>"><?php echo $cta_box['link_text']; ?></a>
                                 </div>
                             </div>
 						<?php } ?>
