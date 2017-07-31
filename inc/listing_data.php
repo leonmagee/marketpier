@@ -34,10 +34,24 @@ class listing_data {
 	public $unit_mix;
 	public $listing_date;
 	public $city_state_zip;
+	public $combined_address;
 	public $price_per_unit;
 
-	public function standardize_image_gallery() {
-		//@todo put image gallery in one format
+	public function standardize_image_gallery_WP( $image_gallery ) {
+		$image_gallery_array = array();
+		foreach ( $image_gallery as $image ) {
+			$image_gallery_array[] = array(
+				'link'  => $image['sizes']['large'],
+				'image' => $image['sizes']['listing-gallery']
+			);
+		}
+		$this->image_gallery = $image_gallery_array;
+	}
+
+	public function standardize_image_gallery_IDX( $idx_image_data ) {
+		//@todo process IDX image gallery data
+		$image_gallery_array = array();
+		$this->image_gallery = $image_gallery_array;
 	}
 
 	public function listing_data_from_WP() {
@@ -66,15 +80,20 @@ class listing_data {
 		$this->net_operating_income = get_field( 'listing_net_operating_income' );
 		$this->cap_rate             = get_field( 'listing_cap_rate' );
 		$this->description          = get_field( 'listing_description' );
-		$this->image_gallery        = get_field( 'listing_image_gallery' );
 		$this->unit_mix             = get_field( 'listing_unit_mix' );
 
 		if ( $listing_data_timestamp = get_field( 'listing_date' ) ) {
 			$this->listing_date = date( 'M jS Y', $listing_data_timestamp );
 		}
 
-		//$this->combined_address = '';
-		//$this->combined_address = $this->address . ' ' . $this->city . ', ' . $this->state . ' ' . $this->zip;
+		$this->standardize_image_gallery_WP( get_field( 'listing_image_gallery' ) );
+
+		if ( $this->address && $this->city && $this->state && $this->zip ) {
+			$this->combined_address = $this->address . ' ' . $this->city . ', ' . $this->state . ' ' . $this->zip;
+		} else {
+			$this->combined_address = false;
+		}
+
 		//$this->parking          = get_field( 'listing_parking' );
 		$this->city_state_zip = $this->city . ', ' . $this->state . ' ' . $this->zip;
 
@@ -87,6 +106,8 @@ class listing_data {
 	}
 
 	public function listing_data_from_IDX() {
+
+		$this->standardize_image_gallery_IDX( 'image data???' );
 
 	}
 }

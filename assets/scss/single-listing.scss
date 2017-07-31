@@ -62,7 +62,17 @@
         font-size: 15px;
       }
     }
-
+    .save-share-links {
+      margin-bottom: 15px;
+      a {
+        font-size: 17px;
+        padding-bottom: 200px;
+        margin: 0 10px;
+        i {
+          font-size: 15px;
+        }
+      }
+    }
 
   }
 
@@ -107,65 +117,40 @@
     }
   }
 }
+
 .description {
-  h5 {
-    color: #777;
-    @include listing_border_bottom;
-  }
-  white-space: normal;
   font-size: 14px;
 }
 
-.misc-details-wrap {
-  @media(min-width: $screen-sm) {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  .misc-details {
-    //margin: 10px;
-    background-color: #FAFAFA;
-    border: 1px solid #EEE;
-    display: flex;
-    margin-bottom: 13px;
-    @media(min-width: $screen-sm) {
-      //flex: 1;
-      flex: 0 1 49%;
-    }
-
-    .icon {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100px;
-      background-color: #F5F5F5;
-      border-right: 1px solid #EEE;
-      i {
-        color: #333;
-        //color: $brand-primary;
-        font-size: 30px;
-      }
-    }
-   .details {
-     width: 100%;
-     padding: 8px 10px;
-     font-size: 12px;
-     .detail {
-       flex: 1;
-      display: flex;
-       justify-content: space-between;
-       .detail-label {
-         color: #999;
-         flex: 1 1 45%;
-       }
-       .detail-content {
-         color: #444;
-         flex: 1 1 55%;
-       }
-     }
-   }
-
-  }
+h5.section-title {
+  color: #888;
+  padding-bottom: 1px;
+  @include listing_border_bottom;
 }
 
-
+.details-wrap-outer {
+  margin-top: 20px;
+  .details-wrap {
+    @media(min-width: $screen-sm) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .detail {
+      width: 100%;
+      padding: 5px 1px;
+      font-size: 14px;
+      flex: 0 1 50%;
+      display: flex;
+      justify-content: space-between;
+      .detail-label {
+        color: #999;
+        flex: 1 1 45%;
+      }
+      .detail-content {
+        color: #444;
+        flex: 1 1 55%;
+      }
+    }
+  }
+}
