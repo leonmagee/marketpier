@@ -19,7 +19,7 @@ class lv_google_map_group {
 
 	private function generate_map_lat_lng() { ?>
 
-		<script>
+        <script>
             function initMap() {
 
                 /**
@@ -109,27 +109,53 @@ class lv_google_map_group {
                             center: centerLatLng,
                             zoom: <?php echo $this->zoom; ?>,
                             scrollwheel: false,
-                            draggable: false
+                            draggable: true
                         });
 
                         /**
                          *  Create Map Markers
                          */
 
+                        var squareBg = {
+                            //path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
+                            path: 'M95.62,34.988c0,5.522-4.478,10-10,10H14.38c-5.523,0-10-4.478-10-10V15.011c0-5.522,4.477-9.999,10-9.999h71.24c5.522,0,10,4.477,10,9.999V34.988z',
+                            fillColor: '#00A3E4',
+                            fillOpacity: 1,
+                            scale: 0.47,
+                            strokeColor: '#FFF',
+                            strokeWeight: 3,
+                            color: '#FFF',
+                            labelOrigin: new google.maps.Point(47, 20),
+                            anchor: new google.maps.Point(9, 35),
+                        };
+
+                        var icon_image = 'http://www.therealtyfirm.com/wp-content/uploads/map-marker.png';
+
                         for (var index = 0; index < array_length; ++index) {
 
-                            marker = new google.maps.Marker({
+
+                            var marker = new google.maps.Marker({
+                                //position: map.getCenter(),
                                 position: {lat: latitude_array[index], lng: longitude_array[index]},
-                                map: map,
-                                title: latlngArray[index].address
+                                //icon: goldStar,
+                                icon: squareBg,
+                                label: {text: 'yyy', color: '#FFF'},
+                                map: map
                             });
+
+
+//                            marker = new google.maps.Marker({
+//                                position: {lat: latitude_array[index], lng: longitude_array[index]},
+//                                map: map,
+//                                title: latlngArray[index].address
+//                            });
 
                             var current_link = url_array[index];
 
                             new_marker_link(marker, current_link);
 
-                            function new_marker_link(marker, current_link){
-                                marker.addListener('click', function() {
+                            function new_marker_link(marker, current_link) {
+                                marker.addListener('click', function () {
                                     window.location.href = current_link;
                                 });
                             }
@@ -138,7 +164,7 @@ class lv_google_map_group {
                     }
                 }
             }
-		</script>
+        </script>
 
 	<?php }
 
@@ -151,14 +177,14 @@ class lv_google_map_group {
 
 		?>
 
-		<script src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyCicY4hdtrXeGNvBQSivkxAKOseNIDWZdc"
-		        async defer></script>
+        <script src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyCicY4hdtrXeGNvBQSivkxAKOseNIDWZdc"
+                async defer></script>
 
-		<div class="google-map-outer-wrapper">
+        <div class="google-map-outer-wrapper">
 
-			<div id="map"></div>
+            <div id="map"></div>
 
-		</div>
+        </div>
 
 	<?php }
 

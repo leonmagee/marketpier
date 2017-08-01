@@ -1,5 +1,4 @@
 .search-listings-wrap {
-
   display: flex;
   height: 88vh;
   .search-listings-half {
@@ -20,12 +19,11 @@
       overflow: scroll;
     }
   }
-
 }
 
 // snippets
 a.snippet-link-outer {
-  color: #222 !important
+  color: #222 !important;
   &:hover, &:visited {
     color: #222;
   }
@@ -35,17 +33,17 @@ a.snippet-link-outer {
     }
   }
   .snippet-outer-wrap {
-    border-bottom: 2px solid #EEE;
-    background-color: #F7F7F7;
+    border-bottom: 1px solid #EEE;
+    background-color: #FAFAFA;
     display: flex;
     &:last-child {
-      border: none;
+      //border: none;
     }
     .image-wrap {
       position: relative;
       img {
         //max-height: 200px;
-        width: 400px;
+        max-width: 275px;
       }
       .image-overlay {
         position: absolute;
@@ -73,28 +71,53 @@ a.snippet-link-outer {
         }
       }
     }
-    .details-wrap {
-      padding: 5px 15px;
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
 
-      .details-item-wrap {
-        text-align: center;
-        .details-item {
-          color: #222;
-          font-weight: 700;
-          padding: 0 10px;
-          font-size: 16px;
+    .right-side-outer {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 100%;
+      padding-right: 20px;
+      .top-line {
+        padding: 5px 15px;
+        display: flex;
+        font-size: 14px;
+        justify-content: flex-end;
+        color: #AAA;
+        .contact-link {
+          color: $brand-primary;
+          text-transform: uppercase;
         }
-        label {
-          color: #999;
-          font-weight: 600;
-          font-size: 13px;
+      }
+      .details-wrap {
+        padding: 5px 15px;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        .details-item-wrap {
+          text-align: center;
+          .details-item {
+            color: #222;
+            font-weight: 700;
+            padding: 0 10px;
+            font-size: 16px;
+          }
+          label {
+            color: #999;
+            font-weight: 600;
+            font-size: 13px;
+          }
+          sep {
+            color: #CCC;
+          }
         }
-        sep {
-          color: #CCC;
-        }
+      }
+      .bottom-line {
+        padding: 5px 15px;
+        display: flex;
+        font-size: 14px;
+        justify-content: flex-end;
+        color: #AAA;
       }
     }
 
