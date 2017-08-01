@@ -6,9 +6,20 @@
     &.map-half {
       background: blue;
       flex: 0 1 50%;
+
+
+      .google-map-outer-wrapper {
+        background-color: #EEE;
+        height: 100%;
+        #map {
+          height: 100%;
+        }
+      }
+
+
     }
     &.snippet-half {
-      background: red;
+      background: #EEE;
       flex: 0 1 50%;
     }
   }

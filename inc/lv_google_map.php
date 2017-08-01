@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class skyrises_google_map
+ * Class lv_google_map
  * Google Maps API script enqueued through 'output_map' method - url includes reference
  * to callback function 'initMap' - https://maps.googleapis.com/maps/api/js?callback=initMap
  */
