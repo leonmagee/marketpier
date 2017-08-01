@@ -58,7 +58,7 @@ header#masthead {
   }
 
   .login-sign-in {
-    background: $brand-primary;
+    //background: $brand-primary;
     color: #FFF;
     //border-radius: 5px;
     //padding: 10px 15px;
@@ -70,8 +70,10 @@ header#masthead {
     padding: 0;
     a {
       color: #FFF;
+      transition: 0.1s;
       &:hover {
         color: #FFF;
+        opacity: 0.9;
       }
       span {
         padding: 7px 15px;

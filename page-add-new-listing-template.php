@@ -60,7 +60,7 @@ get_header(); ?>
 						'listing_lot_size',
 						'listing_apn_parcel_id',
 						'listing_number_of_units',
-						'listing_not_operating_income',
+						'listing_net_operating_income',
 						'listing_cap_rate',
 						'listing_description',
 						'listing_image_gallery',
