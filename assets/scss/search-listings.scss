@@ -25,7 +25,7 @@
 
 // snippets
 a.snippet-link-outer {
-  color: #222;
+  color: #222 !important
   &:hover, &:visited {
     color: #222;
   }
@@ -44,7 +44,8 @@ a.snippet-link-outer {
     .image-wrap {
       position: relative;
       img {
-        max-height: 200px;
+        //max-height: 200px;
+        width: 400px;
       }
       .image-overlay {
         position: absolute;
@@ -75,18 +76,25 @@ a.snippet-link-outer {
     .details-wrap {
       padding: 5px 15px;
       display: flex;
-      font-size: 14px;
+      justify-content: space-between;
+      width: 100%;
 
-      .details-item {
-        color: #222;
-        font-weight: 700;
-      }
-      label {
-        color: #999;
-        font-weight: 600;
-      }
-      sep {
-        color: blue;
+      .details-item-wrap {
+        text-align: center;
+        .details-item {
+          color: #222;
+          font-weight: 700;
+          padding: 0 10px;
+          font-size: 16px;
+        }
+        label {
+          color: #999;
+          font-weight: 600;
+          font-size: 13px;
+        }
+        sep {
+          color: #CCC;
+        }
       }
     }
 
