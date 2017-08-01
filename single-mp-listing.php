@@ -68,11 +68,13 @@ $listing_data->listing_data_from_WP();
                         <div class="detail-label">No Units</div>
                         <div class="detail-content"><?php echo $listing_data->number_of_units; ?></div>
                     </div>
-                    <div class="detail">
-                        <div class="detail-label">Net Income</div>
-                        <div class="detail-content">
-                            $<?php echo number_format( $listing_data->net_operating_income ); ?></div>
-                    </div>
+					<?php if ( $income = $listing_data->net_operating_income ) { ?>
+                        <div class="detail">
+                            <div class="detail-label">Net Income</div>
+                            <div class="detail-content">
+                                $<?php echo number_format( $income); ?></div>
+                        </div>
+					<?php } ?>
                     <div class="detail">
                         <div class="detail-label">Cap Rate</div>
                         <div class="detail-content"><?php echo number_format( $listing_data->cap_rate, 2 ); ?>%
