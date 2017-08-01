@@ -1,0 +1,42 @@
+.search-listings-wrap {
+
+  display: flex;
+  height: 100%;
+  .search-listings-half {
+    &.map-half {
+      background: blue;
+      flex: 0 1 50%;
+    }
+    &.snippet-half {
+      background: red;
+      flex: 0 1 50%;
+    }
+  }
+
+}
+
+.snippet-outer-wrap {
+  padding: 10px;
+  border: 1px solid #EEE;
+  background-color: #F7F7F7;
+  display: flex;
+  .image-wrap {
+    img {
+      max-height: 200px;
+    }
+  }
+  .details-wrap {
+    padding: 5px 15px;
+    .title-wrap {
+      color: $brand-primary;
+      font-size: 23px;
+      font-weight: 700;
+    }
+    .price-wrap {
+      color: $brand-second;
+      font-size: 30px;
+    }
+  }
+
+}
+
