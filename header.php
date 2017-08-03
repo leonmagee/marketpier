@@ -28,9 +28,7 @@
         <div class="header-inner">
             <div class="site-branding">
                 <div class="marketpier-logo">
-                    <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-                        <span>Market</span><span>Pier</span>
-                    </a>
+                    <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">MarketPier</a>
                 </div>
 				<?php if ( $broker_logo = get_field( 'broker_logo', 'option' ) ) { ?>
                     <div class="broker-logo">
