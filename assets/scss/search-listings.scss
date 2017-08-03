@@ -39,11 +39,13 @@ a.snippet-link-outer {
     &:last-child {
       //border: none;
     }
-    .image-wrap {
+    .image-wrap { // @todo something is weird about sizing the images like this
       position: relative;
       img {
         //max-height: 200px;
+        //min-width: 100px;
         max-width: 275px;
+        min-height: 197px;
       }
       .image-overlay {
         position: absolute;
