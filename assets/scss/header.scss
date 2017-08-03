@@ -1,13 +1,14 @@
 header#masthead {
   @include header_footer_bg;
   border-bottom: 1px solid #F4F4F4;
-  //background-color: #FAFAFA;
   .header-inner {
-    height: 12vh;
-    display: flex;
-    justify-content: space-between;
     align-items: center;
     @include max_width;
+    @media(min-width: $screen-sm) {
+      display: flex;
+      justify-content: space-between;
+      height: 12vh;
+    }
   }
 }
 
@@ -54,11 +55,17 @@ header#masthead {
 }
 
 .header-right {
-  display: flex;
   align-items: center;
+  @media(min-width: $screen-sm) {
+    display: flex;
+  }
 
   .create-listing-link {
-    margin: 0 5px;
+    margin: 15px 0;
+    text-align: center;
+    @media(min-width: $screen-sm) {
+      margin: 0 5px;
+    }
     a {
       color: #333;
       &:hover {
@@ -76,8 +83,12 @@ header#masthead {
     font-weight: 600;
     text-transform: uppercase;
     font-size: 15px;
-    margin: 0 15px;
+    margin: 5px 15px 30px;
     padding: 0;
+    text-align: center;
+    @media(min-width: $screen-sm) {
+      margin: 0 15px;
+    }
     a {
       color: #FFF;
       transition: 0.1s;

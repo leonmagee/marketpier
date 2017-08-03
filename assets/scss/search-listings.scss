@@ -1,6 +1,8 @@
 .search-listings-wrap {
-  display: flex;
-  height: 88vh;
+  @media(min-width: $screen-sm) {
+    display: flex;
+    height: 88vh;
+  }
   .search-listings-half {
     &.map-half {
       background: blue;
@@ -15,8 +17,10 @@
     }
     &.snippet-half {
       background: #EEE;
-      flex: 0 1 50%;
-      overflow: scroll;
+      @media(min-width: $screen-sm) {
+        flex: 0 1 50%;
+        overflow: scroll;
+      }
     }
   }
 }
@@ -35,7 +39,9 @@ a.snippet-link-outer {
   .snippet-outer-wrap {
     border-bottom: 1px solid #EEE;
     background-color: #FAFAFA;
-    display: flex;
+    @media(min-width: $screen-sm) {
+      display: flex;
+    }
     &:last-child {
       //border: none;
     }
@@ -44,8 +50,12 @@ a.snippet-link-outer {
       img {
         //max-height: 200px;
         //min-width: 100px;
-        max-width: 275px;
-        min-height: 197px;
+        width: 100%;
+        @media(min-width: $screen-sm) {
+          width: auto;
+          max-width: 275px;
+          min-height: 197px;
+        }
       }
       .image-overlay {
         position: absolute;

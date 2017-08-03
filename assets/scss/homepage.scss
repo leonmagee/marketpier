@@ -10,11 +10,13 @@
   }
   .homepage-slider-inner {
     padding: 15px;
-    display: flex;
-    justify-content: flex-start;
     align-items: center;
-    flex-direction: column;
-    min-height: 70vh;
+    @media(min-width: $screen-sm) {
+      flex-direction: column;
+      display: flex;
+      justify-content: flex-start;
+      min-height: 70vh;
+    }
     h1 {
       color: #FFF;
       text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
