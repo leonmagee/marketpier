@@ -26,8 +26,8 @@
         </div>
     </div>
     <div class="input-wrap main-input">
-        <i class="fa fa-search" aria-hidden="true"></i>
         <input type="text" placeholder="Search City, State, or Area"/>
+        <i class="fa fa-search" aria-hidden="true"></i>
     </div>
 
     <div class="input-wrap submit-input">

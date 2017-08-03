@@ -2,14 +2,7 @@
 * Backgrounds
 **/
 @mixin header_footer_bg() {
-  //background-image: url('../img/square_bg.png'); // 504 x 460 // 252 x 230
-  //background-size: 252px 230px;
-  //background-color: #FCFCFC;
   background-color: #FBFBFB;
-  //background-color: red;
-  //background-repeat: no-repeat;
-  //background: #EEE url('../img/shattered-light.png'); // 1000 x 1000
-  //background-size: 100px 100px;
 }
 
 @mixin max_width($width: 1250px) {
@@ -18,9 +11,11 @@
 }
 
 @mixin form_text() {
-  color: #444;
+  color: #555;
   font-family: 'Open Sans';
   font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
 }
 
 @mixin listing_border_bottom() {

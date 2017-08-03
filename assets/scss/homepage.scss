@@ -21,12 +21,13 @@
       color: #FFF;
       text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
       text-transform: uppercase;
-      margin: 100px 0;
+      margin: 10px 0;
       font-family: 'Open Sans';
       font-weight: 600;
       font-size: 30px;
 
       @media(min-width: $screen-sm) {
+        margin: 100px 0;
         font-size: 50px;
       }
     }

@@ -13,52 +13,45 @@
   .input-wrap {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     background-color: #FFF;
     color: $form-text;
     @include form_text;
     font-size: 13px;
-    padding: 5px;
+    padding: 5px 10px;
     border-radius: 5px;
     margin: 15px 5px;
     position: relative;
     text-transform: uppercase;
+    min-height: 46px;
     @media(min-width: $screen-sm) {
+      justify-content: space-around;
       margin: 0 5px;
     }
-    //&.one_fourth {
-    //  flex: 1 1 25%;
-    //}
-    //&.three_fourths {
-    //  flex: 1 1 75%;
-    //}
-    //&.one_fifth {
-    //  flex: 1 1 20%;
-    //}
-    //&.three_fifths {
-    //  flex: 1 1 60%;
-    //}
-    //&.one_sixth {
-    //  flex: 1 1 16%;
-    //}
-    //&.four_sixth {
-    //  flex: 1 1 66%;
-    //}
     &.status {
-      flex: 1 1 18%;
+      @media(min-width: $screen-sm) {
+        flex: 1 1 18%;
+      }
     }
     &.property-type {
-      flex: 1 1 23%;
+      @media(min-width: $screen-sm) {
+        flex: 1 1 23%;
+      }
     }
     &.main-input {
-      flex: 1 1 44%;
+      @media(min-width: $screen-sm) {
+        flex: 1 1 44%;
+      }
     }
     &.submit-input {
-      flex: 1 1 15%;
       background-color: $brand-primary;
       color: #FFF;
       font-weight: 700;
       font-size: 22px;
+      justify-content: center;
+      @media(min-width: $screen-sm) {
+        flex: 1 1 15%;
+      }
       &:hover {
         cursor: pointer;
         background-color: lighten( $brand-primary, 5%);
@@ -67,11 +60,12 @@
     i {
       font-size: 20px;
       padding: 0 5px;
-      color: #555;
+      color: #888;
     }
     input {
       @include form_text;
-      color: #222;
+      padding: 0;
+      color: #000;
       margin: 0;
       border: none;
       box-shadow: none;
@@ -91,28 +85,30 @@
 
     .dropdown-pane {
       max-width: 100%;
+      top: 40px !important;
+      padding: 0;
+      left: 0;
+      ul {
+        padding: 0;
+        margin: 0;
+        li {
+          list-style-type: none;
+          width: 100%;
+          padding: 4px 15px;
+          font-size: 13px;
+          margin: 0;
+          text-align: left;
+          &:hover {
+            cursor: pointer;
+            background-color: #EEE;
+          }
+        }
+      }
     }
   }
 }
 
 .dropdown-pane {
-  padding: 0;
-  left: 0 !important;
-  //border: 1px solid #F4F4F4;
-  ul {
-    padding: 0;
-    margin: 0;
-    li {
-      list-style-type: none;
-      width: 100%;
-      padding: 3px 15px;
-      font-size: 13px;
-      margin: 0;
-      text-align: left;
-      &:hover {
-        cursor: pointer;
-        background-color: #EEE;
-      }
-    }
-  }
+
+
 }
