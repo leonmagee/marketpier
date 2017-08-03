@@ -31,11 +31,17 @@ class snippet_data {
 	 *
 	 * @todo this method only needs to get the first image, and just the $main_image(listing_main_image) if that is set.
 	 */
-	public function standardize_image_gallery_WP( $image_gallery ) {
-		$this->image_gallery_first = $image_gallery[0]['sizes']['listing-gallery'];
+	public function standardize_snippet_image_WP( $image_gallery ) {
+		if ( $first_image = $image_gallery[0]['sizes']['listing-gallery'] ) {
+			$this->image_gallery_first = $first_image;
+		} else {
+			$default_image             = get_stylesheet_directory_uri() . '/assets/img/image-not-available.jpg';
+			$this->image_gallery_first = $default_image;
+		}
+
 	}
 
-	public function standardize_image_gallery_IDX( $idx_image_data ) {
+	public function standardize_snippet_image_IDX( $idx_image_data ) {
 		//@todo process IDX image gallery data
 		$image_gallery_array = array();
 		$this->image_gallery = $image_gallery_array;
@@ -60,7 +66,7 @@ class snippet_data {
 		$this->cap_rate           = get_field( 'listing_cap_rate' );
 		$this->listing_url        = get_the_permalink();
 
-		$this->standardize_image_gallery_WP( get_field( 'listing_image_gallery' ) );
+		$this->standardize_snippet_image_WP( get_field( 'listing_image_gallery' ) );
 
 		if ( $this->address && $this->city && $this->state && $this->zip ) {
 			$this->combined_address = $this->address . ' - ' . $this->city . ', ' . $this->state . ' ' . $this->zip;
