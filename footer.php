@@ -18,18 +18,19 @@
         <div class="attribution">
             <div class="attribution-top">
                 <div class="attribution-line">
-					<?php echo bloginfo( 'site_title' ); ?> <?php echo date( 'Y' ); ?> All Rights Reserved
-                </div>
-            </div>
-            <div class="attribution-bottom">
-                <div class="attribution-line">
                     <a href="<?php echo site_url(); ?>/about">About</a>
                 </div>
                 <span class="sep"> | </span>
                 <div class="attribution-line">
                     <a href="<?php echo site_url(); ?>/contact">Contact</a>
                 </div>
-                <span class="sep"> | </span>
+            </div>
+            <div class="attribution-middle">
+                <div class="attribution-line">
+					<?php echo bloginfo( 'site_title' ); ?> <?php echo date( 'Y' ); ?> All Rights Reserved
+                </div>
+            </div>
+            <div class="attribution-bottom">
                 <div class="attribution-line">
                     Site by <a href="https://levon.io" target="_blank">Levon.io</a>
                 </div>
@@ -42,11 +43,11 @@
             </div>
 		<?php } ?>
 
-	    <?php if ( $broker_company_info = get_field( 'broker_company_info', 'option' ) ) { ?>
+		<?php if ( $broker_company_info = get_field( 'broker_company_info', 'option' ) ) { ?>
             <div class="broker-info-line">
-			    <?php echo $broker_company_info; ?>
+				<?php echo $broker_company_info; ?>
             </div>
-	    <?php } ?>
+		<?php } ?>
 
 
         <div class="social">

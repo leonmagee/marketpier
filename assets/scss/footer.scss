@@ -2,7 +2,7 @@ footer.site-footer {
   padding: 20px 0;
   @include header_footer_bg;
   border-top: 1px solid #F4F4F4;
-  font-size: 13px;
+  font-size: 11px;
   .site-footer-inner {
     @media(min-width: $screen-sm) {
       display: flex;
@@ -21,7 +21,10 @@ footer.site-footer {
       span.sep {
         display: none;
       }
-      .attribution-top, .attribution-bottom {
+      .attribution-top {
+        font-size: 14px;
+      }
+      .attribution-top, .attribution-middle, .attribution-bottom {
         padding: 2px 0;
         @media(min-width: $screen-sm) {
           display: flex;
