@@ -21,17 +21,20 @@ footer.site-footer {
       span.sep {
         display: none;
       }
-      @media(min-width: $screen-sm) {
-        display: flex;
-        align-items: center;
-        .attribution-line {
-          padding: 0;
-        }
-        span.sep {
-          display: block;
-          margin: -2px 3px 0;
-          color: #AAA;
-          line-height: 20px;
+      .attribution-top, .attribution-bottom {
+        padding: 2px 0;
+        @media(min-width: $screen-sm) {
+          display: flex;
+          align-items: center;
+          .attribution-line {
+            padding: 0;
+          }
+          span.sep {
+            display: block;
+            margin: -2px 3px 0;
+            color: #AAA;
+            line-height: 20px;
+          }
         }
       }
     }
@@ -43,6 +46,17 @@ footer.site-footer {
         margin: 0 10px;
         font-size: 26px;
       }
+    }
+  }
+
+  .broker-info-line {
+    color: #555;
+    font-size: 12px;
+    padding: 10px 3px;
+    text-align: center;
+    @media(min-width: $screen-sm) {
+      padding: 0;
+      text-align: left;
     }
   }
 }
