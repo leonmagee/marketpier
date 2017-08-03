@@ -32,6 +32,13 @@
                         <span>Market</span><span>Pier</span>
                     </a>
                 </div>
+				<?php if ( $broker_logo = get_field( 'broker_logo', 'option' ) ) { ?>
+                    <div class="broker-logo">
+                        <a href="" rel="home">
+                            <img src="<?php echo $broker_logo; ?>"/>
+                        </a>
+                    </div>
+				<?php } ?>
             </div><!-- .site-branding -->
             <div class="header-right">
                 <div class="create-listing-link">

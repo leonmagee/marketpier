@@ -48,7 +48,6 @@ class lv_google_map_group {
                     price: '<?php echo $location['price']; ?>',
                     url: '<?php echo $location['url']; ?>'
                 });
-                console.log(latlngArray);
 
 				<?php } ?>
 
@@ -67,7 +66,6 @@ class lv_google_map_group {
                     if (count < array_length) {
 
                         var new_address = latlngArray[count].address;
-                        console.log('New Address', new_address);
                         var latitude = latlngArray[count].latLng.lat;
                         var longitude = latlngArray[count].latLng.lng;
                         var listing_url = latlngArray[count].url;
@@ -75,24 +73,20 @@ class lv_google_map_group {
 
                         geo.geocode({address: new_address}, function (results, status) {
 
-                            if (( !latitude || !longitude ) && results) {
-                                console.log('Results', results);
-
+                            if (!latitude || !longitude) {
                                 latitude = results[0].geometry.location.lat();
                                 longitude = results[0].geometry.location.lng();
-
                             }
 
-                                latTotal = latTotal + latitude;
-                                lngTotal = lngTotal + longitude;
+                            latTotal = latTotal + latitude;
+                            lngTotal = lngTotal + longitude;
 
-                                latitude_array.push(latitude);
-                                longitude_array.push(longitude);
-                                url_array.push(listing_url);
-                                price_array.push(listing_price);
+                            latitude_array.push(latitude);
+                            longitude_array.push(longitude);
+                            url_array.push(listing_url);
+                            price_array.push(listing_price);
 
-                                ++count;
-
+                            ++count;
 
                             getLatLngAddress(latlngArray, array_length, geo);
                         });
