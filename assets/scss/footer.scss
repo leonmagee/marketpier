@@ -22,7 +22,7 @@ footer.site-footer {
         display: none;
       }
       .attribution-top {
-        font-size: 14px;
+        font-size: 18px;
       }
       .attribution-top, .attribution-middle, .attribution-bottom {
         padding: 2px 0;
@@ -46,8 +46,12 @@ footer.site-footer {
       display: flex;
       justify-content: center;
       a {
+        color: #AAA;
         margin: 0 10px;
-        font-size: 26px;
+        font-size: 22px;
+        &:hover {
+          color: $brand-primary;
+        }
       }
     }
   }
