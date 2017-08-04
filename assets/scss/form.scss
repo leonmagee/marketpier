@@ -2,7 +2,7 @@
   max-width: 900px;
   margin: 0 auto;
   padding: 18px 15px;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
   //background-color: rgba(255,255,255,0.2);
   //background-color: #CCC;
   border-radius: 15px;
@@ -46,20 +46,6 @@
     &.main-input {
       @media(min-width: $screen-sm) {
         flex: 1 1 44%;
-      }
-    }
-    &.submit-input {
-      background-color: $brand-primary;
-      color: #FFF;
-      font-weight: 700;
-      font-size: 22px;
-      justify-content: center;
-      @media(min-width: $screen-sm) {
-        flex: 1 1 15%;
-      }
-      &:hover {
-        cursor: pointer;
-        background-color: lighten( $brand-primary, 5%);
       }
     }
     i {
@@ -116,9 +102,38 @@
       }
     }
   }
+  input.submit-input {
+    //display: flex;
+    //align-items: center;
+    @include form_text;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 0 5px;
+    position: relative;
+    text-transform: uppercase;
+    //min-height: 46px;
+    min-height: 49px;
+    text-align: center;
+    border: none;
+
+
+    background-color: $brand-primary;
+    color: #FFF;
+    font-weight: 700;
+    font-size: 22px;
+    //justify-content: center;
+    width: 100%;
+    height: 100%;
+    @media(min-width: $screen-sm) {
+      flex: 1 1 15%;
+    }
+    &:hover {
+      cursor: pointer;
+      background-color: lighten($brand-primary, 5%);
+    }
+  }
 }
 
 .dropdown-pane {
-
 
 }

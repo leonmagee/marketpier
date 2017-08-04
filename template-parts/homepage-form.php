@@ -10,7 +10,7 @@
                     <li>Sold Listings</li>
                 </ul>
             </div>
-            <input class="hidden-input" type="hidden" name="status" />
+            <input class="hidden-input" type="hidden" name="status"/>
         </div>
         <div class="input-wrap property-type" data-toggle="property-type-dropdown">
             <div class="select-toggle">All Property Types</div>
@@ -28,15 +28,12 @@
                     <li>Business Opportunity</li>
                 </ul>
             </div>
-            <input class="hidden-input" type="hidden" name="property-type" />
+            <input class="hidden-input" type="hidden" name="property-type"/>
         </div>
         <div class="input-wrap main-input">
             <input type="text" placeholder="Search City, State, or Area" name="city-state-area"/>
             <i class="fa fa-search" aria-hidden="true"></i>
         </div>
-
-        <div class="input-wrap submit-input">
-            Submit
-        </div>
+        <input class="submit-input" type="submit" value="Submit"/>
     </form>
 </div>
