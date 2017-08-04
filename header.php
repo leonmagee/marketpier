@@ -38,7 +38,7 @@
             </div><!-- .site-branding -->
             <div class="header-right">
                 <div class="create-listing-link">
-                    <a href="#">Create Listing</a>
+                    <a href="<?php echo site_url(); ?>/add-listing">Create Listing</a>
                 </div>
                 <div class="login-sign-in">
                     <a href="#">
