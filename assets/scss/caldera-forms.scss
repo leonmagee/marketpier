@@ -1,0 +1,20 @@
+.caldera-grid {
+  @media(min-width: $screen-sm) {
+    padding: 10px 30px;
+  }
+  label {
+    color: #777;
+  }
+  .btn.btn-default {
+    font-family: 'Open Sans';
+    font-weight: 700;
+    color: #FFF;
+    background-color: $brand-primary;
+    border: none;
+    border-radius: 0;
+    &:hover {
+      color: #FFF;
+      background-color: lighten($brand-primary, 5%);
+    }
+  }
+}
