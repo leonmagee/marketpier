@@ -6,9 +6,11 @@
   //background-color: rgba(255,255,255,0.2);
   //background-color: #CCC;
   border-radius: 15px;
-  @media(min-width: $screen-sm) {
-    display: flex;
-    justify-content: space-between;
+  form {
+    @media(min-width: $screen-sm) {
+      display: flex;
+      justify-content: space-between;
+    }
   }
   .input-wrap {
     display: flex;
@@ -24,8 +26,11 @@
     position: relative;
     text-transform: uppercase;
     min-height: 46px;
+    //&.selected { //@todo not currently changing selected style
+    //  color: $brand-primary;
+    //}
     @media(min-width: $screen-sm) {
-      justify-content: space-around;
+      //justify-content: space-around;
       margin: 0 5px;
     }
     &.status {
@@ -86,6 +91,7 @@
     .dropdown-pane {
       max-width: 100%;
       top: 40px !important;
+      @include form_text;
       padding: 0;
       left: 0;
       ul {
@@ -101,6 +107,10 @@
           &:hover {
             cursor: pointer;
             background-color: #EEE;
+          }
+          &.selected {
+            background-color: $brand-primary;
+            color: #FFF;
           }
         }
       }
