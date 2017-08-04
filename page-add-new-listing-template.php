@@ -24,8 +24,10 @@ get_header(); ?>
                 </header>
 
 				<?php
-
-
+				/**
+				 * @todo somehow this needs to be a multipart form...
+                 * and I also need to
+				 */
 				acf_form( array(
 					'post_id'      => 'new_post',
 					'post_title'   => true,
@@ -39,7 +41,7 @@ get_header(); ?>
 					'fields'       => array(
 						//'listing_main_image',
 						'listing_mls_number',
-						'listing_id',
+						//'listing_id', // @todo auto generate
 						'listing_price',
 						'listing_address',
 						'listing_city',
@@ -48,12 +50,12 @@ get_header(); ?>
 						'listing_neighborhood',
 						'listing_county',
 						'listing_year_built',
-						'listing_date',
-						'listing_days_on_market',
+						//'listing_date', // @todo this will be the current date
+						//'listing_days_on_market', // auto generated - remove field entirely
 						'listing_status',
 						'listing_for_sale_or_for_lease',
-						'listing_latitude',
-						'listing_longitude',
+						//'listing_latitude',
+						//'listing_longitude',
 						'listing_type',
 						'listing_sub_type',
 						'listing_building_size',

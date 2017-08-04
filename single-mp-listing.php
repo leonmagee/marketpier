@@ -91,6 +91,7 @@ $listing_data->listing_data_from_WP();
                         <div class="detail-label">Listing Date</div>
                         <div class="detail-content"><?php echo $listing_data->listing_date; ?></div>
                     </div>
+                    <!-- @todo auto generate this number -->
                     <div class="detail">
                         <div class="detail-label">Days Active</div>
                         <div class="detail-content"><?php echo $listing_data->days_on_market; ?></div>
