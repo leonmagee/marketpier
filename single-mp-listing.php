@@ -37,65 +37,85 @@ $listing_data->listing_data_from_WP();
             <div class="details-wrap-outer">
                 <h5 class="section-title">Listing Information</h5>
                 <div class="details-wrap">
-                    <div class="detail">
-                        <div class="detail-label">MLS Number</div>
-                        <div class="detail-content"><?php echo $listing_data->mls; ?></div>
-                    </div>
-                    <div class="detail">
-                        <div class="detail-label">APN/Parcel ID</div>
-                        <div class="detail-content"><?php echo $listing_data->apn_parcel_id; ?></div>
-                    </div>
-                    <div class="detail">
-                        <div class="detail-label">Type</div>
-                        <div class="detail-content"><?php echo $listing_data->type; ?></div>
-                    </div>
-                    <div class="detail">
-                        <div class="detail-label">Sub Type</div>
-                        <div class="detail-content"><?php echo $listing_data->sub_type; ?></div>
-                    </div>
-                    <div class="detail">
-                        <div class="detail-label">Building Size</div>
-                        <div class="detail-content"><?php echo number_format( $listing_data->building_size ); ?>
-                            sqft
+					<?php if ( $listing_data->mls ) { ?>
+                        <div class="detail">
+                            <div class="detail-label">MLS Number</div>
+                            <div class="detail-content"><?php echo $listing_data->mls; ?></div>
                         </div>
-                    </div>
-                    <div class="detail">
-                        <div class="detail-label">Lot Size</div>
-                        <div class="detail-content"><?php echo number_format( $listing_data->lot_size ); ?>sqft
+					<?php }
+					if ( $listing_data->apn_parcel_id ) { ?>
+                        <div class="detail">
+                            <div class="detail-label">APN/Parcel ID</div>
+                            <div class="detail-content"><?php echo $listing_data->apn_parcel_id; ?></div>
                         </div>
-                    </div>
-                    <div class="detail">
-                        <div class="detail-label">No Units</div>
-                        <div class="detail-content"><?php echo $listing_data->number_of_units; ?></div>
-                    </div>
-					<?php if ( $income = $listing_data->net_operating_income ) { ?>
+					<?php }
+					if ( $listing_data->type ) { ?>
+                        <div class="detail">
+                            <div class="detail-label">Type</div>
+                            <div class="detail-content"><?php echo $listing_data->type; ?></div>
+                        </div>
+					<?php }
+					if ( $listing_data->sub_type ) { ?>
+                        <div class="detail">
+                            <div class="detail-label">Sub Type</div>
+                            <div class="detail-content"><?php echo $listing_data->sub_type; ?></div>
+                        </div>
+					<?php }
+					if ( $listing_data->building_size ) { ?>
+                        <div class="detail">
+                            <div class="detail-label">Building Size</div>
+                            <div class="detail-content"><?php echo number_format( $listing_data->building_size ); ?>
+                                sqft
+                            </div>
+                        </div>
+					<?php }
+					if ( $listing_data->lot_size ) { ?>
+                        <div class="detail">
+                            <div class="detail-label">Lot Size</div>
+                            <div class="detail-content"><?php echo number_format( $listing_data->lot_size ); ?> sqft
+                            </div>
+                        </div>
+					<?php }
+					if ( $listing_data->number_of_units ) { ?>
+                        <div class="detail">
+                            <div class="detail-label">No Units</div>
+                            <div class="detail-content"><?php echo $listing_data->number_of_units; ?></div>
+                        </div>
+					<?php }
+					if ( $income = $listing_data->net_operating_income ) { ?>
                         <div class="detail">
                             <div class="detail-label">Net Income</div>
                             <div class="detail-content">
-                                $<?php echo number_format( $income); ?></div>
+                                $<?php echo number_format( $income ); ?></div>
                         </div>
-					<?php } ?>
-                    <div class="detail">
-                        <div class="detail-label">Cap Rate</div>
-                        <div class="detail-content"><?php echo number_format( $listing_data->cap_rate, 2 ); ?>%
+					<?php }
+					if ( $listing_data->cap_rate ) { ?>
+                        <div class="detail">
+                            <div class="detail-label">Cap Rate</div>
+                            <div class="detail-content"><?php echo number_format( $listing_data->cap_rate, 2 ); ?>%
+                            </div>
                         </div>
-                    </div>
-					<?php if ( $listing_data->price_per_unit ) { ?>
+					<?php }
+					if ( $listing_data->price_per_unit ) { ?>
                         <div class="detail">
                             <div class="detail-label">Price / Unit</div>
                             <div class="detail-content">
                                 $<?php echo number_format( $listing_data->price_per_unit ); ?></div>
                         </div>
+					<?php }
+					if ( $listing_data->listing_date ) { ?>
+                        <div class="detail">
+                            <div class="detail-label">Listing Date</div>
+                            <div class="detail-content"><?php echo $listing_data->listing_date; ?></div>
+                        </div>
+					<?php }
+					if ( $listing_data->days_on_market ) { ?>
+                        <!-- @todo auto generate this number -->
+                        <div class="detail">
+                            <div class="detail-label">Days Active</div>
+                            <div class="detail-content"><?php echo $listing_data->days_on_market; ?></div>
+                        </div>
 					<?php } ?>
-                    <div class="detail">
-                        <div class="detail-label">Listing Date</div>
-                        <div class="detail-content"><?php echo $listing_data->listing_date; ?></div>
-                    </div>
-                    <!-- @todo auto generate this number -->
-                    <div class="detail">
-                        <div class="detail-label">Days Active</div>
-                        <div class="detail-content"><?php echo $listing_data->days_on_market; ?></div>
-                    </div>
                 </div>
             </div>
         </div>
