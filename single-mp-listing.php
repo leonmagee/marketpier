@@ -103,6 +103,13 @@ $listing_data->listing_data_from_WP();
                                 $<?php echo number_format( $listing_data->price_per_unit ); ?></div>
                         </div>
 					<?php }
+					if ( $listing_data->price_per_sqft ) { ?>
+                        <div class="detail">
+                            <div class="detail-label">Price / SQFT</div>
+                            <div class="detail-content">
+                                $<?php echo number_format( $listing_data->price_per_sqft ); ?></div>
+                        </div>
+					<?php }
 					if ( $listing_data->listing_date ) { ?>
                         <div class="detail">
                             <div class="detail-label">Listing Date</div>

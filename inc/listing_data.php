@@ -36,6 +36,7 @@ class listing_data {
 	public $city_state_zip;
 	public $combined_address;
 	public $price_per_unit;
+	public $price_per_sqft;
 
 	public function standardize_image_gallery_WP( $image_gallery ) {
 		$image_gallery_array = array();
@@ -101,6 +102,12 @@ class listing_data {
 			$this->price_per_unit = ( $this->price / $this->number_of_units );
 		} else {
 			$this->price_per_unit = false;
+		}
+
+		if ( $this->price && $this->building_size ) {
+			$this->price_per_sqft = ( $this->price / $this->building_size );
+		} else {
+			$this->price_per_sqft = false;
 		}
 
 	}
