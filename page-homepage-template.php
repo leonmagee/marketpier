@@ -5,6 +5,8 @@
  * @package MarketPier
  */
 
+require_once( 'inc/form-process-submit.php' );
+
 get_header();
 
 if ( $background = get_field( 'homepage_background_image', 'option' ) ) {

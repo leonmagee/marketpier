@@ -10,9 +10,75 @@ class snippet_data_search {
 
 	public function __construct() {
 
+		/**
+		 * @todo modify query based on get parameters
+		 */
+		//?status=Sold%20Listings&property_type=Industrial&city_state_area=Downtown
+
+		$status          = filter_input( INPUT_GET, 'status', FILTER_SANITIZE_ENCODED );
+		$property_type   = filter_input( INPUT_GET, 'property_type', FILTER_SANITIZE_SPECIAL_CHARS );
+		$city_state_area = filter_input( INPUT_GET, 'city_state_area', FILTER_SANITIZE_SPECIAL_CHARS );
+
+		$status          = rawurldecode( $status );
+		$property_type   = rawurldecode( $property_type );
+		$city_state_area = rawurldecode( $city_state_area );
+
+		//die( $status . ' - ' . $property_type . ' - ' . $city_state_area );
+
+		$meta_search_array = array();
+		if ( $status ) {
+			if ( $status == 'Sold Listings' ) {
+				$status = 'Sold';
+			}
+			if ( $status == 'ForSale' ) { // @todo why is this necessary??????
+				$status = 'For Sale';
+			}
+			$meta_search_array[] = array(
+				'key'   => 'listing_for_sale_or_for_lease',
+				'value' => $status
+			);
+		}
+
+		if ( $property_type ) {
+//			if ( $property_type == 'xxx' ) {
+//				$property_type = 'yyy';
+//			}
+			$meta_search_array[] = array(
+				'key'   => 'listing_type',
+				'value' => $property_type
+			);
+		}
+
+		//var_dump( $meta_search_array );
+		//die('x');
+
 		$snippet_objects    = array();
 		$map_data_array_src = array();
-		$args               = array( 'post_type' => 'mp-listing' );
+		$args               = array(
+			'post_type'  => 'mp-listing',
+			'meta_query' => $meta_search_array,
+//			'meta_query' => array(
+//				array(
+//					'key'   => 'listing_for_sale_or_for_lease',
+//					'value' => 'Sold'
+//				),
+//				array(
+//					'key'   => 'listing_zip',
+//					'value' => '92116'
+//				)
+//			)
+		);
+
+//		    'meta_query' => array(
+//			array(
+//				'key'     => 'post_code',
+//				'value'   => '432C',
+//			),
+//			array(
+//				'key'     => 'location',
+//				'value'   => 'XYZ',
+//			),
+//		),
 
 		$listing_query = new WP_Query( $args );
 

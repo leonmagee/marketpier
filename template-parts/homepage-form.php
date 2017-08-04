@@ -1,5 +1,7 @@
+<!-- @todo this should pull options from custom field repeater -->
 <div class="search-form-wrap">
     <form method="post" action="#"><!-- @todo form action to switch page to search results? -->
+        <input type="hidden" name="listing-search-form" />
         <div class="input-wrap status" data-toggle="status-dropdown">
             <div class="select-toggle">For Sale</div>
             <i class="fa fa-sort" aria-hidden="true"></i>

@@ -5,10 +5,10 @@
   }
   .search-listings-half {
     &.map-half {
-      background: blue;
+      background-color: #EEE;
       flex: 0 1 50%;
       .google-map-outer-wrapper {
-        background-color: #EEE;
+        //background-color: #EEE;
         height: 100%;
         #map {
           height: 100%;
