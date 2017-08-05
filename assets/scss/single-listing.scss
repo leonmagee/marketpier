@@ -117,19 +117,37 @@
       }
     }
   }
+  .unit-mix-outer {
+    margin: 20px 0;
+    .unit-mix-row {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+      background-color: #FBFBFB;
+      border: 1px solid #F1F1F1;
+      padding: 6px 15px 7px;
+      .unit-mix-item {
+        color: #555;
+        font-weight: 700;
+        flex: 0 1 25%;
+        label {
+          color: #999;
+        }
+        .unit-mix-value {
+        }
+      }
+    }
+  }
 }
-
 .description {
   font-size: 14px;
 }
-
 h5.section-title {
   color: #888;
   padding-bottom: 1px;
   font-size: 19px;
   @include listing_border_bottom;
 }
-
 .details-wrap-outer {
   margin-top: 20px;
   .details-wrap {

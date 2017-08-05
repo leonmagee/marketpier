@@ -125,42 +125,6 @@ $listing_data->listing_data_from_WP();
 					<?php } ?>
                 </div>
             </div>
-			<?php
-			if ( $unit_mix = $listing_data->unit_mix ) {
-				//if ( $unit_mix = get_field( 'unit_mix' ) ) {
-				?>
-                <div class="unit-mix-outer">
-                    <h5 class="section-title">Unit Mix</h5>
-					<?php foreach ( $unit_mix as $unit ) { ?>
-                        <div class="unit-mix-row">
-                            <div class="unit-mix-item unit-mix-plan">
-                                <label>Plan Name</label>
-                                <div class="unit-mix-value">
-									<?php echo $unit['unit_name__plan']; ?>
-                                </div>
-                            </div>
-                            <div class="unit-mix-item unit-mix-beds">
-                                <label>Beds</label>
-                                <div class="unit-mix-value">
-									<?php echo $unit['beds']; ?>
-                                </div>
-                            </div>
-                            <div class="unit-mix-item unit-mix-baths">
-                                <label>Baths</label>
-                                <div class="unit-mix-value">
-									<?php echo $unit['baths']; ?>
-                                </div>
-                            </div>
-                            <div class="unit-mix-item unit-mix-average_rent">
-                                <label>Average Rent</label>
-                                <div class="unit-mix-value">
-                                    $<?php echo number_format( $unit['average_rent'] ); ?>
-                                </div>
-                            </div>
-                        </div>
-					<?php } ?>
-                </div>
-			<?php } ?>
         </div>
 
         <div class="single-listing-gallery">
@@ -177,19 +141,27 @@ $listing_data->listing_data_from_WP();
                                                      href="<?php echo $listing_data->image_gallery[2]['link']; ?>"><img
                                 src="<?php echo $listing_data->image_gallery[2]['image']; ?>"/></a></div>
             </div>
-            <div class="image-wrap image-wrap-4">
+            <div class="image-wrap image-wrap-3">
                 <div class="single-gallery-image"><a rel="lightbox"
                                                      href="<?php echo $listing_data->image_gallery[3]['link']; ?>"><img
                                 src="<?php echo $listing_data->image_gallery[3]['image']; ?>"/></a></div>
                 <div class="single-gallery-image"><a rel="lightbox"
                                                      href="<?php echo $listing_data->image_gallery[4]['link']; ?>"><img
                                 src="<?php echo $listing_data->image_gallery[4]['image']; ?>"/></a></div>
+            </div>
+            <div class="image-wrap image-wrap-4">
                 <div class="single-gallery-image"><a rel="lightbox"
                                                      href="<?php echo $listing_data->image_gallery[5]['link']; ?>"><img
                                 src="<?php echo $listing_data->image_gallery[5]['image']; ?>"/></a></div>
                 <div class="single-gallery-image"><a rel="lightbox"
                                                      href="<?php echo $listing_data->image_gallery[6]['link']; ?>"><img
                                 src="<?php echo $listing_data->image_gallery[6]['image']; ?>"/></a></div>
+                <div class="single-gallery-image"><a rel="lightbox"
+                                                     href="<?php echo $listing_data->image_gallery[7]['link']; ?>"><img
+                                src="<?php echo $listing_data->image_gallery[7]['image']; ?>"/></a></div>
+                <div class="single-gallery-image"><a rel="lightbox"
+                                                     href="<?php echo $listing_data->image_gallery[8]['link']; ?>"><img
+                                src="<?php echo $listing_data->image_gallery[8]['image']; ?>"/></a></div>
             </div>
         </div>
 
