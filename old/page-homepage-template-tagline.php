@@ -61,6 +61,14 @@ if ( $background = get_field( 'homepage_background_image', 'option' ) ) {
 
         </div>
 
+        <div class="homepage-section homepage-section-tagline">
+
+			<?php if ( $section_tagline_1 = get_field( 'section_tagline_1', 'option' ) ) { ?>
+                <h2 class="section-title"><?php echo $section_tagline_1; ?></h2>
+			<?php } ?>
+        </div>
+
+
     </div>
 
 
