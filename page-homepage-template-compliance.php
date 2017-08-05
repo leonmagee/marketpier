@@ -25,7 +25,7 @@ if ( $background = get_field( 'homepage_background_image', 'option' ) ) {
 						<?php if ( $main_tagline = get_field( 'main_tagline', 'option' ) ) { ?>
                             <h1><?php echo $main_tagline; ?></h1>
 						<?php }
-						get_template_part( 'template-parts/homepage-form' ); ?>
+						//get_template_part( 'template-parts/homepage-form' ); ?>
                     </div>
                 </div>
             </div>
@@ -44,14 +44,14 @@ if ( $background = get_field( 'homepage_background_image', 'option' ) ) {
                                     <div class="title-wrap">
                                         <img src="<?php echo $cta_box['icon']; ?>"/>
                                         <h3>
-                                            <a href="<?php echo site_url() . '/' . $cta_box['url']; ?>">
+                                            <a href="#">
 												<?php echo $cta_box['title']; ?>
                                             </a>
                                         </h3>
                                     </div>
                                     <p><?php echo $cta_box['excerpt']; ?></p>
                                     <a class='cta-link'
-                                       href="<?php echo site_url() . '/' . $cta_box['url']; ?>"><?php echo $cta_box['link_text']; ?></a>
+                                       href="#"><?php echo $cta_box['link_text']; ?></a>
                                 </div>
                             </div>
 						<?php } ?>
