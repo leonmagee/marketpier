@@ -25,7 +25,7 @@ if ( $background = get_field( 'homepage_background_image', 'option' ) ) {
 						<?php if ( $main_tagline = get_field( 'main_tagline', 'option' ) ) { ?>
                             <h1><?php echo $main_tagline; ?></h1>
 						<?php }
-						//get_template_part( 'template-parts/homepage-form' ); ?>
+						get_template_part( 'template-parts/homepage-form-compliance' ); ?>
                     </div>
                 </div>
             </div>
