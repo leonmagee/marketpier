@@ -42,7 +42,7 @@
                 </div>
                 <div class="login-sign-in">
                     <a href="#">
-                        Log In <sep>/</sep> Sign In
+                        Log In <sep>/</sep> Sign Up
                     </a>
                 </div>
             </div>
