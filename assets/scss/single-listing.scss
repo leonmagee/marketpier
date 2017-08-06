@@ -123,6 +123,7 @@
     .unit-mix-row {
       display: flex;
       justify-content: space-between;
+      flex-wrap: wrap;
       margin: 10px 0;
       background-color: #FBFBFB;
       border: 1px solid #F1F1F1;
@@ -130,12 +131,25 @@
       .unit-mix-item {
         color: #555;
         font-weight: 700;
-        flex: 0 1 18%;
+        flex: 0 1 36%;
+        margin-top: 7px;
+        margin-bottom: 7px;
+        @media(min-width: $screen-sm) {
+          margin-top: 0;
+          margin-bottom: 0;
+          flex: 0 1 18%;
+        }
         &.unit-mix-plan {
-          flex: 0 1 25%;
+          flex: 0 1 50%;
+          @media(min-width: $screen-sm) {
+            flex: 0 1 25%;
+          }
         }
         &.unit-mix-units, &.unit-mix-beds, &.unit-mix-baths {
-          flex: 0 1 13%;
+          flex: 0 1 25%;
+          @media(min-width: $screen-sm) {
+            flex: 0 1 13%;
+          }
         }
         label {
           color: #999;
@@ -204,10 +218,18 @@ h5.section-title {
 .listing-agent-form-wrap {
   font-family: 'Open Sans';
   width: 100%;
-  padding: 15px;
+  padding: 12px 15px 15px;
   border: 1px solid #DDD;
-  margin: 30px;
   text-align: center;
+  margin: 15px 0;
+  h3 {
+    color: #444;
+    font-size: 20px;
+    margin: 0 0 10px;
+  }
+  @media(min-width: $screen-sm) {
+    margin: 30px;
+  }
   form {
     display: flex;
     flex-wrap: wrap;
@@ -242,13 +264,45 @@ h5.section-title {
         background-color: lighten($brand-primary, 5%);
       }
     }
+
+    .agent-choice {
+      display: flex;
+      padding: 5px;
+      border: 1px solid #DDD;
+      margin-bottom: 15px;
+      &:hover {
+        cursor: pointer;
+        border: 1px solid $brand-primary;
+      }
+      &.active {
+      }
+      @media(min-width: $screen-sm) {
+        flex: 0 1 49%;
+      }
+      .avatar-wrap {
+        flex: 0 1 25%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #EEE;
+        i {
+          font-size: 30px;
+        }
+      }
+      .details-wrap {
+        flex: 0 1 75%;
+        text-align: left;
+        padding-left: 10px;
+        .agent-name {
+          color: #333;
+        }
+        .broker-name {
+          color: #AAA;
+        }
+      }
+    }
+
+
+
   }
 }
-
-//<form method="post">
-//<input type="text" name="your-name" placeholder="Your Name" />
-//<input type="number" name="your-phone" placeholder="Phone" />
-//<input type="email" name="your-email" placeholder="Email" />
-//<textarea name="listing-comment">I am interested in <?php echo $address; ?></textarea>
-//<input type="submit" class="submit" name="Contact Agent" />
-//</form>

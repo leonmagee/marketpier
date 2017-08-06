@@ -208,16 +208,31 @@ $listing_data->listing_data_from_WP();
             <div class="listing-agent-form-wrap">
                 <h3>Contact Agent</h3>
                 <form method="post">
-                    <input class='name' type="text" name="your-name" placeholder="Your Name" />
-                    <input class='phone' type="number" name="your-phone" placeholder="Phone" />
-                    <input class='email' type="email" name="your-email" placeholder="Email" />
+                    <input class='name' type="text" name="your-name" placeholder="Your Name"/>
+                    <input class='phone' type="number" name="your-phone" placeholder="Phone"/>
+                    <input class='email' type="email" name="your-email" placeholder="Email"/>
                     <textarea name="listing-comment">I am interested in <?php echo $address; ?></textarea>
-                    <input type="submit" class="submit" name="Contact Agent" value="Contact Agent" />
+                    <div class="agent-choice">
+                        <div class="avatar-wrap">
+                            <i class="fa fa-user"></i>
+                        </div>
+                        <div class="details-wrap">
+                            <div class="agent-name">Desirae Sweeney</div>
+                            <div class="broker-name">Listing Agent</div>
+                        </div>
+                    </div>
+                    <div class="agent-choice">
+                        <div class="avatar-wrap">
+                            <div class="marketpier-fav-logo">MP</div>
+                        </div>
+                        <div class="details-wrap">
+                            <div class="agent-name">Dan Haas</div>
+                            <div class="broker-name">MarketPier Agent</div>
+                        </div>
+                    </div>
+                    <input type="submit" class="submit" name="Contact Agent" value="Contact Agent"/>
                 </form>
             </div>
-
-
-
 
 
         </div>
