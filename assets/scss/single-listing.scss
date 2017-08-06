@@ -270,6 +270,7 @@ h5.section-title {
       padding: 5px;
       border: 1px solid #DDD;
       margin-bottom: 15px;
+      flex: 1 1 100%;
       &:hover {
         cursor: pointer;
         border: 1px solid $brand-primary;
