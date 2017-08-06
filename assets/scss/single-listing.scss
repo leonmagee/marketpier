@@ -148,15 +148,18 @@
     }
   }
 }
+
 .description {
   font-size: 14px;
 }
+
 h5.section-title {
   color: #888;
   padding-bottom: 1px;
   font-size: 19px;
   @include listing_border_bottom;
 }
+
 .details-wrap-outer {
   margin-top: 20px;
   .details-wrap {
@@ -196,3 +199,56 @@ h5.section-title {
     }
   }
 }
+
+// listing agent form
+.listing-agent-form-wrap {
+  font-family: 'Open Sans';
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #DDD;
+  margin: 30px;
+  text-align: center;
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    input, textarea {
+      font-size: 14px;
+      border-radius: 0;
+      border-color: #DDD;
+      box-shadow: none;
+      padding: 3px 10px;
+      flex: 1 1 100%;
+      &.name, &.phone {
+        flex: 0 1 49%;
+      }
+    }
+
+    input.submit {
+      background-color: $brand-primary;
+      font-family: 'Open Sans', 'sans-serif';
+      font-weight: 700;
+      color: #FFF;
+      border: none;
+      padding: 13px 15px;
+      font-size: 15px;
+      border-radius: 5px;
+      @media(min-width: $screen-sm) {
+        //max-width: 40%;
+        margin: 0 auto;
+        flex: 0 1 auto;
+      }
+      &:hover {
+        background-color: lighten($brand-primary, 5%);
+      }
+    }
+  }
+}
+
+//<form method="post">
+//<input type="text" name="your-name" placeholder="Your Name" />
+//<input type="number" name="your-phone" placeholder="Phone" />
+//<input type="email" name="your-email" placeholder="Email" />
+//<textarea name="listing-comment">I am interested in <?php echo $address; ?></textarea>
+//<input type="submit" class="submit" name="Contact Agent" />
+//</form>

@@ -175,7 +175,7 @@ $listing_data->listing_data_from_WP();
 			<?php } ?>
         </div>
 
-        <div class="single-listing-gallery">
+        <div class="single-listing-gallery"><!-- @todo change the name of this class - holds more than images -->
             <div class="image-wrap image-wrap-1">
                 <div class="single-gallery-image"><a rel="lightbox"
                                                      href="<?php echo $listing_data->image_gallery[0]['link']; ?>"><img
@@ -203,6 +203,23 @@ $listing_data->listing_data_from_WP();
                                                      href="<?php echo $listing_data->image_gallery[6]['link']; ?>"><img
                                 src="<?php echo $listing_data->image_gallery[6]['image']; ?>"/></a></div>
             </div>
+
+
+            <div class="listing-agent-form-wrap">
+                <h3>Contact Agent</h3>
+                <form method="post">
+                    <input class='name' type="text" name="your-name" placeholder="Your Name" />
+                    <input class='phone' type="number" name="your-phone" placeholder="Phone" />
+                    <input class='email' type="email" name="your-email" placeholder="Email" />
+                    <textarea name="listing-comment">I am interested in <?php echo $address; ?></textarea>
+                    <input type="submit" class="submit" name="Contact Agent" value="Contact Agent" />
+                </form>
+            </div>
+
+
+
+
+
         </div>
 
 
