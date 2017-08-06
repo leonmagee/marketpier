@@ -119,19 +119,28 @@
   }
   .unit-mix-outer {
     margin: 20px 0;
+    font-size: 12px;
     .unit-mix-row {
       display: flex;
       justify-content: space-between;
       margin: 10px 0;
       background-color: #FBFBFB;
       border: 1px solid #F1F1F1;
-      padding: 6px 15px 7px;
+      padding: 8px 15px 9px;
       .unit-mix-item {
         color: #555;
         font-weight: 700;
-        flex: 0 1 25%;
+        flex: 0 1 18%;
+        &.unit-mix-plan {
+          flex: 0 1 25%;
+        }
+        &.unit-mix-units, &.unit-mix-beds, &.unit-mix-baths {
+          flex: 0 1 13%;
+        }
         label {
           color: #999;
+          font-size: 11px;
+          margin-bottom: 3px;
         }
         .unit-mix-value {
         }

@@ -134,24 +134,36 @@ $listing_data->listing_data_from_WP();
 					<?php foreach ( $unit_mix as $unit ) { ?>
                         <div class="unit-mix-row">
                             <div class="unit-mix-item unit-mix-plan">
-                                <label>Plan Name</label>
+                                <label>Unit Name / Plan</label>
                                 <div class="unit-mix-value">
-									<?php echo $unit['unit_name__plan']; ?>
+									<?php echo $unit['unit_name_plan']; ?>
+                                </div>
+                            </div>
+                            <div class="unit-mix-item unit-mix-units">
+                                <label>Units</label>
+                                <div class="unit-mix-value">
+									<?php echo $unit['number_of_units']; ?>
                                 </div>
                             </div>
                             <div class="unit-mix-item unit-mix-beds">
                                 <label>Beds</label>
                                 <div class="unit-mix-value">
-									<?php echo $unit['beds']; ?>
+									<?php echo $unit['number_of_beds']; ?>
                                 </div>
                             </div>
                             <div class="unit-mix-item unit-mix-baths">
                                 <label>Baths</label>
                                 <div class="unit-mix-value">
-									<?php echo $unit['baths']; ?>
+									<?php echo $unit['number_of_baths']; ?>
                                 </div>
                             </div>
-                            <div class="unit-mix-item unit-mix-average_rent">
+                            <div class="unit-mix-item unit-mix-sqft">
+                                <label>Average Sqft</label>
+                                <div class="unit-mix-value">
+									<?php echo number_format( $unit['average_sq_ft'] ); ?>
+                                </div>
+                            </div>
+                            <div class="unit-mix-item unit-mix-average-rent">
                                 <label>Average Rent</label>
                                 <div class="unit-mix-value">
                                     $<?php echo number_format( $unit['average_rent'] ); ?>
