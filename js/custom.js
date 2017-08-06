@@ -22,6 +22,11 @@
         // @todo set value of hidden input
 
         //$(this).parent().find('.select-toggle').val('xxx');
+    });
+
+    $('.listing-agent-form-wrap .agent-choice').click(function () {
+        $('.listing-agent-form-wrap .agent-choice.active').removeClass('active');
+        $(this).addClass('active');
     })
 
 

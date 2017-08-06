@@ -254,7 +254,7 @@ h5.section-title {
       border: none;
       padding: 13px 15px;
       font-size: 15px;
-      border-radius: 5px;
+      //border-radius: 5px;
       @media(min-width: $screen-sm) {
         //max-width: 40%;
         margin: 0 auto;
@@ -275,6 +275,7 @@ h5.section-title {
         border: 1px solid $brand-primary;
       }
       &.active {
+        border: 2px solid $brand-primary;
       }
       @media(min-width: $screen-sm) {
         flex: 0 1 49%;
