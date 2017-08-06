@@ -277,6 +277,7 @@ h5.section-title {
       }
       &.active {
         border: 2px solid $brand-primary;
+        padding: 4px;
       }
       @media(min-width: $screen-sm) {
         flex: 0 1 49%;
