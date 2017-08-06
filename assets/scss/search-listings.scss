@@ -8,7 +8,20 @@
       background-color: #EEE;
       flex: 0 1 50%;
       .google-map-outer-wrapper {
-        //background-color: #EEE;
+        position: relative;
+        .map-spinner-div {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          i {
+            font-size: 60px;
+            color: #000;
+            opacity: 0.3;
+          }
+        }
         height: 100%;
         #map {
           height: 100%;

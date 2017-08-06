@@ -184,6 +184,8 @@ class lv_google_map_group {
 
         <div class="google-map-outer-wrapper">
 
+            <div class="map-spinner-div"><i class="fa fa-refresh fa-spin" aria-hidden="true"></i></div>
+
             <div id="map"></div>
 
         </div>
