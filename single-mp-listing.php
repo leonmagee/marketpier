@@ -225,7 +225,24 @@ $listing_data->listing_data_from_WP();
                                                      href="<?php echo $listing_data->image_gallery[6]['link']; ?>"><img
                                 src="<?php echo $listing_data->image_gallery[6]['image']; ?>"/></a></div>
             </div>
-
+            <div class="gallery-hidden-images">
+				<?php
+				unset( $listing_data->image_gallery[0] );
+				unset( $listing_data->image_gallery[1] );
+				unset( $listing_data->image_gallery[2] );
+				unset( $listing_data->image_gallery[3] );
+				unset( $listing_data->image_gallery[4] );
+				unset( $listing_data->image_gallery[5] );
+				unset( $listing_data->image_gallery[6] );
+				if ( $listing_data->image_gallery ) {
+					foreach ( $listing_data->image_gallery as $hidden_image ) { ?>
+                        <a rel="lightbox"
+                           href="<?php echo $hidden_image['link']; ?>">
+                            <img src="<?php echo $hidden_image['image']; ?>"/>
+                        </a>
+					<?php }
+				} ?>
+            </div>
 
             <div class="listing-agent-form-wrap">
                 <h3>Contact Agent</h3>
