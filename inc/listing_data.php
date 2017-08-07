@@ -38,7 +38,7 @@ class listing_data {
 	public $combined_address;
 	public $price_per_unit;
 	public $price_per_sqft;
-	public $file_upload;
+	public $file_attachments;
 
 	public function standardize_image_gallery_WP( $image_gallery ) {
 		$image_gallery_array = array();
@@ -86,7 +86,7 @@ class listing_data {
 		$this->cap_rate             = get_field( 'listing_cap_rate' );
 		$this->description          = get_field( 'listing_description' );
 		$this->unit_mix             = get_field( 'listing_unit_mix' );
-		$this->file_upload          = get_field( 'listing_file_upload' );
+		$this->file_attachments     = get_field( 'listing_file_attachments' );
 
 		//$this->days_on_market       = get_field( 'listing_days_on_market' );
 
@@ -132,6 +132,5 @@ class listing_data {
 	public function listing_data_from_IDX() {
 
 		$this->standardize_image_gallery_IDX( 'image data???' );
-
 	}
 }
