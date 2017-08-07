@@ -41,41 +41,54 @@ get_header();
 										<?php if ( $title = $snippet->property_name ) { ?>
                                             <h3><?php echo $title; ?></h3>
 										<?php } ?>
-                                        <h5><?php echo $address; ?></h5>
+										<?php if ( $address ) { ?>
+                                            <h5><?php echo $address; ?></h5>
+										<?php } ?>
                                     </div>
                                 </div>
                                 <img src="<?php echo $snippet->image_gallery_first; ?>"/>
                             </div>
                             <div class="right-side-outer">
                                 <div class="top-line">
-
+									<?php echo $snippet->type; ?>
                                 </div>
                                 <div class="details-wrap">
-                                    <div class="details-item-wrap">
-                                        <div class="details-item price-item">
-                                            $<?php echo number_format( $snippet->price ); ?></div>
-                                        <label>Price</label>
-                                    </div>
-                                    <sep>|</sep>
-                                    <div class="details-item-wrap">
-                                        <div class="details-item units-item"><?php echo $snippet->number_of_units; ?></div>
-                                        <label>Units</label>
-                                    </div>
-                                    <sep>|</sep>
-                                    <div class="details-item-wrap">
-                                        <div class="details-item sqft-item"><?php echo $snippet->building_size; ?></div>
-                                        <label>Bldg sq ft</label>
-                                    </div>
-                                    <sep>|</sep>
-                                    <div class="details-item-wrap">
-                                        <div class="details-item cap-rate-item"><?php echo $snippet->cap_rate; ?></div>
-                                        <label>Cap Rate</label>
-                                    </div>
-                                    <sep>|</sep>
-                                    <div class="details-item-wrap">
-                                        <div class="details-item lot-size-item"><?php echo $snippet->lot_size; ?></div>
-                                        <label>Lot Size</label>
-                                    </div>
+									<?php if ( $price = $snippet->price ) { ?>
+                                        <div class="details-item-wrap">
+                                            <div class="details-item price-item">
+                                                $<?php echo number_format( $price ); ?>
+                                            </div>
+                                            <label>Price</label>
+                                        </div>
+                                        <sep>|</sep>
+									<?php } ?>
+									<?php if ( $units = $snippet->number_of_units ) { ?>
+                                        <div class="details-item-wrap">
+                                            <div class="details-item units-item"><?php echo $units; ?></div>
+                                            <label>Units</label>
+                                        </div>
+                                        <sep>|</sep>
+									<?php } ?>
+									<?php if ( $building_size = $snippet->building_size ) { ?>
+                                        <div class="details-item-wrap">
+                                            <div class="details-item sqft-item"><?php echo $building_size; ?></div>
+                                            <label>Bldg sq ft</label>
+                                        </div>
+                                        <sep>|</sep>
+									<?php } ?>
+									<?php if ( $cap_rate = $snippet->cap_rate ) { ?>
+                                        <div class="details-item-wrap">
+                                            <div class="details-item cap-rate-item"><?php echo $cap_rate; ?></div>
+                                            <label>Cap Rate</label>
+                                        </div>
+                                        <sep>|</sep>
+									<?php } ?>
+									<?php if ( $lot_size = $snippet->lot_size ) { ?>
+                                        <div class="details-item-wrap">
+                                            <div class="details-item lot-size-item"><?php echo $lot_size; ?></div>
+                                            <label>Lot Size</label>
+                                        </div>
+									<?php } ?>
                                 </div>
                                 <div class="bottom-line">
 									<?php if ( $days = $snippet->days_on_market ) {
