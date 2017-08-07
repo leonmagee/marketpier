@@ -7,6 +7,12 @@
  * @package MarketPier
  */
 
+/**
+ * @todo temp - hide admin bar
+ */
+show_admin_bar( false );
+
+
 if ( ! function_exists( 'marketpier_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
