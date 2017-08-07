@@ -86,9 +86,10 @@ a.snippet-link-outer {
         width: 100%;
         @media(min-width: $screen-sm) {
           width: auto;
-          max-width: 275px;
+          //max-width: 275px;
           max-width: 210px;
           //min-height: 197px;
+          min-height: 150px;
         }
       }
       .image-overlay {
