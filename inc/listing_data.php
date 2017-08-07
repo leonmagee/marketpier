@@ -59,19 +59,20 @@ class listing_data {
 	}
 
 	public function listing_data_from_WP() {
-		$this->title                = get_the_title();
-		$this->main_image           = get_field( 'listing_main_image' );
-		$this->mls                  = get_field( 'listing_mls_number' );
-		$this->property_name        = get_field( 'listing_property_name' );
-		$this->price                = get_field( 'listing_price' );
-		$this->address              = get_field( 'listing_address' );
-		$this->city                 = get_field( 'listing_city' );
-		$this->state                = get_field( 'listing_state' );
-		$this->zip                  = get_field( 'listing_zip' );
-		$this->neighborhood         = get_field( 'listing_neighborhood' );
-		$this->county               = get_field( 'listing_county' );
-		$this->year                 = get_field( 'listing_year_built' );
-		$this->days_on_market       = get_field( 'listing_days_on_market' );
+		$this->title         = get_the_title();
+		$this->main_image    = get_field( 'listing_main_image' );
+		$this->mls           = get_field( 'listing_mls_number' );
+		$this->property_name = get_field( 'listing_property_name' );
+		$this->price         = get_field( 'listing_price' );
+		$this->address       = get_field( 'listing_address' );
+		$this->city          = get_field( 'listing_city' );
+		$this->state         = get_field( 'listing_state' );
+		$this->zip           = get_field( 'listing_zip' );
+		$this->neighborhood  = get_field( 'listing_neighborhood' );
+		$this->county        = get_field( 'listing_county' );
+		$this->year          = get_field( 'listing_year_built' );
+
+
 		$this->status               = get_field( 'listing_status' );
 		$this->for_sale_for_lease   = get_field( 'listing_for_sale_or_for_lease' );
 		$this->lat                  = get_field( 'listing_latitude' );
@@ -87,9 +88,22 @@ class listing_data {
 		$this->description          = get_field( 'listing_description' );
 		$this->unit_mix             = get_field( 'listing_unit_mix' );
 
-		if ( $listing_data_timestamp = get_field( 'listing_date' ) ) {
-			$this->listing_date = date( 'M jS Y', $listing_data_timestamp );
-		}
+
+		//$this->days_on_market       = get_field( 'listing_days_on_market' );
+
+		//get the listing date as post date
+		$this->listing_date = get_the_date();
+
+		$post_date = get_the_date( 'U' );
+		//$post_date = get_the_date( 'U', true ); // for GMT
+		$current_date          = time();
+		$days_passed_timestamp = $current_date - $post_date;
+		$days_passed           = floor( $days_passed_timestamp / ( 60 * 60 * 24 ) );
+		$this->days_on_market  = $days_passed;
+
+//		if ( $listing_data_timestamp = get_field( 'listing_date' ) ) { // old - pulling date from custom field
+//			$this->listing_date = date( 'M jS Y', $listing_data_timestamp );
+//		}
 
 		$this->standardize_image_gallery_WP( get_field( 'listing_image_gallery' ) );
 
