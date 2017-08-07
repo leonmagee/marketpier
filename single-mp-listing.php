@@ -133,42 +133,54 @@ $listing_data->listing_data_from_WP();
                     <h5 class="section-title">Unit Mix</h5>
 					<?php foreach ( $unit_mix as $unit ) { ?>
                         <div class="unit-mix-row">
-                            <div class="unit-mix-item unit-mix-plan">
-                                <label>Unit Name / Plan</label>
-                                <div class="unit-mix-value">
-									<?php echo $unit['unit_name_plan']; ?>
+							<?php if ( $unit['unit_name_plan'] ) { ?>
+                                <div class="unit-mix-item unit-mix-plan">
+                                    <label>Unit Name / Plan</label>
+                                    <div class="unit-mix-value">
+										<?php echo $unit['unit_name_plan']; ?>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="unit-mix-item unit-mix-units">
-                                <label>Units</label>
-                                <div class="unit-mix-value">
-									<?php echo $unit['number_of_units']; ?>
+							<?php }
+							if ( $unit['number_of_units'] ) { ?>
+                                <div class="unit-mix-item unit-mix-units">
+                                    <label>Units</label>
+                                    <div class="unit-mix-value">
+										<?php echo $unit['number_of_units']; ?>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="unit-mix-item unit-mix-beds">
-                                <label>Beds</label>
-                                <div class="unit-mix-value">
-									<?php echo $unit['number_of_beds']; ?>
+							<?php }
+							if ( $unit['number_of_beds'] ) { ?>
+                                <div class="unit-mix-item unit-mix-beds">
+                                    <label>Beds</label>
+                                    <div class="unit-mix-value">
+										<?php echo $unit['number_of_beds']; ?>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="unit-mix-item unit-mix-baths">
-                                <label>Baths</label>
-                                <div class="unit-mix-value">
-									<?php echo $unit['number_of_baths']; ?>
+							<?php }
+							if ( $unit['number_of_baths'] ) { ?>
+                                <div class="unit-mix-item unit-mix-baths">
+                                    <label>Baths</label>
+                                    <div class="unit-mix-value">
+										<?php echo $unit['number_of_baths']; ?>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="unit-mix-item unit-mix-sqft">
-                                <label>Average Sqft</label>
-                                <div class="unit-mix-value">
-									<?php echo number_format( $unit['average_sq_ft'] ); ?>
+							<?php }
+							if ( $unit['average_sq_ft'] ) { ?>
+                                <div class="unit-mix-item unit-mix-sqft">
+                                    <label>Average Sqft</label>
+                                    <div class="unit-mix-value">
+										<?php echo number_format( $unit['average_sq_ft'] ); ?>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="unit-mix-item unit-mix-average-rent">
-                                <label>Average Rent</label>
-                                <div class="unit-mix-value">
-                                    $<?php echo number_format( $unit['average_rent'] ); ?>
+							<?php }
+							if ( $unit['average_rent'] ) { ?>
+                                <div class="unit-mix-item unit-mix-average-rent">
+                                    <label>Average Rent</label>
+                                    <div class="unit-mix-value">
+                                        $<?php echo number_format( $unit['average_rent'] ); ?>
+                                    </div>
                                 </div>
-                            </div>
+							<?php } ?>
                         </div>
 					<?php } ?>
                 </div>
@@ -212,22 +224,32 @@ $listing_data->listing_data_from_WP();
                     <input class='phone' type="number" name="your-phone" placeholder="Phone"/>
                     <input class='email' type="email" name="your-email" placeholder="Email"/>
                     <textarea name="listing-comment">I am interested in <?php echo $address; ?></textarea>
-                    <div class="agent-choice">
-                        <div class="avatar-wrap">
-                            <i class="fa fa-user"></i>
+                    <div class="agent-choice-wrap">
+                        <div class="agent-radio">
+                            <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                         </div>
-                        <div class="details-wrap">
-                            <div class="agent-name">Desirae Sweeney</div>
-                            <div class="broker-name">Listing Agent</div>
+                        <div class="agent-choice">
+                            <div class="avatar-wrap">
+                                <i class="fa fa-user"></i>
+                            </div>
+                            <div class="details-wrap">
+                                <div class="agent-name">Desirae Sweeney</div>
+                                <div class="broker-name">Listing Agent</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="agent-choice">
-                        <div class="avatar-wrap">
-                            <div class="marketpier-fav-logo">MP</div>
+                    <div class="agent-choice-wrap">
+                        <div class="agent-radio">
+                            <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
                         </div>
-                        <div class="details-wrap">
-                            <div class="agent-name">Dan Haas</div>
-                            <div class="broker-name">MarketPier Agent</div>
+                        <div class="agent-choice">
+                            <div class="avatar-wrap">
+                                <div class="marketpier-fav-logo">MP</div>
+                            </div>
+                            <div class="details-wrap">
+                                <div class="agent-name">Dan Haas</div>
+                                <div class="broker-name">MarketPier Agent</div>
+                            </div>
                         </div>
                     </div>
                     <input type="submit" class="submit" name="Contact Agent" value="Contact Agent"/>

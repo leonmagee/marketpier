@@ -265,47 +265,77 @@ h5.section-title {
       }
     }
 
-    .agent-choice {
+    .agent-choice-wrap {
       display: flex;
-      padding: 5px;
-      border: 1px solid #DDD;
+      flex: 1 1 50%;
+      //justify-content: flex-start;
       margin-bottom: 15px;
-      flex: 1 1 100%;
+      .agent-radio {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1 1 15%;
+        i {
+          font-size: 18px;
+          transition: 0.1s;
+        }
+      }
+      .agent-choice {
+        display: flex;
+        padding: 5px;
+        border: 1px solid #DDD;
+        flex: 1 1 85%;
+        //transition: 0.1s;
+        @media(min-width: $screen-sm) {
+          //flex: 0 1 49%;
+        }
+        .avatar-wrap {
+          flex: 0 1 25%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: #EEE;
+          i {
+            font-size: 30px;
+          }
+        }
+        .details-wrap {
+          flex: 0 1 75%;
+          text-align: left;
+          padding-left: 10px;
+          .agent-name {
+            color: #333;
+          }
+          .broker-name {
+            color: #AAA;
+          }
+        }
+      }
       &:hover {
         cursor: pointer;
-        border: 1px solid $brand-primary;
+        .agent-choice {
+          border: 1px solid $brand-primary;
+        }
+        .agent-radio {
+          i {
+            //font-size: 20px;
+            color: $brand-primary;
+          }
+        }
       }
       &.active {
-        border: 2px solid $brand-primary;
-        padding: 4px;
-      }
-      @media(min-width: $screen-sm) {
-        flex: 0 1 49%;
-      }
-      .avatar-wrap {
-        flex: 0 1 25%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #EEE;
-        i {
-          font-size: 30px;
+        .agent-choice {
+          border: 2px solid $brand-primary;
+          padding: 4px;
         }
-      }
-      .details-wrap {
-        flex: 0 1 75%;
-        text-align: left;
-        padding-left: 10px;
-        .agent-name {
-          color: #333;
-        }
-        .broker-name {
-          color: #AAA;
+        .agent-radio {
+          i {
+            //font-size: 20px;
+            color: $brand-primary;
+          }
         }
       }
     }
-
-
 
   }
 }

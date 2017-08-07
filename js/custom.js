@@ -24,8 +24,8 @@
         //$(this).parent().find('.select-toggle').val('xxx');
     });
 
-    $('.listing-agent-form-wrap .agent-choice').click(function () {
-        $('.listing-agent-form-wrap .agent-choice.active').removeClass('active');
+    $('.listing-agent-form-wrap .agent-choice-wrap').click(function () {
+        $('.listing-agent-form-wrap .agent-choice-wrap.active').removeClass('active');
         $(this).addClass('active');
     })
 
