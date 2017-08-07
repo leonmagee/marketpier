@@ -64,30 +64,30 @@ get_header();
                                             </div>
                                             <label>Price</label>
                                         </div>
-                                        <sep>|</sep>
 									<?php } ?>
 									<?php if ( $units = $snippet->number_of_units ) { ?>
+                                        <sep>|</sep>
                                         <div class="details-item-wrap">
                                             <div class="details-item units-item"><?php echo $units; ?></div>
                                             <label>Units</label>
                                         </div>
-                                        <sep>|</sep>
 									<?php } ?>
 									<?php if ( $building_size = $snippet->building_size ) { ?>
+                                        <sep>|</sep>
                                         <div class="details-item-wrap">
                                             <div class="details-item sqft-item"><?php echo $building_size; ?></div>
                                             <label>Bldg sq ft</label>
                                         </div>
-                                        <sep>|</sep>
 									<?php } ?>
 									<?php if ( $cap_rate = $snippet->cap_rate ) { ?>
+                                        <sep>|</sep>
                                         <div class="details-item-wrap">
                                             <div class="details-item cap-rate-item"><?php echo $cap_rate; ?></div>
                                             <label>Cap Rate</label>
                                         </div>
-                                        <sep>|</sep>
 									<?php } ?>
 									<?php if ( $lot_size = $snippet->lot_size ) { ?>
+                                        <sep>|</sep>
                                         <div class="details-item-wrap">
                                             <div class="details-item lot-size-item"><?php echo $lot_size; ?></div>
                                             <label>Lot Size</label>
