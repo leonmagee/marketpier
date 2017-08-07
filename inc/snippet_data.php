@@ -8,6 +8,7 @@ class snippet_data {
 	public $title;
 	public $price;
 	//public $main_image;
+	public $property_name;
 	public $address;
 	public $city;
 	public $state;
@@ -48,8 +49,9 @@ class snippet_data {
 	}
 
 	public function listing_data_from_WP() {
-		$this->title = get_the_title();
+		$this->title = get_the_title(); // @todo might not need this
 		//$this->main_image           = get_field( 'listing_main_image' );
+		$this->property_name      = get_field( 'listing_property_name' );
 		$this->price              = get_field( 'listing_price' );
 		$this->address            = get_field( 'listing_address' );
 		$this->city               = get_field( 'listing_city' );

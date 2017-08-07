@@ -29,56 +29,63 @@ get_header();
 				} else {
 					$address = '';
 				} ?>
-                <a class="snippet-link-outer" href="<?php echo $snippet->listing_url; ?>">
-                    <div class="snippet-outer-wrap">
-                        <div class="image-wrap">
-                            <div class="image-overlay">
-                                <div class="image-overlay-text">
-                                    <h3><?php echo $snippet->title; ?></h3>
-                                    <h5><?php echo $address; ?></h5>
-                                </div>
-                            </div>
-                            <img src="<?php echo $snippet->image_gallery_first; ?>"/>
-                        </div>
-                        <div class="right-side-outer">
-                            <div class="top-line">
-                                <div class="contact-link">Contact</div>
-                            </div>
-                            <div class="details-wrap">
-                                <div class="details-item-wrap">
-                                    <div class="details-item price-item">
-                                        $<?php echo number_format( $snippet->price ); ?></div>
-                                    <label>Price</label>
-                                </div>
-                                <sep>|</sep>
-                                <div class="details-item-wrap">
-                                    <div class="details-item units-item"><?php echo $snippet->number_of_units; ?></div>
-                                    <label>Units</label>
-                                </div>
-                                <sep>|</sep>
-                                <div class="details-item-wrap">
-                                    <div class="details-item sqft-item"><?php echo $snippet->building_size; ?></div>
-                                    <label>Bldg sq ft</label>
-                                </div>
-                                <sep>|</sep>
-                                <div class="details-item-wrap">
-                                    <div class="details-item cap-rate-item"><?php echo $snippet->cap_rate; ?></div>
-                                    <label>Cap Rate</label>
-                                </div>
-                                <sep>|</sep>
-                                <div class="details-item-wrap">
-                                    <div class="details-item lot-size-item"><?php echo $snippet->lot_size; ?></div>
-                                    <label>Lot Size</label>
-                                </div>
-                            </div>
-                            <div class="bottom-line">
-								<?php if ( $days = $snippet->days_on_market ) {
-									echo $days . 'd';
-								} ?>
-                            </div>
-                        </div>
+                <div class="snippet-outer-outer-wrap">
+                    <div class="contact-wrap">
+                        <a href="" class="contact-link">Contact</a>
                     </div>
-                </a>
+                    <a class="snippet-link-outer" href="<?php echo $snippet->listing_url; ?>">
+                        <div class="snippet-outer-wrap">
+                            <div class="image-wrap">
+                                <div class="image-overlay">
+                                    <div class="image-overlay-text">
+										<?php if ( $title = $snippet->property_name ) { ?>
+                                            <h3><?php echo $title; ?></h3>
+										<?php } ?>
+                                        <h5><?php echo $address; ?></h5>
+                                    </div>
+                                </div>
+                                <img src="<?php echo $snippet->image_gallery_first; ?>"/>
+                            </div>
+                            <div class="right-side-outer">
+                                <div class="top-line">
+
+                                </div>
+                                <div class="details-wrap">
+                                    <div class="details-item-wrap">
+                                        <div class="details-item price-item">
+                                            $<?php echo number_format( $snippet->price ); ?></div>
+                                        <label>Price</label>
+                                    </div>
+                                    <sep>|</sep>
+                                    <div class="details-item-wrap">
+                                        <div class="details-item units-item"><?php echo $snippet->number_of_units; ?></div>
+                                        <label>Units</label>
+                                    </div>
+                                    <sep>|</sep>
+                                    <div class="details-item-wrap">
+                                        <div class="details-item sqft-item"><?php echo $snippet->building_size; ?></div>
+                                        <label>Bldg sq ft</label>
+                                    </div>
+                                    <sep>|</sep>
+                                    <div class="details-item-wrap">
+                                        <div class="details-item cap-rate-item"><?php echo $snippet->cap_rate; ?></div>
+                                        <label>Cap Rate</label>
+                                    </div>
+                                    <sep>|</sep>
+                                    <div class="details-item-wrap">
+                                        <div class="details-item lot-size-item"><?php echo $snippet->lot_size; ?></div>
+                                        <label>Lot Size</label>
+                                    </div>
+                                </div>
+                                <div class="bottom-line">
+									<?php if ( $days = $snippet->days_on_market ) {
+										echo $days . 'd';
+									} ?>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
 			<?php } ?>
         </div>
     </div><!-- #primary -->

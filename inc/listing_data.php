@@ -8,6 +8,7 @@ class listing_data {
 	public $title;
 	public $main_image;
 	public $mls;
+	public $property_name;
 	public $price;
 	public $address;
 	public $city;
@@ -40,11 +41,13 @@ class listing_data {
 
 	public function standardize_image_gallery_WP( $image_gallery ) {
 		$image_gallery_array = array();
-		foreach ( $image_gallery as $image ) {
-			$image_gallery_array[] = array(
-				'link'  => $image['sizes']['large'],
-				'image' => $image['sizes']['listing-gallery']
-			);
+		if ( $image_gallery ) {
+			foreach ( $image_gallery as $image ) {
+				$image_gallery_array[] = array(
+					'link'  => $image['sizes']['large'],
+					'image' => $image['sizes']['listing-gallery']
+				);
+			}
 		}
 		$this->image_gallery = $image_gallery_array;
 	}
@@ -59,6 +62,7 @@ class listing_data {
 		$this->title                = get_the_title();
 		$this->main_image           = get_field( 'listing_main_image' );
 		$this->mls                  = get_field( 'listing_mls_number' );
+		$this->property_name        = get_field( 'listing_property_name' );
 		$this->price                = get_field( 'listing_price' );
 		$this->address              = get_field( 'listing_address' );
 		$this->city                 = get_field( 'listing_city' );
