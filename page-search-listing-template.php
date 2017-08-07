@@ -31,12 +31,16 @@ get_header();
 				} ?>
                 <div class="snippet-outer-outer-wrap">
                     <div class="contact-wrap">
-                        <a href="" class="contact-link">Contact</a>
+                        <a href="" class="contact-link"><i class="fa fa-heart" aria-hidden="true"></i> Save</a>
+                        <a href="" class="contact-link"><i class="fa fa-envelope" aria-hidden="true"></i> Contact</a>
                     </div>
                     <a class="snippet-link-outer" href="<?php echo $snippet->listing_url; ?>">
                         <div class="snippet-outer-wrap">
                             <div class="image-wrap">
                                 <div class="image-overlay">
+<!--                                    <div class="image-overlay-heart">-->
+<!--                                        <i class="fa fa-heart-o"></i>-->
+<!--                                    </div>-->
                                     <div class="image-overlay-text">
 										<?php if ( $title = $snippet->property_name ) { ?>
                                             <h3><?php echo $title; ?></h3>

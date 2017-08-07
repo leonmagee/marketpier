@@ -49,7 +49,7 @@
     z-index: 10000;
     top: 10px;
     right: 5px;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
     a.contact-link {
       color: $brand-primary;
@@ -103,8 +103,15 @@ a.snippet-link-outer {
         height: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: flex-end;
-
+        //justify-content: flex-end;
+        justify-content: space-between;
+        //.image-overlay-heart {
+        //  padding: 10px;
+        //  text-align: right;
+        //  i {
+        //    font-size: 26px;
+        //  }
+        //}
         .image-overlay-text {
           padding: 8px 15px;
           h3 {
