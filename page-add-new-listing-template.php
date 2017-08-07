@@ -50,8 +50,6 @@ get_header(); ?>
 						'listing_neighborhood',
 						'listing_county',
 						'listing_year_built',
-						//'listing_date', // @todo this will be the current date
-						//'listing_days_on_market', // auto generated - remove field entirely
 						'listing_status',
 						'listing_for_sale_or_for_lease',
 						//'listing_latitude',
@@ -66,7 +64,8 @@ get_header(); ?>
 						'listing_cap_rate',
 						'listing_description',
 						'listing_image_gallery',
-						'listing_unit_mix'
+						'listing_unit_mix',
+                        'listing_file_upload'
 					),
 					'submit_value' => 'Create a new Listing'
 				) );

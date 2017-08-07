@@ -27,6 +27,9 @@ $listing_data->listing_data_from_WP();
             <div class="save-share-links">
                 <a href="#"><i class="fa fa-heart"></i> Save</a>
                 <a href="#"><i class="fa fa-share"></i> Share</a>
+				<?php if ( $file_url = $listing_data->file_upload ) { ?>
+                    <a href="<?php echo $file_url; ?>"><i class="fa fa-file"></i> File</a>
+				<?php } ?>
             </div>
 
             <div class="description">
