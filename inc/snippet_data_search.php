@@ -23,31 +23,12 @@ class snippet_data_search {
 					'value' => $city_zip
 				);
 			} else {
-				/**
-				 * @todo create an array of values to check?
-				 */
-				$city_zip_array   = array();
-				$city_zip_array[] = $city_zip;
-				$city_zip_explode = explode( ' ', $city_zip );
-				foreach ( $city_zip_explode as $exploder ) {
-					$city_zip_array[] = $exploder;
-				}
-				$array_count = count($city_zip_explode);
-//				var_dump( $array_count );
-//				die('x');
-				/**
-				 * @todo what I want to do is create a string for each possible compbe of values to attempt to omit the state
-				 * maybe implode sucessively after popping out the last item?
-				 */
-				for ( $x = 0; $x < $array_count; ++$x) {
-						//implode after popping out one item?
-				}
-//				var_dump( $city_zip_array );
-//				die( 'x' );
+
+				$city_zip_array = $this->get_string_array($city_zip);
+
 				$meta_search_array[] = array(
 					'key'     => 'listing_city',
 					'value'   => $city_zip_array,
-					//'compare' => 'REGEXP'
 					'compare' => 'IN'
 				);
 			}
@@ -127,4 +108,28 @@ class snippet_data_search {
 		$this->snippet_object_array = $snippet_objects;
 		$this->map_data_array       = $map_data_array_src;
 	}
+
+	public function get_string_array( $var ) {
+
+		$ex = explode( ' ', $var );
+		$ac = count( $ex );
+
+		if ( $ac > 1 ) {
+
+			$ma   = $ex;
+			$ma[] = $var;
+
+			for ( $x = 0; $x < ( $ac - 2 ); ++ $x ) {
+				array_pop( $ex );
+				$new_string = implode( ' ', $ex );
+				$ma[]       = $new_string;
+			}
+		} else {
+			$ma[] = $var;
+		}
+
+		return $ma;
+	}
+
+
 }
