@@ -28,15 +28,25 @@ class snippet_data_search {
 		$meta_search_array = array();
 		if ( $status ) {
 			if ( $status == 'Sold Listings' ) {
-				$status = 'Sold';
+				$meta_search_array[] = array(
+					'key'   => 'listing_status',
+					'value' => 'Sold'
+				);
 			}
-			if ( $status == 'ForSale' ) { // @todo why is this necessary??????
-				$status = 'For Sale';
+			if ( ( $status == 'ForSale' ) || ( $status == 'For Sale' ) ) { // @todo why is this necessary??????
+				$meta_search_array[] = array(
+					'key'   => 'listing_for_sale_or_for_lease',
+					'value' => 'For Sale'
+				);
 			}
-			$meta_search_array[] = array(
-				'key'   => 'listing_for_sale_or_for_lease',
-				'value' => $status
-			);
+
+			if ( ( $status == 'ForLease' ) || ( $status == 'For Lease' ) ) {
+				$meta_search_array[] = array(
+					'key'   => 'listing_for_sale_or_for_lease',
+					'value' => 'For Lease'
+				);
+			}
+
 		}
 
 		if ( $property_type ) {

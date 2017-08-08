@@ -38,9 +38,9 @@ get_header();
                         <div class="snippet-outer-wrap">
                             <div class="image-wrap">
                                 <div class="image-overlay">
-<!--                                    <div class="image-overlay-heart">-->
-<!--                                        <i class="fa fa-heart-o"></i>-->
-<!--                                    </div>-->
+                                    <!--                                    <div class="image-overlay-heart">-->
+                                    <!--                                        <i class="fa fa-heart-o"></i>-->
+                                    <!--                                    </div>-->
                                     <div class="image-overlay-text">
 										<?php if ( $title = $snippet->property_name ) { ?>
                                             <h3><?php echo $title; ?></h3>
@@ -75,8 +75,8 @@ get_header();
 									<?php if ( $building_size = $snippet->building_size ) { ?>
                                         <sep>|</sep>
                                         <div class="details-item-wrap">
-                                            <div class="details-item sqft-item"><?php echo $building_size; ?></div>
-                                            <label>Bldg sq ft</label>
+                                            <div class="details-item sqft-item"><?php echo number_format( $building_size ); ?></div>
+                                            <label>Bldg SF</label>
                                         </div>
 									<?php } ?>
 									<?php if ( $cap_rate = $snippet->cap_rate ) { ?>
@@ -89,8 +89,8 @@ get_header();
 									<?php if ( $lot_size = $snippet->lot_size ) { ?>
                                         <sep>|</sep>
                                         <div class="details-item-wrap">
-                                            <div class="details-item lot-size-item"><?php echo $lot_size; ?></div>
-                                            <label>Lot Size</label>
+                                            <div class="details-item lot-size-item"><?php echo number_format( $lot_size ); ?></div>
+                                            <label>Lot SF</label>
                                         </div>
 									<?php } ?>
                                 </div>

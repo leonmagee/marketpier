@@ -73,7 +73,9 @@ a.snippet-link-outer {
     }
   }
   .snippet-outer-wrap {
+    border-top: 1px solid #EEE;
     border-bottom: 1px solid #EEE;
+    //border-bottom: 1px solid #DDD;
     background-color: #FAFAFA;
     @media(min-width: $screen-sm) {
       display: flex;
