@@ -59,6 +59,15 @@ class snippet_data_search {
 					'value' => $property_type
 				);
 			}
+
+			//@todo I need to do this programmatically - strip out empty space or figure out why the search term comes through the
+			//@todo way that it does?
+			if ( ( $status == 'Business Opportunity' ) || ( $status == 'BusinessOpportunity' ) ) {
+				$meta_search_array[] = array(
+					'key'   => 'listing_type',
+					'value' => 'Business Opportunity'
+				);
+			}
 		}
 
 		//var_dump( $meta_search_array );
