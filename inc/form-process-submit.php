@@ -11,7 +11,7 @@ if ( isset( $_POST['listing-search-form'] ) ) {
 	$search_input_array = array();
 
 	if ( ! $search_status ) {
-		$search_status = 'For Sale';
+		$search_status = 'for_sale';
 	}
 	$status_string        = 'status=' . $search_status;
 	$search_input_array[] = $status_string;

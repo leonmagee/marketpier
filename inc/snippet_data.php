@@ -61,7 +61,9 @@ class snippet_data {
 		$this->for_sale_for_lease = get_field( 'listing_for_sale_or_for_lease' );
 		$this->lat                = get_field( 'listing_latitude' );
 		$this->long               = get_field( 'listing_longitude' );
-		$this->type               = get_field( 'listing_type' );
+		$selected_type            = get_field( 'listing_type' );
+		$field_object_type        = get_field_object( 'listing_type' );
+		$this->type               = $field_object_type['choices'][ $selected_type ];
 		$this->building_size      = get_field( 'listing_building_size' );
 		$this->lot_size           = get_field( 'listing_lot_size' );
 		$this->number_of_units    = get_field( 'listing_number_of_units' );

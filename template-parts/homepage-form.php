@@ -23,7 +23,7 @@
             <div class="dropdown-pane" id="property-type-dropdown" data-dropdown data-hover="true"
                  data-hover-pane="true">
                 <ul>
-                    <li class="default-choice">All Property Types</li>
+                    <li class="default-choice" name="all_property_types">All Property Types</li>
 	                <?php foreach ( $property_type_options as $option ) {
 		                echo '<li name="' . $option["property_type_name"] . '">' . $option['property_type'] . '</li>';
 	                } ?>
