@@ -24,7 +24,7 @@ class snippet_data_search {
 				);
 			} else {
 
-				$city_zip_array = $this->get_string_array($city_zip);
+				$city_zip_array = $this->get_string_array( $city_zip );
 
 				$meta_search_array[] = array(
 					'key'     => 'listing_city',
@@ -33,7 +33,6 @@ class snippet_data_search {
 				);
 			}
 		}
-
 		if ( $status ) {
 			if ( $status == 'sold_listings' ) {
 				$meta_search_array[] = array(
@@ -102,7 +101,6 @@ class snippet_data_search {
 					'price'   => $price_label,
 					'url'     => $listing_data->listing_url
 				);
-
 			}
 		}
 		$this->snippet_object_array = $snippet_objects;
@@ -110,15 +108,11 @@ class snippet_data_search {
 	}
 
 	public function get_string_array( $var ) {
-
 		$ex = explode( ' ', $var );
 		$ac = count( $ex );
-
 		if ( $ac > 1 ) {
-
 			$ma   = $ex;
 			$ma[] = $var;
-
 			for ( $x = 0; $x < ( $ac - 2 ); ++ $x ) {
 				array_pop( $ex );
 				$new_string = implode( ' ', $ex );
@@ -127,9 +121,6 @@ class snippet_data_search {
 		} else {
 			$ma[] = $var;
 		}
-
 		return $ma;
 	}
-
-
 }

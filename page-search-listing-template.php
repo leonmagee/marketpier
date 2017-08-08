@@ -20,89 +20,97 @@ get_header();
 			} ?>
         </div>
         <div class="search-listings-half snippet-half">
-			<?php foreach ( $snippets as $snippet ) {
-				if ( $snippet->combined_address ) {
-					$address = $snippet->combined_address;
-				} elseif ( $snippet->city_state_zip ) {
+			<?php
+			get_template_part( 'template-parts/homepage-form' );
+			if ( $snippets ) {
 
-					$address = $snippet->city_state_zip;
-				} else {
-					$address = '';
-				} ?>
-                <div class="snippet-outer-outer-wrap">
-                    <div class="contact-wrap">
-                        <a href="" class="contact-link"><i class="fa fa-heart" aria-hidden="true"></i> Save</a>
-                        <a href="" class="contact-link"><i class="fa fa-envelope" aria-hidden="true"></i> Contact</a>
-                    </div>
-                    <a class="snippet-link-outer" href="<?php echo $snippet->listing_url; ?>">
-                        <div class="snippet-outer-wrap">
-                            <div class="image-wrap">
-                                <div class="image-overlay">
-                                    <!--                                    <div class="image-overlay-heart">-->
-                                    <!--                                        <i class="fa fa-heart-o"></i>-->
-                                    <!--                                    </div>-->
-                                    <div class="image-overlay-text">
-										<?php if ( $title = $snippet->property_name ) { ?>
-                                            <h3><?php echo $title; ?></h3>
+				foreach ( $snippets as $snippet ) {
+					if ( $snippet->combined_address ) {
+						$address = $snippet->combined_address;
+					} elseif ( $snippet->city_state_zip ) {
+
+						$address = $snippet->city_state_zip;
+					} else {
+						$address = '';
+					} ?>
+                    <div class="snippet-outer-outer-wrap">
+                        <div class="contact-wrap">
+                            <a href="" class="contact-link"><i class="fa fa-heart" aria-hidden="true"></i> Save</a>
+                            <a href="" class="contact-link"><i class="fa fa-envelope" aria-hidden="true"></i>
+                                Contact</a>
+                        </div>
+                        <a class="snippet-link-outer" href="<?php echo $snippet->listing_url; ?>">
+                            <div class="snippet-outer-wrap">
+                                <div class="image-wrap">
+                                    <div class="image-overlay">
+                                        <!--                                    <div class="image-overlay-heart">-->
+                                        <!--                                        <i class="fa fa-heart-o"></i>-->
+                                        <!--                                    </div>-->
+                                        <div class="image-overlay-text">
+											<?php if ( $title = $snippet->property_name ) { ?>
+                                                <h3><?php echo $title; ?></h3>
+											<?php } ?>
+											<?php if ( $address ) { ?>
+                                                <h5><?php echo $address; ?></h5>
+											<?php } ?>
+                                        </div>
+                                    </div>
+                                    <img src="<?php echo $snippet->image_gallery_first; ?>"/>
+                                </div>
+                                <div class="right-side-outer">
+                                    <div class="top-line">
+										<?php echo $snippet->type; ?>
+                                    </div>
+                                    <div class="details-wrap">
+										<?php if ( $price = $snippet->price ) { ?>
+                                            <div class="details-item-wrap">
+                                                <div class="details-item price-item">
+                                                    $<?php echo number_format( $price ); ?>
+                                                </div>
+                                                <label>Price</label>
+                                            </div>
 										<?php } ?>
-										<?php if ( $address ) { ?>
-                                            <h5><?php echo $address; ?></h5>
+										<?php if ( $units = $snippet->number_of_units ) { ?>
+                                            <sep>|</sep>
+                                            <div class="details-item-wrap">
+                                                <div class="details-item units-item"><?php echo $units; ?></div>
+                                                <label>Units</label>
+                                            </div>
+										<?php } ?>
+										<?php if ( $building_size = $snippet->building_size ) { ?>
+                                            <sep>|</sep>
+                                            <div class="details-item-wrap">
+                                                <div class="details-item sqft-item"><?php echo number_format( $building_size ); ?></div>
+                                                <label>Bldg SF</label>
+                                            </div>
+										<?php } ?>
+										<?php if ( $cap_rate = $snippet->cap_rate ) { ?>
+                                            <sep>|</sep>
+                                            <div class="details-item-wrap">
+                                                <div class="details-item cap-rate-item"><?php echo $cap_rate; ?></div>
+                                                <label>Cap Rate</label>
+                                            </div>
+										<?php } ?>
+										<?php if ( $lot_size = $snippet->lot_size ) { ?>
+                                            <sep>|</sep>
+                                            <div class="details-item-wrap">
+                                                <div class="details-item lot-size-item"><?php echo number_format( $lot_size ); ?></div>
+                                                <label>Lot SF</label>
+                                            </div>
 										<?php } ?>
                                     </div>
-                                </div>
-                                <img src="<?php echo $snippet->image_gallery_first; ?>"/>
-                            </div>
-                            <div class="right-side-outer">
-                                <div class="top-line">
-									<?php echo $snippet->type; ?>
-                                </div>
-                                <div class="details-wrap">
-									<?php if ( $price = $snippet->price ) { ?>
-                                        <div class="details-item-wrap">
-                                            <div class="details-item price-item">
-                                                $<?php echo number_format( $price ); ?>
-                                            </div>
-                                            <label>Price</label>
-                                        </div>
-									<?php } ?>
-									<?php if ( $units = $snippet->number_of_units ) { ?>
-                                        <sep>|</sep>
-                                        <div class="details-item-wrap">
-                                            <div class="details-item units-item"><?php echo $units; ?></div>
-                                            <label>Units</label>
-                                        </div>
-									<?php } ?>
-									<?php if ( $building_size = $snippet->building_size ) { ?>
-                                        <sep>|</sep>
-                                        <div class="details-item-wrap">
-                                            <div class="details-item sqft-item"><?php echo number_format( $building_size ); ?></div>
-                                            <label>Bldg SF</label>
-                                        </div>
-									<?php } ?>
-									<?php if ( $cap_rate = $snippet->cap_rate ) { ?>
-                                        <sep>|</sep>
-                                        <div class="details-item-wrap">
-                                            <div class="details-item cap-rate-item"><?php echo $cap_rate; ?></div>
-                                            <label>Cap Rate</label>
-                                        </div>
-									<?php } ?>
-									<?php if ( $lot_size = $snippet->lot_size ) { ?>
-                                        <sep>|</sep>
-                                        <div class="details-item-wrap">
-                                            <div class="details-item lot-size-item"><?php echo number_format( $lot_size ); ?></div>
-                                            <label>Lot SF</label>
-                                        </div>
-									<?php } ?>
-                                </div>
-                                <div class="bottom-line">
-									<?php if ( $days = $snippet->days_on_market ) {
-										echo $days . 'd';
-									} ?>
+                                    <div class="bottom-line">
+										<?php if ( $days = $snippet->days_on_market ) {
+											echo $days . 'd';
+										} ?>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+				<?php }
+			} else { ?>
+                <div class="no-search-results callout alert">No results found for that search! <a href="<?php echo site_url(); ?>">Return Home</a>.</div>
 			<?php } ?>
         </div>
     </div><!-- #primary -->

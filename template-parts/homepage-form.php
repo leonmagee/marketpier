@@ -37,5 +37,8 @@
             <i class="fa fa-search" aria-hidden="true"></i>
         </div>
         <input class="submit-input" type="submit" value="Submit"/>
+        <?php // check if not homepage ?>
+            <a href="#">Advanced Options</a>
+        <?php ?>
     </form>
 </div>
