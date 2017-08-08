@@ -4,9 +4,14 @@
  */
 if ( isset( $_POST['listing-search-form'] ) ) {
 
-	$search_status          = filter_input( INPUT_POST, 'status', FILTER_SANITIZE_ENCODED );
-	$search_property_type   = filter_input( INPUT_POST, 'property-type', FILTER_SANITIZE_SPECIAL_CHARS );
-	$search_city_state_area = filter_input( INPUT_POST, 'city-state-area', FILTER_SANITIZE_SPECIAL_CHARS );
+	$search_status        = filter_input( INPUT_POST, 'status', FILTER_SANITIZE_ENCODED );
+	$search_property_type = filter_input( INPUT_POST, 'property-type', FILTER_SANITIZE_SPECIAL_CHARS );
+	$search_city_zip      = filter_input( INPUT_POST, 'city-zip', FILTER_SANITIZE_SPECIAL_CHARS );
+
+	/**
+	 * Encode string - necessary for inputs with empty spaces
+	 */
+	$search_city_zip = rawurlencode( $search_city_zip );
 
 	$search_input_array = array();
 
@@ -21,9 +26,9 @@ if ( isset( $_POST['listing-search-form'] ) ) {
 		$search_input_array[] = $property_type_string;
 	}
 
-	if ( $search_city_state_area ) {
-		$city_state_area_string = 'city_state_area=' . $search_city_state_area;
-		$search_input_array[]   = $city_state_area_string;
+	if ( $search_city_zip ) {
+		$city_zip_string      = 'city_zip=' . $search_city_zip;
+		$search_input_array[] = $city_zip_string;
 	}
 
 	$search_string_combo = implode( '&', $search_input_array );
