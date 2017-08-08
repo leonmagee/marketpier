@@ -19,33 +19,38 @@ class snippet_data_search {
 		$property_type   = filter_input( INPUT_GET, 'property_type', FILTER_SANITIZE_SPECIAL_CHARS );
 		$city_state_area = filter_input( INPUT_GET, 'city_state_area', FILTER_SANITIZE_SPECIAL_CHARS );
 
-		$status          = rawurldecode( $status );
-		$property_type   = rawurldecode( $property_type );
-		$city_state_area = rawurldecode( $city_state_area );
+		//$status          = rawurldecode( $status );
+		//$property_type   = rawurldecode( $property_type );
+		$city_state_area = rawurldecode( $city_state_area ); // @todo probably need this?
 
 		//die( $status . ' - ' . $property_type . ' - ' . $city_state_area );
 
 		$meta_search_array = array();
 		if ( $status ) {
-			if ( $status == 'Sold Listings' ) {
+			if ( $status == 'sold_listings' ) {
 				$meta_search_array[] = array(
 					'key'   => 'listing_status',
-					'value' => 'Sold'
+					'value' => 'sold'
 				);
-			}
-			if ( ( $status == 'ForSale' ) || ( $status == 'For Sale' ) ) { // @todo why is this necessary??????
+			} else {
 				$meta_search_array[] = array(
 					'key'   => 'listing_for_sale_or_for_lease',
-					'value' => 'For Sale'
+					'value' => $status
 				);
 			}
+//			if ( ( $status == 'ForSale' ) || ( $status == 'For Sale' ) ) { // @todo why is this necessary??????
+//				$meta_search_array[] = array(
+//					'key'   => 'listing_for_sale_or_for_lease',
+//					'value' => 'For Sale'
+//				);
+//			}
 
-			if ( ( $status == 'ForLease' ) || ( $status == 'For Lease' ) ) {
-				$meta_search_array[] = array(
-					'key'   => 'listing_for_sale_or_for_lease',
-					'value' => 'For Lease'
-				);
-			}
+//			if ( ( $status == 'ForLease' ) || ( $status == 'For Lease' ) ) {
+//				$meta_search_array[] = array(
+//					'key'   => 'listing_for_sale_or_for_lease',
+//					'value' => 'For Lease'
+//				);
+//			}
 
 		}
 

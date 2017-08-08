@@ -60,27 +60,27 @@ class listing_data {
 	}
 
 	public function listing_data_from_WP() {
-		$this->title              = get_the_title();
-		$this->main_image         = get_field( 'listing_main_image' );
-		$this->mls                = get_field( 'listing_mls_number' );
-		$this->property_name      = get_field( 'listing_property_name' );
-		$this->price              = get_field( 'listing_price' );
-		$this->address            = get_field( 'listing_address' );
-		$this->city               = get_field( 'listing_city' );
-		$this->state              = get_field( 'listing_state' );
-		$this->zip                = get_field( 'listing_zip' );
-		$this->neighborhood       = get_field( 'listing_neighborhood' );
-		$this->county             = get_field( 'listing_county' );
-		$this->year               = get_field( 'listing_year_built' );
-		$this->status             = get_field( 'listing_status' );
-		$this->for_sale_for_lease = get_field( 'listing_for_sale_or_for_lease' );
-		$this->lat                = get_field( 'listing_latitude' );
-		$this->long               = get_field( 'listing_longitude' );
-
-		$selected_type = get_field( 'listing_type' );
-		$field_object  = get_field_object( 'listing_type' );
-		//var_dump( $field_object['choices'][$selected_type] );
-		$this->type                 = $field_object['choices'][ $selected_type ];
+		$this->title                = get_the_title();
+		$this->main_image           = get_field( 'listing_main_image' );
+		$this->mls                  = get_field( 'listing_mls_number' );
+		$this->property_name        = get_field( 'listing_property_name' );
+		$this->price                = get_field( 'listing_price' );
+		$this->address              = get_field( 'listing_address' );
+		$this->city                 = get_field( 'listing_city' );
+		$this->state                = get_field( 'listing_state' );
+		$this->zip                  = get_field( 'listing_zip' );
+		$this->neighborhood         = get_field( 'listing_neighborhood' );
+		$this->county               = get_field( 'listing_county' );
+		$this->year                 = get_field( 'listing_year_built' );
+		$selected_status            = get_field( 'listing_status' );
+		$field_object_status        = get_field_object( 'listing_status' );
+		$this->status               = $field_object_status['choices'][ $selected_status ];
+		$this->for_sale_for_lease   = get_field( 'listing_for_sale_or_for_lease' );
+		$this->lat                  = get_field( 'listing_latitude' );
+		$this->long                 = get_field( 'listing_longitude' );
+		$selected_type              = get_field( 'listing_type' );
+		$field_object_type          = get_field_object( 'listing_type' );
+		$this->type                 = $field_object_type['choices'][ $selected_type ];
 		$this->sub_type             = get_field( 'listing_sub_type' );
 		$this->building_size        = get_field( 'listing_building_size' );
 		$this->lot_size             = get_field( 'listing_lot_size' );
