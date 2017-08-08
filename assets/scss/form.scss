@@ -125,7 +125,14 @@
       background-color: lighten($brand-primary, 5%);
     }
   }
+
+  // hide reset value to start
+  .property-type .dropdown-pane ul li.default-choice {
+    display: none;
+  }
 }
+
+
 
 //.dropdown-pane {
 //

@@ -50,13 +50,15 @@ class snippet_data_search {
 		}
 
 		if ( $property_type ) {
+			if ( $property_type !== 'All Property Types' ) {
 //			if ( $property_type == 'xxx' ) {
 //				$property_type = 'yyy';
 //			}
-			$meta_search_array[] = array(
-				'key'   => 'listing_type',
-				'value' => $property_type
-			);
+				$meta_search_array[] = array(
+					'key'   => 'listing_type',
+					'value' => $property_type
+				);
+			}
 		}
 
 		//var_dump( $meta_search_array );
