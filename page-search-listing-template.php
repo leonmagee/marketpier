@@ -7,6 +7,7 @@
 require_once( 'inc/snippet_data.php' );
 require_once( 'inc/snippet_data_search.php' );
 require_once( 'inc/lv_google_map_group.php' );
+require_once( 'inc/form-process-submit.php' );
 $snippets_query = new snippet_data_search();
 $snippets       = $snippets_query->snippet_object_array;
 

@@ -7,6 +7,12 @@ if ( isset( $_POST['listing-search-form'] ) ) {
 	$search_status        = filter_input( INPUT_POST, 'status', FILTER_SANITIZE_ENCODED );
 	$search_property_type = filter_input( INPUT_POST, 'property-type', FILTER_SANITIZE_SPECIAL_CHARS );
 	$search_city_zip      = filter_input( INPUT_POST, 'city-zip', FILTER_SANITIZE_SPECIAL_CHARS );
+	$search_price_min     = filter_input( INPUT_POST, 'price-min', FILTER_SANITIZE_SPECIAL_CHARS );
+	$search_price_max     = filter_input( INPUT_POST, 'price-max', FILTER_SANITIZE_SPECIAL_CHARS );
+
+	var_dump( $search_price_min );
+	var_dump( $search_price_max );
+	die( 'xxx' );
 
 	/**
 	 * Encode string - necessary for inputs with empty spaces
