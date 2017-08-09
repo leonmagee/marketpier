@@ -275,11 +275,15 @@
 .search-form-wrap {
 
   .advanced-options-wrap {
-    padding: 20px;
+    padding: 10px;
 
     .advanced-options-toggle {
-      padding: 5px;
-      background: blue;
+      display: none;
+      &.open {
+        display: block;
+      }
+      //padding: 5px;
+      //background: blue;
     }
   }
 }
