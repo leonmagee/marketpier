@@ -2,6 +2,11 @@
 
 /**
  * Class snippet_data_search
+ *
+ * Returns data for snippets
+ * Handles form submission - just for WordPress
+ * @todo make separate method? to query data for Rets API - you will want to be searching them both at once
+ * @todo and returning the WordPress data first.
  */
 class snippet_data_search {
 	public $snippet_object_array;
@@ -15,6 +20,8 @@ class snippet_data_search {
 		$property_type     = filter_input( INPUT_GET, 'property_type', FILTER_SANITIZE_SPECIAL_CHARS );
 		$city_zip          = filter_input( INPUT_GET, 'city_zip', FILTER_SANITIZE_SPECIAL_CHARS );
 		$city_zip          = rawurldecode( $city_zip );
+		$price_min         = filter_input( INPUT_GET, 'price_min', FILTER_SANITIZE_SPECIAL_CHARS );
+		$price_max         = filter_input( INPUT_GET, 'price_max', FILTER_SANITIZE_SPECIAL_CHARS );
 		$meta_search_array = array();
 		if ( $city_zip ) {
 			if ( is_numeric( $city_zip ) ) {
@@ -23,11 +30,8 @@ class snippet_data_search {
 					'value' => $city_zip
 				);
 			} else {
-
-				$city_zip_strip = str_replace( array( ',', '-', '/', '|','.' ), '', $city_zip );
-
-				$city_zip_array = $this->get_string_array( $city_zip_strip );
-
+				$city_zip_strip      = str_replace( array( ',', '-', '/', '|', '.' ), '', $city_zip );
+				$city_zip_array      = $this->get_string_array( $city_zip_strip );
 				$meta_search_array[] = array(
 					'key'     => 'listing_city',
 					'value'   => $city_zip_array,
@@ -55,6 +59,20 @@ class snippet_data_search {
 					'value' => $property_type
 				);
 			}
+		}
+		if ( $price_min ) {
+			$meta_search_array[] = array(
+				'key'     => 'listing_price',
+				'value'   => $price_min,
+				'compare' => '>='
+			);
+		}
+		if ( $price_max ) {
+			$meta_search_array[] = array(
+				'key'     => 'listing_price',
+				'value'   => $price_max,
+				'compare' => '<='
+			);
 		}
 		$snippet_objects    = array();
 		$map_data_array_src = array();

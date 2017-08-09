@@ -10,10 +10,6 @@ if ( isset( $_POST['listing-search-form'] ) ) {
 	$search_price_min     = filter_input( INPUT_POST, 'price-min', FILTER_SANITIZE_SPECIAL_CHARS );
 	$search_price_max     = filter_input( INPUT_POST, 'price-max', FILTER_SANITIZE_SPECIAL_CHARS );
 
-	var_dump( $search_price_min );
-	var_dump( $search_price_max );
-	die( 'xxx' );
-
 	/**
 	 * Encode string - necessary for inputs with empty spaces
 	 */
@@ -35,6 +31,16 @@ if ( isset( $_POST['listing-search-form'] ) ) {
 	if ( $search_city_zip ) {
 		$city_zip_string      = 'city_zip=' . $search_city_zip;
 		$search_input_array[] = $city_zip_string;
+	}
+
+	if ( $search_price_min ) {
+		$price_min_string      = 'price_min=' . $search_price_min;
+		$search_input_array[] = $price_min_string;
+	}
+
+	if ( $search_price_max ) {
+		$price_max_string      = 'price_max=' . $search_price_max;
+		$search_input_array[] = $price_max_string;
 	}
 
 	$search_string_combo = implode( '&', $search_input_array );

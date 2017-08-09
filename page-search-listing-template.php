@@ -22,7 +22,7 @@ get_header();
         </div>
         <div class="search-listings-half snippet-half">
 			<?php
-			get_template_part( 'template-parts/homepage-form' );
+			get_template_part( 'template-parts/homepage-form-snippets' );
 			if ( $snippets ) {
 
 				foreach ( $snippets as $snippet ) {

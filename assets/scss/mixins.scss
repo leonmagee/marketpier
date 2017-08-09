@@ -18,6 +18,14 @@
   text-transform: uppercase;
 }
 
+@mixin form_text_snippet() {
+  color: #555;
+  font-family: 'Open Sans';
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
 @mixin listing_border_bottom() {
   border-bottom: 1px dashed #EDEDED;
 }

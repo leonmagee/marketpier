@@ -69,19 +69,23 @@
             <div class="advanced-options-wrap">
                 <a class="toggle-advanced-options">Advanced Options</a>
                 <div class="advanced-options-toggle">
-                    <h5>Price Min and Max</h5>
-                    <select name="price-min">
-                        <option value="">No Min</option>
-						<?php foreach ( $price_array as $label => $value ) { ?>
-                            <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
-						<?php } ?>
-                    </select>
-                    <select name="price-max">
-                        <option value="">No Max</option>
-		                <?php foreach ( $price_array as $label => $value ) { ?>
-                            <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
-		                <?php } ?>
-                    </select>
+                    <div class="advanced-options-item price-min-max">
+                        <h5>Price Min and Max</h5>
+                        <div class="advanced-options-inputs">
+                            <select name="price-min">
+                                <option value="">No Min</option>
+								<?php foreach ( $price_array as $label => $value ) { ?>
+                                    <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
+								<?php } ?>
+                            </select>
+                            <select name="price-max">
+                                <option value="">No Max</option>
+								<?php foreach ( $price_array as $label => $value ) { ?>
+                                    <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
+								<?php } ?>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
 		<?php } ?>
