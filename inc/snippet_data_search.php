@@ -24,7 +24,9 @@ class snippet_data_search {
 				);
 			} else {
 
-				$city_zip_array = $this->get_string_array( $city_zip );
+				$city_zip_strip = str_replace( array( ',', '-', '/', '|','.' ), '', $city_zip );
+
+				$city_zip_array = $this->get_string_array( $city_zip_strip );
 
 				$meta_search_array[] = array(
 					'key'     => 'listing_city',
@@ -121,6 +123,7 @@ class snippet_data_search {
 		} else {
 			$ma[] = $var;
 		}
+
 		return $ma;
 	}
 }

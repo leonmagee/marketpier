@@ -7,9 +7,11 @@
   //background-color: #CCC;
   border-radius: 15px;
   form {
-    @media(min-width: $screen-sm) {
-      display: flex;
-      justify-content: space-between;
+    .main-form-inner {
+      @media(min-width: $screen-sm) {
+        display: flex;
+        justify-content: space-between;
+      }
     }
   }
   .input-wrap {
@@ -270,3 +272,9 @@
 //.dropdown-pane {
 //
 //}
+.search-form-wrap {
+
+  .advanced-options-wrap {
+    padding: 20px;
+  }
+}
