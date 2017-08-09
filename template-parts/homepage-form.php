@@ -43,7 +43,10 @@
         </div>
 		<?php if ( is_page( 'search-listings' ) ) { ?>
             <div class="advanced-options-wrap">
-                <a href="#">Advanced Options</a>
+                <a class="toggle-advanced-options">Advanced Options</a>
+                <div class="advanced-options-toggle">
+                    some options...
+                </div>
             </div>
 		<?php } ?>
     </form>

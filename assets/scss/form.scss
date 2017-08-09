@@ -276,5 +276,10 @@
 
   .advanced-options-wrap {
     padding: 20px;
+
+    .advanced-options-toggle {
+      padding: 5px;
+      background: blue;
+    }
   }
 }

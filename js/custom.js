@@ -40,6 +40,10 @@
     $('.listing-agent-form-wrap .agent-choice-wrap').click(function () {
         $('.listing-agent-form-wrap .agent-choice-wrap.active').removeClass('active');
         $(this).addClass('active');
+    });
+
+    $('.toggle-advanced-options').click(function () {
+        $('.advanced-options-toggle').toggleClass('open');
     })
 
 
