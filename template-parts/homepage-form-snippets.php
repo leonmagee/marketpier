@@ -1,4 +1,11 @@
 <!-- homepage form for snippets page -->
+<?php
+
+//$form_price_min = intval( filter_input( INPUT_GET, 'price_min', FILTER_SANITIZE_SPECIAL_CHARS ) );
+//var_dump( $form_price_min );
+
+?>
+
 <div class="search-form-wrap-snippets">
     <form method="post" action="#"><!-- @todo form action to switch page to search results? -->
         <div class="main-form-inner">
@@ -89,15 +96,30 @@
             <div class="advanced-options-toggle">
                 <div class="advanced-options-item price-min-max">
                     <h5>Price Min and Max</h5>
+					<?php //var_dump( $snippets_query ); ?>
                     <div class="advanced-options-inputs input-style-snippet-wrap">
                         <select name="price-min">
-                            <option value="">No Min</option>
+							<?php
+							if ( $price_min = $snippets_query->price_min ) {
+								$array_key = array_search( $price_min, $price_array );
+								?>
+                                <option value="<?php echo $price_min; ?>"><?php echo $array_key; ?></option>
+							<?php } else { ?>
+                                <option value="">No Min</option>
+							<?php } ?>
 							<?php foreach ( $price_array as $label => $value ) { ?>
                                 <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
 							<?php } ?>
                         </select>
                         <select name="price-max">
-                            <option value="">No Max</option>
+	                        <?php
+	                        if ( $price_max = $snippets_query->price_max ) {
+		                        $array_key = array_search( $price_max, $price_array );
+		                        ?>
+                                <option value="<?php echo $price_max; ?>"><?php echo $array_key; ?></option>
+	                        <?php } else { ?>
+                                <option value="">No Max</option>
+	                        <?php } ?>
 							<?php foreach ( $price_array as $label => $value ) { ?>
                                 <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
 							<?php } ?>
@@ -124,8 +146,8 @@
                 <div class="advanced-options-item sqft-min-max">
                     <h5>Cap Rate Min and Max</h5>
                     <div class="advanced-options-inputs input-style-snippet-wrap">
-                        <input type="text" name="cap-rate-min" placeholder="min" />
-                        <input type="text" name="cap-rate-max" placeholder="max" />
+                        <input type="text" name="cap-rate-min" placeholder="min"/>
+                        <input type="text" name="cap-rate-max" placeholder="max"/>
                     </div>
                 </div>
             </div>

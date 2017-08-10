@@ -22,7 +22,11 @@ get_header();
         </div>
         <div class="search-listings-half snippet-half">
 			<?php
-			get_template_part( 'template-parts/homepage-form-snippets' );
+			/**
+			 * This template part doesn't have access to the data it needs...
+			 */
+			include( locate_template( 'template-parts/homepage-form-snippets.php' ) );
+			//get_template_part( 'template-parts/homepage-form-snippets' );
 			if ( $snippets ) {
 
 				foreach ( $snippets as $snippet ) {
@@ -111,7 +115,9 @@ get_header();
                     </div>
 				<?php }
 			} else { ?>
-                <div class="no-search-results callout alert">No results found for that search! <a href="<?php echo site_url(); ?>">Return Home</a>.</div>
+                <div class="no-search-results callout alert">No results found for that search! <a
+                            href="<?php echo site_url(); ?>">Return Home</a>.
+                </div>
 			<?php } ?>
         </div>
     </div><!-- #primary -->

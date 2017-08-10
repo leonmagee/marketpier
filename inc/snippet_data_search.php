@@ -11,21 +11,32 @@
 class snippet_data_search {
 	public $snippet_object_array;
 	public $map_data_array;
+	public $status;
+	public $property_type;
+	public $city_zip;
+	public $price_min;
+	public $price_max;
+	public $sqft_min;
+	public $sqft_max;
+	public $cap_rate_min;
+	public $cap_rate_max;
 
 	public function __construct() {
 		/**
 		 * Data from $_GET
 		 */
-		$status        = filter_input( INPUT_GET, 'status', FILTER_SANITIZE_ENCODED );
-		$property_type = filter_input( INPUT_GET, 'property_type', FILTER_SANITIZE_SPECIAL_CHARS );
-		$city_zip      = filter_input( INPUT_GET, 'city_zip', FILTER_SANITIZE_SPECIAL_CHARS );
-		$city_zip      = rawurldecode( $city_zip );
-		$price_min     = intval( filter_input( INPUT_GET, 'price_min', FILTER_SANITIZE_SPECIAL_CHARS ) );
-		$price_max     = intval( filter_input( INPUT_GET, 'price_max', FILTER_SANITIZE_SPECIAL_CHARS ) );
-		$sqft_min      = intval( filter_input( INPUT_GET, 'sqft_min', FILTER_SANITIZE_SPECIAL_CHARS ) );
-		$sqft_max      = intval( filter_input( INPUT_GET, 'sqft_max', FILTER_SANITIZE_SPECIAL_CHARS ) );
-		$cap_rate_min  = floatval( filter_input( INPUT_GET, 'cap_rate_min', FILTER_SANITIZE_SPECIAL_CHARS ) );
-		$cap_rate_max  = floatval( filter_input( INPUT_GET, 'cap_rate_max', FILTER_SANITIZE_SPECIAL_CHARS ) );
+		$this->status        = filter_input( INPUT_GET, 'status', FILTER_SANITIZE_ENCODED );
+		$this->property_type = filter_input( INPUT_GET, 'property_type', FILTER_SANITIZE_SPECIAL_CHARS );
+		$city_zip            = filter_input( INPUT_GET, 'city_zip', FILTER_SANITIZE_SPECIAL_CHARS );
+		$this->city_zip      = rawurldecode( $city_zip );
+		$this->price_min     = intval( filter_input( INPUT_GET, 'price_min', FILTER_SANITIZE_SPECIAL_CHARS ) );
+		$this->price_max     = intval( filter_input( INPUT_GET, 'price_max', FILTER_SANITIZE_SPECIAL_CHARS ) );
+		$this->sqft_min      = intval( filter_input( INPUT_GET, 'sqft_min', FILTER_SANITIZE_SPECIAL_CHARS ) );
+		$this->sqft_max      = intval( filter_input( INPUT_GET, 'sqft_max', FILTER_SANITIZE_SPECIAL_CHARS ) );
+		$this->cap_rate_min  = floatval( filter_input( INPUT_GET, 'cap_rate_min', FILTER_SANITIZE_SPECIAL_CHARS ) );
+		$this->cap_rate_max  = floatval( filter_input( INPUT_GET, 'cap_rate_max', FILTER_SANITIZE_SPECIAL_CHARS ) );
+
+		//$this->price_min = $price_min;
 		//var_dump( $price_min );
 		//var_dump( $price_max );
 		//var_dump( $sqft_min );
@@ -34,7 +45,7 @@ class snippet_data_search {
 		//var_dump( $cap_rate_max );
 
 		$meta_search_array = array();
-		if ( $city_zip ) {
+		if ( $city_zip = $this->city_zip ) {
 			if ( is_numeric( $city_zip ) ) {
 				$meta_search_array[] = array(
 					'key'   => 'listing_zip',
@@ -50,7 +61,7 @@ class snippet_data_search {
 				);
 			}
 		}
-		if ( $status ) {
+		if ( $status = $this->status ) {
 			if ( $status == 'sold_listings' ) {
 				$meta_search_array[] = array(
 					'key'   => 'listing_status',
@@ -63,7 +74,7 @@ class snippet_data_search {
 				);
 			}
 		}
-		if ( $property_type ) {
+		if ( $property_type = $this->property_type ) {
 			if ( $property_type !== 'all_property_types' ) {
 				$meta_search_array[] = array(
 					'key'   => 'listing_type',
@@ -71,7 +82,7 @@ class snippet_data_search {
 				);
 			}
 		}
-		if ( $price_min ) {
+		if ( $price_min = $this->price_min ) {
 			$meta_search_array[] = array(
 				'key'     => 'listing_price',
 				'value'   => $price_min,
@@ -79,7 +90,7 @@ class snippet_data_search {
 				'type'    => 'NUMERIC'
 			);
 		}
-		if ( $price_max ) {
+		if ( $price_max = $this->price_max ) {
 			$meta_search_array[] = array(
 				'key'     => 'listing_price',
 				'value'   => $price_max,
@@ -87,7 +98,7 @@ class snippet_data_search {
 				'type'    => 'NUMERIC'
 			);
 		}
-		if ( $sqft_min ) {
+		if ( $sqft_min = $this->sqft_min ) {
 			$meta_search_array[] = array(
 				'key'     => 'listing_building_size',
 				'value'   => $sqft_min,
@@ -95,7 +106,7 @@ class snippet_data_search {
 				'type'    => 'NUMERIC'
 			);
 		}
-		if ( $sqft_max ) {
+		if ( $sqft_max = $this->sqft_max ) {
 			$meta_search_array[] = array(
 				'key'     => 'listing_building_size',
 				'value'   => $sqft_max,
@@ -103,7 +114,7 @@ class snippet_data_search {
 				'type'    => 'NUMERIC'
 			);
 		}
-		if ( $cap_rate_min ) {
+		if ( $cap_rate_min = $this->cap_rate_min ) {
 			$meta_search_array[] = array(
 				'key'     => 'listing_cap_rate',
 				'value'   => $cap_rate_min,
@@ -111,7 +122,7 @@ class snippet_data_search {
 				'type'    => 'FLOAT'
 			);
 		}
-		if ( $cap_rate_max ) {
+		if ( $cap_rate_max = $this->cap_rate_max ) {
 			$meta_search_array[] = array(
 				'key'     => 'listing_cap_rate',
 				'value'   => $cap_rate_max,
