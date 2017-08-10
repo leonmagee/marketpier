@@ -240,16 +240,46 @@
         flex: 0 1 50%;
         h5 {
           font-size: 14px;
-          margin: 5px 10px 0;
+          margin: 5px 13px 0;
           color: #777;
         }
         .advanced-options-inputs {
           display: flex;
-          select {
-            margin: 10px 5px;
+          padding: 0 5px;
+          select, input {
+            //margin: 10px 5px;
+            //border-radius: 0;
+            //box-shadow: none;
           }
         }
       }
     }
   }
+}
+
+.input-style-snippet-wrap {
+  input, select {
+    @include form_text_snippet;
+    font-size: 12px;
+    margin: 10px 5px;
+    box-shadow: none;
+    border-radius: 0;
+    text-transform: uppercase;
+  }
+  input {
+    padding: 5px 10px;
+  }
+  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    @include form_text_snippet;
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+    @include form_text_snippet;
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+    @include form_text_snippet;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    @include form_text_snippet;
+  }
+
 }

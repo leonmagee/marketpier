@@ -16,12 +16,23 @@ class snippet_data_search {
 		/**
 		 * Data from $_GET
 		 */
-		$status            = filter_input( INPUT_GET, 'status', FILTER_SANITIZE_ENCODED );
-		$property_type     = filter_input( INPUT_GET, 'property_type', FILTER_SANITIZE_SPECIAL_CHARS );
-		$city_zip          = filter_input( INPUT_GET, 'city_zip', FILTER_SANITIZE_SPECIAL_CHARS );
-		$city_zip          = rawurldecode( $city_zip );
-		$price_min         = filter_input( INPUT_GET, 'price_min', FILTER_SANITIZE_SPECIAL_CHARS );
-		$price_max         = filter_input( INPUT_GET, 'price_max', FILTER_SANITIZE_SPECIAL_CHARS );
+		$status        = filter_input( INPUT_GET, 'status', FILTER_SANITIZE_ENCODED );
+		$property_type = filter_input( INPUT_GET, 'property_type', FILTER_SANITIZE_SPECIAL_CHARS );
+		$city_zip      = filter_input( INPUT_GET, 'city_zip', FILTER_SANITIZE_SPECIAL_CHARS );
+		$city_zip      = rawurldecode( $city_zip );
+		$price_min     = intval( filter_input( INPUT_GET, 'price_min', FILTER_SANITIZE_SPECIAL_CHARS ) );
+		$price_max     = intval( filter_input( INPUT_GET, 'price_max', FILTER_SANITIZE_SPECIAL_CHARS ) );
+		$sqft_min      = intval( filter_input( INPUT_GET, 'sqft_min', FILTER_SANITIZE_SPECIAL_CHARS ) );
+		$sqft_max      = intval( filter_input( INPUT_GET, 'sqft_max', FILTER_SANITIZE_SPECIAL_CHARS ) );
+		$cap_rate_min  = floatval( filter_input( INPUT_GET, 'cap_rate_min', FILTER_SANITIZE_SPECIAL_CHARS ) );
+		$cap_rate_max  = floatval( filter_input( INPUT_GET, 'cap_rate_max', FILTER_SANITIZE_SPECIAL_CHARS ) );
+		//var_dump( $price_min );
+		//var_dump( $price_max );
+		//var_dump( $sqft_min );
+		//var_dump( $sqft_max );
+		//var_dump( $cap_rate_min );
+		//var_dump( $cap_rate_max );
+
 		$meta_search_array = array();
 		if ( $city_zip ) {
 			if ( is_numeric( $city_zip ) ) {
@@ -64,14 +75,48 @@ class snippet_data_search {
 			$meta_search_array[] = array(
 				'key'     => 'listing_price',
 				'value'   => $price_min,
-				'compare' => '>='
+				'compare' => '>=',
+				'type'    => 'NUMERIC'
 			);
 		}
 		if ( $price_max ) {
 			$meta_search_array[] = array(
 				'key'     => 'listing_price',
 				'value'   => $price_max,
-				'compare' => '<='
+				'compare' => '<=',
+				'type'    => 'NUMERIC'
+			);
+		}
+		if ( $sqft_min ) {
+			$meta_search_array[] = array(
+				'key'     => 'listing_building_size',
+				'value'   => $sqft_min,
+				'compare' => '>=',
+				'type'    => 'NUMERIC'
+			);
+		}
+		if ( $sqft_max ) {
+			$meta_search_array[] = array(
+				'key'     => 'listing_building_size',
+				'value'   => $sqft_max,
+				'compare' => '<=',
+				'type'    => 'NUMERIC'
+			);
+		}
+		if ( $cap_rate_min ) {
+			$meta_search_array[] = array(
+				'key'     => 'listing_cap_rate',
+				'value'   => $cap_rate_min,
+				'compare' => '>=',
+				'type'    => 'FLOAT'
+			);
+		}
+		if ( $cap_rate_max ) {
+			$meta_search_array[] = array(
+				'key'     => 'listing_cap_rate',
+				'value'   => $cap_rate_max,
+				'compare' => '<=',
+				'type'    => 'FLOAT'
 			);
 		}
 		$snippet_objects    = array();

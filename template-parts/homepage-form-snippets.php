@@ -52,25 +52,35 @@
 		);
 
 		$sqft_min_array = array(
-			'500 sqft'   => 500,
-			'1,000 sqft' => 1000,
-			'1,500 sqft' => 1500,
-			'2,000 sqft' => 2000,
-			'3,000 sqft' => 3000,
-			'4,000 sqft' => 4000,
-			'5,000 sqft' => 5000,
-			'6,000 sqft' => 6000
+			'500 sqft'    => 500,
+			'1,000 sqft'  => 1000,
+			'1,500 sqft'  => 1500,
+			'2,000 sqft'  => 2000,
+			'3,000 sqft'  => 3000,
+			'4,000 sqft'  => 4000,
+			'5,000 sqft'  => 5000,
+			'6,000 sqft'  => 6000,
+			'7,000 sqft'  => 7000,
+			'8,000 sqft'  => 8000,
+			'9,000 sqft'  => 9000,
+			'10,000 sqft' => 10000,
+			'11,000 sqft' => 11000
 		);
 
 		$sqft_max_array = array(
-			'1,000 sqft' => 1000,
-			'1,500 sqft' => 1500,
-			'2,000 sqft' => 2000,
-			'3,000 sqft' => 3000,
-			'4,000 sqft' => 4000,
-			'5,000 sqft' => 5000,
-			'6,000 sqft' => 6000,
-			'7,000 sqft' => 7000
+			'1,000 sqft'  => 1000,
+			'1,500 sqft'  => 1500,
+			'2,000 sqft'  => 2000,
+			'3,000 sqft'  => 3000,
+			'4,000 sqft'  => 4000,
+			'5,000 sqft'  => 5000,
+			'6,000 sqft'  => 6000,
+			'7,000 sqft'  => 7000,
+			'8,000 sqft'  => 8000,
+			'9,000 sqft'  => 9000,
+			'10,000 sqft' => 10000,
+			'11,000 sqft' => 11000,
+			'12,000 sqft' => 12000
 		);
 
 		?>
@@ -79,7 +89,7 @@
             <div class="advanced-options-toggle">
                 <div class="advanced-options-item price-min-max">
                     <h5>Price Min and Max</h5>
-                    <div class="advanced-options-inputs">
+                    <div class="advanced-options-inputs input-style-snippet-wrap">
                         <select name="price-min">
                             <option value="">No Min</option>
 							<?php foreach ( $price_array as $label => $value ) { ?>
@@ -96,7 +106,7 @@
                 </div>
                 <div class="advanced-options-item sqft-min-max">
                     <h5>SQFT Min and Max</h5>
-                    <div class="advanced-options-inputs">
+                    <div class="advanced-options-inputs input-style-snippet-wrap">
                         <select name="sqft-min">
                             <option value="">No Min</option>
 							<?php foreach ( $sqft_min_array as $label => $value ) { ?>
@@ -109,6 +119,13 @@
                                 <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
 							<?php } ?>
                         </select>
+                    </div>
+                </div>
+                <div class="advanced-options-item sqft-min-max">
+                    <h5>Cap Rate Min and Max</h5>
+                    <div class="advanced-options-inputs input-style-snippet-wrap">
+                        <input type="text" name="cap-rate-min" placeholder="min" />
+                        <input type="text" name="cap-rate-max" placeholder="max" />
                     </div>
                 </div>
             </div>
