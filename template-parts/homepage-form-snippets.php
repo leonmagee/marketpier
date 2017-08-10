@@ -14,7 +14,11 @@
                 <div class="input-wrap status">
                     <select name="status">
 						<?php foreach ( $status_options as $option ) {
-							echo '<option value="' . $option["status_name"] . '">' . $option['status'] . '</option>';
+							if ( $option['status_name'] == $snippets_query->status ) {
+								echo '<option selected="selected" value="' . $option["status_name"] . '">' . $option['status'] . '</option>';
+							} else {
+								echo '<option value="' . $option["status_name"] . '">' . $option['status'] . '</option>';
+							}
 						} ?>
                     </select>
                 </div>
@@ -24,14 +28,23 @@
                     <select name="property-type">
                         <option value="all_property_types">All Property Types</option>
 						<?php foreach ( $property_type_options as $option ) {
-							echo '<option value="' . $option["property_type_name"] . '">' . $option['property_type'] . '</option>';
+							if ( $option['property_type_name'] == $snippets_query->property_type ) {
+								echo '<option selected="selected" value="' . $option["property_type_name"] . '">' . $option['property_type'] . '</option>';
+							} else {
+								echo '<option value="' . $option["property_type_name"] . '">' . $option['property_type'] . '</option>';
+							}
 						} ?>
                     </select>
                 </div>
 			<?php } ?>
             <div class="input-wrap main-input">
-                <input type="text" placeholder="<?php echo get_field( 'search_input_placeholder', 'option' ); ?>"
-                       name="city-zip"/>
+				<?php if ( $city_zip = $snippets_query->city_zip ) { ?>
+                    <input type="text" placeholder="<?php echo get_field( 'search_input_placeholder', 'option' ); ?>"
+                           name="city-zip" value="<?php echo $city_zip; ?>"/>
+				<?php } else { ?>
+                    <input type="text" placeholder="<?php echo get_field( 'search_input_placeholder', 'option' ); ?>"
+                           name="city-zip"/>
+				<?php } ?>
             </div>
             <input class="submit-input" type="submit" value="Search"/>
         </div>
@@ -112,14 +125,14 @@
 							<?php } ?>
                         </select>
                         <select name="price-max">
-	                        <?php
-	                        if ( $price_max = $snippets_query->price_max ) {
-		                        $array_key = array_search( $price_max, $price_array );
-		                        ?>
+							<?php
+							if ( $price_max = $snippets_query->price_max ) {
+								$array_key = array_search( $price_max, $price_array );
+								?>
                                 <option value="<?php echo $price_max; ?>"><?php echo $array_key; ?></option>
-	                        <?php } else { ?>
+							<?php } else { ?>
                                 <option value="">No Max</option>
-	                        <?php } ?>
+							<?php } ?>
 							<?php foreach ( $price_array as $label => $value ) { ?>
                                 <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
 							<?php } ?>
@@ -130,13 +143,27 @@
                     <h5>SQFT Min and Max</h5>
                     <div class="advanced-options-inputs input-style-snippet-wrap">
                         <select name="sqft-min">
-                            <option value="">No Min</option>
+							<?php
+							if ( $sqft_min = $snippets_query->sqft_min ) {
+								$array_key = array_search( $sqft_min, $sqft_min_array );
+								?>
+                                <option value="<?php echo $sqft_min; ?>"><?php echo $array_key; ?></option>
+							<?php } else { ?>
+                                <option value="">No Min</option>
+							<?php } ?>
 							<?php foreach ( $sqft_min_array as $label => $value ) { ?>
                                 <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
 							<?php } ?>
                         </select>
                         <select name="sqft-max">
-                            <option value="">No Max</option>
+							<?php
+							if ( $sqft_max = $snippets_query->sqft_max ) {
+								$array_key = array_search( $sqft_max, $sqft_max_array );
+								?>
+                                <option value="<?php echo $sqft_max; ?>"><?php echo $array_key; ?></option>
+							<?php } else { ?>
+                                <option value="">No Max</option>
+							<?php } ?>
 							<?php foreach ( $sqft_max_array as $label => $value ) { ?>
                                 <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
 							<?php } ?>
@@ -146,8 +173,20 @@
                 <div class="advanced-options-item sqft-min-max">
                     <h5>Cap Rate Min and Max</h5>
                     <div class="advanced-options-inputs input-style-snippet-wrap">
-                        <input type="text" name="cap-rate-min" placeholder="min"/>
-                        <input type="text" name="cap-rate-max" placeholder="max"/>
+						<?php
+						if ( $cap_rate_min = $snippets_query->cap_rate_min ) {
+							?>
+                            <input type="text" name="cap-rate-min" value="<?php echo $cap_rate_min; ?>"/>
+						<?php } else { ?>
+                            <input type="text" name="cap-rate-min" placeholder="min"/>
+						<?php } ?>
+						<?php
+						if ( $cap_rate_max = $snippets_query->cap_rate_max ) {
+							?>
+                            <input type="text" name="cap-rate-max" value="<?php echo $cap_rate_max; ?>"/>
+						<?php } else { ?>
+                            <input type="text" name="cap-rate-max" placeholder="max"/>
+						<?php } ?>
                     </div>
                 </div>
             </div>
