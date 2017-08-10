@@ -50,6 +50,7 @@
         </div>
 		<?php
 		$price_array = array(
+			'N/A'   => 0,
 			'$200k' => 200000,
 			'$300k' => 300000,
 			'$400k' => 400000,
@@ -72,6 +73,7 @@
 		);
 
 		$sqft_min_array = array(
+			'no min'      => 0,
 			'500 sqft'    => 500,
 			'1,000 sqft'  => 1000,
 			'1,500 sqft'  => 1500,
@@ -88,6 +90,7 @@
 		);
 
 		$sqft_max_array = array(
+			'no max'      => 0,
 			'1,000 sqft'  => 1000,
 			'1,500 sqft'  => 1500,
 			'2,000 sqft'  => 2000,
