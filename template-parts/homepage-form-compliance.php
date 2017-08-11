@@ -3,14 +3,14 @@
     <form method="post" action="#"><!-- @todo form action to switch page to search results? -->
         <div class="main-form-inner">
             <input type="hidden" name="listing-search-form"/>
-			<?php if ( $status_options = get_field( 'status_select_options', 'option' ) ) { ?>
+			<?php if ( $for_sale_lease_options = get_field( 'for_sale_for_lease_select_options', 'option' ) ) { ?>
                 <div class="input-wrap status" data-toggle="status-dropdown">
                     <div class="select-toggle">For Sale</div>
                     <i class="fa fa-sort" aria-hidden="true"></i>
                     <div class="dropdown-pane" id="status-dropdown" data-dropdown data-hover="true"
                          data-hover-pane="true">
                         <ul>
-							<?php foreach ( $status_options as $option ) {
+							<?php foreach ( $for_sale_lease_options as $option ) {
 								echo '<li>' . $option['status'] . '</li>';
 							} ?>
                         </ul>
