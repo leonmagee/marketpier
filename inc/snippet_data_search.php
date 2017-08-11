@@ -24,6 +24,7 @@ class snippet_data_search {
 	public $cap_rate_min;
 	public $cap_rate_max;
 	public $lot_size_min;
+	public $days_on_market;
 
 	public function __construct() {
 		/**
@@ -43,6 +44,7 @@ class snippet_data_search {
 		$this->cap_rate_min   = floatval( filter_input( INPUT_GET, 'cap_rate_min', FILTER_SANITIZE_SPECIAL_CHARS ) );
 		$this->cap_rate_max   = floatval( filter_input( INPUT_GET, 'cap_rate_max', FILTER_SANITIZE_SPECIAL_CHARS ) );
 		$this->lot_size_min   = intval( filter_input( INPUT_GET, 'lot_size_min', FILTER_SANITIZE_SPECIAL_CHARS ) );
+		$this->days_on_market = intval( filter_input( INPUT_GET, 'days_on_market', FILTER_SANITIZE_SPECIAL_CHARS ) );
 
 		//$this->price_min = $price_min;
 		//var_dump( $price_min );
@@ -166,11 +168,21 @@ class snippet_data_search {
 				'type'    => 'NUMERIC'
 			);
 		}
+		if ( $days_on_market = $this->days_on_market ) {
+			$date_query = array(
+				'column' => 'post_date',
+				'after'  => '- ' . $days_on_market . ' days'
+			);
+		} else {
+			$date_query = null;
+		}
+
 		$snippet_objects    = array();
 		$map_data_array_src = array();
 		$args               = array(
 			'post_type'  => 'mp-listing',
 			'meta_query' => $meta_search_array,
+			'date_query' => $date_query
 		);
 		$listing_query      = new WP_Query( $args );
 

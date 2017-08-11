@@ -26,6 +26,16 @@
   text-transform: uppercase;
 }
 
+@mixin form_text_snippet_adv() {
+  color: #555;
+  font-family: 'Open Sans';
+  font-weight: 500;
+  font-size: 11px;
+  text-transform: uppercase;
+  padding: 4px 22px 4px 7px;
+  height: auto;
+}
+
 @mixin listing_border_bottom() {
   border-bottom: 1px dashed #EDEDED;
 }

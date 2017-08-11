@@ -17,6 +17,7 @@ if ( isset( $_POST['listing-search-form'] ) ) {
 	$cap_rate_min          = filter_input( INPUT_POST, 'cap-rate-min', FILTER_SANITIZE_SPECIAL_CHARS );
 	$cap_rate_max          = filter_input( INPUT_POST, 'cap-rate-max', FILTER_SANITIZE_SPECIAL_CHARS );
 	$lot_size_min         = filter_input( INPUT_POST, 'lot-size', FILTER_SANITIZE_SPECIAL_CHARS );
+	$days_on_market         = filter_input( INPUT_POST, 'days-on-market', FILTER_SANITIZE_SPECIAL_CHARS );
 
 //	var_dump( $status_active );
 //	var_dump( $status_pending );
@@ -92,6 +93,11 @@ if ( isset( $_POST['listing-search-form'] ) ) {
 	if ( $lot_size_min ) {
 		$lot_size_min_string  = 'lot_size_min=' . $lot_size_min;
 		$search_input_array[] = $lot_size_min_string;
+	}
+
+	if ( $days_on_market ) {
+		$days_on_market_string  = 'days_on_market=' . $days_on_market;
+		$search_input_array[] = $days_on_market_string;
 	}
 
 	$search_string_combo = implode( '&', $search_input_array );

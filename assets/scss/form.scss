@@ -239,14 +239,17 @@
 
       .advanced-options-item {
         flex: 0 1 50%;
+        &.quarter {
+          flex: 0 1 25%;
+        }
         h5 {
-          font-size: 14px;
-          margin: 15px 13px 0;
+          font-size: 13px;
+          margin: 10px 13px 0;
           color: #777;
         }
         .advanced-options-inputs {
           display: flex;
-          padding: 0 5px;
+          //padding: 0 5px;
           select, input {
             //margin: 10px 5px;
             //border-radius: 0;
@@ -261,7 +264,6 @@
 .input-style-snippet-wrap {
   input, select {
     @include form_text_snippet;
-    font-size: 12px;
     margin: 10px 5px;
     box-shadow: none;
     border-radius: 0;
@@ -296,6 +298,14 @@
     align-items: center;
     &:hover {
       cursor: pointer;
+    }
+  }
+}
+
+.advanced-options-wrap {
+  .input-style-snippet-wrap {
+    input, select {
+      @include form_text_snippet_adv;
     }
   }
 }

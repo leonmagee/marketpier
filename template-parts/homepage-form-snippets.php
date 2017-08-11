@@ -260,7 +260,7 @@
                                                                value="1"/>Sold</label>
                     </div>
                 </div>
-                <div class="advanced-options-item lot-size-min-max">
+                <div class="advanced-options-item lot-size">
                     <h5>Lot Size (SF or AC)</h5>
                     <div class="advanced-options-inputs input-style-snippet-wrap">
                         <select name="lot-size">
@@ -275,18 +275,27 @@
                         </select>
                     </div>
                 </div>
-                <div class="advanced-options-item lot-size-min-max">
+                <div class="advanced-options-item days-on-market quarter">
                     <h5>Days on Market</h5>
                     <div class="advanced-options-inputs input-style-snippet-wrap">
-                        <select name="lot-size">
+                        <select name="days-on-market">
 				            <?php foreach ( $days_on_market_array as $label => $value ) {
-					            /**
-					             * @todo calculate days on market through snippet
-                                 * data - might be easy... but the difficult part
-                                 * will be querying based on data - since there is no
-                                 * number of dates in the database...
-					             */
 				                if ( $snippets_query->days_on_market == $value ) { ?>
+                                    <option selected="selected"
+                                            value="<?php echo $value; ?>"><?php echo $label; ?></option>
+					            <?php } else { ?>
+                                    <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
+					            <?php }
+				            } ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="advanced-options-item sold-in-last quarter">
+                    <h5>Sold in Last</h5>
+                    <div class="advanced-options-inputs input-style-snippet-wrap">
+                        <select name="sold-in-last">
+				            <?php foreach ( $days_on_market_array as $label => $value ) {
+					            if ( $snippets_query->days_on_market == $value ) { ?>
                                     <option selected="selected"
                                             value="<?php echo $value; ?>"><?php echo $label; ?></option>
 					            <?php } else { ?>
