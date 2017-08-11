@@ -4,16 +4,23 @@
  */
 if ( isset( $_POST['listing-search-form'] ) ) {
 
-	$search_status        = filter_input( INPUT_POST, 'status', FILTER_SANITIZE_ENCODED );
-	$search_property_type = filter_input( INPUT_POST, 'property-type', FILTER_SANITIZE_SPECIAL_CHARS );
-	$search_city_zip      = filter_input( INPUT_POST, 'city-zip', FILTER_SANITIZE_SPECIAL_CHARS );
-	$search_price_min     = filter_input( INPUT_POST, 'price-min', FILTER_SANITIZE_SPECIAL_CHARS );
-	$search_price_max     = filter_input( INPUT_POST, 'price-max', FILTER_SANITIZE_SPECIAL_CHARS );
-	$search_sqft_min      = filter_input( INPUT_POST, 'sqft-min', FILTER_SANITIZE_SPECIAL_CHARS );
-	$search_sqft_max      = filter_input( INPUT_POST, 'sqft-max', FILTER_SANITIZE_SPECIAL_CHARS );
-	$cap_rate_min         = filter_input( INPUT_POST, 'cap-rate-min', FILTER_SANITIZE_SPECIAL_CHARS );
-	$cap_rate_max         = filter_input( INPUT_POST, 'cap-rate-max', FILTER_SANITIZE_SPECIAL_CHARS );
+	$search_for_sale_lease = filter_input( INPUT_POST, 'for-sale-lease', FILTER_SANITIZE_ENCODED );
+	$status_active         = filter_input( INPUT_POST, 'status-active', FILTER_SANITIZE_ENCODED );
+	$status_pending        = filter_input( INPUT_POST, 'status-pending', FILTER_SANITIZE_ENCODED );
+	$status_sold           = filter_input( INPUT_POST, 'status-sold', FILTER_SANITIZE_ENCODED );
+	$search_property_type  = filter_input( INPUT_POST, 'property-type', FILTER_SANITIZE_SPECIAL_CHARS );
+	$search_city_zip       = filter_input( INPUT_POST, 'city-zip', FILTER_SANITIZE_SPECIAL_CHARS );
+	$search_price_min      = filter_input( INPUT_POST, 'price-min', FILTER_SANITIZE_SPECIAL_CHARS );
+	$search_price_max      = filter_input( INPUT_POST, 'price-max', FILTER_SANITIZE_SPECIAL_CHARS );
+	$search_sqft_min       = filter_input( INPUT_POST, 'sqft-min', FILTER_SANITIZE_SPECIAL_CHARS );
+	$search_sqft_max       = filter_input( INPUT_POST, 'sqft-max', FILTER_SANITIZE_SPECIAL_CHARS );
+	$cap_rate_min          = filter_input( INPUT_POST, 'cap-rate-min', FILTER_SANITIZE_SPECIAL_CHARS );
+	$cap_rate_max          = filter_input( INPUT_POST, 'cap-rate-max', FILTER_SANITIZE_SPECIAL_CHARS );
 
+	var_dump( $status_active );
+	var_dump( $status_pending );
+	var_dump( $status_sold );
+	//die( 'x' );
 	/**
 	 * Encode string - necessary for inputs with empty spaces
 	 */
@@ -21,11 +28,25 @@ if ( isset( $_POST['listing-search-form'] ) ) {
 
 	$search_input_array = array();
 
-	if ( ! $search_status ) {
-		$search_status = 'for_sale';
+	if ( ! $search_for_sale_lease ) {
+		$search_for_sale_lease = 'for_sale';
 	}
-	$status_string        = 'status=' . $search_status;
-	$search_input_array[] = $status_string;
+	$search_for_sale_lease_string = 'for_sale_lease=' . $search_for_sale_lease;
+	$search_input_array[]         = $search_for_sale_lease_string;
+
+	// different status possibilities
+	if ( $status_active ) {
+		$status_string        = 'status_active=1';
+		$search_input_array[] = $status_string;
+	}
+	if ( $status_pending ) {
+		$status_string        = 'status_pending=1';
+		$search_input_array[] = $status_string;
+	}
+	if ( $status_sold ) {
+		$status_string        = 'status_sold=1';
+		$search_input_array[] = $status_string;
+	}
 
 	if ( $search_property_type ) {
 		$property_type_string = 'property_type=' . $search_property_type;

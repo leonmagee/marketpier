@@ -10,10 +10,10 @@
     <form method="post" action="#"><!-- @todo form action to switch page to search results? -->
         <div class="main-form-inner">
             <input type="hidden" name="listing-search-form"/>
-			<?php if ( $status_options = get_field( 'status_select_options', 'option' ) ) { ?>
+			<?php if ( $for_sale_lease_options = get_field( 'for_sale_for_lease_select_options', 'option' ) ) { ?>
                 <div class="input-wrap status">
-                    <select name="status">
-						<?php foreach ( $status_options as $option ) {
+                    <select name="for-sale-lease">
+						<?php foreach ( $for_sale_lease_options as $option ) {
 							if ( $option['status_name'] == $snippets_query->status ) {
 								echo '<option selected="selected" value="' . $option["status_name"] . '">' . $option['status'] . '</option>';
 							} else {
@@ -106,13 +106,27 @@
 			'12,000 sqft' => 12000
 		);
 
+		$lot_size_array = array(
+			'Any'                    => 0,
+			'2,000+ sqft'            => 2000,
+			'3,000+ sqft'            => 3000,
+			'4,000+ sqft'            => 4000,
+			'5,000+ sqft'            => 5000,
+			'7,500+ sqft'            => 7000,
+			'.25+ acre/10,890+ sqft' => 10890,
+			'.5+ acre/10,890+ sqft'  => 21780,
+			'1+ acre'                => 43560,
+			'2+ acres'               => 87120,
+			'5+ acres'               => 217800,
+			'10+ acres'              => 435600,
+		);
+
 		?>
         <div class="advanced-options-wrap">
             <a class="toggle-advanced-options">Advanced Options</a>
             <div class="advanced-options-toggle">
                 <div class="advanced-options-item price-min-max">
-                    <h5>Price Min and Max</h5>
-					<?php //var_dump( $snippets_query ); ?>
+                    <h5>Price Range ($)</h5>
                     <div class="advanced-options-inputs input-style-snippet-wrap">
                         <select name="price-min">
 							<?php
@@ -143,7 +157,7 @@
                     </div>
                 </div>
                 <div class="advanced-options-item sqft-min-max">
-                    <h5>SQFT Min and Max</h5>
+                    <h5>Building Size (SF)</h5>
                     <div class="advanced-options-inputs input-style-snippet-wrap">
                         <select name="sqft-min">
 							<?php
@@ -173,23 +187,72 @@
                         </select>
                     </div>
                 </div>
-                <div class="advanced-options-item sqft-min-max">
-                    <h5>Cap Rate Min and Max</h5>
+                <div class="advanced-options-item cap-rate-min-max">
+                    <h5>Cap Rate (%)</h5>
                     <div class="advanced-options-inputs input-style-snippet-wrap">
 						<?php
 						if ( $cap_rate_min = $snippets_query->cap_rate_min ) {
 							?>
                             <input type="text" name="cap-rate-min" value="<?php echo $cap_rate_min; ?>"/>
 						<?php } else { ?>
-                            <input type="text" name="cap-rate-min" placeholder="min"/>
+                            <input type="text" name="cap-rate-min" placeholder="0.00"/>
 						<?php } ?>
 						<?php
 						if ( $cap_rate_max = $snippets_query->cap_rate_max ) {
 							?>
                             <input type="text" name="cap-rate-max" value="<?php echo $cap_rate_max; ?>"/>
 						<?php } else { ?>
-                            <input type="text" name="cap-rate-max" placeholder="max"/>
+                            <input type="text" name="cap-rate-max" placeholder="0.00"/>
 						<?php } ?>
+                    </div>
+                </div>
+                <div class="advanced-options-item status-checkboxes">
+                    <h5>Status</h5>
+                    <div class="advanced-options-inputs input-style-snippet-wrap checkboxes-wrap">
+						<?php if ( $snippets_query->status_active ) {
+							$active_ckd = 'checked';
+						} else {
+							$active_ckd = '';
+						}
+						if ( $snippets_query->status_pending ) {
+							$pending_ckd = 'checked';
+						} else {
+							$pending_ckd = '';
+						}
+						if ( $snippets_query->status_sold ) {
+							$sold_ckd = 'checked';
+						} else {
+							$sold_ckd = '';
+						}
+						if ( ( ! $snippets_query->status_pending ) && ( ! $snippets_query->status_sold ) ) {
+							$active_ckd = 'checked';
+						} ?>
+
+                        <label><input <?php echo $active_ckd; ?> type="checkbox" name="status-active" value="1"/>Active</label>
+                        <label><input <?php echo $pending_ckd; ?> type="checkbox" name="status-pending" value="1"/>Pending</label>
+                        <label><input <?php echo $sold_ckd; ?> type="checkbox" name="status-sold"
+                                                               value="1"/>Sold</label>
+                    </div>
+                </div>
+                <div class="advanced-options-item lot-size-min-max">
+                    <h5>Lot Size (SF or AC)</h5>
+                    <div class="advanced-options-inputs input-style-snippet-wrap">
+                        <select name="sqft-min">
+							<?php
+							if ( $sqft_min = $snippets_query->sqft_min ) {
+								$array_key = array_search( $sqft_min, $sqft_min_array );
+								?>
+                                <option value="<?php echo $sqft_min; ?>"><?php echo $array_key; ?></option>
+							<?php } else { ?>
+                                <option value="">No Min</option>
+							<?php } ?>
+							<?php foreach ( $lot_size_array as $label => $value ) { ?>
+                                <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
+							<?php } ?>
+                        </select>
+
+
+
                     </div>
                 </div>
             </div>

@@ -226,6 +226,7 @@
     }
     .advanced-options-toggle {
       display: none;
+      display: flex;
       background-color: #F3F3F3;
       border: 1px solid #DDD;
       padding: 10px;
@@ -240,7 +241,7 @@
         flex: 0 1 50%;
         h5 {
           font-size: 14px;
-          margin: 5px 13px 0;
+          margin: 15px 13px 0;
           color: #777;
         }
         .advanced-options-inputs {
@@ -282,4 +283,19 @@
     @include form_text_snippet;
   }
 
+}
+
+.checkboxes-wrap {
+  display: flex;
+  align-items: center;
+  min-height: 50px;
+  label {
+    margin: 0 10px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }

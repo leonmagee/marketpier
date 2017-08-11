@@ -14,9 +14,7 @@ if ( $background = get_field( 'homepage_background_image', 'option' ) ) {
 } else {
 	$bg_style = '';
 }
-
 ?>
-
     <div class="homepage-wrap-outer">
         <div class="homepage-slider" <?php echo $bg_style; ?>>
             <div class="homepage-slider-overlay">

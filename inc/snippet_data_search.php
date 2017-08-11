@@ -11,7 +11,10 @@
 class snippet_data_search {
 	public $snippet_object_array;
 	public $map_data_array;
-	public $status;
+	public $for_sale_lease;
+	public $status_active;
+	public $status_pending;
+	public $status_sold;
 	public $property_type;
 	public $city_zip;
 	public $price_min;
@@ -25,16 +28,19 @@ class snippet_data_search {
 		/**
 		 * Data from $_GET
 		 */
-		$this->status        = filter_input( INPUT_GET, 'status', FILTER_SANITIZE_ENCODED );
-		$this->property_type = filter_input( INPUT_GET, 'property_type', FILTER_SANITIZE_SPECIAL_CHARS );
-		$city_zip            = filter_input( INPUT_GET, 'city_zip', FILTER_SANITIZE_SPECIAL_CHARS );
-		$this->city_zip      = rawurldecode( $city_zip );
-		$this->price_min     = intval( filter_input( INPUT_GET, 'price_min', FILTER_SANITIZE_SPECIAL_CHARS ) );
-		$this->price_max     = intval( filter_input( INPUT_GET, 'price_max', FILTER_SANITIZE_SPECIAL_CHARS ) );
-		$this->sqft_min      = intval( filter_input( INPUT_GET, 'sqft_min', FILTER_SANITIZE_SPECIAL_CHARS ) );
-		$this->sqft_max      = intval( filter_input( INPUT_GET, 'sqft_max', FILTER_SANITIZE_SPECIAL_CHARS ) );
-		$this->cap_rate_min  = floatval( filter_input( INPUT_GET, 'cap_rate_min', FILTER_SANITIZE_SPECIAL_CHARS ) );
-		$this->cap_rate_max  = floatval( filter_input( INPUT_GET, 'cap_rate_max', FILTER_SANITIZE_SPECIAL_CHARS ) );
+		$this->for_sale_lease = filter_input( INPUT_GET, 'for_sale_lease', FILTER_SANITIZE_ENCODED );
+		$this->status_active  = filter_input( INPUT_GET, 'status_active', FILTER_SANITIZE_ENCODED );
+		$this->status_pending = filter_input( INPUT_GET, 'status_pending', FILTER_SANITIZE_ENCODED );
+		$this->status_sold    = filter_input( INPUT_GET, 'status_sold', FILTER_SANITIZE_ENCODED );
+		$this->property_type  = filter_input( INPUT_GET, 'property_type', FILTER_SANITIZE_SPECIAL_CHARS );
+		$city_zip             = filter_input( INPUT_GET, 'city_zip', FILTER_SANITIZE_SPECIAL_CHARS );
+		$this->city_zip       = rawurldecode( $city_zip );
+		$this->price_min      = intval( filter_input( INPUT_GET, 'price_min', FILTER_SANITIZE_SPECIAL_CHARS ) );
+		$this->price_max      = intval( filter_input( INPUT_GET, 'price_max', FILTER_SANITIZE_SPECIAL_CHARS ) );
+		$this->sqft_min       = intval( filter_input( INPUT_GET, 'sqft_min', FILTER_SANITIZE_SPECIAL_CHARS ) );
+		$this->sqft_max       = intval( filter_input( INPUT_GET, 'sqft_max', FILTER_SANITIZE_SPECIAL_CHARS ) );
+		$this->cap_rate_min   = floatval( filter_input( INPUT_GET, 'cap_rate_min', FILTER_SANITIZE_SPECIAL_CHARS ) );
+		$this->cap_rate_max   = floatval( filter_input( INPUT_GET, 'cap_rate_max', FILTER_SANITIZE_SPECIAL_CHARS ) );
 
 		//$this->price_min = $price_min;
 		//var_dump( $price_min );
@@ -43,6 +49,16 @@ class snippet_data_search {
 		//var_dump( $sqft_max );
 		//var_dump( $cap_rate_min );
 		//var_dump( $cap_rate_max );
+		$status_array = array();
+		if ( $this->status_active ) {
+			$status_array[] = 'active';
+		}
+		if ( $this->status_pending ) {
+			$status_array[] = 'pending';
+		}
+		if ( $this->status_sold ) {
+			$status_array[] = 'sold';
+		}
 
 		$meta_search_array = array();
 		if ( $city_zip = $this->city_zip ) {
@@ -61,18 +77,28 @@ class snippet_data_search {
 				);
 			}
 		}
-		if ( $status = $this->status ) {
-			if ( $status == 'sold_listings' ) {
-				$meta_search_array[] = array(
-					'key'   => 'listing_status',
-					'value' => 'sold'
-				);
-			} else {
-				$meta_search_array[] = array(
-					'key'   => 'listing_for_sale_or_for_lease',
-					'value' => $status
-				);
-			}
+		if ( $for_sale_lease = $this->for_sale_lease ) {
+			$meta_search_array[] = array(
+				'key'   => 'listing_for_sale_or_for_lease',
+				'value' => $for_sale_lease
+			);
+		} else {
+			$meta_search_array[] = array(
+				'key'   => 'listing_for_sale_or_for_lease',
+				'value' => 'for_sale'
+			);
+		}
+		if ( $status_array ) {
+			$meta_search_array[] = array(
+				'key'   => 'listing_status',
+				'value' => $status_array,
+				'compare' => 'IN'
+			);
+		} else {
+			$meta_search_array[] = array(
+				'key'   => 'listing_status',
+				'value' => 'active'
+			);
 		}
 		if ( $property_type = $this->property_type ) {
 			if ( $property_type !== 'all_property_types' ) {
