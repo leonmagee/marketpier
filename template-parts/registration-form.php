@@ -14,7 +14,7 @@ $regular_inputs = array(
 	array( 'Username', 1 ),
 	array( 'Phone Number', 0 ),
 	array( 'Email Address', 1 ),
-	array( 'Email Repeat', 1 ),
+	//array( 'Email Repeat', 1 ),
 	array( 'Password', 1 ),
 	array( 'Password Repeat', 1 ),
 	array( 'Agency Name', 0 )
@@ -33,80 +33,75 @@ $regular_inputs = array(
 ?>
 <div class="registration-form-wrapper">
 
-	<div class="row">
 
-		<form method="post" name="registration-form">
+    <form method="post" name="registration-form">
 
-			<div class="form-area-1">
+        <div class="form-area-top">
 
-				<?php
+			<?php
 
-				foreach ( $regular_inputs as $input ) {
+			foreach ( $regular_inputs as $input ) {
 
-					if ( $input[1] ) {
-						$req = '<span class="required">*</span>';
-					} else {
-						$req = '';
-					}
-					$input_title = $input[0];
-					$input_name  = strtolower( str_replace( ' ', '_', $input_title ) );
-					?>
+				if ( $input[1] ) {
+					$req = '<span class="required">*</span>';
+				} else {
+					$req = '';
+				}
+				$input_title = $input[0];
+				$input_name  = strtolower( str_replace( ' ', '_', $input_title ) );
+				?>
 
-					<div class="medium-3 column left">
+                <div class="registration-input-wrap">
 
-						<label><?php echo $input_title; ?><?php echo $req; ?></label>
+                    <label><?php echo $input_title; ?><?php echo $req; ?></label>
 
-						<input type="text" name="<?php echo $input_name; ?>"/>
+                    <input type="text" name="<?php echo $input_name; ?>"/>
 
-					</div>
+                </div>
 
-				<?php } ?>
+			<?php } ?>
 
-			</div>
-
-			<div class="pushbottom"></div>
-
-			<div class="form-area-2">
-
-				<div class="medium-6 column left">
-
-					<label>Biographical Info</label>
-
-					<textarea name="agent-bio" placeholder="enter bio info"></textarea>
-
-				</div>
-
-				<div class="medium-3 column left">
-
-					<label>Headshot</label>
-
-					<input type="file" name="headshot-image"/>
-
-				</div>
-
-				<div class="medium-3 column left">
-
-					<label>Background Image</label>
-
-					<input type="file" name="background-image"/>
-
-				</div>
-
-			</div>
-
-			<div class="pushbottom"></div>
+        </div>
 
 
 
-			<div class="form-footer">
+        <div class="form-area-middle">
 
-				<input type="submit" class="button"/>
+            <div class="medium-6 column left">
 
-			</div>
+                <label>Biographical Info</label>
+
+                <textarea name="agent-bio" placeholder="enter bio info"></textarea>
+
+            </div>
+
+            <div class="medium-3 column left">
+
+                <label>Headshot</label>
+
+                <input type="file" name="headshot-image"/>
+
+            </div>
+
+            <div class="medium-3 column left">
+
+                <label>Background Image</label>
+
+                <input type="file" name="background-image"/>
+
+            </div>
+
+        </div>
 
 
-		</form>
+        <div class="form-footer">
 
-	</div>
+            <input type="submit" class="submit-input"/>
+
+        </div>
+
+
+    </form>
+
 
 </div>

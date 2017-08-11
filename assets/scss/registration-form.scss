@@ -1,6 +1,51 @@
 .registration-form-wrapper {
-  .form-area-1 {
+  background-color: #FAFAFA;
+  border: 1px solid #EEE;
+  padding: 10px 10px 30px;
+  margin-top: 15px;
+  .form-area-top {
+    display: flex;
+    //justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .form-area-middle {
+    display: none;
+  }
+  .form-footer {
 
+  }
+
+  .registration-input-wrap {
+    flex: 0 1 18%;
+    margin: 1%;
+    input {
+      border-radius: 0;
+      box-shadow: none;
+      font-size: 13px;
+      padding: 6px 10px;
+      height: auto;
+    }
+    span {
+      color: $brand-third;
+      margin-left: 3px;
+      font-size: 1.1em;
+    }
+  }
+
+  .submit-input {
+    @include form_text;
+    padding: 5px 10px;
+    border-radius: 0;
+    margin: 0 13px;
+    text-transform: uppercase;
+    border: none;
+    background-color: $brand-primary;
+    color: #FFF;
+    font-weight: 700;
+    font-size: 22px;
+    &:hover {
+      background-color: lighten($brand-primary, 5%);
+    }
   }
 
 }
