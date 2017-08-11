@@ -16,10 +16,11 @@ if ( isset( $_POST['listing-search-form'] ) ) {
 	$search_sqft_max       = filter_input( INPUT_POST, 'sqft-max', FILTER_SANITIZE_SPECIAL_CHARS );
 	$cap_rate_min          = filter_input( INPUT_POST, 'cap-rate-min', FILTER_SANITIZE_SPECIAL_CHARS );
 	$cap_rate_max          = filter_input( INPUT_POST, 'cap-rate-max', FILTER_SANITIZE_SPECIAL_CHARS );
+	$lot_size_min         = filter_input( INPUT_POST, 'lot-size', FILTER_SANITIZE_SPECIAL_CHARS );
 
-	var_dump( $status_active );
-	var_dump( $status_pending );
-	var_dump( $status_sold );
+//	var_dump( $status_active );
+//	var_dump( $status_pending );
+//	var_dump( $status_sold );
 	//die( 'x' );
 	/**
 	 * Encode string - necessary for inputs with empty spaces
@@ -86,6 +87,11 @@ if ( isset( $_POST['listing-search-form'] ) ) {
 	if ( $cap_rate_max ) {
 		$cap_rate_max_string  = 'cap_rate_max=' . $cap_rate_max;
 		$search_input_array[] = $cap_rate_max_string;
+	}
+
+	if ( $lot_size_min ) {
+		$lot_size_min_string  = 'lot_size_min=' . $lot_size_min;
+		$search_input_array[] = $lot_size_min_string;
 	}
 
 	$search_string_combo = implode( '&', $search_input_array );

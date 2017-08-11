@@ -49,31 +49,54 @@
             <input class="submit-input" type="submit" value="Search"/>
         </div>
 		<?php
-		$price_array = array(
-			'N/A'   => 0,
-			'$200k' => 200000,
-			'$300k' => 300000,
-			'$400k' => 400000,
-			'$500k' => 500000,
-			'$600k' => 600000,
-			'$700k' => 700000,
-			'$800k' => 800000,
-			'$900k' => 900000,
-			'$1M'   => 1000000,
-			'$1.5M' => 1500000,
-			'$2M'   => 2000000,
-			'$2.5M' => 2500000,
-			'$5M'   => 5000000,
-			'$7.5M' => 7500000,
-			'$10M'  => 10000000,
-			'$15M'  => 15000000,
-			'$20M'  => 20000000,
-			'$30M'  => 30000000,
-			'$50M'  => 50000000
+		$price_array_min = array(
+			'No Min' => 0,
+			'$200k'  => 200000,
+			'$300k'  => 300000,
+			'$400k'  => 400000,
+			'$500k'  => 500000,
+			'$600k'  => 600000,
+			'$700k'  => 700000,
+			'$800k'  => 800000,
+			'$900k'  => 900000,
+			'$1M'    => 1000000,
+			'$1.5M'  => 1500000,
+			'$2M'    => 2000000,
+			'$2.5M'  => 2500000,
+			'$5M'    => 5000000,
+			'$7.5M'  => 7500000,
+			'$10M'   => 10000000,
+			'$15M'   => 15000000,
+			'$20M'   => 20000000,
+			'$30M'   => 30000000,
+			'$50M'   => 50000000
+		);
+
+		$price_array_max = array(
+			'No Max' => 0,
+			'$200k'  => 200000,
+			'$300k'  => 300000,
+			'$400k'  => 400000,
+			'$500k'  => 500000,
+			'$600k'  => 600000,
+			'$700k'  => 700000,
+			'$800k'  => 800000,
+			'$900k'  => 900000,
+			'$1M'    => 1000000,
+			'$1.5M'  => 1500000,
+			'$2M'    => 2000000,
+			'$2.5M'  => 2500000,
+			'$5M'    => 5000000,
+			'$7.5M'  => 7500000,
+			'$10M'   => 10000000,
+			'$15M'   => 15000000,
+			'$20M'   => 20000000,
+			'$30M'   => 30000000,
+			'$50M'   => 50000000
 		);
 
 		$sqft_min_array = array(
-			'no min'      => 0,
+			'No Min'      => 0,
 			'500 sqft'    => 500,
 			'1,000 sqft'  => 1000,
 			'1,500 sqft'  => 1500,
@@ -90,7 +113,7 @@
 		);
 
 		$sqft_max_array = array(
-			'no max'      => 0,
+			'No Max'      => 0,
 			'1,000 sqft'  => 1000,
 			'1,500 sqft'  => 1500,
 			'2,000 sqft'  => 2000,
@@ -121,6 +144,19 @@
 			'10+ acres'              => 435600,
 		);
 
+		$days_on_market_array = array(
+			'Any'       => 0,
+			'1 day'     => 1,
+			'7 days'    => 7,
+			'14 days'   => 14,
+			'30 days'   => 30,
+			'90 days'   => 90,
+			'6 months'  => 182,
+			'12 months' => 365,
+			'24 months' => 730,
+			'36 months' => 1095,
+		);
+
 		?>
         <div class="advanced-options-wrap">
             <a class="toggle-advanced-options">Advanced Options</a>
@@ -129,30 +165,26 @@
                     <h5>Price Range ($)</h5>
                     <div class="advanced-options-inputs input-style-snippet-wrap">
                         <select name="price-min">
-							<?php
-							if ( $price_min = $snippets_query->price_min ) {
-								$array_key = array_search( $price_min, $price_array );
-								?>
-                                <option value="<?php echo $price_min; ?>"><?php echo $array_key; ?></option>
-							<?php } else { ?>
-                                <option value="">No Min</option>
-							<?php } ?>
-							<?php foreach ( $price_array as $label => $value ) { ?>
-                                <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
-							<?php } ?>
+							<?php foreach ( $price_array_min as $label => $value ) {
+								if ( $snippets_query->price_min == $value ) { ?>
+                                    <option selected="selected"
+                                            value="<?php echo $value; ?>"><?php echo $label; ?></option>
+								<?php } else { ?>
+
+                                    <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
+								<?php }
+							} ?>
                         </select>
                         <select name="price-max">
-							<?php
-							if ( $price_max = $snippets_query->price_max ) {
-								$array_key = array_search( $price_max, $price_array );
-								?>
-                                <option value="<?php echo $price_max; ?>"><?php echo $array_key; ?></option>
-							<?php } else { ?>
-                                <option value="">No Max</option>
-							<?php } ?>
-							<?php foreach ( $price_array as $label => $value ) { ?>
-                                <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
-							<?php } ?>
+							<?php foreach ( $price_array_max as $label => $value ) {
+								if ( $snippets_query->price_max == $value ) { ?>
+                                    <option selected="selected"
+                                            value="<?php echo $value; ?>"><?php echo $label; ?></option>
+								<?php } else { ?>
+
+                                    <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
+								<?php }
+							} ?>
                         </select>
                     </div>
                 </div>
@@ -160,30 +192,24 @@
                     <h5>Building Size (SF)</h5>
                     <div class="advanced-options-inputs input-style-snippet-wrap">
                         <select name="sqft-min">
-							<?php
-							if ( $sqft_min = $snippets_query->sqft_min ) {
-								$array_key = array_search( $sqft_min, $sqft_min_array );
-								?>
-                                <option value="<?php echo $sqft_min; ?>"><?php echo $array_key; ?></option>
-							<?php } else { ?>
-                                <option value="">No Min</option>
-							<?php } ?>
-							<?php foreach ( $sqft_min_array as $label => $value ) { ?>
-                                <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
-							<?php } ?>
+							<?php foreach ( $sqft_min_array as $label => $value ) {
+								if ( $snippets_query->sqft_min == $value ) { ?>
+                                    <option selected="selected"
+                                            value="<?php echo $value; ?>"><?php echo $label; ?></option>
+								<?php } else { ?>
+                                    <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
+								<?php }
+							} ?>
                         </select>
                         <select name="sqft-max">
-							<?php
-							if ( $sqft_max = $snippets_query->sqft_max ) {
-								$array_key = array_search( $sqft_max, $sqft_max_array );
-								?>
-                                <option value="<?php echo $sqft_max; ?>"><?php echo $array_key; ?></option>
-							<?php } else { ?>
-                                <option value="">No Max</option>
-							<?php } ?>
-							<?php foreach ( $sqft_max_array as $label => $value ) { ?>
-                                <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
-							<?php } ?>
+							<?php foreach ( $sqft_max_array as $label => $value ) {
+								if ( $snippets_query->sqft_max == $value ) { ?>
+                                    <option selected="selected"
+                                            value="<?php echo $value; ?>"><?php echo $label; ?></option>
+								<?php } else { ?>
+                                    <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
+								<?php }
+							} ?>
                         </select>
                     </div>
                 </div>
@@ -237,22 +263,37 @@
                 <div class="advanced-options-item lot-size-min-max">
                     <h5>Lot Size (SF or AC)</h5>
                     <div class="advanced-options-inputs input-style-snippet-wrap">
-                        <select name="sqft-min">
-							<?php
-							if ( $sqft_min = $snippets_query->sqft_min ) {
-								$array_key = array_search( $sqft_min, $sqft_min_array );
-								?>
-                                <option value="<?php echo $sqft_min; ?>"><?php echo $array_key; ?></option>
-							<?php } else { ?>
-                                <option value="">No Min</option>
-							<?php } ?>
-							<?php foreach ( $lot_size_array as $label => $value ) { ?>
-                                <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
-							<?php } ?>
+                        <select name="lot-size">
+							<?php foreach ( $lot_size_array as $label => $value ) {
+								if ( $snippets_query->lot_size_min == $value ) { ?>
+                                    <option selected="selected"
+                                            value="<?php echo $value; ?>"><?php echo $label; ?></option>
+								<?php } else { ?>
+                                    <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
+								<?php }
+							} ?>
                         </select>
-
-
-
+                    </div>
+                </div>
+                <div class="advanced-options-item lot-size-min-max">
+                    <h5>Days on Market</h5>
+                    <div class="advanced-options-inputs input-style-snippet-wrap">
+                        <select name="lot-size">
+				            <?php foreach ( $days_on_market_array as $label => $value ) {
+					            /**
+					             * @todo calculate days on market through snippet
+                                 * data - might be easy... but the difficult part
+                                 * will be querying based on data - since there is no
+                                 * number of dates in the database...
+					             */
+				                if ( $snippets_query->days_on_market == $value ) { ?>
+                                    <option selected="selected"
+                                            value="<?php echo $value; ?>"><?php echo $label; ?></option>
+					            <?php } else { ?>
+                                    <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
+					            <?php }
+				            } ?>
+                        </select>
                     </div>
                 </div>
             </div>

@@ -23,6 +23,7 @@ class snippet_data_search {
 	public $sqft_max;
 	public $cap_rate_min;
 	public $cap_rate_max;
+	public $lot_size_min;
 
 	public function __construct() {
 		/**
@@ -41,6 +42,7 @@ class snippet_data_search {
 		$this->sqft_max       = intval( filter_input( INPUT_GET, 'sqft_max', FILTER_SANITIZE_SPECIAL_CHARS ) );
 		$this->cap_rate_min   = floatval( filter_input( INPUT_GET, 'cap_rate_min', FILTER_SANITIZE_SPECIAL_CHARS ) );
 		$this->cap_rate_max   = floatval( filter_input( INPUT_GET, 'cap_rate_max', FILTER_SANITIZE_SPECIAL_CHARS ) );
+		$this->lot_size_min   = intval( filter_input( INPUT_GET, 'lot_size_min', FILTER_SANITIZE_SPECIAL_CHARS ) );
 
 		//$this->price_min = $price_min;
 		//var_dump( $price_min );
@@ -90,8 +92,8 @@ class snippet_data_search {
 		}
 		if ( $status_array ) {
 			$meta_search_array[] = array(
-				'key'   => 'listing_status',
-				'value' => $status_array,
+				'key'     => 'listing_status',
+				'value'   => $status_array,
 				'compare' => 'IN'
 			);
 		} else {
@@ -154,6 +156,14 @@ class snippet_data_search {
 				'value'   => $cap_rate_max,
 				'compare' => '<=',
 				'type'    => 'FLOAT'
+			);
+		}
+		if ( $lot_size_min = $this->lot_size_min ) {
+			$meta_search_array[] = array(
+				'key'     => 'listing_lot_size',
+				'value'   => $lot_size_min,
+				'compare' => '>=',
+				'type'    => 'NUMERIC'
 			);
 		}
 		$snippet_objects    = array();
