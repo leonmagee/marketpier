@@ -260,3 +260,32 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 		'position'   => 4
 	) );
 }
+
+
+
+add_action( 'init', 'create_agent_role' );
+
+function create_agent_role() {
+
+	add_role( 'agent', 'Agent' );
+
+	$role = get_role( 'agent' );
+
+	$role->add_cap( 'publish_posts' );
+	$role->add_cap( 'delete_posts' );
+	$role->add_cap( 'delete_published_posts' );
+	$role->add_cap( 'edit_posts' );
+	$role->add_cap( 'edit_published_posts' );
+	$role->add_cap( 'edit_private_posts' );
+	$role->add_cap( 'edit_others_posts' );
+
+	$role->add_cap( 'publish_pages' );
+	$role->add_cap( 'edit_pages' );
+	$role->add_cap( 'edit_others_pages' );
+
+	$role->add_cap( 'read' );
+
+	$role->add_cap( 'upload_files' );
+	$role->add_cap( 'unfiltered_upload' );
+
+}

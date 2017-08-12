@@ -91,12 +91,10 @@ class listing_data {
 		$this->description          = get_field( 'listing_description' );
 		$this->unit_mix             = get_field( 'listing_unit_mix' );
 		$this->file_attachments     = get_field( 'listing_file_attachments' );
-
 		//$this->days_on_market       = get_field( 'listing_days_on_market' );
 
 		//get the listing date as post date
 		$this->listing_date = get_the_date();
-
 		$post_date = get_the_date( 'U' );
 		//$post_date = get_the_date( 'U', true ); // for GMT
 		$current_date          = time();

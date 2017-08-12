@@ -57,7 +57,7 @@ class snippet_data {
 		$this->city               = get_field( 'listing_city' );
 		$this->state              = get_field( 'listing_state' );
 		$this->zip                = get_field( 'listing_zip' );
-		$this->days_on_market     = get_field( 'listing_days_on_market' );
+		//$this->days_on_market     = get_field( 'listing_days_on_market' );
 		$this->for_sale_for_lease = get_field( 'listing_for_sale_or_for_lease' );
 		$this->lat                = get_field( 'listing_latitude' );
 		$this->long               = get_field( 'listing_longitude' );
@@ -69,6 +69,13 @@ class snippet_data {
 		$this->number_of_units    = get_field( 'listing_number_of_units' );
 		$this->cap_rate           = get_field( 'listing_cap_rate' );
 		$this->listing_url        = get_the_permalink();
+
+		$post_date = get_the_date( 'U' );
+		//$post_date = get_the_date( 'U', true ); // for GMT
+		$current_date          = time();
+		$days_passed_timestamp = $current_date - $post_date;
+		$days_passed           = floor( $days_passed_timestamp / ( 60 * 60 * 24 ) );
+		$this->days_on_market  = $days_passed;
 
 		$this->standardize_snippet_image_WP( get_field( 'listing_image_gallery' ) );
 

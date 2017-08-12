@@ -10,6 +10,7 @@ class mp_register_user {
 	public $first_name;
 	public $last_name;
 	public $email;
+	public $user_id;
 	//public $headshot_url;
 
 	public function __construct(
@@ -28,7 +29,10 @@ class mp_register_user {
 
 	private function register_user() {
 
-		register_new_user( $this->username, $this->email );
+		$this->user_id = register_new_user( $this->username, $this->email );
+		/**
+		 * @todo use the user id to update meta values?
+		 */
 	}
 
 	public function process_registration_form() {
