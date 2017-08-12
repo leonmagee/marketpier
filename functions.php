@@ -8,6 +8,19 @@
  */
 
 /**
+ * Require Classes
+ * @todo move this
+ */
+require_once( 'inc/agent_update.php' );
+require_once( 'inc/agent_update_input.php' );
+require_once( 'inc/agent_update_user_input_meta.php' );
+require_once( 'inc/agent_update_input_user.php' );
+require_once( 'inc/agent_update_input_acf.php' );
+require_once( 'inc/output_modal_acf.php' );
+require_once( 'inc/mp_ajax.php' );
+
+
+/**
  * @todo temp - hide admin bar
  */
 show_admin_bar( false );
@@ -179,6 +192,12 @@ function marketpier_scripts() {
 	), '1.1.1', true );
 	wp_enqueue_script( 'custom-js' );
 
+	wp_register_script( 'agent-profile-ajax', get_template_directory_uri() . '/js/agent-profile-ajax.js', array(
+		'jquery',
+		'foundation-js'
+	), '1.1.1', true );
+	wp_enqueue_script( 'agent-profile-ajax' );
+
 //	$google_maps_url = "https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyCicY4hdtrXeGNvBQSivkxAKOseNIDWZdc";
 //	wp_register_script( 'google-maps-api', $google_maps_url, '1.0.0', false );
 //	wp_enqueue_script( 'google-maps-api' );
@@ -260,7 +279,6 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 		'position'   => 4
 	) );
 }
-
 
 
 add_action( 'init', 'create_agent_role' );

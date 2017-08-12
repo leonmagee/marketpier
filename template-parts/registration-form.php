@@ -63,8 +63,6 @@ $regular_inputs = array(
 
         </div>
 
-
-
         <div class="form-area-middle">
 
             <div class="medium-6 column left">
