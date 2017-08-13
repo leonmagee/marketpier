@@ -46,7 +46,7 @@ $testimonials->output_modal(); ?>
             <a href="<?php echo site_url(); ?>/agent-home">Agent Home</a> /
             <a href="<?php echo site_url(); ?>/agent/<?php echo $username; ?>">Your Profile</a> /
             <a href="<?php echo site_url(); ?>/new-listing">Create New Listing</a> /
-            <a href="<?php echo site_url(); ?>">Skyrises Home</a> /
+            <a href="<?php echo site_url(); ?>">MarketPier Home</a> /
             <a href="<?php echo wp_logout_url( site_url() ); ?>">Log Out</a>
         </div>
 
