@@ -51,7 +51,7 @@ get_header(); ?>
                     </div>
                     <div class="agent-home-option">
                         <i class="fa fa-chevron-right"></i>
-                        <a href="<?php echo site_url(); ?>">Skyrises Home</a>
+                        <a href="<?php echo site_url(); ?>">MarketPier Home</a>
                     </div>
                     <div class="agent-home-option">
                         <i class="fa fa-chevron-right"></i>

@@ -1,6 +1,6 @@
 <?php
 /**
- * Class skyrises_output_modal_acf
+ * Class mp_output_modal_acf
  *
  */
 class mp_output_modal_acf {
@@ -50,7 +50,9 @@ class mp_output_modal_acf {
 
 			</div>
 
-			<a class="close-reveal-modal" aria-label="Close">&#215;</a>
+            <button class="close-button" data-close aria-label="Close modal" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
 
 		</div>
 

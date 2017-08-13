@@ -93,7 +93,7 @@ class lv_google_map {
 	<?php }
 
 	/**
-	 *  Output Google Map - called from 'single-skyrises-listing.php'
+	 *  Output Google Map - called from 'single-mp-listing.php'
 	 */
 	public function output_map() {
 

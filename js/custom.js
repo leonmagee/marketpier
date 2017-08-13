@@ -3,7 +3,7 @@
      * Initialize Foundation
      */
     $(document).foundation();
-console.log('testy');
+
     /**
      * Handle Listing Search Functionality
      * The search bar uses foundation dropdowns to simulate a normal-ish search form.
