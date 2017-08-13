@@ -1,0 +1,61 @@
+.profile-header {
+
+  padding: 0 20px;
+  h3 {
+    font-size: 20px;
+    color: #444;
+  }
+  .agent-profile-links {
+    color: #BBB;
+    a {
+      //color: red;
+    }
+  }
+
+  .agent-profile-top-buttons {
+    padding: 20px 0 0;
+  }
+}
+
+
+
+
+.mp-update-success {
+  display: none;
+}
+
+.agent-update-form {
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 30px;
+  .agent-input-wrap {
+    padding: 5px 20px;
+    &.agent-text-wrap {
+      flex: 0 1 25%;
+    }
+    &.agent-textarea-wrap {
+      flex: 0 1 100%;
+    }
+
+    input {
+      width: 100%;
+      padding: 5px 8px;
+      border: 1px solid #DDD;
+      &:focus {
+        outline: none;
+        border-color: $brand-primary;
+        box-shadow: none;
+      }
+    }
+    textarea {
+      border: 1px solid #DDD;
+      box-shadow: none;
+      min-height: 120px;
+      resize: none;
+    }
+    label {
+      color: #888;
+    }
+  }
+
+}

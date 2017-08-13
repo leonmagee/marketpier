@@ -7,8 +7,8 @@ jQuery(function ($) {
 
         event.preventDefault();
 
-        $('.skyrises-success').hide();
-        $('.uploads-spinner').show();
+        $('.mp-update-success').hide();
+        $('.uploads-spinner').css({'display':'flex'});
 
         var user_email = $(".registration-form-inner input.user_email").val();
         var first_name = $(".registration-form-inner input.first_name").val();
@@ -53,7 +53,7 @@ jQuery(function ($) {
             success: function (data, textStatus, XMLHttpRequest) {
                 //console.log( data );
                 $('.uploads-spinner').hide();
-                $('.skyrises-success').show();
+                $('.mp-update-success').show();
             },
             error: function (MLHttpRequest, textStatus, errorThrown) {
                 alert(errorThrown);

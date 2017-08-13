@@ -3,7 +3,7 @@
  * Class skyrises_output_modal_acf
  *
  */
-class skyrises_output_modal_acf {
+class mp_output_modal_acf {
 
 	public $field_key;
 	public $link_id;
@@ -20,7 +20,7 @@ class skyrises_output_modal_acf {
 
 	public function output_modal() { ?>
 
-		<div id="<?php echo $this->link_id; ?>" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+		<div id="<?php echo $this->link_id; ?>" class="reveal" data-reveal>
 
 			<h2 id="modalTitle"><?php echo $this->form_title; ?></h2>
 

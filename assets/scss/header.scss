@@ -96,16 +96,3 @@ header#masthead {
     }
   }
 }
-button.mp-button {
-  background: $brand-primary;
-  color: #FFF;
-  border-radius: 5px;
-  padding: 10px 15px;
-  font-family: 'Open Sans';
-  font-weight: 700;
-  font-size: 17px;
-  margin: 0 5px;
-  &:hover {
-    background: lighten($brand-primary, 5%);
-  }
-}

@@ -138,6 +138,7 @@ add_action( 'widgets_init', 'marketpier_widgets_init' );
  * Enqueue scripts and styles.
  */
 function marketpier_scripts() {
+
 	wp_enqueue_style( 'marketpier-style', get_stylesheet_uri() );
 
 	wp_enqueue_script( 'marketpier-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
@@ -168,7 +169,6 @@ function marketpier_scripts() {
 	wp_register_style( 'google-fonts-open-sans', $google_fonts_open_sans, '', '1.0.1' );
 
 	wp_enqueue_style( 'google-fonts-open-sans' );
-	//$google_font_work_sans = 'https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700,800,900';
 
 	$google_fonts_libre_baskerville = 'https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700';
 
@@ -176,20 +176,14 @@ function marketpier_scripts() {
 
 	wp_enqueue_style( 'google-fonts-libre-baskerville' );
 
-	$google_font_work_sans = 'https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700,800,900';
-
-	wp_register_style( 'google-fonts-work-sans', $google_font_work_sans, '', '1.0.1' );
-
-	wp_enqueue_style( 'google-fonts-work-sans' );
-
 	/**
 	 * Custom Scripts
 	 */
-	wp_register_script( 'foundation-js', get_template_directory_uri() . '/vendor/foundation/js/vendor/foundation.js', '', '1.1.1', true );
+	wp_register_script( 'foundation-js', get_template_directory_uri() . '/vendor/foundation/js/vendor/foundation.js', '', '1.1.2', true );
 	wp_register_script( 'custom-js', get_template_directory_uri() . '/js/custom.js', array(
-		'jquery',
+		//'jquery',
 		'foundation-js'
-	), '1.1.1', true );
+	), '1.1.2', true );
 	wp_enqueue_script( 'custom-js' );
 
 	wp_register_script( 'agent-profile-ajax', get_template_directory_uri() . '/js/agent-profile-ajax.js', array(

@@ -23,6 +23,8 @@ $agent_id = $user->ID;
 
 $username = $user->user_login;
 
+get_template_part( 'template-parts/spinner' );
+
 get_header(); ?>
 
     <div id="primary" class="content-area">
@@ -30,36 +32,10 @@ get_header(); ?>
             <div class="page-content-wrap">
                 <header class="entry-header">
                     <h1 class="entry-title">Edit Profile</h1>
-                    <h3>Agent Options for <span><?php echo $username; ?></span></h3>
                 </header>
-
-
-
-
-
-
-	            <?php
-
-
-	            get_template_part( 'template-parts/spinner' );
-
-
-
-
-
-	            get_template_part( 'template-parts/agent-profile' );
-
-	            ?>
-
-
-
-
-
-
-
+				<?php get_template_part( 'template-parts/agent-profile' ); ?>
             </div>
         </main><!-- #main -->
     </div><!-- #primary -->
-
 <?php
 get_footer();

@@ -29,6 +29,10 @@ body {
       color: lighten($brand-primary, 5%);
     }
   }
+
+  button {
+
+  }
 }
 
 div.tos-cation-0 {
@@ -56,3 +60,32 @@ header.entry-header {
 .tos-caption {
   opacity: 0 !important;
 }
+
+button.mp-button {
+  background: $brand-primary;
+  color: #FFF;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-family: 'Open Sans';
+  font-weight: 700;
+  font-size: 17px;
+  margin: 0 5px;
+  &:hover {
+    background: lighten($brand-primary, 5%);
+  }
+}
+
+a.mp-button {
+  background: $brand-primary;
+  color: #FFF;
+  padding: 10px 15px;
+  font-family: 'Open Sans';
+  font-weight: 700;
+  font-size: 17px;
+  margin: 0 5px;
+  &:hover {
+    color: #FFF;
+    background: lighten($brand-primary, 5%);
+  }
+}
+
