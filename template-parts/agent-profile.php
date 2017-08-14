@@ -43,9 +43,9 @@ $testimonials->output_modal(); ?>
 
         <div class="agent-profile-links">
 
-            <a href="<?php echo site_url(); ?>/agent-home">Agent Home</a> /
+            <a href="<?php echo site_url(); ?>/user-dashboard">Dashboard</a> /
             <a href="<?php echo site_url(); ?>/agent/<?php echo $username; ?>">Your Profile</a> /
-            <a href="<?php echo site_url(); ?>/new-listing">Create New Listing</a> /
+            <a href="<?php echo site_url(); ?>/add-listing">Create New Listing</a> /
             <a href="<?php echo site_url(); ?>">MarketPier Home</a> /
             <a href="<?php echo wp_logout_url( site_url() ); ?>">Log Out</a>
         </div>

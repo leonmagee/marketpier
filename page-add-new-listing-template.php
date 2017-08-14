@@ -5,15 +5,12 @@
  * @package MarketPier
  */
 
-//if ( ! is_user_logged_in() ) { // @todo check for type of author/agent?
-//
-//	wp_redirect( site_url() );
-//
-//	exit;
-//}
+if ( ! is_user_logged_in() ) { //@todo check user type?
+	wp_redirect( site_url() );
+	exit;
+}
 
 acf_form_head(); // this should only be used on two pages - new listing and update profile?
-
 get_header(); ?>
 
     <div id="primary" class="content-area">
@@ -36,13 +33,17 @@ get_header(); ?>
 						'post_status' => 'publish',
 						//'post_content' => 'post content'
 					),
-					'return'       => site_url() . '/agent-home',
+					'return'       => site_url() . '/user-dashboard',
 					//'uploader'     => 'basic',
 					'fields'       => array(
 						//'listing_main_image',
 						'listing_mls_number',
 						//'listing_id', // @todo auto generate
 						'listing_price',
+						'listing_type',
+						'listing_status',
+						'listing_for_sale_or_for_lease',
+						'listing_property_name',
 						'listing_address',
 						'listing_city',
 						'listing_state',
@@ -50,11 +51,8 @@ get_header(); ?>
 						'listing_neighborhood',
 						'listing_county',
 						'listing_year_built',
-						'listing_status',
-						'listing_for_sale_or_for_lease',
 						//'listing_latitude',
 						//'listing_longitude',
-						'listing_type',
 						'listing_sub_type',
 						'listing_building_size',
 						'listing_lot_size',
@@ -77,7 +75,4 @@ get_header(); ?>
             </div>
         </main><!-- #main -->
     </div><!-- #primary -->
-
-<?php
-//get_sidebar();
-get_footer();
+<?php get_footer();

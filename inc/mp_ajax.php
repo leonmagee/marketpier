@@ -65,9 +65,9 @@ function mp_register_user() {
 			$first_name    = filter_input( INPUT_POST, 'first_name', FILTER_SANITIZE_SPECIAL_CHARS );
 			$last_name     = filter_input( INPUT_POST, 'last_name', FILTER_SANITIZE_SPECIAL_CHARS );
 			$email_address = filter_input( INPUT_POST, 'email_address', FILTER_SANITIZE_SPECIAL_CHARS );
-            $broker = '';
-            $phone_number = '';
-            $password = '';
+			$password      = filter_input( INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS );
+			$agency_name   = filter_input( INPUT_POST, 'agency_name', FILTER_SANITIZE_SPECIAL_CHARS );
+			$phone_number  = filter_input( INPUT_POST, 'phone_number', FILTER_SANITIZE_SPECIAL_CHARS );
 
 			// @todo get other inputs
 
@@ -75,7 +75,14 @@ function mp_register_user() {
 				wp_die( 'email_already_taken' );
 			} else {
 				require_once( 'mp_register_user.php' );
-				$new_user = new mp_register_user( $username, $first_name, $last_name, $email_address );
+				$new_user = new mp_register_user(
+					$username,
+					$first_name,
+					$last_name,
+					$email_address,
+					$password,
+					$phone_number,
+					$agency_name );
 				$new_user->process_registration_form();
 			}
 
