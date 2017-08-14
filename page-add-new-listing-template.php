@@ -27,7 +27,7 @@ get_header(); ?>
 				 */
 				acf_form( array(
 					'post_id'      => 'new_post',
-					'post_title'   => true,
+					'post_title'   => false,
 					'new_post'     => array(
 						'post_type'   => 'mp-listing',
 						'post_status' => 'publish',

@@ -290,14 +290,47 @@ function create_agent_role() {
 	$role->add_cap( 'edit_published_posts' );
 	$role->add_cap( 'edit_private_posts' );
 	$role->add_cap( 'edit_others_posts' );
-
 	$role->add_cap( 'publish_pages' );
 	$role->add_cap( 'edit_pages' );
 	$role->add_cap( 'edit_others_pages' );
-
 	$role->add_cap( 'read' );
-
 	$role->add_cap( 'upload_files' );
 	$role->add_cap( 'unfiltered_upload' );
-
 }
+
+
+/**
+ * Add title automatically to listings
+ */
+
+add_action( 'acf/save_post', 'save_post_handler_acf_listing', 20 );
+
+function save_post_handler_acf_listing( $post_id ) {
+	if ( ! is_admin() ) {
+		if ( get_post_type( $post_id ) == 'mp-listing' ) {
+			$data['ID']         = $post_id;
+			$prop_name          = get_field( 'listing_property_name', $post_id );
+			$address            = get_field( 'listing_address', $post_id );
+			$city               = get_field( 'listing_city', $post_id );
+			$state              = get_field( 'listing_state', $post_id );
+			$zip                = get_field( 'listing_zip', $post_id );
+			$title_array        = array( $prop_name, $address, $city, $state, $zip );
+			$title_string       = implode( ' - ', $title_array );
+			$title              = $title_string;
+			$data['post_title'] = $title;
+			$data['post_name']  = sanitize_title( $title );
+			wp_update_post( $data );
+		}
+	}
+}
+
+/* 'On save' events */
+//function save_post_handler( $post_id ) {
+//	if ( get_post_type( $post_id ) == $this->post_type ) {
+//		$data['ID']         = $post_id;
+//		$title              = get_field( 'voucher_id', $post_id );
+//		$data['post_title'] = $title;
+//		$data['post_name']  = sanitize_title( $title );
+//		wp_update_post( $data );
+//	}
+//}

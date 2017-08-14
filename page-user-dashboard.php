@@ -74,13 +74,18 @@ get_header(); ?>
 						<?php
 
 						while ( $mp_listing_query->have_posts() ) {
-							$mp_listing_query->the_post(); ?>
+							$mp_listing_query->the_post();
+							$listing_id = $post->ID;
+							/**
+							 * @todo use hash instead...
+							 */
+							?>
 
                             <div class="agent-home-option">
                                 <i class="fa fa-chevron-right"></i>
                                 <span><?php the_title(); ?></span> -
                                 <a href="<?php the_permalink(); ?>">view</a> -
-                                <a href="<?php echo site_url(); ?>/edit-listing?listing=<?php echo $id_hash; ?>">edit</a>
+                                <a href="<?php echo site_url(); ?>/edit-listing?listing=<?php echo $listing_id; ?>">edit</a>
                             </div>
 
 						<?php } ?>
