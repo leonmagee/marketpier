@@ -75,7 +75,7 @@ button.mp-button {
   }
 }
 
-a.mp-button {
+a.mp-button, input.mp-button {
   background: $brand-primary;
   color: #FFF;
   padding: 10px 15px;
@@ -83,6 +83,7 @@ a.mp-button {
   font-weight: 700;
   font-size: 17px;
   margin: 0 5px;
+  border: none;
   &:hover {
     color: #FFF;
     background: lighten($brand-primary, 5%);
