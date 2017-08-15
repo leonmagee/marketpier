@@ -1,7 +1,12 @@
+// @todo remove all this - blocking top header right for about and contact
 // temp file for compliance styles
-.header-right {
-  display: none;
+body.page-template-page-homepage-template-compliance-php, body.page-id-6, body.page-id-9 {
+  .header-right {
+    display: none;
+  }
 }
+
+
 input.compliance {
   text-align: center;
 }

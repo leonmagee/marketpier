@@ -17,6 +17,7 @@ require_once( 'inc/agent_update_user_input_meta.php' );
 require_once( 'inc/agent_update_input_user.php' );
 require_once( 'inc/agent_update_input_acf.php' );
 require_once( 'inc/output_modal_acf.php' );
+require_once( 'inc/output_modal_shortcode.php' );
 require_once( 'inc/mp_ajax.php' );
 
 

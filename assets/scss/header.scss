@@ -63,6 +63,17 @@ header#masthead {
       }
     }
   }
+  .hello-user {
+    margin: 0 15px;
+    //color: #555;
+    span {
+      font-weight: 700;
+      color: #555
+    }
+  }
+  .log-out-wrap {
+    margin: 0 5px;
+  }
   .login-sign-in {
     margin: 5px 15px 30px;
     text-align: center;
