@@ -11,6 +11,7 @@
  * Require Classes
  * @todo move this
  */
+require_once( 'inc/helper-functions.php' );
 require_once( 'inc/agent_update.php' );
 require_once( 'inc/agent_update_input.php' );
 require_once( 'inc/agent_update_user_input_meta.php' );
@@ -19,6 +20,7 @@ require_once( 'inc/agent_update_input_acf.php' );
 require_once( 'inc/output_modal_acf.php' );
 require_once( 'inc/output_modal_shortcode.php' );
 require_once( 'inc/mp_ajax.php' );
+
 
 
 /**
@@ -336,9 +338,3 @@ function save_post_handler_acf_listing( $post_id ) {
 //	}
 //}
 
-function logged_in_check_redirect() {
-	if ( ! is_user_logged_in() ) {
-		wp_redirect( site_url() );
-		exit;
-	}
-}
