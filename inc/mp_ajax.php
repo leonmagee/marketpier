@@ -9,7 +9,7 @@
  */
 function mp_ajaxurl() {
 
-	if ( is_page( 'profile' ) || is_page( 'register-account' ) ) { ?>
+	if ( is_page( 'your-profile' ) || is_page( 'register-account' ) ) { ?>
 
         <script type="text/javascript">
             var ajaxurl = '<?php echo admin_url( 'admin-ajax.php' ); ?>';

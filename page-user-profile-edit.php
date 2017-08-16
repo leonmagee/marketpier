@@ -3,25 +3,17 @@
  * Template Name: User Profile Edit
  *
  * @package MarketPier
- *
- * @todo add redirect if user is not logged in...
  */
 
+logged_in_check_redirect();
 
-//if ( ! is_user_logged_in() ) { // @todo check for type of author/agent?
+acf_form_head();
+
+//$user = wp_get_current_user();
 //
-//	wp_redirect( site_url() );
+//$agent_id = $user->ID;
 //
-//	exit;
-//}
-
-acf_form_head(); // this should only be used on two pages - new listing and update profile?
-
-$user = wp_get_current_user();
-
-$agent_id = $user->ID;
-
-$username = $user->user_login;
+//$username = $user->user_login;
 
 get_template_part( 'template-parts/spinner' );
 
@@ -33,9 +25,14 @@ get_header(); ?>
                 <header class="entry-header">
                     <h1 class="entry-title">Edit Profile</h1>
                 </header>
-				<?php get_template_part( 'template-parts/agent-profile' ); ?>
+                <div class="logged-in-outer-wrap">
+					<?php get_template_part( 'template-parts/logged-in-user-sidebar' ); ?>
+                    <div class="logged-in-user-content logged-in-edit-profile">
+						<?php get_template_part( 'template-parts/agent-profile' ); ?>
+                    </div>
+                </div>
             </div>
-        </main><!-- #main -->
-    </div><!-- #primary -->
+        </main>
+    </div>
 <?php
 get_footer();

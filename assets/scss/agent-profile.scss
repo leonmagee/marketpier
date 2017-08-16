@@ -1,5 +1,11 @@
-.profile-header {
+.profile-update-form-wrapper {
+  background-color: #FAFAFA;
+  border: 1px solid #EEE;
+  padding: 10px 10px 30px;
+  margin-bottom: 30px;
+}
 
+.profile-header {
   padding: 0 20px;
   h3 {
     font-size: 20px;
@@ -8,17 +14,12 @@
   .agent-profile-links {
     color: #BBB;
     a {
-      //color: red;
     }
   }
-
   .agent-profile-top-buttons {
     padding: 20px 0 0;
   }
 }
-
-
-
 
 .mp-update-success {
   display: none;
@@ -57,5 +58,108 @@
       color: #888;
     }
   }
+}
 
+.logged-in-outer-wrap { // @todo use this for every user page?
+  @media(min-width: $screen-sm) {
+    display: flex;
+    justify-content: space-between;
+  }
+  .logged-in-user-sidebar-wrap {
+    padding: 0 10px;
+    @media(min-width: $screen-sm) {
+      flex: 0 1 22%;
+    }
+  }
+  .logged-in-user-content {
+    padding: 15px;
+    @media(min-width: $screen-sm) {
+      flex: 0 1 76%;
+      padding: 15px 5px;
+    }
+
+  }
+}
+
+.logged-in-user-sidebar-wrap {
+
+  a.sidebar-option {
+    background-color: #FAFAFA;
+    padding: 11px 15px 10px;
+    border: 1px solid #EEE;
+    margin: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #777;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 14px;
+    &:hover {
+      color: #FFF;
+      background-color: $brand-primary;
+      border-color: $brand-primary;
+    }
+    span {
+    }
+    i {
+      font-size: 20px;
+      opacity: 0.5;
+    }
+  }
+}
+
+.page-template-page-your-listings-php {
+  .logged-in-user-sidebar-wrap {
+    a.sidebar-option.your-listings {
+      color: #FFF;
+      background-color: $brand-primary;
+      border-color: $brand-primary;
+    }
+  }
+}
+
+.page-template-page-add-new-listing-template {
+  .logged-in-user-sidebar-wrap {
+    a.sidebar-option.add-listing {
+      color: #FFF;
+      background-color: $brand-primary;
+      border-color: $brand-primary;
+    }
+  }
+}
+
+.page-template-page-user-profile-edit {
+  .logged-in-user-sidebar-wrap {
+    a.sidebar-option.update-profile {
+      color: #FFF;
+      background-color: $brand-primary;
+      border-color: $brand-primary;
+    }
+  }
+}
+
+.user-listings-wrap {
+  .logged-in-user-listing {
+    padding: 8px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #EEE;
+    font-size: 16px;
+    font-weight: 600;
+    color: #444;
+    @media(min-width: $screen-sm) {
+      font-size: 20px;
+    }
+    span.view-edit-links {
+      a {
+        margin: 0 10px;
+        font-size: 13px;
+        @media(min-width: $screen-sm) {
+          font-size: 16px;
+        }
+      }
+    }
+  }
 }

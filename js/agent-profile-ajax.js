@@ -10,19 +10,21 @@ jQuery(function ($) {
         $('.mp-update-success').hide();
         $('.uploads-spinner').css({'display': 'flex'});
 
-        var user_email = $(".registration-form-inner input.user_email").val();
-        var first_name = $(".registration-form-inner input.first_name").val();
-        var last_name = $(".registration-form-inner input.last_name").val();
-        var phone_number = $(".registration-form-inner input.phone_number").val();
-        var description = $(".registration-form-inner textarea.description").val();
-        var agency = $(".registration-form-inner input.agency").val();
-        var facebook_url = $(".registration-form-inner input.facebook_url").val();
-        var linkedin_url = $(".registration-form-inner input.linkedin_url").val();
-        var twitter_url = $(".registration-form-inner input.twitter_url").val();
-        var google_plus_url = $(".registration-form-inner input.google_plus_url").val();
-        var youtube_url = $(".registration-form-inner input.youtube_url").val();
-        var instagram_url = $(".registration-form-inner input.instagram_url").val();
-        var pinterest_url = $(".registration-form-inner input.pinterest_url").val();
+        var user_email = $(".profile-update-form-wrapper input.user_email").val();
+        var first_name = $(".profile-update-form-wrapper input.first_name").val();
+        var last_name = $(".profile-update-form-wrapper input.last_name").val();
+        var phone_number = $(".profile-update-form-wrapper input.phone_number").val();
+        var description = $(".profile-update-form-wrapper textarea.description").val();
+        var agency = $(".profile-update-form-wrapper input.agency").val();
+        var facebook_url = $(".profile-update-form-wrapper input.facebook_url").val();
+        var linkedin_url = $(".profile-update-form-wrapper input.linkedin_url").val();
+        var twitter_url = $(".profile-update-form-wrapper input.twitter_url").val();
+        var google_plus_url = $(".profile-update-form-wrapper input.google_plus_url").val();
+        var youtube_url = $(".profile-update-form-wrapper input.youtube_url").val();
+        var instagram_url = $(".profile-update-form-wrapper input.instagram_url").val();
+        var pinterest_url = $(".profile-update-form-wrapper input.pinterest_url").val();
+
+        console.log('phone', phone_number);
 
         var formdata = new FormData();
 
@@ -103,8 +105,8 @@ jQuery(function ($) {
                 processData: false,
                 success: function (data, textStatus, XMLHttpRequest) {
                     $('.uploads-spinner').hide();
-                    if ( data === 'email_already_taken') {
-                       $('.register-user-email-taken').show();
+                    if (data === 'email_already_taken') {
+                        $('.register-user-email-taken').show();
                     } else {
                         $('.mp-update-success').show();
                     }

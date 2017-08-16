@@ -35,9 +35,20 @@ $testimonials = new mp_output_modal_acf(
 
 $testimonials->output_modal(); ?>
 
-<div class="profile-update-form-wrapper">
+<div class="registration-form-wrapper">
 
     <div class="profile-header">
+
+        <h3>Agent Profile Settings for <span><?php echo $username; ?></span></h3>
+
+        <div class="agent-profile-links">
+
+            <a href="<?php echo site_url(); ?>/user-dashboard">Dashboard</a> /
+            <a href="<?php echo site_url(); ?>/agent/<?php echo $username; ?>">Your Profile</a> /
+            <a href="<?php echo site_url(); ?>/add-listing">Create New Listing</a> /
+            <a href="<?php echo site_url(); ?>">MarketPier Home</a> /
+            <a href="<?php echo wp_logout_url( site_url() ); ?>">Log Out</a>
+        </div>
 
         <div class="agent-profile-top-buttons">
 

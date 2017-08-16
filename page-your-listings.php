@@ -1,27 +1,17 @@
 <?php
 /**
- * Template Name: Deprecated
+ * Template Name: Your Listings
  *
  * @package MarketPier
- *
- * @todo add redirect if user is not logged in...
  */
 
-
-//if ( ! is_user_logged_in() ) { // @todo check for type of author/agent?
-//
-//	wp_redirect( site_url() );
-//
-//	exit;
-//}
-
-//acf_form_head(); // this should only be used on two pages - new listing and update profile?
+logged_in_check_redirect();
 
 $user = wp_get_current_user();
 
-$agent_id = $user->ID;
+$user_id = $user->ID;
 
-$username = $user->user_login;
+//$username = $user->user_login;
 
 get_header(); ?>
 
@@ -42,47 +32,35 @@ get_header(); ?>
 
 						$args = array(
 							'post_type'   => 'mp-listing',
-							'post_author' => $agent_id
+							'post_author' => $user_id
 						);
 
 						$mp_listing_query = new WP_Query( $args ); ?>
 
                         <div class="user-listings-wrap">
-
-                            <div class="callout warning">
-                                You don't have any listings yet. <a href="<?php echo site_url(); ?>/add-listing">Add
-                                    Listing</a>
-                            </div>
-
-							<?php
-
-							while ( $mp_listing_query->have_posts() ) {
-								$mp_listing_query->the_post();
-								$listing_id = $post->ID;
-								/**
-								 * @todo use hash instead...
-								 */
-								?>
-
-                                <div class="logged-in-user-listing">
-                                    <span><?php the_title(); ?></span>
-                                    <span class="view-edit-links">
+							<?php if ( $mp_listing_query->have_posts() ) {
+								while ( $mp_listing_query->have_posts() ) {
+									$mp_listing_query->the_post();
+									$listing_id = $post->ID;
+									?>
+                                    <div class="logged-in-user-listing">
+                                        <span><?php the_title(); ?></span>
+                                        <span class="view-edit-links">
                                     <a href="<?php the_permalink(); ?>">view</a>
                                     <a href="<?php echo site_url(); ?>/edit-listing?listing=<?php echo $listing_id; ?>">edit</a>
                                     </span>
+                                    </div>
+								<?php }
+							} else { ?>
+                                <div class="callout warning">
+                                    You don't have any listings yet. <a href="<?php echo site_url(); ?>/add-listing">Add
+                                        Listing</a>
                                 </div>
-
 							<?php } ?>
-
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-        </main><!-- #main -->
-    </div><!-- #primary -->
-
-<?php
-get_footer();
+        </main>
+    </div>
+<?php get_footer();

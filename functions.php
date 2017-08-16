@@ -335,3 +335,10 @@ function save_post_handler_acf_listing( $post_id ) {
 //		wp_update_post( $data );
 //	}
 //}
+
+function logged_in_check_redirect() {
+	if ( ! is_user_logged_in() ) {
+		wp_redirect( site_url() );
+		exit;
+	}
+}

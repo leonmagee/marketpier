@@ -42,11 +42,17 @@ div.tos-cation-0 {
 header.entry-header {
   h1.entry-title {
     color: #111;
-    font-size: 40px;
+    font-size: 28px;
     text-transform: uppercase;
     border-bottom: 1px solid #F2F2F2;
-    margin: 30px 0 5px;
+    margin: 20px 0 5px;
+    text-align: center;
     padding-bottom: 1px;
+    @media(min-width: $screen-sm) {
+      font-size: 40px;
+      margin: 30px 0 5px;
+      text-align: left;
+    }
   }
 }
 
