@@ -1,7 +1,6 @@
 <?php
 /**
  * Template to display single Agent
- *
  */
 
 get_header();
@@ -16,12 +15,22 @@ get_header();
  *  Get Author/Agent Data
  */
 
+$author = 1;
+
 $author_data = get_userdata( intval( $author ) );
 
 /**
  *  Default Attributes
  */
-$name = $author_data->data->display_name;
+var_dump( $author_data->data );
+if ($first_name = $author_data->data->first_name ) {
+
+    $name = $first_name;
+} else {
+	$name = $author_data->data->display_name;
+}
+
+
 
 //$email = $author_data->data->user_email;
 
@@ -62,39 +71,46 @@ $testimonials = get_field( 'testimonials', 'user_' . $author );
 
 ?>
 
+
+<div id="primary" class="content-area">
+    <main id="main" class="site-main">
+        <div class="page-content-wrap">
+
+
+
+
+
+
+
+
 <div class="agent-info-wrap headshot">
+
+
 
     <div class="agent-headshot-wrap">
 
-
 		<?php
 		/**
-		 *  Headshot or choose icon
+		 *  Headshot or default image
 		 */
 
 		if ( $headshot ) { ?>
 
             <img src="<?php echo $headshot; ?>"/>
 
-		<?php } else { ?>
+		<?php } else {
 
-            <div class="agent-flaticon-user">
+			$default_image_url = '';
+		    ?>
 
-				<?php if ( $gender_female ) { ?>
-
-                    <i class="flaticon-people"></i>
-
-				<?php } else { ?>
-
-                    <i class="flaticon-person"></i>
-
-				<?php } ?>
-
-            </div>
+            <img src="<?php echo $default_image_url; ?>"/>
 
 		<?php } ?>
 
     </div>
+
+
+
 
     <div class="agent-name">
 
@@ -281,6 +297,19 @@ if ( $testimonials ) { ?>
 </div>
 
 </div>
+
+
+
+
+
+
+
+
+
+
+</div>
+</main><!-- #main -->
+</div><!-- #primary -->
 
 
 
