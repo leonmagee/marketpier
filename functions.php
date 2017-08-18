@@ -326,15 +326,3 @@ function save_post_handler_acf_listing( $post_id ) {
 		}
 	}
 }
-
-/* 'On save' events */
-//function save_post_handler( $post_id ) {
-//	if ( get_post_type( $post_id ) == $this->post_type ) {
-//		$data['ID']         = $post_id;
-//		$title              = get_field( 'voucher_id', $post_id );
-//		$data['post_title'] = $title;
-//		$data['post_name']  = sanitize_title( $title );
-//		wp_update_post( $data );
-//	}
-//}
-

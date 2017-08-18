@@ -1,0 +1,67 @@
+.agent-info-wrap {
+
+  padding: 15px;
+  background-color: #FAFAFA;
+  border: 1px solid #EEE;
+  margin-top: 20px;
+
+  h4 {
+    color: #444;
+    font-size: 23px;
+  }
+  .agent-headshot-wrap {
+    img {
+      max-height: 200px;
+    }
+  }
+
+  .agent-agency {
+    font-weight: 700;
+    color: #555;
+    font-size: 18px;
+  }
+
+  .agent-phone {
+  }
+  .agent-email {
+  }
+
+  .contact-me-wrap {
+    padding: 20px 0;
+    a.mp-button {
+      margin: 0;
+    }
+  }
+  .agent-social-media {
+    a {
+      margin: 0 2px;
+      i {
+        font-size: 25px;
+      }
+    }
+  }
+
+  .agent-bio {
+
+  }
+}
+
+//.create-new-listing-wrap.edit-listing {
+//.add-or-edit-listing {
+//  label {
+//    font-size: 12px;
+//  }
+//  input {
+//    font-size: 12px;
+//    border-radius: 0;
+//    box-shadow: none;
+//  }
+//  select {
+//    //height: auto;
+//    height: 28px;
+//  }
+//  input, select {
+//    font-size: 12px !important;
+//    padding-left: 10px;
+//  }
+//}

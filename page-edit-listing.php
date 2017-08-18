@@ -3,10 +3,8 @@
  * Template Name: Edit Listing
  * @package MarketPier
  */
-if ( ! is_user_logged_in() ) {
-	wp_redirect( site_url() );
-	exit;
-}
+
+logged_in_check_redirect();
 
 
 if ( isset( $_GET['listing'] ) ) {
@@ -15,7 +13,7 @@ if ( isset( $_GET['listing'] ) ) {
 	$post_id = $_GET['listing'];
 
 	/**
-	 * @todo use encryption for listing ID here?
+	 * @todo use encryption for listing ID here? helper functions...
 	 */
 
 	//$post_id = skyrises_decrypt( $post_hash );
@@ -55,13 +53,17 @@ if ( $listing_query->have_posts() ) {
 acf_form_head();
 get_template_part( 'template-parts/spinner' );
 get_header(); ?>
-    <div id="primary" class="content-area">
-        <main id="main" class="site-main">
-            <div class="page-content-wrap">
-                <header class="entry-header">
-                    <h1 class="entry-title">Update Listing</h1>
-                </header>
-                <div class='create-new-listing-wrap'>
+
+
+<div id="primary" class="content-area">
+    <main id="main" class="site-main">
+        <div class="page-content-wrap">
+            <header class="entry-header">
+                <h1 class="entry-title">Edit Listing</h1>
+            </header>
+            <div class="logged-in-outer-wrap">
+				<?php get_template_part( 'template-parts/logged-in-user-sidebar' ); ?>
+                <div class="logged-in-user-content logged-in-edit-listing add-or-edit-listing">
 					<?php acf_form( array(
 						'post_id'      => $post_id,
 						'post_title'   => false,
@@ -101,7 +103,8 @@ get_header(); ?>
 					?>
                 </div>
             </div>
-        </main><!-- #main -->
-    </div><!-- #primary -->
-<?php get_footer();
-
+        </div>
+    </main>
+</div>
+<?php
+get_footer();

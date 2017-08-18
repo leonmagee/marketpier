@@ -21,7 +21,7 @@ get_header(); ?>
 
 					<?php get_template_part( 'template-parts/logged-in-user-sidebar' ); ?>
 
-                    <div class="logged-in-user-content logged-in-user-add-listings">
+                    <div class="logged-in-user-content logged-in-user-add-listings add-or-edit-listing">
 
 						<?php
 						/**

@@ -1,10 +1,14 @@
+<?php
+$user = wp_get_current_user();
+$username = $user->user_login;
+?>
 <div class="logged-in-user-sidebar-wrap">
 
     <a href="<?php echo site_url(); ?>/your-profile" class="sidebar-option update-profile">
         <span>Update Your Profile</span>
         <i class="fa fa-chevron-right"></i>
     </a>
-    <a href="<?php echo site_url(); ?>/agent/<?php echo $username; ?>" class="sidebar-option view-profile">
+    <a href="<?php echo site_url(); ?>/author/<?php echo $username; ?>" class="sidebar-option view-profile">
         <span>View Your Profile</span>
         <i class="fa fa-chevron-right"></i>
     </a>
