@@ -15,11 +15,10 @@ get_header();
  *  Get Author/Agent Data
  */
 
-$author = 1;
+$author_info = get_user_by( 'slug', get_query_var( 'author_name' ) );
+$author_id = $author_info->ID;
 
-$author_data = get_userdata( intval( $author ) );
-
-//var_dump( $author_data );
+$author_data = get_userdata( intval( $author_id ) );
 
 $first_name = get_user_meta( $author, 'first_name', true );
 $last_name  = get_user_meta( $author, 'last_name', true );
@@ -79,7 +78,7 @@ $testimonials = get_field( 'testimonials', 'user_' . $author );
             <div class="page-content-wrap agent-profile-flex">
 
 
-                <div class="agent-info-wrap">
+                <div class="agent-info-wrap agent-head">
                     <div class="agent-headshot-wrap">
 						<?php
 						/**
@@ -238,13 +237,13 @@ $testimonials = get_field( 'testimonials', 'user_' . $author );
 require_once( 'inc/snippet_data.php' );
 require_once( 'inc/snippet_data_search.php' );
 require_once( 'inc/form-process-submit.php' );
-$snippets_query = new snippet_data_search();
+$snippets_query = new snippet_data_search($author_id);
 $snippets       = $snippets_query->snippet_object_array;
 
 ?>
     <div class="search-listings-wrap">
 
-        <div class="search-listings-half snippet-half">
+        <div class="search-listings-half">
 			<?php
 			if ( $snippets ) {
 

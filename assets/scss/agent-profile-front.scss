@@ -4,11 +4,17 @@
     justify-content: space-between;
   }
   .agent-info-wrap {
+    background-color: #FAFAFA;
+    border: 1px solid #EEE;
+    margin: 20px 0;
+
     &.testimonials, &.bio {
       padding: 15px;
     }
     .agent-info-wrap-inner {
       padding: 5px 15px 15px;
+      background-color: #FAFAFA;
+      border: 1px solid #EEE;
       h3 {
         font-size: 28px;
         margin: 0 0 5px;
@@ -16,9 +22,6 @@
         border-bottom: 1px solid #EEE;
       }
     }
-    background-color: #FAFAFA;
-    border: 1px solid #EEE;
-    margin: 20px 0;
 
     h4 {
       color: #444;
@@ -26,7 +29,6 @@
     }
     .agent-headshot-wrap {
       img {
-        //max-height: 200px;
         width: 100%;
       }
     }
@@ -57,11 +59,13 @@
       }
     }
 
-    .agent-bio {
-
+    &.agent-head {
+      background-color: transparent;
+      border: none;
     }
     @media(min-width: $screen-sm) {
       flex: 0 1 22%;
+      height: auto;
     }
   }
   .testimonials-bio-section {
@@ -71,6 +75,30 @@
     h4 {
       margin: 0 0 3px;
       font-size: 17px;
+    }
+    .search-listings-wrap {
+      text-align: center;
+      height: auto;
+      display: block;
+      .search-listings-half {
+        //margin: 0 auto;
+        .snippet-outer-outer-wrap {
+          margin: 20px 0;
+          border-right: 1px solid #EEE;
+
+          .image-wrap { // @todo something is weird about sizing the images like this
+            position: relative;
+            img {
+              width: 100%;
+              @media(min-width: $screen-sm) {
+                width: auto;
+                max-width: 275px;
+                min-height: 197px;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

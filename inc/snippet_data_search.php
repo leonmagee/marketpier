@@ -25,11 +25,13 @@ class snippet_data_search {
 	public $cap_rate_max;
 	public $lot_size_min;
 	public $days_on_market;
+	public $author_id;
 
-	public function __construct() {
+	public function __construct( $author_id = false ) {
 		/**
 		 * Data from $_GET
 		 */
+		$this->author_id = $author_id;
 		$this->for_sale_lease = filter_input( INPUT_GET, 'for_sale_lease', FILTER_SANITIZE_ENCODED );
 		$this->status_active  = filter_input( INPUT_GET, 'status_active', FILTER_SANITIZE_ENCODED );
 		$this->status_pending = filter_input( INPUT_GET, 'status_pending', FILTER_SANITIZE_ENCODED );
@@ -181,6 +183,7 @@ class snippet_data_search {
 		$map_data_array_src = array();
 		$args               = array(
 			'post_type'  => 'mp-listing',
+			'author'     => $this->author_id,
 			'meta_query' => $meta_search_array,
 			'date_query' => $date_query
 		);
