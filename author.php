@@ -205,66 +205,21 @@ $testimonials = get_field( 'testimonials', 'user_' . $author );
 
                             <h4>Testimonials</h4>
 
-							<?php
-
-							if ( count( $testimonials ) == 1 ) { ?>
-
-                                <div class="testimonial-text">
-
-									<?php echo '<i class="fa fa-quote-left"></i>' . shorten_string( $testimonials[0]['testimonial'], 250 ) . '<i class="fa fa-quote-right"></i>'; ?>
-                                </div>
-
-                                <div class="testimonial-author">
-
-									<?php
-									echo $testimonials[0]['testimonial_author'] . '<br />';
-									echo '<span>' . $testimonials[0]['date'] . '</span>';
-
-									?>
-
-                                </div>
-
-							<?php } elseif ( count( $testimonials ) > 1 ) {
-
-								//use unslider for this?
-								?>
-
-                                <div class="testimonial-carousel-wrap">
-
-                                    <div class="testimonial-carousel-inner">
-
-                                        <ul>
-
-											<?php
-
-
-											foreach ( $testimonials as $testimonial ) { ?>
-
-                                                <li>
-
-                                                    <div class="testimonial-text">
-														<?php echo '<i class="fa fa-quote-left"></i>' . shorten_string( $testimonial['testimonial'], 250 ) . '<i class="fa fa-quote-right"></i>'; ?>
-                                                    </div>
-
-                                                    <div class="testimonial-author">
-
-														<?php
-														echo $testimonial['testimonial_author'] .
-														     '<br />';
-														echo '<span>' . $testimonial['date'] . '</span>';
-
-														?>
-
-                                                    </div>
-
-                                                </li>
-
-											<?php } ?>
-
+                            <div class="testimonial-wrap">
+								<?php foreach ( $testimonials as $testimonial ) { ?>
+                                    <div class="testimonial-wrap-inner">
+                                        <div class="text">
+											<?php echo $testimonial['testimonial']; ?>
+                                        </div>
+                                        <div class="author">
+                                            <?php echo $testimonial['testimonial_author']; ?>
+                                            <span>
+                                                - <?php echo $testimonial['date']; ?>
+                                            </span>
+                                        </div>
                                     </div>
-                                </div>
-
-							<?php } ?>
+								<?php } ?>
+                            </div>
 
                         </div>
 
