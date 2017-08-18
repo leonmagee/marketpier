@@ -16,7 +16,7 @@ get_header();
  */
 
 $author_info = get_user_by( 'slug', get_query_var( 'author_name' ) );
-$author_id = $author_info->ID;
+$author_id   = $author_info->ID;
 
 $author_data = get_userdata( intval( $author_id ) );
 
@@ -71,13 +71,9 @@ $pinterest_url   = mp_parse_url( $pinterest );
 $testimonials = get_field( 'testimonials', 'user_' . $author );
 
 ?>
-
-
     <div id="primary" class="content-area">
         <main id="main" class="site-main">
             <div class="page-content-wrap agent-profile-flex">
-
-
                 <div class="agent-info-wrap agent-head">
                     <div class="agent-headshot-wrap">
 						<?php
@@ -91,8 +87,6 @@ $testimonials = get_field( 'testimonials', 'user_' . $author );
                             <img src="<?php echo $default_image_url; ?>"/>
 						<?php } ?>
                     </div>
-
-
                     <div class="agent-info-wrap-inner">
                         <div class="agent-name">
                             <h3><?php echo $name; ?></h3>
@@ -118,92 +112,58 @@ $testimonials = get_field( 'testimonials', 'user_' . $author );
 								'agent-form-modal',
 								'Contact Agent'
 							);
-							$form_modal->output_modal();
-
-							?>
-
-
+							$form_modal->output_modal(); ?>
                         </div>
-
                         <div class="agent-social-media">
-
 							<?php
-
 							if ( $facebook ) { ?>
-
                                 <a href="<?php echo $facebook_url; ?>" target="_blank">
                                     <i class="fa fa-facebook-square"></i>
                                 </a>
-
 							<?php }
 							if ( $linkedin ) { ?>
-
                                 <a href="<?php echo $linkedin_url; ?>" target="_blank">
                                     <i class="fa fa-linkedin-square"></i>
                                 </a>
-
 							<?php }
 							if ( $twitter ) { ?>
-
                                 <a href="<?php echo $twitter_url; ?>" target="_blank">
                                     <i class="fa fa-twitter-square"></i>
                                 </a>
-
 							<?php }
 							if ( $google_plus ) { ?>
-
                                 <a href="<?php echo $google_plus_url; ?>" target="_blank">
                                     <i class="fa fa-google-plus-square"></i>
                                 </a>
-
 							<?php }
 							if ( $youtube ) { ?>
-
                                 <a href="<?php echo $youtube_url; ?>" target="_blank">
                                     <i class="fa fa-youtube-square"></i>
                                 </a>
-
 							<?php }
 							if ( $instagram ) { ?>
-
                                 <a href="<?php echo $instagram_url; ?>" target="_blank">
                                     <i class="fa fa-instagram"></i>
                                 </a>
-
 							<?php }
 							if ( $pinterest ) { ?>
-
                                 <a href="<?php echo $pinterest_url; ?>" target="_blank">
                                     <i class="fa fa-pinterest-square"></i>
                                 </a>
-
 							<?php } ?>
-
                         </div>
-
                     </div>
-
                 </div>
-
-
                 <div class="testimonials-bio-section">
 					<?php if ( $agent_bio ) { ?>
-
                         <div class="agent-info-wrap bio">
-
                             <h4><?php echo 'About ' . $name; ?></h4>
-
                             <div class="agent-bio"><?php echo $agent_bio; ?></div>
-
                         </div>
-
 					<?php }
 					if ( $testimonials ) { ?>
-
                         <div class="agent-info-wrap testimonials">
-
                             <h4>Testimonials</h4>
-
                             <div class="testimonial-wrap">
 								<?php foreach ( $testimonials as $testimonial ) { ?>
                                     <div class="testimonial-wrap-inner">
@@ -211,7 +171,7 @@ $testimonials = get_field( 'testimonials', 'user_' . $author );
 											<?php echo $testimonial['testimonial']; ?>
                                         </div>
                                         <div class="author">
-                                            <?php echo $testimonial['testimonial_author']; ?>
+											<?php echo $testimonial['testimonial_author']; ?>
                                             <span>
                                                 - <?php echo $testimonial['date']; ?>
                                             </span>
@@ -219,132 +179,122 @@ $testimonials = get_field( 'testimonials', 'user_' . $author );
                                     </div>
 								<?php } ?>
                             </div>
-
                         </div>
-
 					<?php } ?>
 
+					<?php
+					/**
+					 * Template Name: Search Listings
+					 *
+					 * @package MarketPier
+					 */
+					require_once( 'inc/snippet_data.php' );
+					require_once( 'inc/snippet_data_search.php' );
+					require_once( 'inc/form-process-submit.php' );
+					$snippets_query = new snippet_data_search( $author_id );
+					$snippets       = $snippets_query->snippet_object_array;
 
+					?>
+                    <div class="search-listings-wrap">
 
+                        <div class="search-listings-half">
+							<?php
+							if ( $snippets ) {
 
+								foreach ( $snippets as $snippet ) {
+									if ( $snippet->combined_address ) {
+										$address = $snippet->combined_address;
+									} elseif ( $snippet->city_state_zip ) {
 
-<?php
-/**
- * Template Name: Search Listings
- *
- * @package MarketPier
- */
-require_once( 'inc/snippet_data.php' );
-require_once( 'inc/snippet_data_search.php' );
-require_once( 'inc/form-process-submit.php' );
-$snippets_query = new snippet_data_search($author_id);
-$snippets       = $snippets_query->snippet_object_array;
-
-?>
-    <div class="search-listings-wrap">
-
-        <div class="search-listings-half">
-			<?php
-			if ( $snippets ) {
-
-				foreach ( $snippets as $snippet ) {
-					if ( $snippet->combined_address ) {
-						$address = $snippet->combined_address;
-					} elseif ( $snippet->city_state_zip ) {
-
-						$address = $snippet->city_state_zip;
-					} else {
-						$address = '';
-					} ?>
-                    <div class="snippet-outer-outer-wrap">
-                        <div class="contact-wrap">
-                            <a href="" class="contact-link"><i class="fa fa-heart" aria-hidden="true"></i> Save</a>
-                            <a href="" class="contact-link"><i class="fa fa-envelope" aria-hidden="true"></i>
-                                Contact</a>
-                        </div>
-                        <a class="snippet-link-outer" href="<?php echo $snippet->listing_url; ?>">
-                            <div class="snippet-outer-wrap">
-                                <div class="image-wrap">
-                                    <div class="image-overlay">
-                                        <div class="image-overlay-text">
-											<?php if ( $title = $snippet->property_name ) { ?>
-                                                <h3><?php echo $title; ?></h3>
-											<?php } ?>
-											<?php if ( $address ) { ?>
-                                                <h5><?php echo $address; ?></h5>
-											<?php } ?>
+										$address = $snippet->city_state_zip;
+									} else {
+										$address = '';
+									} ?>
+                                    <div class="snippet-outer-outer-wrap">
+                                        <div class="contact-wrap">
+                                            <a href="" class="contact-link"><i class="fa fa-heart"
+                                                                               aria-hidden="true"></i> Save</a>
+                                            <a href="" class="contact-link"><i class="fa fa-envelope"
+                                                                               aria-hidden="true"></i>
+                                                Contact</a>
                                         </div>
-                                    </div>
-                                    <img src="<?php echo $snippet->image_gallery_first; ?>"/>
-                                </div>
-                                <div class="right-side-outer">
-                                    <div class="top-line">
-										<?php echo $snippet->type; ?>
-                                    </div>
-                                    <div class="details-wrap">
-										<?php if ( $price = $snippet->price ) { ?>
-                                            <div class="details-item-wrap">
-                                                <div class="details-item price-item">
-                                                    $<?php echo number_format( $price ); ?>
+                                        <a class="snippet-link-outer" href="<?php echo $snippet->listing_url; ?>">
+                                            <div class="snippet-outer-wrap">
+                                                <div class="image-wrap">
+                                                    <div class="image-overlay">
+                                                        <div class="image-overlay-text">
+															<?php if ( $title = $snippet->property_name ) { ?>
+                                                                <h3><?php echo $title; ?></h3>
+															<?php } ?>
+															<?php if ( $address ) { ?>
+                                                                <h5><?php echo $address; ?></h5>
+															<?php } ?>
+                                                        </div>
+                                                    </div>
+                                                    <img src="<?php echo $snippet->image_gallery_first; ?>"/>
                                                 </div>
-                                                <label>Price</label>
+                                                <div class="right-side-outer">
+                                                    <div class="top-line">
+														<?php echo $snippet->type; ?>
+                                                    </div>
+                                                    <div class="details-wrap">
+														<?php if ( $price = $snippet->price ) { ?>
+                                                            <div class="details-item-wrap">
+                                                                <div class="details-item price-item">
+                                                                    $<?php echo number_format( $price ); ?>
+                                                                </div>
+                                                                <label>Price</label>
+                                                            </div>
+														<?php } ?>
+														<?php if ( $units = $snippet->number_of_units ) { ?>
+                                                            <sep>|</sep>
+                                                            <div class="details-item-wrap">
+                                                                <div class="details-item units-item"><?php echo $units; ?></div>
+                                                                <label>Units</label>
+                                                            </div>
+														<?php } ?>
+														<?php if ( $building_size = $snippet->building_size ) { ?>
+                                                            <sep>|</sep>
+                                                            <div class="details-item-wrap">
+                                                                <div class="details-item sqft-item"><?php echo number_format( $building_size ); ?></div>
+                                                                <label>Bldg SF</label>
+                                                            </div>
+														<?php } ?>
+														<?php if ( $cap_rate = $snippet->cap_rate ) { ?>
+                                                            <sep>|</sep>
+                                                            <div class="details-item-wrap">
+                                                                <div class="details-item cap-rate-item"><?php echo $cap_rate; ?></div>
+                                                                <label>Cap Rate</label>
+                                                            </div>
+														<?php } ?>
+														<?php if ( $lot_size = $snippet->lot_size ) { ?>
+                                                            <sep>|</sep>
+                                                            <div class="details-item-wrap">
+                                                                <div class="details-item lot-size-item"><?php echo number_format( $lot_size ); ?></div>
+                                                                <label>Lot SF</label>
+                                                            </div>
+														<?php } ?>
+                                                    </div>
+                                                    <div class="bottom-line">
+														<?php if ( $days = $snippet->days_on_market ) {
+															echo $days . 'd';
+														} ?>
+                                                    </div>
+                                                </div>
                                             </div>
-										<?php } ?>
-										<?php if ( $units = $snippet->number_of_units ) { ?>
-                                            <sep>|</sep>
-                                            <div class="details-item-wrap">
-                                                <div class="details-item units-item"><?php echo $units; ?></div>
-                                                <label>Units</label>
-                                            </div>
-										<?php } ?>
-										<?php if ( $building_size = $snippet->building_size ) { ?>
-                                            <sep>|</sep>
-                                            <div class="details-item-wrap">
-                                                <div class="details-item sqft-item"><?php echo number_format( $building_size ); ?></div>
-                                                <label>Bldg SF</label>
-                                            </div>
-										<?php } ?>
-										<?php if ( $cap_rate = $snippet->cap_rate ) { ?>
-                                            <sep>|</sep>
-                                            <div class="details-item-wrap">
-                                                <div class="details-item cap-rate-item"><?php echo $cap_rate; ?></div>
-                                                <label>Cap Rate</label>
-                                            </div>
-										<?php } ?>
-										<?php if ( $lot_size = $snippet->lot_size ) { ?>
-                                            <sep>|</sep>
-                                            <div class="details-item-wrap">
-                                                <div class="details-item lot-size-item"><?php echo number_format( $lot_size ); ?></div>
-                                                <label>Lot SF</label>
-                                            </div>
-										<?php } ?>
+                                        </a>
                                     </div>
-                                    <div class="bottom-line">
-										<?php if ( $days = $snippet->days_on_market ) {
-											echo $days . 'd';
-										} ?>
-                                    </div>
+								<?php }
+							} else { ?>
+                                <div class="callout warning">
+                                    This agent has no listings yet.
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-				<?php }
-			} else { ?>
-                <div class="callout warning">
-                    This agent has no listings yet.
+							<?php } ?>
+                        </div>
+                    </div><!-- #primary -->
+
+
                 </div>
-			<?php } ?>
-        </div>
-    </div><!-- #primary -->
-
-
-
-
-
-
-
-
-</div>
 
             </div>
 

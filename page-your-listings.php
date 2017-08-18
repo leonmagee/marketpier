@@ -32,7 +32,7 @@ get_header(); ?>
 
 						$args = array(
 							'post_type'   => 'mp-listing',
-							'post_author' => $user_id
+							'author' => $user_id
 						);
 
 						$mp_listing_query = new WP_Query( $args ); ?>
