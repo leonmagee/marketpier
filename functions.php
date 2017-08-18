@@ -238,6 +238,7 @@ if ( defined( 'JETPACK__VERSION' ) ) {
  */
 function mp_custom_image_sizes() {
 	add_image_size( 'listing-gallery', 600, 430, true );
+	add_image_size( 'agent-headshot', 350, 400, true );
 }
 
 add_action( 'after_setup_theme', 'mp_custom_image_sizes' );

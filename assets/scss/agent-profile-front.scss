@@ -1,67 +1,76 @@
-.agent-info-wrap {
-
-  padding: 15px;
-  background-color: #FAFAFA;
-  border: 1px solid #EEE;
-  margin-top: 20px;
-
-  h4 {
-    color: #444;
-    font-size: 23px;
+.agent-profile-flex {
+  @media(min-width: $screen-sm) {
+    display: flex;
+    justify-content: space-between;
   }
-  .agent-headshot-wrap {
-    img {
-      max-height: 200px;
+  .agent-info-wrap {
+    &.testimonials, &.bio {
+      padding: 15px;
     }
-  }
-
-  .agent-agency {
-    font-weight: 700;
-    color: #555;
-    font-size: 18px;
-  }
-
-  .agent-phone {
-  }
-  .agent-email {
-  }
-
-  .contact-me-wrap {
-    padding: 20px 0;
-    a.mp-button {
-      margin: 0;
-    }
-  }
-  .agent-social-media {
-    a {
-      margin: 0 2px;
-      i {
-        font-size: 25px;
+    .agent-info-wrap-inner {
+      padding: 5px 15px 15px;
+      h3 {
+        font-size: 28px;
+        margin: 0 0 5px;
+        padding: 0 0 3px;
+        border-bottom: 1px solid #EEE;
       }
     }
+    background-color: #FAFAFA;
+    border: 1px solid #EEE;
+    margin: 20px 0;
+
+    h4 {
+      color: #444;
+      font-size: 23px;
+    }
+    .agent-headshot-wrap {
+      img {
+        //max-height: 200px;
+        width: 100%;
+      }
+    }
+
+    .agent-agency {
+      font-weight: 700;
+      color: #555;
+      font-size: 18px;
+    }
+
+    .agent-phone {
+    }
+    .agent-email {
+    }
+
+    .contact-me-wrap {
+      padding: 20px 0;
+      a.mp-button {
+        margin: 0;
+      }
+    }
+    .agent-social-media {
+      a {
+        margin: 0 2px;
+        i {
+          font-size: 25px;
+        }
+      }
+    }
+
+    .agent-bio {
+
+    }
+    @media(min-width: $screen-sm) {
+      flex: 0 1 22%;
+    }
   }
-
-  .agent-bio {
-
+  .testimonials-bio-section {
+    @media(min-width: $screen-sm) {
+      flex: 0 1 76%;
+    }
+    h4 {
+      margin: 0 0 3px;
+      font-size: 17px;
+    }
   }
 }
-
-//.create-new-listing-wrap.edit-listing {
-//.add-or-edit-listing {
-//  label {
-//    font-size: 12px;
-//  }
-//  input {
-//    font-size: 12px;
-//    border-radius: 0;
-//    box-shadow: none;
-//  }
-//  select {
-//    //height: auto;
-//    height: 28px;
-//  }
-//  input, select {
-//    font-size: 12px !important;
-//    padding-left: 10px;
-//  }
-//}

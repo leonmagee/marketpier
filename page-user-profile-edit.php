@@ -9,12 +9,6 @@ logged_in_check_redirect();
 
 acf_form_head();
 
-//$user = wp_get_current_user();
-//
-//$agent_id = $user->ID;
-//
-//$username = $user->user_login;
-
 get_template_part( 'template-parts/spinner' );
 
 get_header(); ?>
