@@ -332,6 +332,9 @@ h5.section-title {
           i {
             //font-size: 20px;
             color: $brand-primary;
+            &:before {
+              content: "\f192";
+            }
           }
         }
       }

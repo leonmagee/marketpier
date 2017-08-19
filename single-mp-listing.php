@@ -253,7 +253,7 @@ $listing_data->listing_data_from_WP();
                     <textarea name="listing-comment">I am interested in <?php echo $address; ?></textarea>
                     <div class="agent-choice-wrap">
                         <div class="agent-radio">
-                            <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
+                            <i class="fa fa-circle-o" aria-hidden="true"></i>
                         </div>
                         <div class="agent-choice">
                             <div class="avatar-wrap">
@@ -267,7 +267,7 @@ $listing_data->listing_data_from_WP();
                     </div>
                     <div class="agent-choice-wrap">
                         <div class="agent-radio">
-                            <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
+                            <i class="fa fa-circle-o" aria-hidden="true"></i>
                         </div>
                         <div class="agent-choice">
                             <div class="avatar-wrap">
