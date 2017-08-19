@@ -16,12 +16,9 @@ get_header();
  */
 $author_info = get_user_by( 'slug', get_query_var( 'author_name' ) );
 $author_id   = $author_info->ID;
-
 $author_data = get_userdata( intval( $author_id ) );
-
-$first_name = get_user_meta( $author_id, 'first_name', true );
-$last_name  = get_user_meta( $author_id, 'last_name', true );
-
+$first_name  = get_user_meta( $author_id, 'first_name', true );
+$last_name   = get_user_meta( $author_id, 'last_name', true );
 if ( $first_name && $last_name ) {
 	$name = $first_name . ' ' . $last_name;
 } elseif ( $first_name ) {
@@ -29,29 +26,22 @@ if ( $first_name && $last_name ) {
 } else {
 	$name = $author_data->data->display_name;
 }
-
-
 $email = $author_data->data->user_email;
 
 /**
  *  User Meta
  */
 $agent_meta = get_user_meta( $author_id );
-
-$agent_bio = $agent_meta['description'][0];
-
-$agent_bio = shorten_string( $agent_bio, 500 );
+$agent_bio  = $agent_meta['description'][0];
+$agent_bio  = shorten_string( $agent_bio, 500 );
 
 /**
  *  ACF Custom Fields
  */
-$phone_number = get_field( 'phone_number', 'user_' . $author_id );
-
-$agency = get_field( 'agency', 'user_' . $author_id );
-
-$headshot_field = get_field( 'headshot', 'user_' . $author_id );
-$headshot       = $headshot_field['sizes']['agent-headshot'];
-
+$phone_number    = get_field( 'phone_number', 'user_' . $author_id );
+$agency          = get_field( 'agency', 'user_' . $author_id );
+$headshot_field  = get_field( 'headshot', 'user_' . $author_id );
+$headshot        = $headshot_field['sizes']['agent-headshot'];
 $facebook        = get_field( 'facebook_url', 'user_' . $author_id );
 $facebook_url    = mp_parse_url( $facebook );
 $linkedin        = get_field( 'linkedin_url', 'user_' . $author_id );
@@ -66,8 +56,7 @@ $instagram       = get_field( 'instagram_url', 'user_' . $author_id );
 $instagram_url   = mp_parse_url( $instagram );
 $pinterest       = get_field( 'pinterest_url', 'user_' . $author_id );
 $pinterest_url   = mp_parse_url( $pinterest );
-
-$testimonials = get_field( 'testimonials', 'user_' . $author_id );
+$testimonials    = get_field( 'testimonials', 'user_' . $author_id );
 
 ?>
     <div id="primary" class="content-area">
@@ -291,18 +280,8 @@ $testimonials = get_field( 'testimonials', 'user_' . $author_id );
 							<?php } ?>
                         </div>
                     </div><!-- #primary -->
-
-
                 </div>
-
             </div>
-
         </main><!-- #main -->
     </div><!-- #primary -->
-
 <?php get_footer();
-
-
-
-
-

@@ -128,12 +128,56 @@
   }
 }
 
+.menu-drop-down {
+
+  .logged-in-user-sidebar-wrap {
+
+    a.sidebar-option {
+      //background-color: #FAFAFA;
+      background-color: transparent;
+      //padding: 11px 15px 10px;
+      padding: 5px;
+      //border: 1px solid #EEE;
+      border: none;
+      margin: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #777;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 12px;
+      &:hover {
+        color: $brand-primary;
+        //background-color: $brand-primary;
+        background-color: transparent;
+        border: none;
+      }
+      span {
+      }
+      i {
+        font-size: 20px;
+        opacity: 0.5;
+      }
+    }
+  }
+}
+
 .page-template-page-your-listings-php {
   .logged-in-user-sidebar-wrap {
     a.sidebar-option.your-listings {
       color: #FFF;
       background-color: $brand-primary;
       border-color: $brand-primary;
+    }
+  }
+  .menu-drop-down {
+    .logged-in-user-sidebar-wrap {
+      a.sidebar-option.your-listings {
+        color: $brand-primary;
+        background-color: transparent;
+        border: none;
+      }
     }
   }
 }
@@ -146,6 +190,15 @@
       border-color: $brand-primary;
     }
   }
+  .menu-drop-down {
+    .logged-in-user-sidebar-wrap {
+      a.sidebar-option.add-listing {
+        color: $brand-primary;
+        background-color: transparent;
+        border: none;
+      }
+    }
+  }
 }
 
 .page-template-page-user-profile-edit {
@@ -154,6 +207,15 @@
       color: #FFF;
       background-color: $brand-primary;
       border-color: $brand-primary;
+    }
+  }
+  .menu-drop-down {
+    .logged-in-user-sidebar-wrap {
+      a.sidebar-option.update-profile {
+        color: $brand-primary;
+        background-color: transparent;
+        border: none;
+      }
     }
   }
 }

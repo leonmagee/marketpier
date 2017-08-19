@@ -47,6 +47,38 @@ header#masthead {
   @media(min-width: $screen-sm) {
     display: flex;
   }
+  .logged-in-agent-headshot-wrap {
+    position: relative;
+    padding: 10px 10px;
+    @media(min-width: $screen-sm) {
+      display: flex;
+      align-items: center;
+    }
+    .menu-drop-down-icon {
+      i {
+        font-size: 1.5em;
+        color: #AAA;
+      }
+    }
+    .menu-drop-down {
+      position: absolute;
+      z-index: 100000000;
+      border: 1px solid #DDD;
+      padding: 5px 15px;
+      width: 100%;
+      background-color: #FFF;
+      top: 68px;
+      left: 0;
+      display: none;
+      transition: 1s;
+    }
+    &:hover {
+      //cursor: pointer;
+      .menu-drop-down {
+       display: block;
+      }
+    }
+  }
   .create-listing-link {
     margin: 15px 0;
     text-align: center;
@@ -61,6 +93,13 @@ header#masthead {
       &:hover {
         color: $brand-primary;
       }
+    }
+  }
+  .header-headshot {
+    img {
+      max-width: 50px;
+      border: 1px solid #DDD;
+      border-radius: 50%;
     }
   }
   .hello-user {
