@@ -3,7 +3,7 @@ $user = wp_get_current_user();
 $username = $user->user_login;
 ?>
 <div class="logged-in-user-sidebar-wrap">
-    <a href="<?php echo site_url(); ?>/your-profile" class="sidebar-option update-profile">
+    <a href="<?php echo site_url(); ?>/account-settings" class="sidebar-option account-settings">
         <i class="fa fa-cog" aria-hidden="true"></i>
         <span>Account Settings</span>
     </a>
