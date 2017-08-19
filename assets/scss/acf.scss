@@ -1,5 +1,6 @@
 a.acf-button.button.button-primary {
   background-color: $brand-primary;
+  font-weight: 600;
   &:hover {
     background-color: lighten($brand-primary, 5%);
   }
