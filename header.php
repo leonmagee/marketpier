@@ -55,9 +55,11 @@
 							<?php
 							$headshot_field = get_field( 'headshot', 'user_' . $logged_in_id );
 							if ( $headshot_field ) {
-								$headshot = $headshot_field['sizes']['thumbnail']; ?>
-                                <img src="<?php echo $headshot; ?>"/>
-							<?php } ?>
+								$headshot = $headshot_field['sizes']['thumbnail'];
+							} else {
+								$headshot = get_stylesheet_directory_uri() . '/assets/img/headshot-default.jpg';
+							} ?>
+                            <img src="<?php echo $headshot; ?>"/>
                         </div>
                         <div class="hello-user">
                             <span><?php echo $logged_in_name; ?></span>
@@ -66,7 +68,7 @@
                             <i class="fa fa-chevron-down"></i>
                         </div>
                         <div class="menu-drop-down">
-	                        <?php get_template_part( 'template-parts/logged-in-user-sidebar' ); ?>
+							<?php get_template_part( 'template-parts/logged-in-user-sidebar' ); ?>
                         </div>
                     </div>
 				<?php } else { ?>
