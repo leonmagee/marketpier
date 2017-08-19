@@ -52,6 +52,14 @@
 						$logged_in_name = $logged_in_user->user_login;
 					}
 					?>
+                    <div class="header-headshot">
+                        <?php
+                        $headshot_field = get_field( 'headshot', 'user_' . $author );
+                        if ( $headshot ) {
+                        $headshot       = $headshot_field['sizes']['agent-headshot']; ?>
+                       <img src="<?php echo $headshot; ?>" />
+                        <?php } ?>
+                    </div>
                     <div class="hello-user">
                         Hello <span><?php echo $logged_in_name; ?></span>!
                     </div>

@@ -14,14 +14,13 @@ get_header();
  *
  *  Get Author/Agent Data
  */
-
 $author_info = get_user_by( 'slug', get_query_var( 'author_name' ) );
 $author_id   = $author_info->ID;
 
 $author_data = get_userdata( intval( $author_id ) );
 
-$first_name = get_user_meta( $author, 'first_name', true );
-$last_name  = get_user_meta( $author, 'last_name', true );
+$first_name = get_user_meta( $author_id, 'first_name', true );
+$last_name  = get_user_meta( $author_id, 'last_name', true );
 
 if ( $first_name && $last_name ) {
 	$name = $first_name . ' ' . $last_name;
@@ -37,7 +36,7 @@ $email = $author_data->data->user_email;
 /**
  *  User Meta
  */
-$agent_meta = get_user_meta( $author );
+$agent_meta = get_user_meta( $author_id );
 
 $agent_bio = $agent_meta['description'][0];
 
@@ -46,29 +45,29 @@ $agent_bio = shorten_string( $agent_bio, 500 );
 /**
  *  ACF Custom Fields
  */
-$phone_number = get_field( 'phone_number', 'user_' . $author );
+$phone_number = get_field( 'phone_number', 'user_' . $author_id );
 
-$agency = get_field( 'agency', 'user_' . $author );
+$agency = get_field( 'agency', 'user_' . $author_id );
 
-$headshot_field = get_field( 'headshot', 'user_' . $author );
+$headshot_field = get_field( 'headshot', 'user_' . $author_id );
 $headshot       = $headshot_field['sizes']['agent-headshot'];
 
-$facebook        = get_field( 'facebook_url', 'user_' . $author );
+$facebook        = get_field( 'facebook_url', 'user_' . $author_id );
 $facebook_url    = mp_parse_url( $facebook );
-$linkedin        = get_field( 'linkedin_url', 'user_' . $author );
+$linkedin        = get_field( 'linkedin_url', 'user_' . $author_id );
 $linkedin_url    = mp_parse_url( $linkedin );
-$twitter         = get_field( 'twitter_url', 'user_' . $author );
+$twitter         = get_field( 'twitter_url', 'user_' . $author_id );
 $twitter_url     = mp_parse_url( $twitter );
-$google_plus     = get_field( 'google_plus_url', 'user_' . $author );
+$google_plus     = get_field( 'google_plus_url', 'user_' . $author_id );
 $google_plus_url = mp_parse_url( $google_plus );
-$youtube         = get_field( 'youtube_url', 'user_' . $author );
+$youtube         = get_field( 'youtube_url', 'user_' . $author_id );
 $youtube_url     = mp_parse_url( $youtube );
-$instagram       = get_field( 'instagram_url', 'user_' . $author );
+$instagram       = get_field( 'instagram_url', 'user_' . $author_id );
 $instagram_url   = mp_parse_url( $instagram );
-$pinterest       = get_field( 'pinterest_url', 'user_' . $author );
+$pinterest       = get_field( 'pinterest_url', 'user_' . $author_id );
 $pinterest_url   = mp_parse_url( $pinterest );
 
-$testimonials = get_field( 'testimonials', 'user_' . $author );
+$testimonials = get_field( 'testimonials', 'user_' . $author_id );
 
 ?>
     <div id="primary" class="content-area">
