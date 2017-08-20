@@ -84,9 +84,11 @@ $testimonials    = get_field( 'testimonials', 'user_' . $author_id );
 
                             <div class="agent-company"><?php echo $company; ?></div>
 
-                            <div class="company-logo">
-                                <img src="<?php echo $company_logo; ?>"/>
-                            </div>
+							<?php if ( $company_logo ) { ?>
+                                <div class="company-logo">
+                                    <img src="<?php echo $company_logo; ?>"/>
+                                </div>
+							<?php } ?>
 
                             <div class="agent-phone"><?php echo $phone_number; ?></div>
 
@@ -265,26 +267,26 @@ $testimonials    = get_field( 'testimonials', 'user_' . $author_id );
                         </div>
                     </div><!-- #primary -->
 
-                    <?php if ( $testimonials ) { ?>
+					<?php if ( $testimonials ) { ?>
                         <div class="agent-info-wrap testimonials">
                             <h4>Testimonials</h4>
                             <div class="testimonial-wrap">
-			                    <?php foreach ( $testimonials as $testimonial ) { ?>
+								<?php foreach ( $testimonials as $testimonial ) { ?>
                                     <div class="testimonial-wrap-inner">
                                         <div class="text">
-						                    <?php echo $testimonial['testimonial']; ?>
+											<?php echo $testimonial['testimonial']; ?>
                                         </div>
                                         <div class="author">
-						                    <?php echo $testimonial['testimonial_author']; ?>
+											<?php echo $testimonial['testimonial_author']; ?>
                                             <span>
                                                 - <?php echo $testimonial['date']; ?>
                                             </span>
                                         </div>
                                     </div>
-			                    <?php } ?>
+								<?php } ?>
                             </div>
                         </div>
-                    <?php } ?>
+					<?php } ?>
                 </div>
             </div>
         </main><!-- #main -->
