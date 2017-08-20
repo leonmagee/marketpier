@@ -20,7 +20,8 @@ class agent_update {
 
 		$input_fields[] = new agent_update_input_user_meta( 'Bio', 'description', $agent_id, 'textarea' );
 
-		$input_fields[] = new agent_update_input_acf( 'Brokerage Name', 'agency', $agent_id );
+		//$input_fields[] = new agent_update_input_acf( 'Brokerage Name', 'agency', $agent_id );
+		$input_fields[] = new agent_update_input_acf( 'Company', 'company', $agent_id );
 		$input_fields[] = new agent_update_input_acf( 'Facebook URL', 'facebook_url', $agent_id );
 		$input_fields[] = new agent_update_input_acf( 'Linkedin URL', 'linkedin_url', $agent_id );
 		$input_fields[] = new agent_update_input_acf( 'Twitter URL', 'twitter_url', $agent_id );

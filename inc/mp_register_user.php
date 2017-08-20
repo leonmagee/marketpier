@@ -14,7 +14,7 @@ class mp_register_user {
 	public $first_name;
 	public $last_name;
 	public $phone_number;
-	public $agency_name;
+	public $company;
 	public $user_id;
 
 	public function __construct(
@@ -24,7 +24,7 @@ class mp_register_user {
 		$email,
 		$password,
 		$phone_number,
-		$agency_name
+		$company
 	) {
 		$this->username     = $username;
 		$this->email        = $email;
@@ -32,7 +32,7 @@ class mp_register_user {
 		$this->first_name   = $first_name;
 		$this->last_name    = $last_name;
 		$this->phone_number = $phone_number;
-		$this->agency_name  = $agency_name;
+		$this->company      = $company;
 	}
 
 	private function register_user() {
@@ -48,7 +48,7 @@ class mp_register_user {
 		) );
 
 		update_user_meta( $this->user_id, 'phone_number', $this->phone_number );
-		update_user_meta( $this->user_id, 'agency', $this->agency_name );
+		update_user_meta( $this->user_id, 'company', $this->company );
 	}
 
 	public function process_registration_form() {

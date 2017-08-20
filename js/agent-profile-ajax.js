@@ -15,7 +15,8 @@ jQuery(function ($) {
         var last_name = $(".profile-update-form-wrapper input.last_name").val();
         var phone_number = $(".profile-update-form-wrapper input.phone_number").val();
         var description = $(".profile-update-form-wrapper textarea.description").val();
-        var agency = $(".profile-update-form-wrapper input.agency").val();
+        //var agency = $(".profile-update-form-wrapper input.agency").val();
+        var company = $(".profile-update-form-wrapper input.company").val();
         var facebook_url = $(".profile-update-form-wrapper input.facebook_url").val();
         var linkedin_url = $(".profile-update-form-wrapper input.linkedin_url").val();
         var twitter_url = $(".profile-update-form-wrapper input.twitter_url").val();
@@ -35,7 +36,8 @@ jQuery(function ($) {
         formdata.append("last_name", last_name);
         formdata.append("phone_number", phone_number);
         formdata.append("description", description);
-        formdata.append("agency", agency);
+        //formdata.append("agency", agency);
+        formdata.append("company", company);
         formdata.append("facebook_url", facebook_url);
         formdata.append("linkedin_url", linkedin_url);
         formdata.append("twitter_url", twitter_url);
@@ -79,7 +81,8 @@ jQuery(function ($) {
         var first_name = $(".registration-input-wrap input.first_name").val();
         var last_name = $(".registration-input-wrap input.last_name").val();
         var phone_number = $(".registration-input-wrap input.phone_number").val();
-        var agency_name = $(".registration-input-wrap input.agency_name").val();
+        //var agency_name = $(".registration-input-wrap input.agency_name").val();
+        var company = $(".registration-input-wrap input.company").val();
 
         if (username && password && email_address && first_name && last_name) {
 
@@ -93,7 +96,8 @@ jQuery(function ($) {
             formdata.append("first_name", first_name);
             formdata.append("last_name", last_name);
             formdata.append("phone_number", phone_number);
-            formdata.append("agency_name", agency_name);
+            //formdata.append("agency_name", agency_name);
+            formdata.append("company", company);
 
             formdata.append("action", "mp_register_user");
 

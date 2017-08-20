@@ -39,7 +39,8 @@ $agent_bio  = shorten_string( $agent_bio, 500 );
  *  ACF Custom Fields
  */
 $phone_number    = get_field( 'phone_number', 'user_' . $author_id );
-$agency          = get_field( 'agency', 'user_' . $author_id );
+$company         = get_field( 'company', 'user_' . $author_id );
+$company_logo    = get_field( 'company_logo', 'user_' . $author_id );
 $headshot_field  = get_field( 'headshot', 'user_' . $author_id );
 $headshot        = $headshot_field['sizes']['agent-headshot'];
 $facebook        = get_field( 'facebook_url', 'user_' . $author_id );
@@ -81,7 +82,11 @@ $testimonials    = get_field( 'testimonials', 'user_' . $author_id );
                         </div>
                         <div class="agent-user-info">
 
-                            <div class="agent-agency"><?php echo $agency; ?></div>
+                            <div class="agent-company"><?php echo $company; ?></div>
+
+                            <div class="company-logo">
+                                <img src="<?php echo $company_logo; ?>"/>
+                            </div>
 
                             <div class="agent-phone"><?php echo $phone_number; ?></div>
 
@@ -149,28 +154,7 @@ $testimonials    = get_field( 'testimonials', 'user_' . $author_id );
                             <div class="agent-bio"><?php echo $agent_bio; ?></div>
                         </div>
 					<?php }
-					if ( $testimonials ) { ?>
-                        <div class="agent-info-wrap testimonials">
-                            <h4>Testimonials</h4>
-                            <div class="testimonial-wrap">
-								<?php foreach ( $testimonials as $testimonial ) { ?>
-                                    <div class="testimonial-wrap-inner">
-                                        <div class="text">
-											<?php echo $testimonial['testimonial']; ?>
-                                        </div>
-                                        <div class="author">
-											<?php echo $testimonial['testimonial_author']; ?>
-                                            <span>
-                                                - <?php echo $testimonial['date']; ?>
-                                            </span>
-                                        </div>
-                                    </div>
-								<?php } ?>
-                            </div>
-                        </div>
-					<?php } ?>
 
-					<?php
 					/**
 					 * Template Name: Search Listings
 					 *
@@ -280,6 +264,27 @@ $testimonials    = get_field( 'testimonials', 'user_' . $author_id );
 							<?php } ?>
                         </div>
                     </div><!-- #primary -->
+
+                    <?php if ( $testimonials ) { ?>
+                        <div class="agent-info-wrap testimonials">
+                            <h4>Testimonials</h4>
+                            <div class="testimonial-wrap">
+			                    <?php foreach ( $testimonials as $testimonial ) { ?>
+                                    <div class="testimonial-wrap-inner">
+                                        <div class="text">
+						                    <?php echo $testimonial['testimonial']; ?>
+                                        </div>
+                                        <div class="author">
+						                    <?php echo $testimonial['testimonial_author']; ?>
+                                            <span>
+                                                - <?php echo $testimonial['date']; ?>
+                                            </span>
+                                        </div>
+                                    </div>
+			                    <?php } ?>
+                            </div>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
         </main><!-- #main -->
