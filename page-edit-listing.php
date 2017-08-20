@@ -62,7 +62,6 @@ get_header(); ?>
                 <h1 class="entry-title">Edit Listing</h1>
             </header>
             <div class="logged-in-outer-wrap">
-				<?php get_template_part( 'template-parts/logged-in-user-sidebar' ); ?>
                 <div class="logged-in-user-content logged-in-edit-listing add-or-edit-listing">
 					<?php acf_form( array(
 						'post_id'      => $post_id,
@@ -102,6 +101,7 @@ get_header(); ?>
 					) );
 					?>
                 </div>
+	            <?php get_template_part( 'template-parts/logged-in-user-sidebar' ); ?>
             </div>
         </div>
     </main>

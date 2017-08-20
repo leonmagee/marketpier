@@ -16,11 +16,7 @@ get_header(); ?>
                 <header class="entry-header">
                     <h1 class="entry-title">Add New Listing</h1>
                 </header>
-
                 <div class="logged-in-outer-wrap">
-
-					<?php get_template_part( 'template-parts/logged-in-user-sidebar' ); ?>
-
                     <div class="logged-in-user-content logged-in-user-add-listings add-or-edit-listing">
 
 						<?php
@@ -76,6 +72,7 @@ get_header(); ?>
 						//	            endwhile; // End of the loop.
 						?>
                     </div>
+	                <?php get_template_part( 'template-parts/logged-in-user-sidebar' ); ?>
                 </div>
             </div>
         </main><!-- #main -->

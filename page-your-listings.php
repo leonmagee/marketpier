@@ -24,8 +24,6 @@ get_header(); ?>
 
                 <div class="logged-in-outer-wrap">
 
-					<?php get_template_part( 'template-parts/logged-in-user-sidebar' ); ?>
-
                     <div class="logged-in-user-content logged-in-user-listings">
 
 						<?php
@@ -59,6 +57,8 @@ get_header(); ?>
 							<?php } ?>
                         </div>
                     </div>
+
+	                <?php get_template_part( 'template-parts/logged-in-user-sidebar' ); ?>
                 </div>
             </div>
         </main>

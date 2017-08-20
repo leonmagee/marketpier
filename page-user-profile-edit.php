@@ -20,10 +20,10 @@ get_header(); ?>
                     <h1 class="entry-title">Edit Profile</h1>
                 </header>
                 <div class="logged-in-outer-wrap">
-					<?php get_template_part( 'template-parts/logged-in-user-sidebar' ); ?>
                     <div class="logged-in-user-content logged-in-edit-profile">
 						<?php get_template_part( 'template-parts/agent-profile' ); ?>
                     </div>
+	                <?php get_template_part( 'template-parts/logged-in-user-sidebar' ); ?>
                 </div>
             </div>
         </main>

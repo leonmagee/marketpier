@@ -79,9 +79,10 @@
   }
 }
 
-.logged-in-outer-wrap { // @todo use this for every user page?
+.logged-in-outer-wrap {
   @media(min-width: $screen-sm) {
     display: flex;
+    flex-direction: row-reverse;
     justify-content: space-between;
   }
   .logged-in-user-sidebar-wrap {
