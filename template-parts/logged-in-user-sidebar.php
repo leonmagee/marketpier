@@ -11,7 +11,7 @@ $username = $user->user_login;
         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
         <span>Update Profile</span>
     </a>
-    <a href="<?php echo site_url(); ?>/author/<?php echo $username; ?>" class="sidebar-option view-profile">
+    <a href="<?php echo site_url(); ?>/profile/<?php echo $username; ?>" class="sidebar-option view-profile">
         <i class="fa fa-user"></i>
         <span>View Your Profile</span>
     </a>

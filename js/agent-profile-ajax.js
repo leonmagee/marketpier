@@ -82,7 +82,7 @@ jQuery(function ($) {
         var last_name = $(".registration-input-wrap input.last_name").val();
         var phone_number = $(".registration-input-wrap input.phone_number").val();
         //var agency_name = $(".registration-input-wrap input.agency_name").val();
-        var company = $(".registration-input-wrap input.company").val();
+        var company = $(".registration-input-wrap input.company_name").val();
 
         if (username && password && email_address && first_name && last_name) {
 
@@ -108,6 +108,7 @@ jQuery(function ($) {
                 contentType: false,
                 processData: false,
                 success: function (data, textStatus, XMLHttpRequest) {
+                    console.log( 'made it to success????');
                     $('.uploads-spinner').hide();
                     if (data === 'email_already_taken') {
                         $('.register-user-email-taken').show();

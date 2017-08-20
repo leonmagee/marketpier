@@ -54,7 +54,7 @@ class mp_register_user {
 	public function process_registration_form() {
 		if ( isset( $_POST['username'] ) ) {
 			$this->register_user();
-			wp_redirect( site_url() . '/profile' );
+			wp_redirect( site_url() );
 		}
 	}
 

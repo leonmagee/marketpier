@@ -13,7 +13,7 @@ $regular_inputs = array(
 	array( 'Password', 1 ),
 	//array( 'Password Repeat', 1 ),
 	array( 'Phone Number', 0 ),
-	array( 'Agency Name', 0 )
+	array( 'Company Name', 0 )
 );
 //$social_media_inputs_inputs = array(
 //	'Facebook',

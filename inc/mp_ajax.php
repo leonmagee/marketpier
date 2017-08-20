@@ -85,6 +85,7 @@ function mp_register_user() {
 					$phone_number,
 					$company );
 				$new_user->process_registration_form();
+				wp_die( 'user_registered' );
 			}
 
 		}
