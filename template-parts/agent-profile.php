@@ -33,18 +33,26 @@ $testimonials = new mp_output_modal_acf(
 	'Testimonials',
 	$agent_id );
 
-$testimonials->output_modal(); ?>
+$testimonials->output_modal();
+
+
+$company_logo = new mp_output_modal_acf(
+	'company_logo',
+	'company-logo',
+	'Company Logo',
+	$agent_id );
+
+$company_logo->output_modal();
+?>
 
 <div class="profile-update-form-wrapper">
 
     <div class="profile-header">
 
         <div class="agent-profile-top-buttons">
-
             <a data-open="profile-picture-modal" class="button secondary short">Update Profile Picture</a>
-
+            <a data-open="company-logo" class="button secondary short">Update Company Logo</a>
             <a data-open="testimonials-modal" class="button secondary short">Add Testimonials</a>
-
         </div>
     </div>
 
