@@ -15,6 +15,7 @@
       padding: 5px 15px 15px;
       background-color: #FAFAFA;
       border: 1px solid #EEE;
+      border-top: none;
       text-align: center;
       font-weight: 600;
       h3 {
@@ -38,6 +39,7 @@
     .agent-headshot-wrap {
       img {
         width: 100%;
+        display: block;
       }
     }
 
