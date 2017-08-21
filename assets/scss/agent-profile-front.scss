@@ -50,6 +50,9 @@
     .agent-phone {
     }
     .agent-email {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 12px;
     }
 
     .contact-me-wrap {
@@ -71,11 +74,13 @@
     &.agent-head {
       background-color: transparent;
       border: none;
+      @media(min-width: $screen-sm) {
+        flex: 0 1 22%;
+        max-width: 22%;
+        height: auto;
+      }
     }
-    @media(min-width: $screen-sm) {
-      flex: 0 1 22%;
-      height: auto;
-    }
+
   }
   .testimonials-bio-section {
     @media(min-width: $screen-sm) {

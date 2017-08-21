@@ -72,7 +72,8 @@ $testimonials    = get_field( 'testimonials', 'user_' . $author_id );
 						if ( $headshot ) { ?>
                             <img src="<?php echo $headshot; ?>"/>
 						<?php } else {
-							$default_image_url = ''; ?>
+							$default_image_url = get_stylesheet_directory_uri() . '/assets/img/headshot-default-profile.jpg';
+							?>
                             <img src="<?php echo $default_image_url; ?>"/>
 						<?php } ?>
                     </div>
