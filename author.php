@@ -165,7 +165,7 @@ $testimonials    = get_field( 'testimonials', 'user_' . $author_id );
 					require_once( 'inc/snippet_data.php' );
 					require_once( 'inc/snippet_data_search.php' );
 					require_once( 'inc/form-process-submit.php' );
-					$snippets_query = new snippet_data_search( $author_id );
+					$snippets_query = new snippet_data_search( $author_id, true );
 					$snippets       = $snippets_query->snippet_object_array;
 
 					?>

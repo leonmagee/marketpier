@@ -26,12 +26,14 @@ class snippet_data_search {
 	public $lot_size_min;
 	public $days_on_market;
 	public $author_id;
+	public $status_all; // fix to show all listings on author.php
 
-	public function __construct( $author_id = false ) {
+	public function __construct( $author_id = false, $status_all = false ) {
 		/**
 		 * Data from $_GET
 		 */
-		$this->author_id = $author_id;
+		$this->author_id      = $author_id;
+		$this->status_all     = $status_all;
 		$this->for_sale_lease = filter_input( INPUT_GET, 'for_sale_lease', FILTER_SANITIZE_ENCODED );
 		$this->status_active  = filter_input( INPUT_GET, 'status_active', FILTER_SANITIZE_ENCODED );
 		$this->status_pending = filter_input( INPUT_GET, 'status_pending', FILTER_SANITIZE_ENCODED );
@@ -101,10 +103,12 @@ class snippet_data_search {
 				'compare' => 'IN'
 			);
 		} else {
-			$meta_search_array[] = array(
-				'key'   => 'listing_status',
-				'value' => 'active'
-			);
+			if ( ! $this->status_all ) {
+				$meta_search_array[] = array(
+					'key'   => 'listing_status',
+					'value' => 'active'
+				);
+			}
 		}
 		if ( $property_type = $this->property_type ) {
 			if ( $property_type !== 'all_property_types' ) {
