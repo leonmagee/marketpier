@@ -6,7 +6,6 @@
 
 logged_in_check_redirect();
 
-
 if ( isset( $_GET['listing'] ) ) {
 
 	//$post_hash = $_GET['listing'];
@@ -33,13 +32,10 @@ if ( $listing_query->have_posts() ) {
 
 		$listing_author_id = get_the_author_meta( 'ID' );
 
+		$permalink = get_the_permalink();
+
 		if ( $listing_author_id !== $current_user->ID ) {
 
-			/**
-			 *  This should redirect to home or a 404 page instead, or
-			 *  maybe just an error message?
-			 * @todo maybe redirect ao a page template for 'you do not have access'
-			 */
 			die( '<div class="skyrises-alert visible">you do not have access</div>' );
 		}
 	}
@@ -63,6 +59,9 @@ get_header(); ?>
             </header>
             <div class="logged-in-outer-wrap">
                 <div class="logged-in-user-content logged-in-edit-listing add-or-edit-listing">
+                    <div class="view-listing-link">
+                        <a href="<?php echo $permalink; ?>">View Listing</a>
+                    </div>
 					<?php acf_form( array(
 						'post_id'      => $post_id,
 						'post_title'   => false,

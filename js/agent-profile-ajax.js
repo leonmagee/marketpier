@@ -108,7 +108,8 @@ jQuery(function ($) {
                 contentType: false,
                 processData: false,
                 success: function (data, textStatus, XMLHttpRequest) {
-                    console.log( 'made it to success????');
+                    //console.log( 'made it to success????');
+                    $('.register-user-email-taken').hide();
                     $('.uploads-spinner').hide();
                     if (data === 'email_already_taken') {
                         $('.register-user-email-taken').show();

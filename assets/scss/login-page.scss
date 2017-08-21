@@ -1,0 +1,11 @@
+.login-page-wrap {
+  max-width: 600px;
+  padding: 5px 20px;
+  background-color: #FCFCFC;
+  border: 1px solid #EEE;
+  //border-radius: 5px;
+  margin: 10px;
+  @media(min-width: $screen-sm) {
+    margin: 10px auto;
+  }
+}

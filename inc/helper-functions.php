@@ -67,3 +67,10 @@ function logged_in_check_redirect() {
 		exit;
 	}
 }
+
+function logged_in_check_redirect_profile() {
+	if ( is_user_logged_in() ) {
+		wp_redirect( site_url() . '/your-profile' );
+		exit;
+	}
+}

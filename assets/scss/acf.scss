@@ -25,3 +25,13 @@ a.acf-button.button.button-primary {
 .acf-button.button.button-primary.button-large {
   font-size: 27px !important;
 }
+
+// make front end forms responsive
+
+.acf-fields.acf-form-fields {
+  .acf-field {
+    @media(max-width: 991px) {
+      width: 100% !important;
+    }
+  }
+}
