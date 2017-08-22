@@ -175,8 +175,6 @@
 			            $saved_class = '';
                     }
 
-
-
                 ?>
             <a class="save-search-link <?php echo $saved_class; ?>" search_request="<?php echo $search_request; ?>" user_id="<?php echo MP_LOGGED_IN_ID; ?>">Save<span>d</span> Search<i class="fa fa-refresh fa-spin"></i></a>
             <?php } else { ?>
