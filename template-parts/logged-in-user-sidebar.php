@@ -23,6 +23,14 @@ $username = $user->user_login;
         <i class="fa fa-list" aria-hidden="true"></i>
         <span>Your Listings</span>
     </a>
+    <a href="<?php echo site_url(); ?>/saved-listings" class="sidebar-option saved-listings">
+        <i class="fa fa-heart" aria-hidden="true"></i>
+        <span>Saved Listings</span>
+    </a>
+    <a href="<?php echo site_url(); ?>/saved-searches" class="sidebar-option saved-searches">
+        <i class="fa fa-search-plus" aria-hidden="true"></i>
+        <span>Saved Searches</span>
+    </a>
     <a href="<?php echo site_url(); ?>" class="sidebar-option">
         <i class="fa fa-home" aria-hidden="true"></i>
         <span>MarketPier Home</span>

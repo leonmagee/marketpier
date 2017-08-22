@@ -1,19 +1,13 @@
 <?php
 /**
- * Template Name: Your Listings
+ * Template Name: Saved Listings
  *
  * @package MarketPier
  */
 
 logged_in_check_redirect();
 
-//$user = wp_get_current_user();
-
-//$user_id = $user->ID;
-
 $user_id = MP_LOGGED_IN_ID;
-
-//$username = $user->user_login;
 
 get_header(); ?>
 
@@ -21,7 +15,7 @@ get_header(); ?>
         <main id="main" class="site-main">
             <div class="page-content-wrap">
                 <header class="entry-header">
-                    <h1 class="entry-title">Your Listings</h1>
+                    <h1 class="entry-title">Saved Listings</h1>
                 </header>
 
                 <div class="logged-in-outer-wrap">
@@ -30,9 +24,24 @@ get_header(); ?>
 
 						<?php
 
+						global $wpdb;
+						$prefix     = $wpdb->prefix;
+						$table_name = $prefix . 'mp_favorite_listings';
+						$user_id = MP_LOGGED_IN_ID;
+
+						$favorite_query         = "SELECT * FROM `{$table_name}` WHERE `user_id` = '{$user_id}'";
+
+						$favorite_result = $wpdb->get_results($favorite_query);
+
+						$favorite_array = array();
+						foreach( $favorite_result as $favorite ) {
+						   $favorite_array[] = $favorite->listing_id;
+                        }
+
 						$args = array(
 							'post_type'   => 'mp-listing',
-							'author' => $user_id
+							'author' => $user_id,
+                            'post__in' => $favorite_array
 						);
 
 						$mp_listing_query = new WP_Query( $args ); ?>
@@ -47,7 +56,6 @@ get_header(); ?>
                                         <span><?php the_title(); ?></span>
                                         <span class="view-edit-links">
                                     <a href="<?php the_permalink(); ?>">view</a>
-                                    <a href="<?php echo site_url(); ?>/edit-listing?listing=<?php echo $listing_id; ?>">edit</a>
                                     </span>
                                     </div>
 								<?php }
