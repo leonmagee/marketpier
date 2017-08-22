@@ -134,3 +134,39 @@ function mp_save_favorite_listing() {
 }
 
 add_action( 'wp_ajax_mp_favorite_listing', 'mp_save_favorite_listing' );
+
+
+
+
+/**
+ *  Add New Note
+ */
+function mp_save_search() {
+	if ( isset( $_POST['search_request'] ) ) {
+
+		$user_id    = $_POST['user_id'];
+		$search_url = $_POST['search_request'];
+
+		global $wpdb;
+		$prefix     = $wpdb->prefix;
+		$table_name = $prefix . 'mp_saved_searches';
+
+		$saved_search_query         = "SELECT * FROM `{$table_name}` WHERE `user_id` = '{$user_id}' AND `search_url` = '{$search_url}'";
+		$query_saved_search = $wpdb->get_results( $saved_search_query );
+
+		if ( $query_saved_search ) {
+			$entry_id              = $query_saved_search[0]->id;
+			$save_search_delete = "DELETE FROM `{$table_name}` WHERE `id` = '{$entry_id}'";
+			$wpdb->get_results( $save_search_delete );
+		} else {
+
+			$wpdb->insert( $table_name, array(
+				'time'       => current_time( 'mysql' ),
+				'user_id'    => $user_id,
+				'search_url' => $search_url
+			) );
+		}
+	}
+}
+
+add_action( 'wp_ajax_mp_save_search', 'mp_save_search' );

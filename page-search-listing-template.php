@@ -40,7 +40,38 @@ get_header();
 					} ?>
                     <div class="snippet-outer-outer-wrap">
                         <div class="contact-wrap">
-                            <a href="" class="contact-link"><i class="fa fa-heart" aria-hidden="true"></i> Save</a>
+
+
+	                        <?php if ( is_user_logged_in() ) {
+		                        if ( $snippet->favorite_listing == true ) {
+			                        $saved_class = 'saved';
+		                        } else {
+			                        $saved_class = '';
+		                        }
+		                        ?>
+                                <a href="#" user_id="<?php echo MP_LOGGED_IN_ID; ?>"
+                                   listing_id="<?php echo $snippet->listing_id; ?>"
+                                   class="contact-link save-listing <?php echo $saved_class; ?>"><i class="fa fa-heart"></i> Save<span>d</span><i class="fa fa-refresh fa-spin" aria-hidden="true"></i></a>
+	                        <?php } else { ?>
+                                <a href="" data-open="login-modal" class="contact-link"><i class="fa fa-heart" aria-hidden="true"></i> Save</a>
+
+	                        <?php } ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             <a href="" class="contact-link"><i class="fa fa-envelope" aria-hidden="true"></i>
                                 Contact</a>
                         </div>
@@ -48,9 +79,6 @@ get_header();
                             <div class="snippet-outer-wrap">
                                 <div class="image-wrap">
                                     <div class="image-overlay">
-                                        <!--                                    <div class="image-overlay-heart">-->
-                                        <!--                                        <i class="fa fa-heart-o"></i>-->
-                                        <!--                                    </div>-->
                                         <div class="image-overlay-text">
 											<?php if ( $title = $snippet->property_name ) { ?>
                                                 <h3><?php echo $title; ?></h3>

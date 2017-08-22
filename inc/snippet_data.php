@@ -5,6 +5,7 @@
  */
 class snippet_data {
 
+	public $listing_id; // @todo idx vs. WP?
 	public $title;
 	public $price;
 	//public $main_image;
@@ -26,6 +27,7 @@ class snippet_data {
 	public $city_state_zip;
 	public $combined_address;
 	public $listing_url;
+	public $favorite_listing;
 
 	/**
 	 * @param $image_gallery
@@ -49,6 +51,7 @@ class snippet_data {
 	}
 
 	public function listing_data_from_WP() {
+		$this->listing_id           = get_the_ID();
 		$this->title = get_the_title(); // @todo might not need this
 		//$this->main_image           = get_field( 'listing_main_image' );
 		$this->property_name      = get_field( 'listing_property_name' );
@@ -86,6 +89,23 @@ class snippet_data {
 		}
 
 		$this->city_state_zip = $this->city . ', ' . $this->state . ' ' . $this->zip;
+
+		/**
+		 * Check if listing is favorite of current user
+		 */
+		if ( is_user_logged_in() ) {
+			global $wpdb;
+			$prefix                 = $wpdb->prefix;
+			$table_name             = $prefix . 'mp_favorite_listings';
+			$user_id = MP_LOGGED_IN_ID;
+			$favorite_query         = "SELECT * FROM `{$table_name}` WHERE `user_id` = '{$user_id}' AND `listing_id` = '{$this->listing_id}'";
+			$query_favorite_listing = $wpdb->get_results($favorite_query);
+			if ( $query_favorite_listing ) {
+				$this->favorite_listing = true;
+			}
+		} else {
+			$this->favorite_listing = false;
+		}
 	}
 
 	public function listing_data_from_IDX() {

@@ -32,8 +32,8 @@ class snippet_data_search {
 		/**
 		 * Data from $_GET
 		 */
-		$this->author_id      = $author_id;
-		$this->status_all     = $status_all;
+		$this->author_id = $author_id;
+		$this->status_all = $status_all;
 		$this->for_sale_lease = filter_input( INPUT_GET, 'for_sale_lease', FILTER_SANITIZE_ENCODED );
 		$this->status_active  = filter_input( INPUT_GET, 'status_active', FILTER_SANITIZE_ENCODED );
 		$this->status_pending = filter_input( INPUT_GET, 'status_pending', FILTER_SANITIZE_ENCODED );
@@ -104,6 +104,7 @@ class snippet_data_search {
 			);
 		} else {
 			if ( ! $this->status_all ) {
+
 				$meta_search_array[] = array(
 					'key'   => 'listing_status',
 					'value' => 'active'

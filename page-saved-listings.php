@@ -27,21 +27,21 @@ get_header(); ?>
 						global $wpdb;
 						$prefix     = $wpdb->prefix;
 						$table_name = $prefix . 'mp_favorite_listings';
-						$user_id = MP_LOGGED_IN_ID;
+						$user_id    = MP_LOGGED_IN_ID;
 
-						$favorite_query         = "SELECT * FROM `{$table_name}` WHERE `user_id` = '{$user_id}'";
+						$favorite_query = "SELECT * FROM `{$table_name}` WHERE `user_id` = '{$user_id}'";
 
-						$favorite_result = $wpdb->get_results($favorite_query);
+						$favorite_result = $wpdb->get_results( $favorite_query );
 
 						$favorite_array = array();
-						foreach( $favorite_result as $favorite ) {
-						   $favorite_array[] = $favorite->listing_id;
-                        }
+						foreach ( $favorite_result as $favorite ) {
+							$favorite_array[] = $favorite->listing_id;
+						}
 
 						$args = array(
-							'post_type'   => 'mp-listing',
-							'author' => $user_id,
-                            'post__in' => $favorite_array
+							'post_type' => 'mp-listing',
+							'author'    => $user_id,
+							'post__in'  => $favorite_array
 						);
 
 						$mp_listing_query = new WP_Query( $args ); ?>
@@ -61,16 +61,16 @@ get_header(); ?>
 								<?php }
 							} else { ?>
                                 <div class="callout warning">
-                                    You don't have any listings yet. <a href="<?php echo site_url(); ?>/add-listing">Add
-                                        Listing</a>
+                                    You don't have any saved listings yet.
                                 </div>
 							<?php } ?>
                         </div>
                     </div>
-
-	                <?php get_template_part( 'template-parts/logged-in-user-sidebar' ); ?>
                 </div>
+
+				<?php get_template_part( 'template-parts/logged-in-user-sidebar' ); ?>
             </div>
-        </main>
+    </div>
+    </main>
     </div>
 <?php get_footer();

@@ -26,49 +26,53 @@ get_header(); ?>
 
 						global $wpdb;
 						$prefix     = $wpdb->prefix;
-						$table_name = $prefix . 'mp_favorite_listings';
-						$user_id = MP_LOGGED_IN_ID;
+						$table_name = $prefix . 'mp_saved_searches';
+						$user_id    = MP_LOGGED_IN_ID;
 
-						$favorite_query         = "SELECT * FROM `{$table_name}` WHERE `user_id` = '{$user_id}'";
+						$saved_search_query = "SELECT * FROM `{$table_name}` WHERE `user_id` = '{$user_id}'";
 
-						$favorite_result = $wpdb->get_results($favorite_query);
+						$saved_search_result = $wpdb->get_results( $saved_search_query );
 
-						$favorite_array = array();
-						foreach( $favorite_result as $favorite ) {
-						   $favorite_array[] = $favorite->listing_id;
-                        }
-
-						$args = array(
-							'post_type'   => 'mp-listing',
-							'author' => $user_id,
-                            'post__in' => $favorite_array
-						);
-
-						$mp_listing_query = new WP_Query( $args ); ?>
+						$saved_search_array = array();
+						foreach ( $saved_search_result as $saved_search ) {
+							$saved_search_array[] = $saved_search->search_url;
+						}
+						?>
 
                         <div class="user-listings-wrap">
-							<?php if ( $mp_listing_query->have_posts() ) {
-								while ( $mp_listing_query->have_posts() ) {
-									$mp_listing_query->the_post();
-									$listing_id = $post->ID;
-									?>
-                                    <div class="logged-in-user-listing">
-                                        <span><?php the_title(); ?></span>
+
+							<?php
+
+							function process_search( $search ) {
+								$search2 = str_replace( '/search-listings/?', ' ', $search );
+								$search3 = str_replace( '_', ' ', $search2 );
+								$search4 = str_replace( '=', ' = ', $search3 );
+								$search5 = str_replace( '&', ' / ', $search4 );
+
+								return $search5;
+							}
+
+
+							//var_dump( $saved_search_array );
+							if ( $saved_search_array ) {
+								foreach ( $saved_search_array as $saved_search ) { ?>
+
+                                    <div class="logged-in-user-listing saved-search">
+                                        <span><?php echo process_search( $saved_search ); ?></span>
                                         <span class="view-edit-links">
-                                    <a href="<?php the_permalink(); ?>">view</a>
+                                    <a href="<?php echo site_url() . $saved_search; ?>">view search</a>
                                     </span>
                                     </div>
 								<?php }
 							} else { ?>
                                 <div class="callout warning">
-                                    You don't have any listings yet. <a href="<?php echo site_url(); ?>/add-listing">Add
-                                        Listing</a>
+                                    You don't have any saved searches yet.
                                 </div>
 							<?php } ?>
                         </div>
                     </div>
 
-	                <?php get_template_part( 'template-parts/logged-in-user-sidebar' ); ?>
+					<?php get_template_part( 'template-parts/logged-in-user-sidebar' ); ?>
                 </div>
             </div>
         </main>

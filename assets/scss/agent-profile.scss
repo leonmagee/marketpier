@@ -235,6 +235,15 @@
     @media(min-width: $screen-sm) {
       font-size: 20px;
     }
+    &.saved-search {
+      font-size: 12px;
+      @media(min-width: $screen-sm) {
+        font-size: 14px;
+      }
+      .view-edit-links {
+        white-space: nowrap;
+      }
+    }
     span.view-edit-links {
       a {
         margin: 0 10px;

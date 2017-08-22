@@ -157,9 +157,15 @@
 			'36 months' => 1095,
 		);
 
+		$search_request = $_SERVER['REQUEST_URI'];
 		?>
         <div class="advanced-options-wrap">
             <a class="toggle-advanced-options">Advanced Options</a>
+            <?php if ( is_user_logged_in() ) { ?>
+            <a class="save-search-link" search_request="<?php echo $search_request; ?>" user_id="<?php echo MP_LOGGED_IN_ID; ?>">Save<span>d</span> Search<i class="fa fa-refresh fa-spin"></i></a>
+            <?php } else { ?>
+                <a class="save-search-link" data-open="login-modal">Save Search<i class="fa fa-refresh fa-spin"></i></a>
+            <?php } ?>
             <div class="advanced-options-toggle">
                 <div class="advanced-options-item price-min-max">
                     <h5>Price Range ($)</h5>

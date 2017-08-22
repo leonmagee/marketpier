@@ -55,6 +55,20 @@
       color: $brand-primary;
       text-transform: uppercase;
       padding: 10px;
+      i.fa-spin {
+        margin-left: 5px;
+        opacity: 0;
+      }
+      span {
+        display: none;
+      }
+      &.saved {
+        color: $brand-third;
+        span {
+          display: inline;
+        }
+      }
+
       &:hover {
         color: lighten($brand-primary, 5%);
       }
