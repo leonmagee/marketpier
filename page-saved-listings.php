@@ -40,7 +40,6 @@ get_header(); ?>
 
 						$args = array(
 							'post_type'   => 'mp-listing',
-							'author' => $user_id,
                             'post__in' => $favorite_array
 						);
 
