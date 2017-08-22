@@ -128,4 +128,48 @@ jQuery(function ($) {
     });
 
 
+    $('a.save-link').click(function () {
+
+        $(this).find('.fa-spin').css({'opacity':'1'});
+
+        var listing_id = $(this).attr('listing_id');
+        var user_id = $(this).attr('user_id');
+        var current_link = $(this);
+        console.log('idz', listing_id);
+
+        /**
+         * This will toggle the saved link, and also change it in the database - removing it if already set...
+         */
+        //event.preventDefault();
+
+        if (user_id && listing_id) {
+
+            var formdata = new FormData();
+
+            //formdata.append("mp_register_user_click", 'click');
+
+            formdata.append("user_id", user_id);
+            formdata.append("listing_id", listing_id);
+
+            formdata.append("action", "mp_favorite_listing");
+
+            $.ajax({
+                type: 'POST',
+                url: ajaxurl,
+                data: formdata,
+                contentType: false,
+                processData: false,
+                success: function (data, textStatus, XMLHttpRequest) {
+                    console.log('save listing?');
+                    current_link.toggleClass('saved').find('.fa-spin').css({'opacity':'0'});
+                },
+                error: function (MLHttpRequest, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        }
+
+    })
+
+
 });

@@ -9,14 +9,15 @@
  */
 function mp_ajaxurl() {
 
-	if ( is_page( 'your-profile' ) || is_page( 'register-account' ) ) { ?>
+	//if ( is_page( 'your-profile' ) || is_page( 'register-account' ) ) {
+	?>
 
-        <script type="text/javascript">
-            var ajaxurl = '<?php echo admin_url( 'admin-ajax.php' ); ?>';
-        </script>
+    <script type="text/javascript">
+        var ajaxurl = '<?php echo admin_url( 'admin-ajax.php' ); ?>';
+    </script>
 
-		<?php
-	}
+	<?php
+	//}
 }
 
 add_action( 'wp_head', 'mp_ajaxurl' );
@@ -101,3 +102,35 @@ function mp_register_user() {
 add_action( 'wp_ajax_mp_register_user', 'mp_register_user' ); //@todo remove this? (redirect if logged in?)
 add_action( 'wp_ajax_nopriv_mp_register_user', 'mp_register_user' );
 
+/**
+ *  Add New Note
+ */
+function mp_save_favorite_listing() {
+	if ( isset( $_POST['listing_id'] ) ) {
+
+		$listing_id = $_POST['listing_id'];
+		$user_id    = $_POST['user_id'];
+
+		global $wpdb;
+		$prefix     = $wpdb->prefix;
+		$table_name = $prefix . 'mp_favorite_listings';
+
+		$favorite_query         = "SELECT * FROM `{$table_name}` WHERE `user_id` = '{$user_id}' AND `listing_id` = '{$listing_id}'";
+		$query_favorite_listing = $wpdb->get_results( $favorite_query );
+
+		if ( $query_favorite_listing ) {
+			$entry_id              = $query_favorite_listing[0]->id;
+			$favorite_query_delete = "DELETE FROM `{$table_name}` WHERE `id` = '{$entry_id}'";
+			$wpdb->get_results( $favorite_query_delete );
+		} else {
+
+			$wpdb->insert( $table_name, array(
+				'time'       => current_time( 'mysql' ),
+				'user_id'    => $user_id,
+				'listing_id' => $listing_id
+			) );
+		}
+	}
+}
+
+add_action( 'wp_ajax_mp_favorite_listing', 'mp_save_favorite_listing' );

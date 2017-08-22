@@ -69,10 +69,31 @@
         font-size: 17px;
         padding-bottom: 200px;
         margin: 0 10px;
+        &:focus {
+          outline: none;
+        }
         i {
           font-size: 15px;
+          &.fa-spin {
+            //display: none;
+            opacity: 0;
+            font-size: 17px;
+            margin-left: 5px;
+          }
         }
       }
+      .save-link {
+        span {
+          display: none;
+        }
+        &.saved {
+          color: $brand-third;
+          span {
+            display: inline;
+          }
+        }
+      }
+
     }
 
   }

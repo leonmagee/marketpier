@@ -8,8 +8,17 @@
  */
 
 /**
+ * Constants
+ * @todo move to different file
+ */
+if ( is_user_logged_in() ) {
+	$user    = wp_get_current_user(); // @todo search for this to replace with constant
+	$user_id = $user->ID;
+	define( 'MP_LOGGED_IN_ID', $user_id );
+}
+
+/**
  * Require Classes
- * @todo move this
  */
 require_once( 'inc/helper-functions.php' );
 require_once( 'inc/agent_update.php' );
@@ -21,6 +30,12 @@ require_once( 'inc/output_modal_acf.php' );
 require_once( 'inc/output_modal_shortcode.php' );
 require_once( 'inc/mp_ajax.php' );
 
+/**
+ * Create Tables
+ */
+require_once( 'inc/lv_create_table.php' );
+
+lv_create_table::create_table_hook();
 
 
 /**

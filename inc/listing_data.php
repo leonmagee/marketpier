@@ -5,6 +5,7 @@
  */
 class listing_data {
 
+	public $listing_id; // @todo idx vs. WP?
 	public $title;
 	public $main_image;
 	public $mls;
@@ -39,6 +40,7 @@ class listing_data {
 	public $price_per_unit;
 	public $price_per_sqft;
 	public $file_attachments;
+	public $favorite_listing;
 
 	public function standardize_image_gallery_WP( $image_gallery ) {
 		$image_gallery_array = array();
@@ -60,6 +62,7 @@ class listing_data {
 	}
 
 	public function listing_data_from_WP() {
+		$this->listing_id           = get_the_ID();
 		$this->title                = get_the_title();
 		$this->main_image           = get_field( 'listing_main_image' );
 		$this->mls                  = get_field( 'listing_mls_number' );
@@ -95,7 +98,7 @@ class listing_data {
 
 		//get the listing date as post date
 		$this->listing_date = get_the_date();
-		$post_date = get_the_date( 'U' );
+		$post_date          = get_the_date( 'U' );
 		//$post_date = get_the_date( 'U', true ); // for GMT
 		$current_date          = time();
 		$days_passed_timestamp = $current_date - $post_date;
@@ -127,6 +130,23 @@ class listing_data {
 			$this->price_per_sqft = ( $this->price / $this->building_size );
 		} else {
 			$this->price_per_sqft = false;
+		}
+
+		/**
+		 * Check if listing is favorite of current user
+		 */
+		if ( is_user_logged_in() ) {
+			global $wpdb;
+			$prefix                 = $wpdb->prefix;
+			$table_name             = $prefix . 'mp_favorite_listings';
+			$user_id = MP_LOGGED_IN_ID;
+			$favorite_query         = "SELECT * FROM `{$table_name}` WHERE `user_id` = '{$user_id}' AND `listing_id` = '{$this->listing_id}'";
+			$query_favorite_listing = $wpdb->get_results($favorite_query);
+			if ( $query_favorite_listing ) {
+				$this->favorite_listing = true;
+			}
+		} else {
+			$this->favorite_listing = false;
 		}
 
 	}

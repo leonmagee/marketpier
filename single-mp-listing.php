@@ -10,6 +10,7 @@ require_once( 'inc/lv_google_map.php' );
 require_once( 'inc/listing_data.php' );
 $listing_data = new listing_data();
 $listing_data->listing_data_from_WP();
+//var_dump( $listing_data );
 ?>
     <div class="single-listing-wrap">
         <div class="single-listing-details"><h2 class="listing-title"><?php echo $listing_data->title; ?></h2>
@@ -25,7 +26,19 @@ $listing_data->listing_data_from_WP();
             <div class="listing-price"><?php echo '$' . number_format( $listing_data->price ); ?></div>
 
             <div class="save-share-links">
-                <a href="#"><i class="fa fa-heart"></i> Save</a>
+				<?php if ( is_user_logged_in() ) {
+					if ( $listing_data->favorite_listing == true ) {
+						$saved_class = 'saved';
+					} else {
+						$saved_class = '';
+					}
+					?>
+                    <a href="#" user_id="<?php echo MP_LOGGED_IN_ID; ?>"
+                       listing_id="<?php echo $listing_data->listing_id; ?>"
+                       class="save-link <?php echo $saved_class; ?>"><i class="fa fa-heart"></i> Save<span>d</span><i class="fa fa-refresh fa-spin" aria-hidden="true"></i></a>
+				<?php } else { ?>
+                    <a href="#" data-open="login-modal" class="save-link"><i class="fa fa-heart"></i> Save</a>
+				<?php } ?>
                 <a href="#"><i class="fa fa-share"></i> Share</a>
             </div>
 
