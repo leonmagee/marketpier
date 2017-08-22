@@ -161,8 +161,24 @@
 		?>
         <div class="advanced-options-wrap">
             <a class="toggle-advanced-options">Advanced Options</a>
-            <?php if ( is_user_logged_in() ) { ?>
-            <a class="save-search-link" search_request="<?php echo $search_request; ?>" user_id="<?php echo MP_LOGGED_IN_ID; ?>">Save<span>d</span> Search<i class="fa fa-refresh fa-spin"></i></a>
+            <?php if ( is_user_logged_in() ) {
+
+		            global $wpdb;
+		            $prefix                 = $wpdb->prefix;
+		            $table_name             = $prefix . 'mp_saved_searches';
+		            $user_id = MP_LOGGED_IN_ID;
+		            $saved_search_query         = "SELECT * FROM `{$table_name}` WHERE `user_id` = '{$user_id}' AND `search_url` = '{$search_request}'";
+		            $saved_search_result = $wpdb->get_results($saved_search_query);
+		            if ( $saved_search_result ) {
+			            $saved_class = 'saved';
+		            } else {
+			            $saved_class = '';
+                    }
+
+
+
+                ?>
+            <a class="save-search-link <?php echo $saved_class; ?>" search_request="<?php echo $search_request; ?>" user_id="<?php echo MP_LOGGED_IN_ID; ?>">Save<span>d</span> Search<i class="fa fa-refresh fa-spin"></i></a>
             <?php } else { ?>
                 <a class="save-search-link" data-open="login-modal">Save Search<i class="fa fa-refresh fa-spin"></i></a>
             <?php } ?>
