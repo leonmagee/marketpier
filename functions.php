@@ -333,6 +333,7 @@ function save_post_handler_acf_listing( $post_id ) {
 			$city               = get_field( 'listing_city', $post_id );
 			$state              = get_field( 'listing_state', $post_id );
 			$zip                = get_field( 'listing_zip', $post_id );
+			$form_status        = get_field( 'hidden_form_status', $post_id );
 			$title_array        = array_filter( array( $prop_name, $address, $city, $state, $zip ) );
 			$title_string       = implode( ' - ', $title_array );
 			$title              = $title_string;
@@ -341,11 +342,21 @@ function save_post_handler_acf_listing( $post_id ) {
 			wp_update_post( $data );
 
 			/**
+			 * I can probably modify a custom field (hidden) for this post that will determine the page status...
+			 * so I start by seeing if a custom field has been set.., then I will set it.
+			 */
+
+			/**
 			 * This needs to only trigger once when post is initially created, not when it's saved?
 			 * @todo make this only happen once???????
 			 */
-			wp_redirect( site_url() . '/add-listing-2?post_id=' . $post_id );
-			exit;
+			if ( $form_status != 'listing_created' ) {
+				update_field( 'hidden_form_status', 'listing_created', $post_id );
+
+				wp_redirect( site_url() . '/add-listing-2?post_id=' . $post_id );
+				exit;
+			}
+
 		}
 	}
 }
