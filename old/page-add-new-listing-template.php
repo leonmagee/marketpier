@@ -23,11 +23,8 @@ get_header(); ?>
 
 						<?php
 						/**
-						 * @todo this needs to be a multipart form - this will create a listing and then it will
-                         * @todo navigate to other form pages that will then edit the listing
-                         * @todo auto-generate listing id???
-                         * @todo the post
-						 *
+						 * @todo somehow this needs to be a multipart form...
+						 * and I also need to
 						 */
 						acf_form( array(
 							'post_id'      => 'new_post',
@@ -35,40 +32,46 @@ get_header(); ?>
 							'new_post'     => array(
 								'post_type'   => 'mp-listing',
 								'post_status' => 'publish',
-								//'post_status' => 'draft',
+								//'post_content' => 'post content'
 							),
-							'return'       => site_url() . '/add-listing-2',
+							'return'       => site_url() . '/user-dashboard',
 							//'uploader'     => 'basic',
 							'fields'       => array(
-								'listing_for_sale_or_for_lease',
+								//'listing_main_image',
+								'listing_mls_number',
+								//'listing_id', // @todo auto generate
+								'listing_price',
 								'listing_type',
-								'lease_type',
+								'listing_status',
+								'listing_for_sale_or_for_lease',
+								'listing_property_name',
 								'listing_address',
 								'listing_city',
 								'listing_state',
 								'listing_zip',
-								'listing_unpriced',
-								'listing_price',
+								'listing_neighborhood',
+								'listing_county',
+								'listing_year_built',
+								//'listing_latitude',
+								//'listing_longitude',
+								'listing_sub_type',
+								'listing_building_size',
+								'listing_lot_size',
+								'listing_apn_parcel_id',
+								'listing_number_of_units',
+								'listing_net_operating_income',
+								'listing_cap_rate',
 								'listing_description',
-								//'listing_mls_number',
-								//'listing_status',
-								//'listing_property_name',
-								//'listing_neighborhood',
-								//'listing_county',
-								//'listing_year_built',
-								//'listing_sub_type',
-								//'listing_building_size',
-								//'listing_lot_size',
-								//'listing_apn_parcel_id',
-								//'listing_number_of_units',
-								//'listing_net_operating_income',
-								//'listing_cap_rate',
-								//'listing_image_gallery',
-								//'listing_unit_mix',
-								//'listing_file_upload'
+								'listing_image_gallery',
+								'listing_unit_mix',
+								'listing_file_upload'
 							),
 							'submit_value' => 'Create a new Listing'
 						) );
+
+						//	            while ( have_posts() ) : the_post();
+						//		            get_template_part( 'template-parts/content', 'page' );
+						//	            endwhile; // End of the loop.
 						?>
                     </div>
 	                <?php get_template_part( 'template-parts/logged-in-user-sidebar' ); ?>

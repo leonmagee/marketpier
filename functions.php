@@ -333,7 +333,7 @@ function save_post_handler_acf_listing( $post_id ) {
 			$city               = get_field( 'listing_city', $post_id );
 			$state              = get_field( 'listing_state', $post_id );
 			$zip                = get_field( 'listing_zip', $post_id );
-			$title_array        = array( $prop_name, $address, $city, $state, $zip );
+			$title_array        = array_filter( array( $prop_name, $address, $city, $state, $zip ) );
 			$title_string       = implode( ' - ', $title_array );
 			$title              = $title_string;
 			$data['post_title'] = $title;
