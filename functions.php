@@ -339,6 +339,13 @@ function save_post_handler_acf_listing( $post_id ) {
 			$data['post_title'] = $title;
 			$data['post_name']  = sanitize_title( $title );
 			wp_update_post( $data );
+
+			/**
+			 * This needs to only trigger once when post is initially created, not when it's saved?
+			 * @todo make this only happen once???????
+			 */
+			wp_redirect( site_url() . '/add-listing-2?post_id=' . $post_id );
+			exit;
 		}
 	}
 }
