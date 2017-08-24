@@ -35,3 +35,12 @@ a.acf-button.button.button-primary {
     }
   }
 }
+
+.acf-repeater {
+  .acf-actions {
+    li {
+      float: none !important;
+      margin: 0;
+    }
+  }
+}

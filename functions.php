@@ -342,18 +342,26 @@ function save_post_handler_acf_listing( $post_id ) {
 			wp_update_post( $data );
 
 			/**
-			 * I can probably modify a custom field (hidden) for this post that will determine the page status...
-			 * so I start by seeing if a custom field has been set.., then I will set it.
+			 * Toggle Redirects based on custom field value
 			 */
-
-			/**
-			 * This needs to only trigger once when post is initially created, not when it's saved?
-			 * @todo make this only happen once???????
-			 */
-			if ( $form_status != 'listing_created' ) {
+			if ( ! $form_status ) {
 				update_field( 'hidden_form_status', 'listing_created', $post_id );
 
 				wp_redirect( site_url() . '/add-listing-2?post_id=' . $post_id );
+				exit;
+			}
+
+			if ( $form_status == 'listing_created' ) {
+				update_field( 'hidden_form_status', 'listing_created_2', $post_id );
+
+				wp_redirect( site_url() . '/add-listing-3?post_id=' . $post_id );
+				exit;
+			}
+
+			if ( $form_status == 'listing_created_2' ) {
+				update_field( 'hidden_form_status', 'listing_created_final', $post_id );
+
+				wp_redirect( site_url() . '/listing-creation-complete');
 				exit;
 			}
 
