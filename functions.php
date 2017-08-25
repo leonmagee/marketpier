@@ -343,6 +343,7 @@ function save_post_handler_acf_listing( $post_id ) {
 
 			/**
 			 * Toggle Redirects based on custom field value
+			 * @todo redirect to different pages depending on for sale vs. for lease?
 			 */
 			if ( ! $form_status ) {
 				update_field( 'hidden_form_status', 'listing_created', $post_id );

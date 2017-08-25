@@ -41,7 +41,7 @@ if ( isset( $_GET['post_id'] ) ) {
 							'fields'       => array(
 
 								'listing_unit_mix',
-								'listing_file_upload',
+								'listing_file_attachments',
 								'listing_image_gallery',
 								'listing_standard_or_premium',
 								//'listing_status',

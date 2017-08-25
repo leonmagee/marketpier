@@ -41,11 +41,12 @@
 					$logged_in_user = wp_get_current_user();
 					$logged_in_id   = $logged_in_user->ID;
 					if ( $first_name = $logged_in_user->first_name ) {
-						if ( $last_name = $logged_in_user->last_name ) {
-							$logged_in_name = $first_name . ' ' . $last_name;
-						} else {
-							$logged_in_name = $first_name;
-						}
+						$logged_in_name = $first_name;
+//						if ( $last_name = $logged_in_user->last_name ) {
+//							$logged_in_name = $first_name . ' ' . $last_name;
+//						} else {
+//							$logged_in_name = $first_name;
+//						}
 					} else {
 						$logged_in_name = $logged_in_user->user_login;
 					}

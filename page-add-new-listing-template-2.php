@@ -62,6 +62,7 @@ if ( isset( $_GET['post_id'] ) ) {
 								'listing_gross_income',
 								'listing_operating_expenses',
 								'listing_net_operating_income',
+                                'listing_number_of_parking_spaces',
 
 
 //								'listing_unit_mix',
