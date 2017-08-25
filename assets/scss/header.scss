@@ -48,6 +48,7 @@ header#masthead {
     display: flex;
   }
   .logged-in-agent-headshot-wrap {
+    min-width: 225px;
     position: relative;
     padding: 10px 10px;
     @media(min-width: $screen-sm) {

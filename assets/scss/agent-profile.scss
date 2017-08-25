@@ -236,12 +236,13 @@
       font-size: 20px;
     }
     &.saved-search {
+      //display: block;
       font-size: 12px;
+      //overflow: hidden;
+      //max-width: 800px;
+      //text-overflow: ellipsis;
       @media(min-width: $screen-sm) {
         font-size: 14px;
-      }
-      .view-edit-links {
-        white-space: nowrap;
       }
     }
     span.view-edit-links {

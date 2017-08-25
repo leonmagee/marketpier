@@ -44,24 +44,18 @@ get_header(); ?>
 							<?php
 
 							function process_search( $search ) {
-								$search2 = str_replace( '/search-listings/?', ' ', $search );
-								$search3 = str_replace( '_', ' ', $search2 );
-								$search4 = str_replace( '=', ' = ', $search3 );
-								$search5 = str_replace( '&', ' / ', $search4 );
+								$search2 = str_replace( '/search-listings/?', '', $search );
+								$search3 = str_replace( '_', '_&#8203;', $search2 );
+								$search4 = str_replace( '=', '=&#8203;', $search3 );
+								//$search5 = str_replace( '&', '&', $search4 );
 
-								return $search5;
+								return $search4;
 							}
-
-
-							//var_dump( $saved_search_array );
 							if ( $saved_search_array ) {
 								foreach ( $saved_search_array as $saved_search ) { ?>
 
                                     <div class="logged-in-user-listing saved-search">
-                                        <span><?php echo process_search( $saved_search ); ?></span>
-                                        <span class="view-edit-links">
-                                    <a href="<?php echo site_url() . $saved_search; ?>">view search</a>
-                                    </span>
+                                        <a href="<?php echo site_url() . $saved_search; ?>"><?php echo process_search( $saved_search ); ?></a>
                                     </div>
 								<?php }
 							} else { ?>
