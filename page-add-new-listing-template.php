@@ -50,6 +50,7 @@ get_header(); ?>
 								'listing_space_available',
 								'listing_price',
 								'listing_monthly_rent',
+								'rental_rate_sf_month',
 								//'listing_unpriced',
 								'listing_description',
 								//'listing_mls_number',

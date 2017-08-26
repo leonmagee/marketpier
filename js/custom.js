@@ -43,9 +43,36 @@
 
     $('.toggle-advanced-options').click(function () {
         $('.advanced-options-toggle').toggleClass('open');
-    })
+    });
 
 
+    /**
+     * Auto Calculation for rent / SF
+     */
+    var space_available = false;
+    var monthly_rent = false;
+
+    function calculate_rent_sf(monthly_rent, listing_sqft) {
+        var rent_value = ( monthly_rent / listing_sqft );
+
+        return '$' + rent_value.toFixed(2);
+    }
+
+    function change_rate() {
+        if (space_available && monthly_rent) {
+            var rate = calculate_rent_sf(monthly_rent, space_available);
+            $('div[data-name="rental_rate_sf_month"] input').val(rate);
+        }
+    }
+
+    $('div[data-name="listing_space_available"] input').keyup(function () {
+        space_available = $(this).val();
+        change_rate();
+    });
+    $('div[data-name="listing_monthly_rent"] input').keyup(function () {
+        monthly_rent = $(this).val();
+        change_rate();
+    });
 }(jQuery));
 
 

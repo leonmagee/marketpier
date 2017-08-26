@@ -369,3 +369,12 @@ function save_post_handler_acf_listing( $post_id ) {
 		}
 	}
 }
+
+function disable_acf_load_field( $field ) {
+	if ( $field['name'] == 'rental_rate_sf_month' ) {
+		//var_dump( $field );
+		$field['disabled'] = true;
+	}
+	return $field;
+}
+add_filter('acf/load_field', 'disable_acf_load_field');
