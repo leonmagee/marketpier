@@ -3,6 +3,8 @@
  * Template Name: Add New Listing
  *
  * @package MarketPier
+ *
+ * @todo maybe have a different template for each form part? Start by just creating two forms...
  */
 
 logged_in_check_redirect();
@@ -34,4 +36,3 @@ get_header(); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 <?php get_footer();
-

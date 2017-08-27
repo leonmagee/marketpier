@@ -78,19 +78,22 @@
      * Handle form navigation
      */
 
-    $('.two-buttons #sale-listing').click(function () {
-        $('.two-buttons #lease-listing').removeClass('active');
-        $(this).addClass('active');
-        $('.for-lease-listing').hide();
-        $('.for-sale-listing').fadeIn();
-    });
-
-    $('.two-buttons #lease-listing').click(function () {
-        $('.two-buttons #sale-listing').removeClass('active');
-        $(this).addClass('active');
-        $('.for-sale-listing').hide();
-        $('.for-lease-listing').fadeIn();
-    });
+    // $('.two-buttons #sale-listing').click(function () {
+    //     $('div[data-name="listing_for_sale_or_for_lease"] select').val('for_sale');
+    //     $('.two-buttons #lease-listing').removeClass('active');
+    //     //$('select[name=""]').val('for_sale');
+    //     $(this).addClass('active');
+    //     $('.for-lease-listing').hide();
+    //     $('.for-sale-listing').fadeIn();
+    // });
+    //
+    // $('.two-buttons #lease-listing').click(function () {
+    //     $('div[data-name="listing_for_sale_or_for_lease"] select').val('for_lease');
+    //     $('.two-buttons #sale-listing').removeClass('active');
+    //     $(this).addClass('active');
+    //     $('.for-sale-listing').hide();
+    //     $('.for-lease-listing').fadeIn();
+    // });
 
 
 }(jQuery));

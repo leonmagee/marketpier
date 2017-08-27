@@ -35,17 +35,17 @@
     border-radius: 4px;
     padding: 13px;
     min-width: 320px;
-    border: 4px solid $brand-primary;
-    &:focus {
-      outline: none;
-    }
-    &:hover {
-      border-color: lighten( $brand-primary, 5%);
-    }
-    &.active {
-      border-color: darken( $brand-primary, 5%);
-      background-color: lighten( $brand-primary, 5%);
-    }
+    //border: 4px solid $brand-primary;
+    //&:focus {
+    //  outline: none;
+    //}
+    //&:hover {
+    //  border-color: lighten($brand-primary, 5%);
+    //}
+    //&.active {
+    //  border-color: darken($brand-primary, 5%);
+    //  background-color: lighten($brand-primary, 5%);
+    //}
     //text-transform: uppercase;
   }
 }
@@ -54,11 +54,11 @@
 //  display: none;
 //}
 .add-a-listing-wrap {
-  display: none;
+  //display: none;
   div[data-name="listing_for_sale_or_for_lease"] {
     display: none;
   }
-  div[data-name="lease_type"] {
+  div[data-name="lease_type"], div[data-name="listing_type"] {
     width: 100% !important;
     @media(min-width: $screen-sm) {
       padding: 0 250px;
@@ -69,6 +69,28 @@
   }
   textarea {
     height: 120px !important;
+  }
+}
+
+// navigation should work the same with both forms - same code can effect each of them
+// hide everything, and then show certain sections based on what class is available... but how to use a fade transition
+// to do this?
+.add-a-listing-wrap {
+  div[data-name='listing_mls_number'],
+  div[data-name='listing_apn_parcel_id'],
+  div[data-name='listing_building_size'],
+  div[data-name='listing_lot_size'],
+  div[data-name='listing_number_of_units'],
+  div[data-name='listing_cap_rate'],
+  div[data-name='listing_gross_income'],
+  div[data-name='listing_operating_expenses'],
+  div[data-name='listing_net_operating_income'],
+  div[data-name='listing_number_of_parking_spaces'],
+  div[data-name='listing_unit_mix'],
+  div[data-name='listing_file_attachments'],
+  div[data-name='listing_image_gallery'],
+  div[data-name='listing_standard_or_premium'] {
+    display: none;
   }
 }
 

@@ -87,6 +87,7 @@
   }
   .logged-in-user-sidebar-wrap {
     padding: 0 10px;
+    margin-bottom: 15px;
     @media(min-width: $screen-sm) {
       flex: 0 1 22%;
     }
@@ -184,7 +185,7 @@
   }
 }
 
-.page-template-page-add-new-listing-template {
+.page-template-page-add-new-listing-template, .page-template-page-add-new-listing-template-for-sale, .page-template-page-add-new-listing-template-for-lease {
   .logged-in-user-sidebar-wrap {
     a.sidebar-option.add-listing {
       color: #FFF;

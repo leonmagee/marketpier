@@ -328,43 +328,54 @@ function save_post_handler_acf_listing( $post_id ) {
 	if ( ! is_admin() ) {
 		if ( get_post_type( $post_id ) == 'mp-listing' ) {
 			$data['ID']         = $post_id;
+			/**
+			 * I can be tricky here and set the field to 'for_lease' if one of the required lease fields is set.
+			 * I just need to make sure the user does not have the option to update that field in the future.
+			 */
 			$prop_name          = get_field( 'listing_property_name', $post_id );
 			$address            = get_field( 'listing_address', $post_id );
 			$city               = get_field( 'listing_city', $post_id );
 			$state              = get_field( 'listing_state', $post_id );
 			$zip                = get_field( 'listing_zip', $post_id );
-			$form_status        = get_field( 'hidden_form_status', $post_id );
+			//$form_status        = get_field( 'hidden_form_status', $post_id );
 			$title_array        = array_filter( array( $prop_name, $address, $city, $state, $zip ) );
 			$title_string       = implode( ' - ', $title_array );
 			$title              = $title_string;
 			$data['post_title'] = $title;
 			$data['post_name']  = sanitize_title( $title );
 			wp_update_post( $data );
+//				update_field( 'hidden_form_status', 'listing_created', $post_id );
+			//				update_field( 'hidden_form_status', 'listing_created', $post_id );
+
+			$monthly_rent = get_field( 'listing_monthly_rent', $post_id );
+			if ($monthly_rent) {
+				update_field( 'listing_for_sale_or_for_lease', 'for_lease', $post_id );
+			}
 
 			/**
 			 * Toggle Redirects based on custom field value
 			 * @todo redirect to different pages depending on for sale vs. for lease?
 			 */
-			if ( ! $form_status ) {
-				update_field( 'hidden_form_status', 'listing_created', $post_id );
+//			if ( ! $form_status ) {
+//				update_field( 'hidden_form_status', 'listing_created', $post_id );
+//
+//				wp_redirect( site_url() . '/add-listing-2?post_id=' . $post_id );
+//				exit;
+//			}
 
-				wp_redirect( site_url() . '/add-listing-2?post_id=' . $post_id );
-				exit;
-			}
+//			if ( $form_status == 'listing_created' ) {
+//				update_field( 'hidden_form_status', 'listing_created_2', $post_id );
+//
+//				wp_redirect( site_url() . '/add-listing-3?post_id=' . $post_id );
+//				exit;
+//			}
 
-			if ( $form_status == 'listing_created' ) {
-				update_field( 'hidden_form_status', 'listing_created_2', $post_id );
-
-				wp_redirect( site_url() . '/add-listing-3?post_id=' . $post_id );
-				exit;
-			}
-
-			if ( $form_status == 'listing_created_2' ) {
-				update_field( 'hidden_form_status', 'listing_created_final', $post_id );
-
-				wp_redirect( site_url() . '/listing-creation-complete');
-				exit;
-			}
+//			if ( $form_status == 'listing_created_2' ) {
+//				update_field( 'hidden_form_status', 'listing_created_final', $post_id );
+//
+//				wp_redirect( site_url() . '/listing-creation-complete');
+//				exit;
+//			}
 
 		}
 	}
@@ -372,7 +383,6 @@ function save_post_handler_acf_listing( $post_id ) {
 
 function disable_acf_load_field( $field ) {
 	if ( $field['name'] == 'rental_rate_sf_month' ) {
-		//var_dump( $field );
 		$field['disabled'] = true;
 	}
 	return $field;
