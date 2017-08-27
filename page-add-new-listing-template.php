@@ -60,12 +60,44 @@ get_header(); ?>
 									'listing_space_available',
 									'listing_price',
 									'listing_monthly_rent',
-									'rental_rate_sf_month',
+									//'rental_rate_sf_month',
 									'listing_description',
 								),
 								'submit_value' => 'Continue'
 							) );
 							?>
+                        </div>
+
+                        <div class="for-lease-listing add-a-listing-wrap">
+		                    <?php
+		                    /**
+		                     * Add For Sale Form
+		                     */
+		                    acf_form( array(
+			                    'post_id'      => 'new_post',
+			                    'post_title'   => false,
+			                    'new_post'     => array(
+				                    'post_type'   => 'mp-listing',
+				                    'post_status' => 'publish',
+				                    //'post_status' => 'draft',
+			                    ),
+			                    'fields'       => array(
+				                    'listing_for_sale_or_for_lease',
+				                    'listing_type',
+				                    'lease_type',
+				                    'listing_address',
+				                    'listing_city',
+				                    'listing_state',
+				                    'listing_zip',
+				                    'listing_space_available',
+				                    'listing_price',
+				                    'listing_monthly_rent',
+				                    'rental_rate_sf_month',
+				                    'listing_description',
+			                    ),
+			                    'submit_value' => 'Continue'
+		                    ) );
+		                    ?>
                         </div>
                     </div>
 					<?php get_template_part( 'template-parts/logged-in-user-sidebar' ); ?>

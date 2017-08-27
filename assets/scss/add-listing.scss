@@ -55,5 +55,20 @@
 //}
 .add-a-listing-wrap {
   display: none;
+  div[data-name="listing_for_sale_or_for_lease"] {
+    display: none;
+  }
+  div[data-name="lease_type"] {
+    width: 100% !important;
+    @media(min-width: $screen-sm) {
+      padding: 0 250px;
+    }
+  }
+  .acf-field {
+    border: none !important;
+  }
+  textarea {
+    height: 120px !important;
+  }
 }
 
