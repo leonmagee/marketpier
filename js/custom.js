@@ -79,8 +79,18 @@
      */
 
     $('.two-buttons #sale-listing').click(function () {
-        alert('click');
-    })
+        $('.two-buttons #lease-listing').removeClass('active');
+        $(this).addClass('active');
+        $('.for-lease-listing').hide();
+        $('.for-sale-listing').fadeIn();
+    });
+
+    $('.two-buttons #lease-listing').click(function () {
+        $('.two-buttons #sale-listing').removeClass('active');
+        $(this).addClass('active');
+        $('.for-sale-listing').hide();
+        $('.for-lease-listing').fadeIn();
+    });
 
 
 }(jQuery));
