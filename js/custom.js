@@ -73,6 +73,16 @@
         monthly_rent = $(this).val();
         change_rate();
     });
+
+    /**
+     * Handle form navigation
+     */
+
+    $('.two-buttons #sale-listing').click(function () {
+        alert('click');
+    })
+
+
 }(jQuery));
 
 

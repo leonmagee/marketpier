@@ -8,7 +8,7 @@
  */
 
 logged_in_check_redirect();
-
+get_template_part( 'template-parts/spinner' );
 acf_form_head(); // this should only be used on two pages - new listing and update profile?
 get_header(); ?>
 
@@ -23,10 +23,22 @@ get_header(); ?>
 
 						<?php
 						/**
+						 * This same template can be used for this as well as the final choice to do a standard or premium
+						 * listing. Clicking one of these will open a form for staring the add a listing process.
+						 * There can be two forms hidden on the page - one for sale and one for lease.
+						 */
+						?>
+                        <div class="two-buttons">
+                            <button class="mp-button" id="sale-listing">Add a Sale Listing</button>
+                            <button class="mp-button" id="lease-listing">Add a Lease Listing</button>
+                        </div>
+
+						<?php
+						/**
 						 * @todo this needs to be a multipart form - this will create a listing and then it will
-                         * @todo navigate to other form pages that will then edit the listing
-                         * @todo auto-generate listing id???
-                         * @todo the post
+						 * @todo navigate to other form pages that will then edit the listing
+						 * @todo auto-generate listing id???
+						 * @todo the post
 						 *
 						 */
 						acf_form( array(
@@ -74,7 +86,7 @@ get_header(); ?>
 						) );
 						?>
                     </div>
-	                <?php get_template_part( 'template-parts/logged-in-user-sidebar' ); ?>
+					<?php get_template_part( 'template-parts/logged-in-user-sidebar' ); ?>
                 </div>
             </div>
         </main><!-- #main -->
