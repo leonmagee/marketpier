@@ -42,6 +42,7 @@ class listing_data {
 	public $file_attachments;
 	public $favorite_listing;
 	public $author;
+	public $author_name;
 
 	public function standardize_image_gallery_WP( $image_gallery ) {
 		$image_gallery_array = array();
@@ -96,8 +97,17 @@ class listing_data {
 		$this->unit_mix             = get_field( 'listing_unit_mix' );
 		$this->file_attachments     = get_field( 'listing_file_attachments' );
 
-		$author_id = get_post_field( 'post_author', $this->listing_id );
-		$this->author               = get_the_author_meta( 'user_nicename', $author_id );
+		$author_id    = get_post_field( 'post_author', $this->listing_id );
+		$this->author = get_the_author_meta( 'user_nicename', $author_id );
+		$first_name   = get_user_meta( $author_id, 'first_name', true );
+		$last_name    = get_user_meta( $author_id, 'last_name', true );
+		if ( $first_name && $last_name ) {
+			$this->author_name = $first_name . ' ' . $last_name;
+		} elseif ( $first_name ) {
+			$this->author_name = $first_name;
+		} else {
+			$this->author_name = $this->author;
+		}
 
 		//get the listing date as post date
 		$this->listing_date = get_the_date();

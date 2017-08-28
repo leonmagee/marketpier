@@ -271,6 +271,7 @@ $listing_data->listing_data_from_WP();
                     <input class='phone' type="number" name="your-phone" placeholder="Phone"/>
                     <input class='email' type="email" name="your-email" placeholder="Email"/>
                     <textarea name="listing-comment">I am interested in <?php echo $address; ?></textarea>
+                    <!-- @todo conditional based on email and name existing? -->
                     <div class="agent-choice-wrap">
                         <div class="agent-radio">
                             <i class="fa fa-circle-o" aria-hidden="true"></i>
@@ -280,7 +281,7 @@ $listing_data->listing_data_from_WP();
                                 <i class="fa fa-user"></i>
                             </div>
                             <div class="details-wrap">
-                                <div class="agent-name">Desirae Sweeney</div>
+                                <div class="agent-name"><?php echo $listing_data->author_name; ?></div>
                                 <div class="broker-name">Listing Agent</div>
                             </div>
                         </div>
