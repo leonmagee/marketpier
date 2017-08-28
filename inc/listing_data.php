@@ -41,6 +41,7 @@ class listing_data {
 	public $price_per_sqft;
 	public $file_attachments;
 	public $favorite_listing;
+	public $author;
 
 	public function standardize_image_gallery_WP( $image_gallery ) {
 		$image_gallery_array = array();
@@ -94,6 +95,10 @@ class listing_data {
 		$this->description          = get_field( 'listing_description' );
 		$this->unit_mix             = get_field( 'listing_unit_mix' );
 		$this->file_attachments     = get_field( 'listing_file_attachments' );
+		//$this->author               = the_author_meta( 'first_name', 1 );
+		//$this->author = get_the_author();
+		$this->author = 'sdjflsdfj';
+		var_dump( $this->author );
 		//$this->days_on_market       = get_field( 'listing_days_on_market' );
 
 		//get the listing date as post date
@@ -139,9 +144,9 @@ class listing_data {
 			global $wpdb;
 			$prefix                 = $wpdb->prefix;
 			$table_name             = $prefix . 'mp_favorite_listings';
-			$user_id = MP_LOGGED_IN_ID;
+			$user_id                = MP_LOGGED_IN_ID;
 			$favorite_query         = "SELECT * FROM `{$table_name}` WHERE `user_id` = '{$user_id}' AND `listing_id` = '{$this->listing_id}'";
-			$query_favorite_listing = $wpdb->get_results($favorite_query);
+			$query_favorite_listing = $wpdb->get_results( $favorite_query );
 			if ( $query_favorite_listing ) {
 				$this->favorite_listing = true;
 			}

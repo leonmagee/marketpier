@@ -24,7 +24,7 @@ class lv_create_wp_cpt {
 		$slug,
 		$dash_icon = 'admin-generic',
 		$public = true,
-		$supports = array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'page-attributes' )
+		$supports = array( 'title', 'editor', 'excerpt', 'thumbnail', 'custom-fields', 'page-attributes', 'author' )
 	) {
 
 		register_post_type( $pt_name,

@@ -66,9 +66,13 @@
     .save-share-links {
       margin-bottom: 15px;
       a {
+        //display: block;
         font-size: 17px;
-        padding-bottom: 200px;
+        //padding-bottom: 200px;
         margin: 0 10px;
+        &.profile-link {
+          margin-left: 25px;
+        }
         &:focus {
           outline: none;
         }

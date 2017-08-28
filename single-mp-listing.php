@@ -23,8 +23,11 @@ $listing_data->listing_data_from_WP();
 				} ?>
             </div>
 
-            <div class="listing-price"><?php echo '$' . number_format( $listing_data->price ); ?></div>
-
+			<?php if ( $listing_data->price ) { ?>
+                <div class="listing-price"><?php echo '$' . number_format( $listing_data->price ); ?></div>
+			<?php } else { ?>
+                <div class="listing-price">No Price Given</div>
+			<?php } ?>
             <div class="save-share-links">
 				<?php if ( is_user_logged_in() ) {
 					if ( $listing_data->favorite_listing == true ) {
@@ -35,11 +38,14 @@ $listing_data->listing_data_from_WP();
 					?>
                     <a href="#" user_id="<?php echo MP_LOGGED_IN_ID; ?>"
                        listing_id="<?php echo $listing_data->listing_id; ?>"
-                       class="save-link <?php echo $saved_class; ?>"><i class="fa fa-heart"></i> Save<span>d</span><i class="fa fa-refresh fa-spin" aria-hidden="true"></i></a>
+                       class="save-link <?php echo $saved_class; ?>"><i class="fa fa-heart"></i> Save<span>d</span><i
+                                class="fa fa-refresh fa-spin" aria-hidden="true"></i></a>
 				<?php } else { ?>
                     <a href="#" data-open="login-modal" class="save-link"><i class="fa fa-heart"></i> Save</a>
 				<?php } ?>
                 <a href="#"><i class="fa fa-share"></i> Share</a>
+                <a href="<?php echo site_url(); ?>/profile/leonmagee" class="profile-link"><i class="fa fa-user"></i>
+                    Submitter Profile</a>
             </div>
 
             <div class="description">
