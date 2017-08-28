@@ -45,6 +45,32 @@
         $('.advanced-options-toggle').toggleClass('open');
     });
 
+    /**
+     * Auto Calculation for net income
+     */
+    var list_price = false;
+    var cap_rate = false;
+
+    function calculate_net_income(list_price, cap_rate) {
+        var net_income = ( list_price * (cap_rate / 100));
+        return '$' + net_income.toFixed(2);
+    }
+
+    function change_net_income() {
+        if (list_price && cap_rate) {
+            var income = calculate_net_income(list_price, cap_rate);
+            $('div[data-name="listing_net_operating_income"] input').val(income);
+        }
+    }
+
+    $('div[data-name="listing_price"] input').keyup(function () {
+        list_price = $(this).val();
+        change_net_income();
+    });
+    $('div[data-name="listing_cap_rate"] input').keyup(function () {
+        cap_rate = $(this).val();
+        change_net_income();
+    });
 
     /**
      * Auto Calculation for rent / SF
@@ -54,7 +80,6 @@
 
     function calculate_rent_sf(monthly_rent, listing_sqft) {
         var rent_value = ( monthly_rent / listing_sqft );
-
         return '$' + rent_value.toFixed(2);
     }
 
@@ -77,6 +102,38 @@
     /**
      * Handle form navigation
      */
+    var active_page = 1;
+    $('.add-listing-navigation .nav-button.next.enabled').click(function () {
+        if (active_page <= 2) {
+            //console.log( 'next', active_page);
+            $('.add-listing-navigation .nav-button.prev').addClass('enabled');
+            active_page = ( active_page + 1);
+            if (active_page === 2) {
+                $('.add-a-listing-wrap.page-1').removeClass('page-1').addClass('page-2');
+            }
+            if (active_page === 3) {
+                $('.add-a-listing-wrap.page-2').removeClass('page-2').addClass('page-3');
+                $(this).removeClass('enabled');
+            }
+        }
+    });
+
+
+    $('.add-listing-navigation .nav-button.prev').click(function () {
+        if (active_page >= 2) {
+            //console.log( 'prev', active_page);
+            $('.add-listing-navigation .nav-button.next').addClass('enabled');
+            active_page = ( active_page - 1);
+            if (active_page === 1) {
+                $('.add-a-listing-wrap.page-2').removeClass('page-2').addClass('page-1');
+                $(this).removeClass('enabled');
+            }
+            if (active_page === 2) {
+                $('.add-a-listing-wrap.page-3').removeClass('page-3').addClass('page-2');
+            }
+        }
+    });
+
 
     // $('.two-buttons #sale-listing').click(function () {
     //     $('div[data-name="listing_for_sale_or_for_lease"] select').val('for_sale');

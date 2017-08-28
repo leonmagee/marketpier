@@ -327,16 +327,16 @@ add_action( 'acf/save_post', 'save_post_handler_acf_listing', 20 );
 function save_post_handler_acf_listing( $post_id ) {
 	if ( ! is_admin() ) {
 		if ( get_post_type( $post_id ) == 'mp-listing' ) {
-			$data['ID']         = $post_id;
+			$data['ID'] = $post_id;
 			/**
 			 * I can be tricky here and set the field to 'for_lease' if one of the required lease fields is set.
 			 * I just need to make sure the user does not have the option to update that field in the future.
 			 */
-			$prop_name          = get_field( 'listing_property_name', $post_id );
-			$address            = get_field( 'listing_address', $post_id );
-			$city               = get_field( 'listing_city', $post_id );
-			$state              = get_field( 'listing_state', $post_id );
-			$zip                = get_field( 'listing_zip', $post_id );
+			$prop_name = get_field( 'listing_property_name', $post_id );
+			$address   = get_field( 'listing_address', $post_id );
+			$city      = get_field( 'listing_city', $post_id );
+			$state     = get_field( 'listing_state', $post_id );
+			$zip       = get_field( 'listing_zip', $post_id );
 			//$form_status        = get_field( 'hidden_form_status', $post_id );
 			$title_array        = array_filter( array( $prop_name, $address, $city, $state, $zip ) );
 			$title_string       = implode( ' - ', $title_array );
@@ -348,7 +348,7 @@ function save_post_handler_acf_listing( $post_id ) {
 			//				update_field( 'hidden_form_status', 'listing_created', $post_id );
 
 			$monthly_rent = get_field( 'listing_monthly_rent', $post_id );
-			if ($monthly_rent) {
+			if ( $monthly_rent ) {
 				update_field( 'listing_for_sale_or_for_lease', 'for_lease', $post_id );
 			}
 
@@ -382,9 +382,11 @@ function save_post_handler_acf_listing( $post_id ) {
 }
 
 function disable_acf_load_field( $field ) {
-	if ( $field['name'] == 'rental_rate_sf_month' ) {
+	if ( $field['name'] == 'rental_rate_sf_month' || $field['name'] == 'listing_net_operating_income' ) {
 		$field['disabled'] = true;
 	}
+
 	return $field;
 }
-add_filter('acf/load_field', 'disable_acf_load_field');
+
+add_filter( 'acf/load_field', 'disable_acf_load_field' );

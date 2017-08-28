@@ -26,7 +26,7 @@ get_header(); ?>
 						 */
 						?>
 
-                        <div class="for-sale-listing add-a-listing-wrap">
+                        <div class="for-sale-listing add-a-listing-wrap page-1">
 							<?php
 							/**
 							 * Add For Sale Form
@@ -64,10 +64,10 @@ get_header(); ?>
 									'listing_unit_mix',
 									'listing_file_attachments',
 									'listing_image_gallery',
-									'listing_standard_or_premium',
 								),
 								'submit_value' => 'Create Listing'
 							) );
+							get_template_part( 'template-parts/add-listing-nav' );
 							?>
                         </div>
 
