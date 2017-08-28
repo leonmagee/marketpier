@@ -382,7 +382,10 @@ function save_post_handler_acf_listing( $post_id ) {
 }
 
 function disable_acf_load_field( $field ) {
-	if ( $field['name'] == 'rental_rate_sf_month' || $field['name'] == 'listing_net_operating_income' ) {
+//	if ( $field['name'] == 'rental_rate_sf_month' || $field['name'] == 'listing_net_operating_income' ) {
+//		$field['disabled'] = true;
+//	}
+	if ( $field['name'] == 'rental_rate_sf_month' ) {
 		$field['disabled'] = true;
 	}
 

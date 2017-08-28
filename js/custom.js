@@ -48,29 +48,29 @@
     /**
      * Auto Calculation for net income
      */
-    var list_price = false;
-    var cap_rate = false;
-
-    function calculate_net_income(list_price, cap_rate) {
-        var net_income = ( list_price * (cap_rate / 100));
-        return '$' + net_income.toFixed(2);
-    }
-
-    function change_net_income() {
-        if (list_price && cap_rate) {
-            var income = calculate_net_income(list_price, cap_rate);
-            $('div[data-name="listing_net_operating_income"] input').val(income);
-        }
-    }
-
-    $('div[data-name="listing_price"] input').keyup(function () {
-        list_price = $(this).val();
-        change_net_income();
-    });
-    $('div[data-name="listing_cap_rate"] input').keyup(function () {
-        cap_rate = $(this).val();
-        change_net_income();
-    });
+    // var list_price = false;
+    // var cap_rate = false;
+    //
+    // function calculate_net_income(list_price, cap_rate) {
+    //     var net_income = ( list_price * (cap_rate / 100));
+    //     return '$' + net_income.toFixed(2);
+    // }
+    //
+    // function change_net_income() {
+    //     if (list_price && cap_rate) {
+    //         var income = calculate_net_income(list_price, cap_rate);
+    //         $('div[data-name="listing_net_operating_income"] input').val(income);
+    //     }
+    // }
+    //
+    // $('div[data-name="listing_price"] input').keyup(function () {
+    //     list_price = $(this).val();
+    //     change_net_income();
+    // });
+    // $('div[data-name="listing_cap_rate"] input').keyup(function () {
+    //     cap_rate = $(this).val();
+    //     change_net_income();
+    // });
 
     /**
      * Auto Calculation for rent / SF
