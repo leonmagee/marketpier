@@ -166,7 +166,7 @@
   }
 }
 
-.page-template-page-your-listings-php {
+.page-template-page-your-listings {
   .logged-in-user-sidebar-wrap {
     a.sidebar-option.your-listings {
       color: #FFF;
@@ -177,6 +177,45 @@
   .menu-drop-down {
     .logged-in-user-sidebar-wrap {
       a.sidebar-option.your-listings {
+        color: $brand-primary;
+        background-color: transparent;
+        border: none;
+      }
+    }
+  }
+}
+
+
+.page-template-page-saved-listings {
+  .logged-in-user-sidebar-wrap {
+    a.sidebar-option.saved-listings {
+      color: #FFF;
+      background-color: $brand-primary;
+      border-color: $brand-primary;
+    }
+  }
+  .menu-drop-down {
+    .logged-in-user-sidebar-wrap {
+      a.sidebar-option.saved-listings {
+        color: $brand-primary;
+        background-color: transparent;
+        border: none;
+      }
+    }
+  }
+}
+
+.page-template-page-saved-searches {
+  .logged-in-user-sidebar-wrap {
+    a.sidebar-option.saved-searches {
+      color: #FFF;
+      background-color: $brand-primary;
+      border-color: $brand-primary;
+    }
+  }
+  .menu-drop-down {
+    .logged-in-user-sidebar-wrap {
+      a.sidebar-option.saved-searches {
         color: $brand-primary;
         background-color: transparent;
         border: none;
@@ -230,11 +269,11 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #EEE;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     color: #444;
     @media(min-width: $screen-sm) {
-      font-size: 20px;
+      font-size: 16px;
     }
     &.saved-search {
       //display: block;
