@@ -95,11 +95,9 @@ class listing_data {
 		$this->description          = get_field( 'listing_description' );
 		$this->unit_mix             = get_field( 'listing_unit_mix' );
 		$this->file_attachments     = get_field( 'listing_file_attachments' );
-		//$this->author               = the_author_meta( 'first_name', 1 );
-		//$this->author = get_the_author();
-		$this->author = 'sdjflsdfj';
-		var_dump( $this->author );
-		//$this->days_on_market       = get_field( 'listing_days_on_market' );
+
+		$author_id = get_post_field( 'post_author', $this->listing_id );
+		$this->author               = get_the_author_meta( 'user_nicename', $author_id );
 
 		//get the listing date as post date
 		$this->listing_date = get_the_date();

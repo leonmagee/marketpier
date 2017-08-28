@@ -10,6 +10,7 @@ require_once( 'inc/lv_google_map.php' );
 require_once( 'inc/listing_data.php' );
 $listing_data = new listing_data();
 $listing_data->listing_data_from_WP();
+
 //var_dump( $listing_data );
 ?>
     <div class="single-listing-wrap">
@@ -44,7 +45,7 @@ $listing_data->listing_data_from_WP();
                     <a href="#" data-open="login-modal" class="save-link"><i class="fa fa-heart"></i> Save</a>
 				<?php } ?>
                 <a href="#"><i class="fa fa-share"></i> Share</a>
-                <a href="<?php echo site_url(); ?>/profile/leonmagee" class="profile-link"><i class="fa fa-user"></i>
+                <a href="<?php echo site_url(); ?>/profile/<?php echo $listing_data->author; ?>" class="profile-link"><i class="fa fa-user"></i>
                     Submitter Profile</a>
             </div>
 
