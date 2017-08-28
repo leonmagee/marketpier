@@ -40,6 +40,7 @@ get_header(); ?>
 									'listing_state',
 									'listing_zip',
 									'listing_price',
+									'listing_property_name',
 									'listing_description',
 
 									'listing_mls_number',

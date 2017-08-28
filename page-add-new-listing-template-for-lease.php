@@ -39,6 +39,7 @@ get_header(); ?>
 									'listing_city',
 									'listing_state',
 									'listing_zip',
+									'listing_property_name',
 									'listing_space_available',
 									'listing_monthly_rent',
 									'rental_rate_sf_month',
