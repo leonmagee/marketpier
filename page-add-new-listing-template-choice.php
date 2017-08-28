@@ -7,7 +7,13 @@
 
 logged_in_check_redirect();
 acf_form_head(); // this should only be used on two pages - new listing and update profile?
-get_header(); ?>
+get_header();
+
+$standard_text     = get_field( 'standard_text', 'option' );
+$premium_text      = get_field( 'premium_text', 'option' );
+$standard_features = get_field( 'standard_features', 'option' );
+$premium_features  = get_field( 'premium_features', 'option' );
+?>
 
     <div id="primary" class="content-area">
         <main id="main" class="site-main">
@@ -18,23 +24,31 @@ get_header(); ?>
                 <div class="logged-in-outer-wrap">
                     <div class="logged-in-user-content logged-in-user-add-listings add-or-edit-listing">
 
-                        <div class="two-buttons">
+                        <div class="two-buttons"><!-- @todo make different class? -->
                             <div class="listing-choice standard">
-                                <a href="<?php echo site_url(); ?>/add-listing-for-sale">
-                                    <button class="mp-button" id="sale-listing">Standard Listing</button>
+                                <a href="<?php echo site_url(); ?>/listing-creation-complete">
+                                    <div class="choice-header">Standard Listing</div>
                                     <div class="details">
-                                        <h3>Free</h3>
+                                        <h3><?php echo $standard_text; ?></h3>
                                         <ul>
-                                            <li>Shows up in search results</li>
-                                            <li>Shows up in search results</li>
-                                            <li>Shows up in search results</li>
+                                            <?php foreach( $standard_features as $feature ) { ?>
+                                               <li><i class="fa fa-check" aria-hidden="true"></i><?php echo $feature['feature']; ?></li>
+                                            <?php } ?>
                                         </ul>
                                     </div>
                                 </a>
                             </div>
                             <div class="listing-choice premium">
-                                <a href="<?php echo site_url(); ?>/add-listing-for-lease">
-                                    <button class="mp-button" id="lease-listing">Premium Listing</button>
+                                <a href="<?php echo site_url(); ?>/listing-creation-complete">
+                                    <div class="choice-header">Premium Listing</div>
+                                    <div class="details">
+                                        <h3><?php echo $premium_text; ?></h3>
+                                        <ul>
+			                                <?php foreach( $premium_features as $feature ) { ?>
+                                                <li><i class="fa fa-check" aria-hidden="true"></i><span><?php echo $feature['feature']; ?></span></li>
+			                                <?php } ?>
+                                        </ul>
+                                    </div>
                                 </a>
                             </div>
                         </div>

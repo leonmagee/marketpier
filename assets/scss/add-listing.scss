@@ -94,3 +94,50 @@
   }
 }
 
+.listing-choice {
+  max-width: 350px;
+  margin: 0 10px;
+  &:hover {
+    opacity: 0.9;
+  }
+  a {
+    color: #333;
+    &:hover {
+      color: #333;
+    }
+  }
+  .choice-header {
+   background-color: $brand-primary;
+    color: #FFF;
+    font-weight: 700;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 28px;
+  }
+  h3 {
+    color: #222;
+    text-align: center;
+  }
+  .details {
+    border: 1px solid #DDD;
+    border-top: none;
+    background-color: #FDFDFD;
+    padding: 10px 15px;
+    ul {
+      margin: 0;
+      li {
+        list-style-type: none;
+        color: #333;
+        border-top: 1px solid #EEE;
+        padding: 8px 0;
+        display: flex;
+        align-items: center;
+        i {
+          margin-right: 10px;
+          color: $brand-primary;
+          font-size: 23px;
+        }
+      }
+    }
+  }
+}

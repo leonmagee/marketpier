@@ -33,7 +33,7 @@ get_header(); ?>
 				                    'post_status' => 'publish',
 				                    //'post_status' => 'draft',
 			                    ),
-			                    'return'       => site_url() . '/listing-creation-complete',
+			                    'return'       => site_url() . '/add-new-listing-choice',
 			                    'fields'       => array(
 				                    'listing_for_sale_or_for_lease',
 				                    'lease_type',
