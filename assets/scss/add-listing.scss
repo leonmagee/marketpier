@@ -99,6 +99,7 @@
   div[data-name='listing_number_of_parking_spaces'],
     // page 3
   div[data-name='listing_unit_mix'],
+  div[data-name='rental_unit_mix'],
   div[data-name='listing_file_attachments'],
   div[data-name='listing_image_gallery'],
   div[data-name='listing_standard_or_premium'],
@@ -139,6 +140,7 @@
   }
   &.page-3 {
     div[data-name='listing_unit_mix'],
+    div[data-name='rental_unit_mix'],
     div[data-name='listing_file_attachments'],
     div[data-name='listing_image_gallery'],
     div[data-name='listing_standard_or_premium'],
