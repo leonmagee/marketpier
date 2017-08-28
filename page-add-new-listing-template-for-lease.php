@@ -3,12 +3,10 @@
  * Template Name: Add New Listing For Lease
  *
  * @package MarketPier
- *
- * @todo maybe have a different template for each form part? Start by just creating two forms...
  */
 
 logged_in_check_redirect();
-acf_form_head(); // this should only be used on two pages - new listing and update profile?
+acf_form_head();
 get_header(); ?>
 
     <div id="primary" class="content-area">

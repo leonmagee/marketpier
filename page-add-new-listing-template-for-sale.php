@@ -6,7 +6,7 @@
  */
 
 logged_in_check_redirect();
-acf_form_head(); // this should only be used on two pages - new listing and update profile?
+acf_form_head();
 get_header(); ?>
 
     <div id="primary" class="content-area">
@@ -17,14 +17,6 @@ get_header(); ?>
                 </header>
                 <div class="logged-in-outer-wrap">
                     <div class="logged-in-user-content logged-in-user-add-listings add-or-edit-listing">
-
-						<?php
-						/**
-						 * This same template can be used for this as well as the final choice to do a standard or premium
-						 * listing. Clicking one of these will open a form for staring the add a listing process.
-						 * There can be two forms hidden on the page - one for sale and one for lease.
-						 */
-						?>
 
                         <div class="for-sale-listing add-a-listing-wrap page-1">
 							<?php

@@ -1,7 +1,5 @@
 <?php
 /**
- * Template Name: Add New Listing Page 2
- *
  * @package MarketPier
  *
  * @todo maybe have a different template for each form part? Start by just creating two forms...
@@ -39,41 +37,17 @@ if ( isset( $_GET['post_id'] ) ) {
 							'return'       => site_url() . '/add-listing-3',
 							//'uploader'     => 'basic',
 							'fields'       => array(
-//								'listing_for_sale_or_for_lease',
-//								'listing_type',
-//								'lease_type',
-//								'listing_address',
-//								'listing_city',
-//								'listing_state',
-//								'listing_zip',
-//								'listing_space_available',
-//								'listing_unpriced',
-//								'listing_price',
-//								'listing_monthly_rent',
-//								'listing_description',
 
-
-								'listing_mls_number',
-								'listing_apn_parcel_id',
-								'listing_building_size',
-								'listing_lot_size',
-								'listing_number_of_units',
-								'listing_cap_rate',
-								'listing_gross_income',
-								'listing_operating_expenses',
-								'listing_net_operating_income',
-                                'listing_number_of_parking_spaces',
-
-
-//								'listing_unit_mix',
-//								'listing_status',
-//								'listing_property_name',
-//								'listing_neighborhood',
-//								'listing_county',
-//								'listing_year_built',
-//								'listing_sub_type',
-//								'listing_image_gallery',
-//								'listing_file_upload'
+								'listing_unit_mix',
+								'listing_file_attachments',
+								'listing_image_gallery',
+								'listing_standard_or_premium',
+								//'listing_status',
+								//'listing_property_name',
+								//'listing_neighborhood',
+								//'listing_county',
+								//'listing_year_built',
+								//'listing_sub_type',
 							),
 							'submit_value' => 'Continue'
 						) );

@@ -1,7 +1,5 @@
 <?php
 /**
- * Template Name: Foundation Tester
- *
  * @package MarketPier
  */
 get_header(); ?>
