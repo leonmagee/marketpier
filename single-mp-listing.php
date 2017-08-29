@@ -10,10 +10,13 @@ require_once( 'inc/lv_google_map.php' );
 require_once( 'inc/listing_data.php' );
 $listing_data = new listing_data();
 /**
- * Conditional here based on $_GET Variable (maybe query by MLS Number)
+ * Conditional based on url string.
  */
-if ( isset( $_GET['mls_number'] ) ) {
-	$mls_number = $_GET['mls_number'];
+$request_uri     = $_SERVER['REQUEST_URI'];
+$request_details = explode( '/', $request_uri );
+
+if ( $request_details[2] == 'idx' ) {
+	$mls_number = $request_details[3];
 	$listing_data->listing_data_from_IDX( $mls_number );
 } else {
 	$listing_data->listing_data_from_WP();
@@ -72,9 +75,12 @@ if ( isset( $_GET['mls_number'] ) ) {
                     <a href="#" data-open="login-modal" class="save-link"><i class="fa fa-heart"></i> Save</a>
 				<?php } ?>
                 <a href="#"><i class="fa fa-share"></i> Share</a>
-                <a href="<?php echo site_url(); ?>/profile/<?php echo $listing_data->author; ?>" class="profile-link"><i
-                            class="fa fa-user"></i>
-                    Submitter Profile</a>
+				<?php if ( $listing_data->author ) { ?>
+                    <a href="<?php echo site_url(); ?>/profile/<?php echo $listing_data->author; ?>"
+                       class="profile-link"><i
+                                class="fa fa-user"></i>
+                        Submitter Profile</a>
+				<?php } ?>
             </div>
 
             <div class="description">

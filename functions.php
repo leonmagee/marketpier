@@ -29,8 +29,8 @@ require_once( 'inc/agent_update_input_acf.php' );
 require_once( 'inc/output_modal_acf.php' );
 require_once( 'inc/output_modal_shortcode.php' );
 require_once( 'inc/mp_ajax.php' );
-require_once( 'inc/get_slipstream_token.php');
-require_once( 'inc/api_listing_search.php');
+require_once( 'inc/get_slipstream_token.php' );
+require_once( 'inc/api_listing_search.php' );
 
 /**
  * Create Tables
@@ -395,3 +395,23 @@ function disable_acf_load_field( $field ) {
 }
 
 add_filter( 'acf/load_field', 'disable_acf_load_field' );
+
+/**
+ * Link Slipstream API URL to page template
+ */
+
+add_action( 'init', 'link_slipstream_url' );
+
+function link_slipstream_url() {
+	$url_path = trim( parse_url( add_query_arg( array() ), PHP_URL_PATH ), '/' );
+	//var_dump( $url_path );
+	$str_pos = strpos( $url_path, '/idx/' );
+	//var_dump( $str_pos );
+	//if ( $url_path === 'listings/idx' ) {
+	if ( $str_pos ) {
+		$load = locate_template( 'single-mp-listing.php', true );
+		if ( $load ) {
+			exit();
+		}
+	}
+}

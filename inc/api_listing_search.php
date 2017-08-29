@@ -61,7 +61,8 @@ class api_listing_search {
 //			$keyword_string = '&keyword=' . $keyword;
 //		}
 		//@todo this should be somewhere else
-		$listing_type = 'residential';
+		//$listing_type = 'residential';
+		$listing_type = 'Commercial';
 //		if ( $listing_date = $parameters['listing_date'] ) {
 //
 //			$listing_date_new = strtotime($listing_date);
