@@ -34,13 +34,13 @@ $listing_data->listing_data_from_WP();
                 </div>
 			<?php } ?>
 
-			<?php if ( $listing_data->for_sale_for_lease == 'for_sale' ) { ?>
+			<?php if ( $listing_data->is_for_sale ) { ?>
 				<?php if ( $listing_data->price ) { ?>
                     <div class="listing-price"><?php echo '$' . number_format( $listing_data->price ); ?></div>
 				<?php } else { ?>
                     <div class="listing-price">No Price Given</div>
 				<?php } ?>
-			<?php } elseif ( $listing_data->for_sale_for_lease == 'for_lease' ) { ?>
+			<?php } elseif ( $listing_data->is_for_lease ) { ?>
 				<?php if ( $listing_data->rent ) { ?>
                     <div class="listing-price"><?php echo '$' . number_format( $listing_data->rent ); ?> / month</div>
 				<?php } else { ?>
@@ -161,7 +161,15 @@ $listing_data->listing_data_from_WP();
                             <div class="detail-label">Days Active</div>
                             <div class="detail-content"><?php echo $listing_data->days_on_market; ?></div>
                         </div>
-					<?php } ?>
+					<?php }
+					if ( $listing_data->is_for_lease && $listing_data->rate_sf_month ) { ?>
+                        <!-- @todo auto generate this number -->
+                        <div class="detail">
+                            <div class="detail-label">Rate/SF/Month</div>
+                            <div class="detail-content"><?php echo '$' . number_format( $listing_data->rate_sf_month, 2 ); ?></div>
+                        </div>
+					<?php }
+					?>
                 </div>
             </div>
 			<?php

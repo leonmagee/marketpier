@@ -44,6 +44,10 @@ class listing_data {
 	public $favorite_listing;
 	public $author;
 	public $author_name;
+	public $space_available;
+	public $rate_sf_month;
+	public $is_for_sale;
+	public $is_for_lease;
 
 	public function standardize_image_gallery_WP( $image_gallery ) {
 		$image_gallery_array = array();
@@ -76,7 +80,7 @@ class listing_data {
 			//$this->title = get_the_title();
 		}
 		$this->price                = get_field( 'listing_price' );
-		$this->rent                = get_field( 'listing_monthly_rent' );
+		$this->rent                 = get_field( 'listing_monthly_rent' );
 		$this->address              = get_field( 'listing_address' );
 		$this->city                 = get_field( 'listing_city' );
 		$this->state                = get_field( 'listing_state' );
@@ -103,6 +107,11 @@ class listing_data {
 		$this->description          = get_field( 'listing_description' );
 		$this->unit_mix             = get_field( 'listing_unit_mix' );
 		$this->file_attachments     = get_field( 'listing_file_attachments' );
+		$this->space_available      = get_field( 'listing_space_available' );
+
+		if ( $this->rent && $this->space_available ) {
+			$this->rate_sf_month = ( $this->rent / $this->space_available );
+		}
 
 		$author_id    = get_post_field( 'post_author', $this->listing_id );
 		$this->author = get_the_author_meta( 'user_nicename', $author_id );
@@ -128,6 +137,17 @@ class listing_data {
 //		if ( $listing_data_timestamp = get_field( 'listing_date' ) ) { // old - pulling date from custom field
 //			$this->listing_date = date( 'M jS Y', $listing_data_timestamp );
 //		}
+
+		if ( $this->for_sale_for_lease == 'for_sale' ) {
+			$this->is_for_sale  = true;
+			$this->is_for_lease = false;
+		} elseif ( $this->for_sale_for_lease == 'for_lease' ) {
+			$this->is_for_sale  = false;
+			$this->is_for_lease = true;
+		} else {
+			$this->is_for_sale  = false;
+			$this->is_for_lease = false;
+		}
 
 		$this->standardize_image_gallery_WP( get_field( 'listing_image_gallery' ) );
 
