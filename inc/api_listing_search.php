@@ -12,15 +12,15 @@ class api_listing_search {
 	public $market;
 	public $search_result;
 	public $total_listings;
-	public $search_parameters_array;
+	//public $search_parameters_array;
 	public $details;
 	public $extended;
 	public $features;
 	public $page_size;
-	public $counties;
 	public $network_error;
+	public $mls_number;
 
-	public function __construct( $token, $page_size, $market ) {
+	public function __construct( $token, $page_size, $market, $mls_number = false ) {
 		$this->market        = $market;
 		$this->token         = $token;
 		$this->details       = true;
@@ -28,6 +28,8 @@ class api_listing_search {
 		$this->features      = true;
 		$this->page_size     = $page_size;
 		$this->network_error = false;
+		$this->mls_number    = $mls_number;
+
 	}
 
 	public function search_listings( $parameters = null, $page_number = 1 ) {
@@ -37,9 +39,12 @@ class api_listing_search {
 		 */
 		//$id_string = $status_string = $county_string = $list_price_string = $keyword_string = $listing_date_string = '';
 		$id_string = $county_string = $list_price_string = $keyword_string = $listing_date_string = $status_string = '';
-		if ( $id = $parameters['mls'] ) {
+		if ( $id = $this->mls_number ) {
 			$id_string = '&id=' . $id;
 		}
+//		if ( $id = $parameters['mls'] ) {
+//			$id_string = '&id=' . $id;
+//		}
 		if ( $status = $parameters['status'] ) {
 			$status_string = '&status=' . $status;
 		}
@@ -98,7 +103,6 @@ class api_listing_search {
 
 
 		$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . '&listingType=' . $listing_type . '&pageSize=' . $this->page_size . '&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $status_string . $id_string . $keyword_string . $county_string . $list_price_string . $listing_date_string . '&pageNumber=' . $page_number;
-
 
 
 		$listings = wp_remote_get( $url, array( 'headers' => array( 'HJI-Slipstream-Token' => $this->token ) ) );

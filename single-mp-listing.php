@@ -9,7 +9,15 @@ get_header();
 require_once( 'inc/lv_google_map.php' );
 require_once( 'inc/listing_data.php' );
 $listing_data = new listing_data();
-$listing_data->listing_data_from_WP();
+/**
+ * Conditional here based on $_GET Variable (maybe query by MLS Number)
+ */
+if ( isset( $_GET['mls_number'] ) ) {
+	$mls_number = $_GET['mls_number'];
+	$listing_data->listing_data_from_IDX( $mls_number );
+} else {
+	$listing_data->listing_data_from_WP();
+}
 ?>
     <div class="single-listing-wrap">
 
@@ -188,7 +196,6 @@ $listing_data->listing_data_from_WP();
 			 */
 			if ( $listing_data->is_for_sale ) {
 				if ( $unit_mix = $listing_data->unit_mix ) {
-					//if ( $unit_mix = get_field( 'unit_mix' ) ) {
 					?>
                     <div class="unit-mix-outer">
                         <h5 class="section-title">Unit Mix</h5>
@@ -247,9 +254,7 @@ $listing_data->listing_data_from_WP();
                     </div>
 				<?php }
 			} elseif ( $listing_data->is_for_lease ) {
-				if ( $unit_mix = $listing_data->rental_unit_mix ) {
-					//if ( $unit_mix = get_field( 'unit_mix' ) ) {
-					?>
+				if ( $unit_mix = $listing_data->rental_unit_mix ) { ?>
                     <div class="unit-mix-outer">
                         <h5 class="section-title">Rental Unit Mix</h5>
 						<?php foreach ( $unit_mix as $unit ) { ?>
@@ -283,22 +288,6 @@ $listing_data->listing_data_from_WP();
                                         <label>Lease Term</label>
                                         <div class="unit-mix-value">
 											<?php echo ucfirst( $unit['lease_term'] ); ?>
-                                        </div>
-                                    </div>
-								<?php }
-								if ( $unit['average_sq_ft'] ) { ?>
-                                    <div class="unit-mix-item unit-mix-sqft">
-                                        <label>Average Sqft</label>
-                                        <div class="unit-mix-value">
-											<?php echo number_format( $unit['average_sq_ft'] ); ?>
-                                        </div>
-                                    </div>
-								<?php }
-								if ( $unit['average_rent'] ) { ?>
-                                    <div class="unit-mix-item unit-mix-average-rent">
-                                        <label>Average Rent</label>
-                                        <div class="unit-mix-value">
-                                            $<?php echo number_format( $unit['average_rent'] ); ?>
                                         </div>
                                     </div>
 								<?php } ?>
