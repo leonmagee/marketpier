@@ -239,7 +239,8 @@ $listing_data->listing_data_from_WP();
 					<?php } ?>
                 </div>
 			<?php } ?>
-			<?php if ( $file_attachments = $listing_data->file_attachments ) { ?>
+			<?php if ( ($file_attachments = $listing_data->file_attachments) && $file_attachments[0]['file_attachment'] ) {
+				var_dump( $file_attachments ); ?>
                 <div class="file-attachments-wrap">
                     <h5 class="section-title">File Attachments</h5>
 					<?php foreach ( $file_attachments as $file ) { ?>

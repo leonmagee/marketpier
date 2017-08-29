@@ -34,8 +34,16 @@ class lv_google_map_group {
 				/**
 				 *  Move data from PHP array to JS array
 				 */
-				foreach ( $this->location_array as $location ) { ?>
+				foreach ( $this->location_array as $location ) {
+
+				//$latitude = $location['lat'] ? $location['lat'] : 0;
+				//$longitude = $location['long'] ? $location['long'] : 0;
+				?>
                 latlngArray.push({
+//                    latLng: {
+//                        lat: <?php //echo $latitude; ?>//,
+//                        lng: <?php //echo $longitude; ?>
+//                    },
                     address: '<?php echo $location['address']; ?>',
                     price: '<?php echo $location['price']; ?>',
                     url: '<?php echo $location['url']; ?>'
@@ -50,48 +58,55 @@ class lv_google_map_group {
                 var url_array = [];
                 var price_array = [];
                 var geo = new google.maps.Geocoder();
-                var null_items = 0;
 
                 getLatLngAddress(latlngArray, len, geo);
 
                 function getLatLngAddress(latlngArray, array_length, geo) {
 
                     if (count < array_length) {
+
                         var new_address = latlngArray[count].address;
+                        //var latitude = latlngArray[count].latLng.lat;
+                        //var longitude = latlngArray[count].latLng.lng;
                         var listing_url = latlngArray[count].url;
                         var listing_price = latlngArray[count].price;
+
                         geo.geocode({address: new_address}, function (results, status) {
                             console.log('count' + count, results);
-                            if (results[0]) {
-                                var latitude = results[0].geometry.location.lat();
-                                var longitude = results[0].geometry.location.lng();
+                            if (results[0]) { // @todo finish this
+                                //if (!latitude || !longitude) {
+                                    latitude = results[0].geometry.location.lat();
+                                    longitude = results[0].geometry.location.lng();
+                                //}
+
                                 latTotal = latTotal + latitude;
                                 lngTotal = lngTotal + longitude;
+
                                 latitude_array.push(latitude);
                                 longitude_array.push(longitude);
                                 url_array.push(listing_url);
                                 price_array.push(listing_price);
-                            } else {
-                                null_items = ( null_items + 1 );
                             }
+
                             ++count;
+
                             getLatLngAddress(latlngArray, array_length, geo);
                         });
+
                     } else {
-                        /**
-                         * Reset Array Length
-                         */
-                        array_length = (array_length - null_items);
+
                         /**
                          * Calculate Map Center
                          */
                         var center_lat = latTotal / array_length;
                         var center_lng = lngTotal / array_length;
                         var centerLatLng = {lat: center_lat, lng: center_lng};
+
                         /**
                          * Get Map Element
                          */
                         var mapDiv = document.getElementById('map');
+
                         /**
                          * Generate Map
                          */
@@ -101,9 +116,11 @@ class lv_google_map_group {
                             scrollwheel: false,
                             draggable: true
                         });
+
                         /**
                          *  Create Map Markers
                          */
+
                         var squareBg = {
                             path: 'M95.62,34.988c0,5.522-4.478,10-10,10H14.38c-5.523,0-10-4.478-10-10V15.011c0-5.522,4.477-9.999,10-9.999h71.24c5.522,0,10,4.477,10,9.999V34.988z',
                             fillColor: '#00A3E4',
@@ -115,10 +132,16 @@ class lv_google_map_group {
                             labelOrigin: new google.maps.Point(47, 25),
                             anchor: new google.maps.Point(9, 35),
                         };
+
                         for (var index = 0; index < array_length; ++index) {
+
                             var current_price = price_array[index];
+
+                            //var listing_price = '999k';
                             var marker = new google.maps.Marker({
+                                //position: map.getCenter(),
                                 position: {lat: latitude_array[index], lng: longitude_array[index]},
+                                //icon: goldStar,
                                 icon: squareBg,
                                 label: {
                                     text: current_price,
@@ -129,13 +152,18 @@ class lv_google_map_group {
                                 },
                                 map: map
                             });
+
                             var current_link = url_array[index];
+
+
                             new_marker_link(marker, current_link);
+
                             function new_marker_link(marker, current_link) {
                                 marker.addListener('click', function () {
                                     window.location.href = current_link;
                                 });
                             }
+
                         }
                     }
                 }
