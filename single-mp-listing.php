@@ -38,13 +38,13 @@ $listing_data->listing_data_from_WP();
 				<?php if ( $listing_data->price ) { ?>
                     <div class="listing-price"><?php echo '$' . number_format( $listing_data->price ); ?></div>
 				<?php } else { ?>
-                    <div class="listing-price">No Price Given</div>
+                    <div class="listing-price no-price">No Price Given</div>
 				<?php } ?>
 			<?php } elseif ( $listing_data->is_for_lease ) { ?>
 				<?php if ( $listing_data->rent ) { ?>
-                    <div class="listing-price"><?php echo '$' . number_format( $listing_data->rent ); ?> / month</div>
+                    <div class="listing-price"><?php echo '$' . number_format( $listing_data->rent ); ?> <span>/ month</span></div>
 				<?php } else { ?>
-                    <div class="listing-price">No Rent Given</div>
+                    <div class="listing-price no-price">No Rent Given</div>
 				<?php } ?>
 			<?php } ?>
             <div class="save-share-links">

@@ -42,10 +42,27 @@
 
     .listing-price {
       color: $brand-primary;
-      font-size: 35px;
+      font-size: 25px;
       font-weight: 600;
       margin: 10px 0;
       padding: 0;
+      span {
+        font-size: 20px;
+        color: #999;
+        font-weight: 500;
+      }
+      &.no-price {
+        font-size: 20px;
+      }
+      @media(min-width: $screen-sm) {
+        font-size: 35px;
+        span {
+          font-size: 25px;
+        }
+        &.no-price {
+          font-size: 30px;
+        }
+      }
     }
 
     .apn-parcel-id {
