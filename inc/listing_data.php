@@ -63,9 +63,16 @@ class listing_data {
 		$this->image_gallery = $image_gallery_array;
 	}
 
-	public function standardize_image_gallery_IDX( $idx_image_data ) {
-		//@todo process IDX image gallery data
+	public function standardize_image_gallery_IDX( $image_gallery ) {
 		$image_gallery_array = array();
+		if ( $image_gallery ) {
+			foreach ( $image_gallery as $image ) {
+				$image_gallery_array[] = array(
+					'link'  => $image,
+					'image' => $image
+				);
+			}
+		}
 		$this->image_gallery = $image_gallery_array;
 	}
 
@@ -297,7 +304,7 @@ class listing_data {
 //		}
 		$this->listing_date   = date( 'n/j/Y', $listing->listingDate );
 		$this->days_on_market = $listing->daysOnMarket;
-		$this->standardize_image_gallery_IDX( 'image data???' );
+		$this->standardize_image_gallery_IDX( $listing->images );
 		$this->listing_data_update();
 
 
