@@ -117,18 +117,27 @@ class lv_google_map_group {
                         };
                         for (var index = 0; index < array_length; ++index) {
                             var current_price = price_array[index];
-                            var marker = new google.maps.Marker({
-                                position: {lat: latitude_array[index], lng: longitude_array[index]},
-                                icon: squareBg,
-                                label: {
-                                    text: current_price,
-                                    color: '#FFF',
-                                    fontWeight: '700',
-                                    fontFamily: 'Open Sans',
-                                    fontSize: '11px'
-                                },
-                                map: map
-                            });
+                            if ( current_price ) {
+                                var marker = new google.maps.Marker({
+                                    position: {lat: latitude_array[index], lng: longitude_array[index]},
+                                    icon: squareBg,
+                                    label: {
+                                        text: current_price,
+                                        color: '#FFF',
+                                        fontWeight: '700',
+                                        fontFamily: 'Open Sans',
+                                        fontSize: '11px'
+                                    },
+                                    map: map
+                                });
+                            } else {
+                                var marker = new google.maps.Marker({
+                                    position: {lat: latitude_array[index], lng: longitude_array[index]},
+                                    icon: squareBg,
+                                    map: map
+                                });
+                            }
+
                             var current_link = url_array[index];
                             new_marker_link(marker, current_link);
                             function new_marker_link(marker, current_link) {

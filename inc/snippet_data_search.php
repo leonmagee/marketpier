@@ -32,8 +32,8 @@ class snippet_data_search {
 		/**
 		 * Data from $_GET
 		 */
-		$this->author_id = $author_id;
-		$this->status_all = $status_all;
+		$this->author_id      = $author_id;
+		$this->status_all     = $status_all;
 		$this->for_sale_lease = filter_input( INPUT_GET, 'for_sale_lease', FILTER_SANITIZE_ENCODED );
 		$this->status_active  = filter_input( INPUT_GET, 'status_active', FILTER_SANITIZE_ENCODED );
 		$this->status_pending = filter_input( INPUT_GET, 'status_pending', FILTER_SANITIZE_ENCODED );
@@ -205,30 +205,35 @@ class snippet_data_search {
 
 			$price_label = $listing_data->price;
 
-			if ( $price_label > 999999 ) {
-				$decimal     = substr( $price_label, - 6, 1 );
-				$price_label = substr( $price_label, 0, - 6 );
-				if ( $decimal ) {
-					$price_label = $price_label . '.' . $decimal . 'm';
+			if ( $price_label ) {
+				if ( $price_label > 999999 ) {
+					$decimal     = substr( $price_label, - 6, 1 );
+					$price_label = substr( $price_label, 0, - 6 );
+					if ( $decimal ) {
+						$price_label = $price_label . '.' . $decimal . 'm';
+					} else {
+						$price_label = $price_label . 'm';
+					}
+				} elseif ( $price_label > 999 ) {
+					$price_label = substr( $price_label, 0, - 3 );
+					$price_label = $price_label . 'k';
 				} else {
-					$price_label = $price_label . 'm';
+					$price_label = '$' . $price_label;
 				}
-			} elseif ( $price_label > 999 ) {
-				$price_label = substr( $price_label, 0, - 3 );
-				$price_label = $price_label . 'k';
 			} else {
-				$price_label = '$' . $price_label;
+				$price_label = '';
 			}
 
 			/**
 			 * Only add to this array if there are both lat and long, OR a complete address
 			 * Otherwise the listing can't show up on the map.
 			 */
-			if ( ( $listing_data->lat && $listing_data->long ) || $listing_data->combined_address ) {
+			//if ( ( $listing_data->lat && $listing_data->long ) || $listing_data->combined_address ) {
+			if ( $listing_data->combined_address ) {
 
 				$map_data_array_src[] = array(
-					'lat'     => $listing_data->lat,
-					'long'    => $listing_data->long,
+					//'lat'     => $listing_data->lat,
+					//'long'    => $listing_data->long,
 					'address' => $listing_data->combined_address,
 					'price'   => $price_label,
 					'url'     => $listing_data->listing_url
