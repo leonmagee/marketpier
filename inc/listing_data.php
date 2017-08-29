@@ -35,6 +35,7 @@ class listing_data {
 	public $description;
 	public $image_gallery;
 	public $unit_mix;
+	public $rental_unit_mix;
 	public $listing_date;
 	public $city_state_zip;
 	public $combined_address;
@@ -69,6 +70,9 @@ class listing_data {
 	}
 
 	public function listing_data_from_WP() {
+		/**
+		 * @todo - remove from here functionality that will apply to both IDX and WP
+		 */
 		$this->listing_id    = get_the_ID();
 		$this->main_image    = get_field( 'listing_main_image' );
 		$this->mls           = get_field( 'listing_mls_number' );
@@ -106,6 +110,7 @@ class listing_data {
 		$this->cap_rate             = get_field( 'listing_cap_rate' );
 		$this->description          = get_field( 'listing_description' );
 		$this->unit_mix             = get_field( 'listing_unit_mix' );
+		$this->rental_unit_mix      = get_field( 'rental_unit_mix' );
 		$this->file_attachments     = get_field( 'listing_file_attachments' );
 		$this->space_available      = get_field( 'listing_space_available' );
 

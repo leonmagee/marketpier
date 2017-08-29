@@ -42,7 +42,8 @@ $listing_data->listing_data_from_WP();
 				<?php } ?>
 			<?php } elseif ( $listing_data->is_for_lease ) { ?>
 				<?php if ( $listing_data->rent ) { ?>
-                    <div class="listing-price"><?php echo '$' . number_format( $listing_data->rent ); ?> <span>/ month</span></div>
+                    <div class="listing-price"><?php echo '$' . number_format( $listing_data->rent ); ?>
+                        <span>/ month</span></div>
 				<?php } else { ?>
                     <div class="listing-price no-price">No Rent Given</div>
 				<?php } ?>
@@ -166,7 +167,9 @@ $listing_data->listing_data_from_WP();
                         <!-- @todo auto generate this number -->
                         <div class="detail">
                             <div class="detail-label">Space Available</div>
-                            <div class="detail-content"><?php echo number_format( $listing_data->space_available ); ?> sqft</div>
+                            <div class="detail-content"><?php echo number_format( $listing_data->space_available ); ?>
+                                sqft
+                            </div>
                         </div>
 					<?php }
 					if ( $listing_data->is_for_lease && $listing_data->rate_sf_month ) { ?>
@@ -180,67 +183,131 @@ $listing_data->listing_data_from_WP();
                 </div>
             </div>
 			<?php
-			if ( $unit_mix = $listing_data->unit_mix ) {
-				//if ( $unit_mix = get_field( 'unit_mix' ) ) {
-				?>
-                <div class="unit-mix-outer">
-                    <h5 class="section-title">Unit Mix</h5>
-					<?php foreach ( $unit_mix as $unit ) { ?>
-                        <div class="unit-mix-row">
-							<?php if ( $unit['unit_name_plan'] ) { ?>
-                                <div class="unit-mix-item unit-mix-plan">
-                                    <label>Unit Name / Plan</label>
-                                    <div class="unit-mix-value">
-										<?php echo $unit['unit_name_plan']; ?>
+			/**
+			 * @todo - move unit mix to different file?
+			 */
+			if ( $listing_data->is_for_sale ) {
+				if ( $unit_mix = $listing_data->unit_mix ) {
+					//if ( $unit_mix = get_field( 'unit_mix' ) ) {
+					?>
+                    <div class="unit-mix-outer">
+                        <h5 class="section-title">Unit Mix</h5>
+						<?php foreach ( $unit_mix as $unit ) { ?>
+                            <div class="unit-mix-row">
+								<?php if ( $unit['unit_name_plan'] ) { ?>
+                                    <div class="unit-mix-item unit-mix-plan">
+                                        <label>Unit Name / Plan</label>
+                                        <div class="unit-mix-value">
+											<?php echo $unit['unit_name_plan']; ?>
+                                        </div>
                                     </div>
-                                </div>
-							<?php }
-							if ( $unit['number_of_units'] ) { ?>
-                                <div class="unit-mix-item unit-mix-units">
-                                    <label>Units</label>
-                                    <div class="unit-mix-value">
-										<?php echo $unit['number_of_units']; ?>
+								<?php }
+								if ( $unit['number_of_units'] ) { ?>
+                                    <div class="unit-mix-item unit-mix-units">
+                                        <label>Units</label>
+                                        <div class="unit-mix-value">
+											<?php echo $unit['number_of_units']; ?>
+                                        </div>
                                     </div>
-                                </div>
-							<?php }
-							if ( $unit['number_of_beds'] ) { ?>
-                                <div class="unit-mix-item unit-mix-beds">
-                                    <label>Beds</label>
-                                    <div class="unit-mix-value">
-										<?php echo $unit['number_of_beds']; ?>
+								<?php }
+								if ( $unit['number_of_beds'] ) { ?>
+                                    <div class="unit-mix-item unit-mix-beds">
+                                        <label>Beds</label>
+                                        <div class="unit-mix-value">
+											<?php echo $unit['number_of_beds']; ?>
+                                        </div>
                                     </div>
-                                </div>
-							<?php }
-							if ( $unit['number_of_baths'] ) { ?>
-                                <div class="unit-mix-item unit-mix-baths">
-                                    <label>Baths</label>
-                                    <div class="unit-mix-value">
-										<?php echo $unit['number_of_baths']; ?>
+								<?php }
+								if ( $unit['number_of_baths'] ) { ?>
+                                    <div class="unit-mix-item unit-mix-baths">
+                                        <label>Baths</label>
+                                        <div class="unit-mix-value">
+											<?php echo $unit['number_of_baths']; ?>
+                                        </div>
                                     </div>
-                                </div>
-							<?php }
-							if ( $unit['average_sq_ft'] ) { ?>
-                                <div class="unit-mix-item unit-mix-sqft">
-                                    <label>Average Sqft</label>
-                                    <div class="unit-mix-value">
-										<?php echo number_format( $unit['average_sq_ft'] ); ?>
+								<?php }
+								if ( $unit['average_sq_ft'] ) { ?>
+                                    <div class="unit-mix-item unit-mix-sqft">
+                                        <label>Average Sqft</label>
+                                        <div class="unit-mix-value">
+											<?php echo number_format( $unit['average_sq_ft'] ); ?>
+                                        </div>
                                     </div>
-                                </div>
-							<?php }
-							if ( $unit['average_rent'] ) { ?>
-                                <div class="unit-mix-item unit-mix-average-rent">
-                                    <label>Average Rent</label>
-                                    <div class="unit-mix-value">
-                                        $<?php echo number_format( $unit['average_rent'] ); ?>
+								<?php }
+								if ( $unit['average_rent'] ) { ?>
+                                    <div class="unit-mix-item unit-mix-average-rent">
+                                        <label>Average Rent</label>
+                                        <div class="unit-mix-value">
+                                            $<?php echo number_format( $unit['average_rent'] ); ?>
+                                        </div>
                                     </div>
-                                </div>
-							<?php } ?>
-                        </div>
-					<?php } ?>
-                </div>
-			<?php } ?>
-			<?php if ( ($file_attachments = $listing_data->file_attachments) && $file_attachments[0]['file_attachment'] ) {
-				var_dump( $file_attachments ); ?>
+								<?php } ?>
+                            </div>
+						<?php } ?>
+                    </div>
+				<?php }
+			} elseif ( $listing_data->is_for_lease ) {
+				if ( $unit_mix = $listing_data->rental_unit_mix ) {
+					//if ( $unit_mix = get_field( 'unit_mix' ) ) {
+					?>
+                    <div class="unit-mix-outer">
+                        <h5 class="section-title">Rental Unit Mix</h5>
+						<?php foreach ( $unit_mix as $unit ) { ?>
+                            <div class="unit-mix-row">
+								<?php if ( $unit['unit_number'] ) { ?>
+                                    <div class="unit-mix-item unit-mix-unit-number">
+                                        <label>Unit Number</label>
+                                        <div class="unit-mix-value">
+											<?php echo $unit['unit_number']; ?>
+                                        </div>
+                                    </div>
+								<?php }
+								if ( $unit['monthly_asking_rent'] ) { ?>
+                                    <div class="unit-mix-item unit-mix-asking-rent">
+                                        <label>Monthly Rent</label>
+                                        <div class="unit-mix-value">
+											<?php echo '$' . number_format( $unit['monthly_asking_rent'] ); ?>
+                                        </div>
+                                    </div>
+								<?php }
+								if ( $unit['unit_size_sf'] ) { ?>
+                                    <div class="unit-mix-item unit-mix-size-sf">
+                                        <label>Unit Size (SF)</label>
+                                        <div class="unit-mix-value">
+											<?php echo $unit['unit_size_sf']; ?>
+                                        </div>
+                                    </div>
+								<?php }
+								if ( $unit['lease_term'] ) { ?>
+                                    <div class="unit-mix-item unit-mix-lease-term">
+                                        <label>Lease Term</label>
+                                        <div class="unit-mix-value">
+											<?php echo ucfirst( $unit['lease_term'] ); ?>
+                                        </div>
+                                    </div>
+								<?php }
+								if ( $unit['average_sq_ft'] ) { ?>
+                                    <div class="unit-mix-item unit-mix-sqft">
+                                        <label>Average Sqft</label>
+                                        <div class="unit-mix-value">
+											<?php echo number_format( $unit['average_sq_ft'] ); ?>
+                                        </div>
+                                    </div>
+								<?php }
+								if ( $unit['average_rent'] ) { ?>
+                                    <div class="unit-mix-item unit-mix-average-rent">
+                                        <label>Average Rent</label>
+                                        <div class="unit-mix-value">
+                                            $<?php echo number_format( $unit['average_rent'] ); ?>
+                                        </div>
+                                    </div>
+								<?php } ?>
+                            </div>
+						<?php } ?>
+                    </div>
+				<?php }
+			} ?>
+			<?php if ( ( $file_attachments = $listing_data->file_attachments ) && $file_attachments[0]['file_attachment'] ) { ?>
                 <div class="file-attachments-wrap">
                     <h5 class="section-title">File Attachments</h5>
 					<?php foreach ( $file_attachments as $file ) { ?>

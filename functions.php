@@ -29,6 +29,8 @@ require_once( 'inc/agent_update_input_acf.php' );
 require_once( 'inc/output_modal_acf.php' );
 require_once( 'inc/output_modal_shortcode.php' );
 require_once( 'inc/mp_ajax.php' );
+require_once( 'inc/get_slipstream_token.php');
+require_once( 'inc/api_listing_search.php');
 
 /**
  * Create Tables
