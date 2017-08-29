@@ -20,19 +20,24 @@
     }
     h2 {
       color: #222;
-      font-size: 30px;
+      font-size: 24px;
       line-height: 40px;
       font-weight: 600;
       font-family: 'Open Sans'; // @todo control this globally?
       margin-bottom: 0;
       padding-bottom: 0;
-      //@include listing_border_bottom;
-      //padding-bottom: 5px;
-      //margin-bottom: 15px;
+      @media(min-width: $screen-sm) {
+        font-size: 30px;
+      }
+      &.address {
+        font-size: 17px;
+        @media(min-width: $screen-sm) {
+          font-size: 25px;
+        }
+      }
     }
     .address-details {
       color: #AAA;
-      //margin-bottom: 20px;
     }
 
     .listing-price {

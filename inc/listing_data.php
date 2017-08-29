@@ -11,6 +11,7 @@ class listing_data {
 	public $mls;
 	public $property_name;
 	public $price;
+	public $rent;
 	public $address;
 	public $city;
 	public $state;
@@ -64,12 +65,18 @@ class listing_data {
 	}
 
 	public function listing_data_from_WP() {
-		$this->listing_id           = get_the_ID();
-		$this->title                = get_the_title();
-		$this->main_image           = get_field( 'listing_main_image' );
-		$this->mls                  = get_field( 'listing_mls_number' );
-		$this->property_name        = get_field( 'listing_property_name' );
+		$this->listing_id    = get_the_ID();
+		$this->main_image    = get_field( 'listing_main_image' );
+		$this->mls           = get_field( 'listing_mls_number' );
+		$this->property_name = get_field( 'listing_property_name' );
+		if ( $this->property_name ) {
+			$this->title = $this->property_name;
+		} else {
+			$this->title = false;
+			//$this->title = get_the_title();
+		}
 		$this->price                = get_field( 'listing_price' );
+		$this->rent                = get_field( 'listing_monthly_rent' );
 		$this->address              = get_field( 'listing_address' );
 		$this->city                 = get_field( 'listing_city' );
 		$this->state                = get_field( 'listing_state' );

@@ -10,24 +10,42 @@ require_once( 'inc/lv_google_map.php' );
 require_once( 'inc/listing_data.php' );
 $listing_data = new listing_data();
 $listing_data->listing_data_from_WP();
-
-//var_dump( $listing_data );
 ?>
     <div class="single-listing-wrap">
-        <div class="single-listing-details"><h2 class="listing-title"><?php echo $listing_data->title; ?></h2>
 
-            <div class="address-details">
-				<?php if ( $address = $listing_data->combined_address ) {
-					echo $address;
-				} elseif ( $address = $listing_data->city_state_zip ) {
-					echo $address;
-				} ?>
-            </div>
+		<?php if ( $listing_data->combined_address ) {
+			$address = $listing_data->combined_address;
+		} elseif ( $listing_data->city_state_zip ) {
+			$address = $listing_data->city_state_zip;
+		} else {
+			$address = '';
+		} ?>
 
-			<?php if ( $listing_data->price ) { ?>
-                <div class="listing-price"><?php echo '$' . number_format( $listing_data->price ); ?></div>
+        <div class="single-listing-details">
+			<?php if ( $listing_data->title ) { ?>
+                <h2 class="listing-title"><?php echo $listing_data->title; ?></h2>
 			<?php } else { ?>
-                <div class="listing-price">No Price Given</div>
+                <h2 class="listing-title address"><?php echo $address; ?></h2>
+			<?php } ?>
+
+			<?php if ( $listing_data->title ) { ?>
+                <div class="address-details">
+					<?php echo $address; ?>
+                </div>
+			<?php } ?>
+
+			<?php if ( $listing_data->for_sale_for_lease == 'for_sale' ) { ?>
+				<?php if ( $listing_data->price ) { ?>
+                    <div class="listing-price"><?php echo '$' . number_format( $listing_data->price ); ?></div>
+				<?php } else { ?>
+                    <div class="listing-price">No Price Given</div>
+				<?php } ?>
+			<?php } elseif ( $listing_data->for_sale_for_lease == 'for_lease' ) { ?>
+				<?php if ( $listing_data->rent ) { ?>
+                    <div class="listing-price"><?php echo '$' . number_format( $listing_data->rent ); ?> / month</div>
+				<?php } else { ?>
+                    <div class="listing-price">No Rent Given</div>
+				<?php } ?>
 			<?php } ?>
             <div class="save-share-links">
 				<?php if ( is_user_logged_in() ) {
@@ -45,7 +63,8 @@ $listing_data->listing_data_from_WP();
                     <a href="#" data-open="login-modal" class="save-link"><i class="fa fa-heart"></i> Save</a>
 				<?php } ?>
                 <a href="#"><i class="fa fa-share"></i> Share</a>
-                <a href="<?php echo site_url(); ?>/profile/<?php echo $listing_data->author; ?>" class="profile-link"><i class="fa fa-user"></i>
+                <a href="<?php echo site_url(); ?>/profile/<?php echo $listing_data->author; ?>" class="profile-link"><i
+                            class="fa fa-user"></i>
                     Submitter Profile</a>
             </div>
 
