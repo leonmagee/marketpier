@@ -162,6 +162,13 @@ $listing_data->listing_data_from_WP();
                             <div class="detail-content"><?php echo $listing_data->days_on_market; ?></div>
                         </div>
 					<?php }
+					if ( $listing_data->space_available ) { ?>
+                        <!-- @todo auto generate this number -->
+                        <div class="detail">
+                            <div class="detail-label">Space Available</div>
+                            <div class="detail-content"><?php echo number_format( $listing_data->space_available ); ?> sqft</div>
+                        </div>
+					<?php }
 					if ( $listing_data->is_for_lease && $listing_data->rate_sf_month ) { ?>
                         <!-- @todo auto generate this number -->
                         <div class="detail">
