@@ -14,13 +14,16 @@ get_header(); ?>
                 <h1>Slipstream Testing</h1>
 				<?php var_dump( $slipstream_token_query->slipstream_token );
 				$market            = 'sandicor';
-				$listing_page_size = 5;
+				$listing_page_size = 300;
 				$search            = new api_listing_search(
 					$slipstream_token_query->slipstream_token,
 					$listing_page_size,
 					$market
 				);
 				$search->search_listings();
+				foreach ( $search->search_result->listings as $listing ) {
+					var_dump( $listing->id );
+                }
 
 				var_dump( $search->search_result->listings );
 				?>
