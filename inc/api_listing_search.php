@@ -28,6 +28,7 @@ class api_listing_search {
 		$this->features      = true;
 		$this->page_size     = $page_size;
 		$this->network_error = false;
+		$mls_number = '170039114';
 		$this->mls_number    = $mls_number;
 
 	}
@@ -63,6 +64,7 @@ class api_listing_search {
 		//@todo this should be somewhere else
 		//$listing_type = 'residential';
 		$listing_type = 'Commercial';
+		//$listing_type = '';
 //		if ( $listing_date = $parameters['listing_date'] ) {
 //
 //			$listing_date_new = strtotime($listing_date);
@@ -104,6 +106,8 @@ class api_listing_search {
 
 
 		$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . '&listingType=' . $listing_type . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $status_string . $id_string . $keyword_string . $county_string . $list_price_string . $listing_date_string . '&pageNumber=' . $page_number;
+
+		//$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $status_string . $id_string . $keyword_string . $county_string . $list_price_string . $listing_date_string . '&pageNumber=' . $page_number;
 
 
 		$listings = wp_remote_get( $url, array( 'headers' => array( 'HJI-Slipstream-Token' => $this->token ) ) );

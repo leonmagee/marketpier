@@ -49,6 +49,12 @@ class listing_data {
 	public $rate_sf_month;
 	public $is_for_sale;
 	public $is_for_lease;
+	public $listing_agent_name;
+	public $listing_agent_phone;
+	public $listing_agent_id;
+	public $gross_rent_multiplier;
+	public $gross_operating_income;
+	public $operating_expenses;  // net oerating income = gross income - oerating expenses
 
 	public function standardize_image_gallery_WP( $image_gallery ) {
 		$image_gallery_array = array();
@@ -136,6 +142,110 @@ class listing_data {
 		$this->listing_data_update();
 	}
 
+
+	public function listing_data_from_IDX( $mls_number ) {
+
+		/**
+		 * @todo - use the mls number as the id that works with the 'save listing' feature.
+		 */
+
+		$slipstream_token_query = new get_slipstream_token();
+		$market                 = 'sandicor';
+		$listing_page_size      = 5;
+		$search                 = new api_listing_search(
+			$slipstream_token_query->slipstream_token,
+			$listing_page_size,
+			$market,
+			$mls_number
+		);
+		$search->search_listings();
+
+		$listing = $search->search_result->listings[0];
+
+		$listing_type = $listing->listingType;
+		// also - public 'geoType' => string 'listing' (length=7)
+		if ( $listing_type == 'residential' ) {
+			$this->for_sale_for_lease = 'for_sale';
+		} elseif ( $listing_type == 'rental' ) {
+			$this->for_sale_for_lease = 'for_lease';
+		} else {
+			$this->for_sale_for_lease = 'for_sale';
+		}
+
+
+		$this->listing_id = $mls_number; // @todo test with saving listing?
+
+		$this->mls = $mls_number;
+		//$this->property_name = get_field( 'listing_property_name' ); //@todo building name?
+		$this->price   = $listing->listPrice;
+		$this->address = $listing->address->deliveryLine;
+		$this->city    = $listing->address->city;
+		$this->state   = $listing->address->state;
+		$this->zip     = $listing->address->zip;
+		// @todo what does 'rent' look like? - check api docs for rent data?
+		//$this->rent          = $listing->???
+		$this->neighborhood           = $listing->area;
+		$this->county                 = $listing->county;
+		$this->year                   = $listing->yearBuilt;
+		$this->status                 = $listing->status;
+		$this->type                   = $listing_type;
+		$this->sub_type               = $listing->propertyType;
+		$this->building_size          = $listing->size;
+		$this->description            = $listing->description;
+		$this->listing_agent_name     = $listing->listingAgent->name;
+		$this->listing_agent_phone    = $listing->listingAgent->phone;
+		$this->listing_agent_id       = $listing->listingAgent->id;
+		$this->gross_rent_multiplier  = $listing->xf_lm_char25_6; // gross rent multiplier
+		$this->gross_operating_income = $listing->xf_lm_char25_16; // gross operating income
+		$this->operating_expenses     = $listing->xf_lm_char30_24; // operating expenses
+
+		if ( $this->gross_operating_income && $this->operating_expenses ) {
+			$this->net_operating_income = ( $this->gross_operating_income - $this->operating_expenses );
+		}
+
+
+		//public 'listingAgent' =>
+//object(stdClass)[1354]
+//public 'id' => string '644505' (length=6)
+//public 'name' => string 'Patrick Hale' (length=12)
+//public 'phone' => string '619-309-7883' (length=12)
+
+
+//		$this->lat                  = get_field( 'listing_latitude' );
+//		$this->long                 = get_field( 'listing_longitude' );
+//		$selected_type              = get_field( 'listing_type' );
+//		$field_object_type          = get_field_object( 'listing_type' );
+		$this->lot_size        = $listing->lotSize->sqft; // @todo use acres if > 1
+		$this->apn_parcel_id   = $listing->xf_lm_char25_1;
+		$this->number_of_units = $listing->xf_l_numunits; // number of units
+		//$this->net_operating_income = get_field( 'listing_net_operating_income' );
+		$this->cap_rate = $listing->xf_lm_dec_10; // cap rate
+//		$this->unit_mix             = get_field( 'listing_unit_mix' );
+//		$this->rental_unit_mix      = get_field( 'rental_unit_mix' );
+//		$this->file_attachments     = get_field( 'listing_file_attachments' );
+		//$this->space_available = get_field( 'listing_space_available' );
+		/**
+		 * @todo listing agent info? does dan want this?
+		 */
+//		$author_id                  = get_post_field( 'post_author', $this->listing_id );
+//		$this->author               = get_the_author_meta( 'user_nicename', $author_id );
+//		$first_name                 = get_user_meta( $author_id, 'first_name', true );
+//		$last_name                  = get_user_meta( $author_id, 'last_name', true );
+//		if ( $first_name && $last_name ) {
+//			$this->author_name = $first_name . ' ' . $last_name;
+//		} elseif ( $first_name ) {
+//			$this->author_name = $first_name;
+//		} else {
+//			$this->author_name = $this->author;
+//		}
+		$this->listing_date   = date( 'n/j/Y', $listing->listingDate );
+		$this->days_on_market = $listing->daysOnMarket;
+		$this->standardize_image_gallery_IDX( $listing->images );
+		$this->listing_data_update();
+
+
+	}
+
 	public function listing_data_update() {
 		if ( $this->property_name ) {
 			$this->title = $this->property_name;
@@ -219,94 +329,6 @@ class listing_data {
 		} else {
 			$this->favorite_listing = false;
 		}
-
-	}
-
-	public function listing_data_from_IDX( $mls_number ) {
-
-		/**
-		 * @todo - use the mls number as the id that works with the 'save listing' feature.
-		 */
-
-		$slipstream_token_query = new get_slipstream_token();
-		$market                 = 'sandicor';
-		$listing_page_size      = 5;
-		$search                 = new api_listing_search(
-			$slipstream_token_query->slipstream_token,
-			$listing_page_size,
-			$market,
-			$mls_number
-		);
-		$search->search_listings();
-
-		$listing = $search->search_result->listings[0];
-
-
-		//var_dump( $search->search_result->listings[0]->listPrice );
-		//var_dump( $search->search_result->listings );
-
-		$listing_type = $listing->listingType;
-		// also - public 'geoType' => string 'listing' (length=7)
-		if ( $listing_type == 'residential' ) {
-			$this->for_sale_for_lease = 'for_sale';
-		} elseif ( $listing_type == 'rental' ) {
-			$this->for_sale_for_lease = 'for_lease';
-		} else {
-			$this->for_sale_for_lease = 'for_sale';
-		}
-
-
-		$this->listing_id = $mls_number; // @todo test with saving listing?
-
-		$this->mls           = $mls_number;
-		//$this->property_name = get_field( 'listing_property_name' ); //@todo building name?
-		$this->price         = $listing->listPrice;
-		$this->address       = $listing->address->deliveryLine;
-		$this->city          = $listing->address->city;
-		$this->state         = $listing->address->state;
-		$this->zip           = $listing->address->zip;
-		// @todo what does 'rent' look like? - check api docs for rent data?
-		//$this->rent          = $listing->???
-		$this->neighborhood  = $listing->area;
-		$this->county        = $listing->county;
-		$this->year          = $listing->yearBuilt;
-		$this->status        = $listing->status;
-		$this->type          = $listing_type;
-		$this->sub_type      = $listing->propertyType;
-		$this->building_size = $listing->size;
-		$this->description   = $listing->description;
-//		$this->lat                  = get_field( 'listing_latitude' );
-//		$this->long                 = get_field( 'listing_longitude' );
-//		$selected_type              = get_field( 'listing_type' );
-//		$field_object_type          = get_field_object( 'listing_type' );
-		//$this->lot_size             = get_field( 'listing_lot_size' );
-		//$this->apn_parcel_id        = get_field( 'listing_apn_parcel_id' );
-		//$this->number_of_units      = get_field( 'listing_number_of_units' );
-		//$this->net_operating_income = get_field( 'listing_net_operating_income' );
-		//$this->cap_rate             = get_field( 'listing_cap_rate' );
-//		$this->unit_mix             = get_field( 'listing_unit_mix' );
-//		$this->rental_unit_mix      = get_field( 'rental_unit_mix' );
-//		$this->file_attachments     = get_field( 'listing_file_attachments' );
-		//$this->space_available = get_field( 'listing_space_available' );
-		/**
-		 * @todo listing agent info? does dan want this?
-		 */
-//		$author_id                  = get_post_field( 'post_author', $this->listing_id );
-//		$this->author               = get_the_author_meta( 'user_nicename', $author_id );
-//		$first_name                 = get_user_meta( $author_id, 'first_name', true );
-//		$last_name                  = get_user_meta( $author_id, 'last_name', true );
-//		if ( $first_name && $last_name ) {
-//			$this->author_name = $first_name . ' ' . $last_name;
-//		} elseif ( $first_name ) {
-//			$this->author_name = $first_name;
-//		} else {
-//			$this->author_name = $this->author;
-//		}
-		$this->listing_date   = date( 'n/j/Y', $listing->listingDate );
-		$this->days_on_market = $listing->daysOnMarket;
-		$this->standardize_image_gallery_IDX( $listing->images );
-		$this->listing_data_update();
-
 
 	}
 }

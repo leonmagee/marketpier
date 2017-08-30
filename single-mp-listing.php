@@ -312,6 +312,19 @@ if ( $request_details[2] == 'idx' ) {
 					<?php } ?>
                 </div>
 			<?php } ?>
+			<?php if ( $listing_agent_name = $listing_data->listing_agent_name ) { ?>
+                <div class="listing-agent-attribution">
+                    <div class="listing-agent-name">
+                        Listing Provided Courtesy of <?php echo $listing_agent_name; ?>
+                    </div>
+                    <?php if ( $listing_agent_phone = $listing_data->listing_agent_phone ) { ?>
+                        <div class="listing-agent-phone"><?php echo $listing_agent_phone; ?></div>
+                    <?php } ?>
+	                <?php if ( $listing_agent_id = $listing_data->listing_agent_id ) { ?>
+                        <div class="listing-agent-id">#<?php echo $listing_agent_id; ?></div>
+	                <?php } ?>
+                </div>
+			<?php } ?>
         </div>
 
         <div class="single-listing-gallery"><!-- @todo change the name of this class - holds more than images -->
