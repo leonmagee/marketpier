@@ -256,10 +256,10 @@ class listing_data {
 		}
 
 
-		$this->listing_id = get_the_ID();
+		$this->listing_id = $mls_number; // @todo test with saving listing?
 
 		$this->mls           = $mls_number;
-		$this->property_name = get_field( 'listing_property_name' );
+		//$this->property_name = get_field( 'listing_property_name' ); //@todo building name?
 		$this->price         = $listing->listPrice;
 		$this->address       = $listing->address->deliveryLine;
 		$this->city          = $listing->address->city;

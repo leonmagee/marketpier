@@ -398,16 +398,14 @@ add_filter( 'acf/load_field', 'disable_acf_load_field' );
 
 /**
  * Link Slipstream API URL to page template
+ * This checks to see if '/idx/' is present in the url, and if so it uses the appropriate template.
  */
 
 add_action( 'init', 'link_slipstream_url' );
 
 function link_slipstream_url() {
 	$url_path = trim( parse_url( add_query_arg( array() ), PHP_URL_PATH ), '/' );
-	//var_dump( $url_path );
-	$str_pos = strpos( $url_path, '/idx/' );
-	//var_dump( $str_pos );
-	//if ( $url_path === 'listings/idx' ) {
+	$str_pos  = strpos( $url_path, '/idx/' );
 	if ( $str_pos ) {
 		$load = locate_template( 'single-mp-listing.php', true );
 		if ( $load ) {

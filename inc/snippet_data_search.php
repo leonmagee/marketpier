@@ -5,7 +5,7 @@
  *
  * Returns data for snippets
  * Handles form submission - just for WordPress
- * @todo make separate method? to query data for Rets API - you will want to be searching them both at once
+ * @todo make separate method? to query data for Slipstream API - you will want to be searching them both at once
  * @todo and returning the WordPress data first.
  */
 class snippet_data_search {
@@ -50,6 +50,9 @@ class snippet_data_search {
 		$this->lot_size_min   = intval( filter_input( INPUT_GET, 'lot_size_min', FILTER_SANITIZE_SPECIAL_CHARS ) );
 		$this->days_on_market = intval( filter_input( INPUT_GET, 'days_on_market', FILTER_SANITIZE_SPECIAL_CHARS ) );
 
+		/**
+		 * @todo step 1 - get data - step 2 - process WP search terms?
+		 */
 		//$this->price_min = $price_min;
 		//var_dump( $price_min );
 		//var_dump( $price_max );
@@ -242,6 +245,14 @@ class snippet_data_search {
 		}
 		$this->snippet_object_array = $snippet_objects;
 		$this->map_data_array       = $map_data_array_src;
+	}
+
+	public function process_wp_search() {
+
+	}
+
+	public function process_idx_search() {
+
 	}
 
 	public function get_string_array( $var ) {
