@@ -51,6 +51,15 @@ class snippet_data_search {
 		$this->days_on_market = intval( filter_input( INPUT_GET, 'days_on_market', FILTER_SANITIZE_SPECIAL_CHARS ) );
 
 		/**
+		 * Here you can process the WP search and then the IDX search
+		 */
+		//$this->process_wp_search();
+
+		$this->process_idx_search();
+	}
+
+	public function process_wp_search() {
+		/**
 		 * @todo step 1 - get data - step 2 - process WP search terms?
 		 */
 		//$this->price_min = $price_min;
@@ -71,6 +80,10 @@ class snippet_data_search {
 			$status_array[] = 'sold';
 		}
 
+		/**
+		 * @todo use this same function for IDX city or zip code search?
+		 * @todo test this with WP and then IDX data to make it work
+		 */
 		$meta_search_array = array();
 		if ( $city_zip = $this->city_zip ) {
 			if ( is_numeric( $city_zip ) ) {
@@ -206,26 +219,7 @@ class snippet_data_search {
 
 			$snippet_objects[] = $listing_data;
 
-			$price_label = $listing_data->price;
-
-			if ( $price_label ) {
-				if ( $price_label > 999999 ) {
-					$decimal     = substr( $price_label, - 6, 1 );
-					$price_label = substr( $price_label, 0, - 6 );
-					if ( $decimal ) {
-						$price_label = $price_label . '.' . $decimal . 'm';
-					} else {
-						$price_label = $price_label . 'm';
-					}
-				} elseif ( $price_label > 999 ) {
-					$price_label = substr( $price_label, 0, - 3 );
-					$price_label = $price_label . 'k';
-				} else {
-					$price_label = '$' . $price_label;
-				}
-			} else {
-				$price_label = '';
-			}
+			$price_label = $this->map_price_label( $listing_data->price );
 
 			/**
 			 * Only add to this array if there are both lat and long, OR a complete address
@@ -247,12 +241,214 @@ class snippet_data_search {
 		$this->map_data_array       = $map_data_array_src;
 	}
 
-	public function process_wp_search() {
+	public function process_idx_search() {
+		$status_array = array();
+		if ( $this->status_active ) {
+			$status_array[] = 'active';
+		}
+		if ( $this->status_pending ) {
+			$status_array[] = 'pending';
+		}
+		if ( $this->status_sold ) {
+			$status_array[] = 'sold';
+		}
 
+		/**
+		 * @todo use this same function for IDX city or zip code search?
+		 * @todo test this with WP and then IDX data to make it work
+		 */
+		$meta_search_array = array();
+		if ( $city_zip = $this->city_zip ) {
+			if ( is_numeric( $city_zip ) ) {
+//				$meta_search_array[] = array(
+//					'key'   => 'listing_zip',
+//					'value' => $city_zip
+//				);
+			} else {
+				$city_zip_strip = str_replace( array( ',', '-', '/', '|', '.' ), '', $city_zip );
+				$city_zip_array = $this->get_string_array( $city_zip_strip );
+//				$meta_search_array[] = array(
+//					'key'     => 'listing_city',
+//					'value'   => $city_zip_array,
+//					'compare' => 'IN'
+//				);
+			}
+		}
+		if ( $for_sale_lease = $this->for_sale_lease ) {
+//			$meta_search_array[] = array(
+//				'key'   => 'listing_for_sale_or_for_lease',
+//				'value' => $for_sale_lease
+//			);
+		} else {
+//			$meta_search_array[] = array(
+//				'key'   => 'listing_for_sale_or_for_lease',
+//				'value' => 'for_sale'
+//			);
+		}
+		if ( $status_array ) {
+//			$meta_search_array[] = array(
+//				'key'     => 'listing_status',
+//				'value'   => $status_array,
+//				'compare' => 'IN'
+//			);
+		} else {
+			if ( ! $this->status_all ) {
+
+//				$meta_search_array[] = array(
+//					'key'   => 'listing_status',
+//					'value' => 'active'
+//				);
+			}
+		}
+		if ( $property_type = $this->property_type ) {
+			if ( $property_type !== 'all_property_types' ) {
+//				$meta_search_array[] = array(
+//					'key'   => 'listing_type',
+//					'value' => $property_type
+//				);
+			}
+		}
+		if ( $price_min = $this->price_min ) {
+//			$meta_search_array[] = array(
+//				'key'     => 'listing_price',
+//				'value'   => $price_min,
+//				'compare' => '>=',
+//				'type'    => 'NUMERIC'
+//			);
+		}
+		if ( $price_max = $this->price_max ) {
+//			$meta_search_array[] = array(
+//				'key'     => 'listing_price',
+//				'value'   => $price_max,
+//				'compare' => '<=',
+//				'type'    => 'NUMERIC'
+//			);
+		}
+		if ( $sqft_min = $this->sqft_min ) {
+//			$meta_search_array[] = array(
+//				'key'     => 'listing_building_size',
+//				'value'   => $sqft_min,
+//				'compare' => '>=',
+//				'type'    => 'NUMERIC'
+//			);
+		}
+		if ( $sqft_max = $this->sqft_max ) {
+//			$meta_search_array[] = array(
+//				'key'     => 'listing_building_size',
+//				'value'   => $sqft_max,
+//				'compare' => '<=',
+//				'type'    => 'NUMERIC'
+//			);
+		}
+		if ( $cap_rate_min = $this->cap_rate_min ) {
+//			$meta_search_array[] = array(
+//				'key'     => 'listing_cap_rate',
+//				'value'   => $cap_rate_min,
+//				'compare' => '>=',
+//				'type'    => 'FLOAT'
+//			);
+		}
+		if ( $cap_rate_max = $this->cap_rate_max ) {
+//			$meta_search_array[] = array(
+//				'key'     => 'listing_cap_rate',
+//				'value'   => $cap_rate_max,
+//				'compare' => '<=',
+//				'type'    => 'FLOAT'
+//			);
+		}
+		if ( $lot_size_min = $this->lot_size_min ) {
+//			$meta_search_array[] = array(
+//				'key'     => 'listing_lot_size',
+//				'value'   => $lot_size_min,
+//				'compare' => '>=',
+//				'type'    => 'NUMERIC'
+//			);
+		}
+		if ( $days_on_market = $this->days_on_market ) {
+//			$date_query = array(
+//				'column' => 'post_date',
+//				'after'  => '- ' . $days_on_market . ' days'
+//			);
+		} else {
+			//$date_query = null;
+		}
+
+//		$snippet_objects    = array();
+//		$map_data_array_src = array();
+//		$args               = array(
+//			'post_type'  => 'mp-listing',
+//			'author'     => $this->author_id,
+//			'meta_query' => $meta_search_array,
+//			'date_query' => $date_query
+//		);
+//		$listing_query      = new WP_Query( $args );
+
+
+		$slipstream_token_query = new get_slipstream_token();
+		$market                 = 'sandicor';
+		$listing_page_size      = 10;
+		$search                 = new api_listing_search(
+			$slipstream_token_query->slipstream_token,
+			$listing_page_size,
+			$market
+		);
+		$search->search_listings();
+
+		$listings = $search->search_result->listings;
+
+		foreach ( $listings as $listing ) {
+
+			$listing_data = new snippet_data();
+			$listing_data->listing_data_from_IDX( $listing );
+
+			$snippet_objects[] = $listing_data;
+
+			$price_label = $this->map_price_label( $listing_data->price );
+
+			/**
+			 * Only add to this array if there are both lat and long, OR a complete address
+			 * Otherwise the listing can't show up on the map.
+			 */
+			//if ( ( $listing_data->lat && $listing_data->long ) || $listing_data->combined_address ) {
+			if ( $listing_data->combined_address ) {
+
+				$map_data_array_src[] = array(
+					//'lat'     => $listing_data->lat,
+					//'long'    => $listing_data->long,
+					'address' => $listing_data->combined_address,
+					'price'   => $price_label,
+					'url'     => $listing_data->listing_url
+				);
+			}
+		}
+
+
+		$this->snippet_object_array = $snippet_objects;
+		$this->map_data_array       = $map_data_array_src;
 	}
 
-	public function process_idx_search() {
+	public function map_price_label( $price_label ) {
 
+		if ( $price_label ) {
+			if ( $price_label > 999999 ) {
+				$decimal     = substr( $price_label, - 6, 1 );
+				$price_label = substr( $price_label, 0, - 6 );
+				if ( $decimal ) {
+					$price_label = $price_label . '.' . $decimal . 'm';
+				} else {
+					$price_label = $price_label . 'm';
+				}
+			} elseif ( $price_label > 999 ) {
+				$price_label = substr( $price_label, 0, - 3 );
+				$price_label = $price_label . 'k';
+			} else {
+				$price_label = '$' . $price_label;
+			}
+		} else {
+			$price_label = '';
+		}
+
+		return $price_label;
 	}
 
 	public function get_string_array( $var ) {

@@ -106,8 +106,7 @@ class snippet_data {
 		$this->snippet_data_update();
 	}
 
-	public function listing_data_from_IDX($listing) {
-
+	public function listing_data_from_IDX( $listing ) {
 
 
 //		$slipstream_token_query = new get_slipstream_token();
@@ -132,17 +131,18 @@ class snippet_data {
 			$this->for_sale_for_lease = 'for_sale';
 		}
 
-		//$this->listing_id = get_the_ID();
+		$this->listing_id  = $listing->id; // mls number
+		$this->listing_url = site_url() . '/listing/idx/' . $this->listing_id;
 		//$this->property_name = get_field( 'listing_property_name' );
-		$this->price         = $listing->listPrice;
-		$this->address       = $listing->address->deliveryLine;
-		$this->city          = $listing->address->city;
-		$this->state         = $listing->address->state;
-		$this->zip           = $listing->address->zip;
-		$this->type          = $listing_type;
-		$this->building_size = $listing->size;
+		$this->price          = $listing->listPrice;
+		$this->address        = $listing->address->deliveryLine;
+		$this->city           = $listing->address->city;
+		$this->state          = $listing->address->state;
+		$this->zip            = $listing->address->zip;
+		$this->type           = $listing_type;
+		$this->building_size  = $listing->size;
 		$this->days_on_market = $listing->daysOnMarket;
-		$this->standardize_image_gallery_IDX( $listing->images );
+		$this->standardize_snippet_image_IDX( $listing->images );
 		$this->snippet_data_update();
 	}
 
