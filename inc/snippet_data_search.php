@@ -242,6 +242,10 @@ class snippet_data_search {
 	}
 
 	public function process_idx_search() {
+		$parameters = array();
+
+		// @todo do I need a status array?
+		// @todo make this work with statuses available in api
 		$status_array = array();
 		if ( $this->status_active ) {
 			$status_array[] = 'active';
@@ -257,9 +261,11 @@ class snippet_data_search {
 		 * @todo use this same function for IDX city or zip code search?
 		 * @todo test this with WP and then IDX data to make it work
 		 */
-		$meta_search_array = array();
+		//$meta_search_array = array();
 		if ( $city_zip = $this->city_zip ) {
 			if ( is_numeric( $city_zip ) ) {
+
+				$parameters['zip'] = $city_zip;
 //				$meta_search_array[] = array(
 //					'key'   => 'listing_zip',
 //					'value' => $city_zip
@@ -392,7 +398,7 @@ class snippet_data_search {
 			$listing_page_size,
 			$market
 		);
-		$search->search_listings();
+		$search->search_listings( $parameters );
 
 		$listings = $search->search_result->listings;
 

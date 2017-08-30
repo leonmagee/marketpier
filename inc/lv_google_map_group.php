@@ -11,7 +11,7 @@ class lv_google_map_group {
 	public $location_array;
 	public $zoom;
 
-	public function __construct( $location_array, $zoom = 12 ) {
+	public function __construct( $location_array, $zoom = 11 ) {
 
 		$this->location_array = $location_array;
 		$this->zoom           = $zoom;

@@ -14,7 +14,7 @@ get_header(); ?>
                 <h1>Slipstream Testing</h1>
 				<?php var_dump( $slipstream_token_query->slipstream_token );
 				$market            = 'sandicor';
-				$listing_page_size = 100;
+				$listing_page_size = 10;
 				$search            = new api_listing_search(
 					$slipstream_token_query->slipstream_token,
 					$listing_page_size,
@@ -23,7 +23,8 @@ get_header(); ?>
 				$search->search_listings();
 				//var_dump(  $search->search_result );
 				foreach ( $search->search_result->listings as $listing ) {
-					var_dump( $listing );
+					var_dump( $listing->status );
+					//var_dump( $listing);
                 }
 
 				//var_dump( $search->search_result->listings );
