@@ -34,9 +34,17 @@ class lv_google_map_group {
 				/**
 				 *  Move data from PHP array to JS array
 				 */
-				foreach ( $this->location_array as $location ) { ?>
+				foreach ( $this->location_array as $location ) {
+				$latitude = $location['lat'] ? $location['lat'] : 0;
+				$longitude = $location['long'] ? $location['long'] : 0;
+				?>
                 latlngArray.push({
-                    address: '<?php echo $location['address']; ?>',
+                    latLng: {
+                        lat: <?php echo $latitude; ?>,
+                        lng: <?php echo $longitude; ?>
+                    },
+                    //address: '<?php echo $location['address']; ?>',
+                    address: '2342342342sdlkfhskdlhfskdhfsdfhj',
                     price: '<?php echo $location['price']; ?>',
                     url: '<?php echo $location['url']; ?>'
                 });
@@ -57,22 +65,35 @@ class lv_google_map_group {
                 function getLatLngAddress(latlngArray, array_length, geo) {
 
                     if (count < array_length) {
+                        var latitude = latlngArray[count].latLng.lat;
+                        var longitude = latlngArray[count].latLng.lng;
+                        //console.log('lat', latitude);
+                        //console.log('long', longitude);
                         var new_address = latlngArray[count].address;
                         var listing_url = latlngArray[count].url;
                         var listing_price = latlngArray[count].price;
                         geo.geocode({address: new_address}, function (results, status) {
-                            console.log('count' + count, results);
-                            if (results[0]) {
-                                var latitude = results[0].geometry.location.lat();
-                                var longitude = results[0].geometry.location.lng();
+                            //console.log('count' + count, results);
+                            if (!latitude || !longitude) {
+                                if (results[0]) {
+                                    latitude = results[0].geometry.location.lat();
+                                    longitude = results[0].geometry.location.lng();
+                                    latTotal = latTotal + latitude;
+                                    lngTotal = lngTotal + longitude;
+                                    latitude_array.push(latitude);
+                                    longitude_array.push(longitude);
+                                    url_array.push(listing_url);
+                                    price_array.push(listing_price);
+                                } else {
+                                    null_items = ( null_items + 1 );
+                                }
+                            } else {
                                 latTotal = latTotal + latitude;
                                 lngTotal = lngTotal + longitude;
                                 latitude_array.push(latitude);
                                 longitude_array.push(longitude);
                                 url_array.push(listing_url);
                                 price_array.push(listing_price);
-                            } else {
-                                null_items = ( null_items + 1 );
                             }
                             ++count;
                             getLatLngAddress(latlngArray, array_length, geo);
@@ -117,7 +138,7 @@ class lv_google_map_group {
                         };
                         for (var index = 0; index < array_length; ++index) {
                             var current_price = price_array[index];
-                            if ( current_price ) {
+                            if (current_price) {
                                 var marker = new google.maps.Marker({
                                     position: {lat: latitude_array[index], lng: longitude_array[index]},
                                     icon: squareBg,

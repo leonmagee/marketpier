@@ -225,6 +225,8 @@ class snippet_data_search {
 				$map_data_array_src[] = array(
 					//'lat'     => $listing_data->lat,
 					//'long'    => $listing_data->long,
+					'lat'     => false,
+					'long'    => false,
 					'address' => $listing_data->combined_address,
 					'price'   => $price_label,
 					'url'     => $listing_data->listing_url
@@ -279,21 +281,17 @@ class snippet_data_search {
 //		if ( $this->status_sold ) {
 //			$status_array[] = 'sold';
 //		}
-
-
 //		if ( $for_sale_lease = $this->for_sale_lease ) {
-
 //		} else {
-
 //		}
-		if ( $status_array ) {
-
-		} else {
-			if ( ! $this->status_all ) {
-
-
-			}
-		}
+//		if ( $status_array ) {
+//
+//		} else {
+//			if ( ! $this->status_all ) {
+//
+//
+//			}
+//		}
 		if ( $property_type = $this->property_type ) {
 			if ( $property_type !== 'all_property_types' ) {
 
@@ -302,52 +300,19 @@ class snippet_data_search {
 
 
 		if ( $cap_rate_min = $this->cap_rate_min ) {
-//			$meta_search_array[] = array(
-//				'key'     => 'listing_cap_rate',
-//				'value'   => $cap_rate_min,
-//				'compare' => '>=',
-//				'type'    => 'FLOAT'
-//			);
 		}
 		if ( $cap_rate_max = $this->cap_rate_max ) {
-//			$meta_search_array[] = array(
-//				'key'     => 'listing_cap_rate',
-//				'value'   => $cap_rate_max,
-//				'compare' => '<=',
-//				'type'    => 'FLOAT'
-//			);
 		}
 		if ( $lot_size_min = $this->lot_size_min ) {
-//			$meta_search_array[] = array(
-//				'key'     => 'listing_lot_size',
-//				'value'   => $lot_size_min,
-//				'compare' => '>=',
-//				'type'    => 'NUMERIC'
-//			);
 		}
 		if ( $days_on_market = $this->days_on_market ) {
-//			$date_query = array(
-//				'column' => 'post_date',
-//				'after'  => '- ' . $days_on_market . ' days'
-//			);
 		} else {
-			//$date_query = null;
 		}
-
-//		$snippet_objects    = array();
-//		$map_data_array_src = array();
-//		$args               = array(
-//			'post_type'  => 'mp-listing',
-//			'author'     => $this->author_id,
-//			'meta_query' => $meta_search_array,
-//			'date_query' => $date_query
-//		);
-//		$listing_query      = new WP_Query( $args );
 
 
 		$slipstream_token_query = new get_slipstream_token();
 		$market                 = 'sandicor';
-		$listing_page_size      = 10;
+		$listing_page_size      = 500;
 		$search                 = new api_listing_search(
 			$slipstream_token_query->slipstream_token,
 			$listing_page_size,
@@ -358,7 +323,7 @@ class snippet_data_search {
 		$listings = $search->search_result->listings;
 
 		$this->total_results = $search->total_listings;
-
+		//$counter = 1;
 		foreach ( $listings as $listing ) {
 
 			$listing_data = new snippet_data();
@@ -373,11 +338,17 @@ class snippet_data_search {
 			 * Otherwise the listing can't show up on the map.
 			 */
 			//if ( ( $listing_data->lat && $listing_data->long ) || $listing_data->combined_address ) {
+
 			if ( $listing_data->combined_address ) {
+//				var_dump( $counter );
+//				$counter++;
+//				var_dump( $listing_data->lat );
+//				var_dump( $listing_data->long );
+
 
 				$map_data_array_src[] = array(
-					//'lat'     => $listing_data->lat,
-					//'long'    => $listing_data->long,
+					'lat'     => $listing_data->lat,
+					'long'    => $listing_data->long,
 					'address' => $listing_data->combined_address,
 					'price'   => $price_label,
 					'url'     => $listing_data->listing_url

@@ -30,7 +30,6 @@ class api_listing_search {
 		$this->network_error = false;
 		//$mls_number = '170039114';
 		$this->mls_number = $mls_number;
-
 	}
 
 	public function search_listings( $parameters = null, $page_number = 1 ) {

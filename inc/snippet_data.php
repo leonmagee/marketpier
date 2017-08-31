@@ -108,20 +108,6 @@ class snippet_data {
 
 	public function listing_data_from_IDX( $listing ) {
 
-
-//		$slipstream_token_query = new get_slipstream_token();
-//		$market                 = 'sandicor';
-//		$listing_page_size      = 5;
-//		$search                 = new api_listing_search(
-//			$slipstream_token_query->slipstream_token,
-//			$listing_page_size,
-//			$market,
-//			$mls_number
-//		);
-//		$search->search_listings();
-//
-//		$listing = $search->search_result->listings[0];
-
 		$listing_type = $listing->listingType;
 		if ( $listing_type == 'residential' ) {
 			$this->for_sale_for_lease = 'for_sale';
@@ -131,9 +117,8 @@ class snippet_data {
 			$this->for_sale_for_lease = 'for_sale';
 		}
 
-		$this->listing_id  = $listing->id; // mls number
-		$this->listing_url = site_url() . '/listing/idx/' . $this->listing_id;
-		//$this->property_name = get_field( 'listing_property_name' );
+		$this->listing_id     = $listing->id; // mls number
+		$this->listing_url    = site_url() . '/listing/idx/' . $this->listing_id;
 		$this->price          = $listing->listPrice;
 		$this->address        = $listing->address->deliveryLine;
 		$this->city           = $listing->address->city;
@@ -142,6 +127,8 @@ class snippet_data {
 		$this->type           = $listing_type;
 		$this->building_size  = $listing->size;
 		$this->days_on_market = $listing->daysOnMarket;
+		$this->lat            = $listing->coordinates->latitude;
+		$this->long           = $listing->coordinates->longitude;
 		$this->standardize_snippet_image_IDX( $listing->images );
 		$this->snippet_data_update();
 	}
@@ -152,8 +139,6 @@ class snippet_data {
 		} else {
 			$this->combined_address = false;
 		}
-
 		$this->city_state_zip = $this->city . ', ' . $this->state . ' ' . $this->zip;
-
 	}
 }

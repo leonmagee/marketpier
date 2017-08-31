@@ -6,7 +6,7 @@
  * to callback function 'initMap' - https://maps.googleapis.com/maps/api/js?callback=initMap
  *
  */
-class lv_google_map_group {
+class lv_google_map_group_old {
 
 	public $location_array;
 	public $zoom;
@@ -66,18 +66,18 @@ class lv_google_map_group {
                     if (count < array_length) {
 
                         var new_address = latlngArray[count].address;
-                        //var latitude = latlngArray[count].latLng.lat;
-                        //var longitude = latlngArray[count].latLng.lng;
+                        var latitude = latlngArray[count].latLng.lat;
+                        var longitude = latlngArray[count].latLng.lng;
                         var listing_url = latlngArray[count].url;
                         var listing_price = latlngArray[count].price;
 
                         geo.geocode({address: new_address}, function (results, status) {
                             console.log('count' + count, results);
                             if (results[0]) { // @todo finish this
-                                //if (!latitude || !longitude) {
+                                if (!latitude || !longitude) {
                                     latitude = results[0].geometry.location.lat();
                                     longitude = results[0].geometry.location.lng();
-                                //}
+                                }
 
                                 latTotal = latTotal + latitude;
                                 lngTotal = lngTotal + longitude;

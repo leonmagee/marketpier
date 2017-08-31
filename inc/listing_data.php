@@ -151,7 +151,7 @@ class listing_data {
 
 		$slipstream_token_query = new get_slipstream_token();
 		$market                 = 'sandicor';
-		$listing_page_size      = 5;
+		$listing_page_size      = 1;
 		$search                 = new api_listing_search(
 			$slipstream_token_query->slipstream_token,
 			$listing_page_size,
@@ -161,7 +161,6 @@ class listing_data {
 		$search->search_listings();
 
 		$listing = $search->search_result->listings[0];
-
 		$listing_type = $listing->listingType;
 		// also - public 'geoType' => string 'listing' (length=7)
 		if ( $listing_type == 'residential' ) {
@@ -173,17 +172,16 @@ class listing_data {
 		}
 
 
-		$this->listing_id = $mls_number; // @todo test with saving listing?
-
-		$this->mls = $mls_number;
-		//$this->property_name = get_field( 'listing_property_name' ); //@todo building name?
-		$this->price   = $listing->listPrice;
-		$this->address = $listing->address->deliveryLine;
-		$this->city    = $listing->address->city;
-		$this->state   = $listing->address->state;
-		$this->zip     = $listing->address->zip;
 		// @todo what does 'rent' look like? - check api docs for rent data?
 		//$this->rent          = $listing->???
+
+		$this->listing_id             = $mls_number; // @todo test with saving listing? do I need this twice?
+		$this->mls                    = $mls_number;
+		$this->price                  = $listing->listPrice;
+		$this->address                = $listing->address->deliveryLine;
+		$this->city                   = $listing->address->city;
+		$this->state                  = $listing->address->state;
+		$this->zip                    = $listing->address->zip;
 		$this->neighborhood           = $listing->area;
 		$this->county                 = $listing->county;
 		$this->year                   = $listing->yearBuilt;
@@ -195,51 +193,22 @@ class listing_data {
 		$this->listing_agent_name     = $listing->listingAgent->name;
 		$this->listing_agent_phone    = $listing->listingAgent->phone;
 		$this->listing_agent_id       = $listing->listingAgent->id;
+		$this->lat                    = $listing->coordinates->latitude;
+		$this->long                   = $listing->coordinates->longitude;
 		$this->gross_rent_multiplier  = $listing->xf_lm_char25_6; // gross rent multiplier
 		$this->gross_operating_income = $listing->xf_lm_char25_16; // gross operating income
 		$this->operating_expenses     = $listing->xf_lm_char30_24; // operating expenses
+		$this->lot_size               = $listing->lotSize->sqft; // @todo use acres if > 1 - can process this on fron end?
+		$this->apn_parcel_id          = $listing->xf_lm_char25_1;
+		$this->number_of_units        = $listing->xf_l_numunits; // number of units
+		$this->cap_rate               = $listing->xf_lm_dec_10; // cap rate
+		$this->listing_date           = date( 'n/j/Y', $listing->listingDate );
+		$this->days_on_market         = $listing->daysOnMarket;
 
 		if ( $this->gross_operating_income && $this->operating_expenses ) {
 			$this->net_operating_income = ( $this->gross_operating_income - $this->operating_expenses );
 		}
 
-
-		//public 'listingAgent' =>
-//object(stdClass)[1354]
-//public 'id' => string '644505' (length=6)
-//public 'name' => string 'Patrick Hale' (length=12)
-//public 'phone' => string '619-309-7883' (length=12)
-
-
-//		$this->lat                  = get_field( 'listing_latitude' );
-//		$this->long                 = get_field( 'listing_longitude' );
-//		$selected_type              = get_field( 'listing_type' );
-//		$field_object_type          = get_field_object( 'listing_type' );
-		$this->lot_size        = $listing->lotSize->sqft; // @todo use acres if > 1
-		$this->apn_parcel_id   = $listing->xf_lm_char25_1;
-		$this->number_of_units = $listing->xf_l_numunits; // number of units
-		//$this->net_operating_income = get_field( 'listing_net_operating_income' );
-		$this->cap_rate = $listing->xf_lm_dec_10; // cap rate
-//		$this->unit_mix             = get_field( 'listing_unit_mix' );
-//		$this->rental_unit_mix      = get_field( 'rental_unit_mix' );
-//		$this->file_attachments     = get_field( 'listing_file_attachments' );
-		//$this->space_available = get_field( 'listing_space_available' );
-		/**
-		 * @todo listing agent info? does dan want this?
-		 */
-//		$author_id                  = get_post_field( 'post_author', $this->listing_id );
-//		$this->author               = get_the_author_meta( 'user_nicename', $author_id );
-//		$first_name                 = get_user_meta( $author_id, 'first_name', true );
-//		$last_name                  = get_user_meta( $author_id, 'last_name', true );
-//		if ( $first_name && $last_name ) {
-//			$this->author_name = $first_name . ' ' . $last_name;
-//		} elseif ( $first_name ) {
-//			$this->author_name = $first_name;
-//		} else {
-//			$this->author_name = $this->author;
-//		}
-		$this->listing_date   = date( 'n/j/Y', $listing->listingDate );
-		$this->days_on_market = $listing->daysOnMarket;
 		$this->standardize_image_gallery_IDX( $listing->images );
 		$this->listing_data_update();
 
