@@ -215,3 +215,35 @@ a.snippet-link-outer {
   font-size: 18px;
   margin: 30px;
 }
+
+.search-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 25px;
+  background-color: #DDD;
+  border-bottom: 1px solid #D7D7D7;
+  color: #444;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 13px;
+  .total-results {
+  }
+  .nav-link {
+    opacity: 0.4;
+    &.active {
+      cursor: pointer;
+      opacity: 1;
+      &:hover {
+        color: $brand-primary;
+      }
+    }
+    &.prev-page {
+
+    }
+    &.next-page {
+
+    }
+  }
+}
+

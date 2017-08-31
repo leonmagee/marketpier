@@ -21,12 +21,22 @@ get_header();
 			} ?>
         </div>
         <div class="search-listings-half snippet-half">
+            <div class="search-pagination">
+               <div class="nav-link prev-page">
+                   <i class="fa fa-chevron-left"></i> Prev
+               </div>
+                <div class="total-results">
+                    Total Results: <?php echo $snippets_query->total_results; ?> 1 - x
+                </div>
+                <div class="nav-link next-page active">
+                   Next <i class="fa fa-chevron-right"></i>
+                </div>
+            </div>
 			<?php
 			/**
 			 * This template part doesn't have access to the data it needs...
 			 */
 			include( locate_template( 'template-parts/homepage-form-snippets.php' ) );
-			//get_template_part( 'template-parts/homepage-form-snippets' );
 			if ( $snippets ) {
 
 				foreach ( $snippets as $snippet ) {
@@ -41,36 +51,23 @@ get_header();
                     <div class="snippet-outer-outer-wrap">
                         <div class="contact-wrap">
 
-
-	                        <?php if ( is_user_logged_in() ) {
-		                        if ( $snippet->favorite_listing == true ) {
-			                        $saved_class = 'saved';
-		                        } else {
-			                        $saved_class = '';
-		                        }
-		                        ?>
+							<?php if ( is_user_logged_in() ) {
+								if ( $snippet->favorite_listing == true ) {
+									$saved_class = 'saved';
+								} else {
+									$saved_class = '';
+								}
+								?>
                                 <a href="#" user_id="<?php echo MP_LOGGED_IN_ID; ?>"
                                    listing_id="<?php echo $snippet->listing_id; ?>"
-                                   class="contact-link save-listing <?php echo $saved_class; ?>"><i class="fa fa-heart"></i> Save<span>d</span><i class="fa fa-refresh fa-spin" aria-hidden="true"></i></a>
-	                        <?php } else { ?>
-                                <a href="" data-open="login-modal" class="contact-link"><i class="fa fa-heart" aria-hidden="true"></i> Save</a>
+                                   class="contact-link save-listing <?php echo $saved_class; ?>"><i
+                                            class="fa fa-heart"></i> Save<span>d</span><i class="fa fa-refresh fa-spin"
+                                                                                          aria-hidden="true"></i></a>
+							<?php } else { ?>
+                                <a href="" data-open="login-modal" class="contact-link"><i class="fa fa-heart"
+                                                                                           aria-hidden="true"></i> Save</a>
 
-	                        <?php } ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+							<?php } ?>
 
                             <a href="" class="contact-link"><i class="fa fa-envelope" aria-hidden="true"></i>
                                 Contact</a>

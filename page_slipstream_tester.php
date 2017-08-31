@@ -24,7 +24,7 @@ get_header(); ?>
 				//var_dump(  $search->search_result );
 				foreach ( $search->search_result->listings as $listing ) {
 					var_dump( $listing->status );
-					//var_dump( $listing);
+					var_dump( $listing);
                 }
 
 				//var_dump( $search->search_result->listings );

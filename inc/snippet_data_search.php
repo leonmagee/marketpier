@@ -9,6 +9,7 @@
  * @todo and returning the WordPress data first.
  */
 class snippet_data_search {
+	public $total_results; // @todo add up WP and IDX search?
 	public $snippet_object_array;
 	public $map_data_array;
 	public $for_sale_lease;
@@ -62,13 +63,6 @@ class snippet_data_search {
 		/**
 		 * @todo step 1 - get data - step 2 - process WP search terms?
 		 */
-		//$this->price_min = $price_min;
-		//var_dump( $price_min );
-		//var_dump( $price_max );
-		//var_dump( $sqft_min );
-		//var_dump( $sqft_max );
-		//var_dump( $cap_rate_min );
-		//var_dump( $cap_rate_max );
 		$status_array = array();
 		if ( $this->status_active ) {
 			$status_array[] = 'active';
@@ -244,108 +238,69 @@ class snippet_data_search {
 	public function process_idx_search() {
 		$parameters = array();
 
-		// @todo do I need a status array?
-		// @todo make this work with statuses available in api
-		$status_array = array();
-		if ( $this->status_active ) {
-			$status_array[] = 'active';
-		}
-		if ( $this->status_pending ) {
-			$status_array[] = 'pending';
-		}
-		if ( $this->status_sold ) {
-			$status_array[] = 'sold';
-		}
-
 		/**
-		 * @todo use this same function for IDX city or zip code search?
-		 * @todo test this with WP and then IDX data to make it work
+		 * City or Zip
 		 */
-		//$meta_search_array = array();
 		if ( $city_zip = $this->city_zip ) {
 			if ( is_numeric( $city_zip ) ) {
-
 				$parameters['zip'] = $city_zip;
-//				$meta_search_array[] = array(
-//					'key'   => 'listing_zip',
-//					'value' => $city_zip
-//				);
 			} else {
-				$city_zip_strip = str_replace( array( ',', '-', '/', '|', '.' ), '', $city_zip );
-				$city_zip_array = $this->get_string_array( $city_zip_strip );
-//				$meta_search_array[] = array(
-//					'key'     => 'listing_city',
-//					'value'   => $city_zip_array,
-//					'compare' => 'IN'
-//				);
+				$parameters['city'] = $city_zip;
 			}
 		}
-		if ( $for_sale_lease = $this->for_sale_lease ) {
-//			$meta_search_array[] = array(
-//				'key'   => 'listing_for_sale_or_for_lease',
-//				'value' => $for_sale_lease
-//			);
-		} else {
-//			$meta_search_array[] = array(
-//				'key'   => 'listing_for_sale_or_for_lease',
-//				'value' => 'for_sale'
-//			);
+		/**
+		 * Price Min & Max
+		 */
+		if ( ( $price_min = $this->price_min ) && ( $price_max = $this->price_max ) ) {
+			$parameters['listPrice'] = $price_min . ':' . $price_max;
+		} elseif ( $price_min = $this->price_min ) {
+			$parameters['listPrice'] = $price_min . ':99999999999';
+		} elseif ( $price_max = $this->price_max ) {
+			$parameters['listPrice'] = '0:' . $price_max;
 		}
+		/**
+		 * SQFT Min & Max
+		 */
+		if ( ( $sqft_min = $this->sqft_min ) && ( $sqft_max = $this->sqft_max ) ) {
+			$parameters['size'] = $sqft_min . ':' . $sqft_max;
+		} elseif ( $sqft_min = $this->sqft_min ) {
+			$parameters['size'] = $sqft_min . ':999999999';
+		} elseif ( $sqft_max = $this->sqft_max ) {
+			$parameters['size'] = '0:' . $sqft_max;
+		}
+
+//		$status_array = array();
+//		if ( $this->status_active ) {
+//			$status_array[] = 'active';
+//		}
+//		if ( $this->status_pending ) {
+//			$status_array[] = 'pending';
+//		}
+//		if ( $this->status_sold ) {
+//			$status_array[] = 'sold';
+//		}
+
+
+//		if ( $for_sale_lease = $this->for_sale_lease ) {
+
+//		} else {
+
+//		}
 		if ( $status_array ) {
-//			$meta_search_array[] = array(
-//				'key'     => 'listing_status',
-//				'value'   => $status_array,
-//				'compare' => 'IN'
-//			);
+
 		} else {
 			if ( ! $this->status_all ) {
 
-//				$meta_search_array[] = array(
-//					'key'   => 'listing_status',
-//					'value' => 'active'
-//				);
+
 			}
 		}
 		if ( $property_type = $this->property_type ) {
 			if ( $property_type !== 'all_property_types' ) {
-//				$meta_search_array[] = array(
-//					'key'   => 'listing_type',
-//					'value' => $property_type
-//				);
+
 			}
 		}
-		if ( $price_min = $this->price_min ) {
-//			$meta_search_array[] = array(
-//				'key'     => 'listing_price',
-//				'value'   => $price_min,
-//				'compare' => '>=',
-//				'type'    => 'NUMERIC'
-//			);
-		}
-		if ( $price_max = $this->price_max ) {
-//			$meta_search_array[] = array(
-//				'key'     => 'listing_price',
-//				'value'   => $price_max,
-//				'compare' => '<=',
-//				'type'    => 'NUMERIC'
-//			);
-		}
-		if ( $sqft_min = $this->sqft_min ) {
-//			$meta_search_array[] = array(
-//				'key'     => 'listing_building_size',
-//				'value'   => $sqft_min,
-//				'compare' => '>=',
-//				'type'    => 'NUMERIC'
-//			);
-		}
-		if ( $sqft_max = $this->sqft_max ) {
-//			$meta_search_array[] = array(
-//				'key'     => 'listing_building_size',
-//				'value'   => $sqft_max,
-//				'compare' => '<=',
-//				'type'    => 'NUMERIC'
-//			);
-		}
+
+
 		if ( $cap_rate_min = $this->cap_rate_min ) {
 //			$meta_search_array[] = array(
 //				'key'     => 'listing_cap_rate',
@@ -401,6 +356,8 @@ class snippet_data_search {
 		$search->search_listings( $parameters );
 
 		$listings = $search->search_result->listings;
+
+		$this->total_results = $search->total_listings;
 
 		foreach ( $listings as $listing ) {
 

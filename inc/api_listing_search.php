@@ -29,7 +29,7 @@ class api_listing_search {
 		$this->page_size     = $page_size;
 		$this->network_error = false;
 		//$mls_number = '170039114';
-		$this->mls_number    = $mls_number;
+		$this->mls_number = $mls_number;
 
 	}
 
@@ -38,13 +38,18 @@ class api_listing_search {
 		/**
 		 * Get submitted fields
 		 */
-		//$id_string = $status_string = $county_string = $list_price_string = $keyword_string = $listing_date_string = '';
-		$id_string = $zip_string = $county_string = $list_price_string = $keyword_string = $listing_date_string = $status_string = '';
+		$id_string = $zip_string = $city_string = $size_string = $county_string = $list_price_string = $keyword_string = $listing_date_string = $status_string = '';
 		if ( $id = $this->mls_number ) {
 			$id_string = '&id=' . $id;
 		}
-		if ( $zip = $parameters['zip']) {
+		if ( $zip = $parameters['zip'] ) {
 			$zip_string = '&address.zip=' . $zip;
+		}
+		if ( $city = $parameters['city'] ) {
+			$city_string = '&address.city=' . $city;
+		}
+		if ( $size = $parameters['size'] ) {
+			$size_string = '&size=' . $size;
 		}
 //		if ( $id = $parameters['mls'] ) {
 //			$id_string = '&id=' . $id;
@@ -52,6 +57,9 @@ class api_listing_search {
 		if ( $status = $parameters['status'] ) {
 			$status_string = '&status=' . $status;
 		}
+		//$status_string = '&status=Contingent'; // @todo temp
+		//$status_string = '&status=Back on Market'; // @todo temp ???
+		//$status_string = '&status=Active'; // @todo temp
 //		if ( $county = $parameters['county'] ) {
 //			$county_string = '&county=' . $county;
 //		}
@@ -76,7 +84,6 @@ class api_listing_search {
 //
 //			$listing_date_new = strtotime($listing_date);
 //			$listing_date_string = '&listingDate=' . $listing_date_new;
-//			var_dump( $listing_date_string );
 //		}
 
 		/**
@@ -108,11 +115,10 @@ class api_listing_search {
 
 
 			//$listing_date_string = '&listingDate=' . $sale_date_start . ':' . $sale_date_end;
-			//var_dump( $sale_date_string );
 		}
 
 
-		$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . '&listingType=' . $listing_type . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $status_string . $id_string . $zip_string . $keyword_string . $county_string . $list_price_string . $listing_date_string . '&pageNumber=' . $page_number;
+		$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . '&listingType=' . $listing_type . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $status_string . $id_string . $zip_string . $city_string . $size_string . $keyword_string . $county_string . $list_price_string . $listing_date_string . '&pageNumber=' . $page_number;
 
 		//$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $status_string . $id_string . $keyword_string . $county_string . $list_price_string . $listing_date_string . '&pageNumber=' . $page_number;
 
