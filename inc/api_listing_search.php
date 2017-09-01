@@ -37,7 +37,7 @@ class api_listing_search {
 		/**
 		 * Get submitted fields
 		 */
-		$id_string = $zip_string = $city_string = $size_string = $county_string = $list_price_string = $keyword_string = $listing_date_string = $status_string = '';
+		$id_string = $zip_string = $city_string = $size_string = $cap_rate_string = $county_string = $list_price_string = $keyword_string = $listing_date_string = $status_string = '';
 		if ( $id = $this->mls_number ) {
 			$id_string = '&id=' . $id;
 		}
@@ -50,12 +50,17 @@ class api_listing_search {
 		if ( $size = $parameters['size'] ) {
 			$size_string = '&size=' . $size;
 		}
+		if ( $cap_rate_range = $parameters['cap_rate'] ) {
+			$cap_rate_string = '&xf_lm_dec_10=' . $cap_rate_range;
+		}
 //		if ( $id = $parameters['mls'] ) {
 //			$id_string = '&id=' . $id;
 //		}
 		if ( $status = $parameters['status'] ) {
 			$status_string = '&status=' . $status;
 		}
+
+
 		//$status_string = '&status=Contingent'; // @todo temp
 		//$status_string = '&status=Back on Market'; // @todo temp ???
 		//$status_string = '&status=Active'; // @todo temp
@@ -117,7 +122,7 @@ class api_listing_search {
 		}
 
 
-		$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . '&listingType=' . $listing_type . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $status_string . $id_string . $zip_string . $city_string . $size_string . $keyword_string . $county_string . $list_price_string . $listing_date_string . '&pageNumber=' . $page_number;
+		$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . '&listingType=' . $listing_type . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $status_string . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $listing_date_string . '&pageNumber=' . $page_number;
 
 		//$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $status_string . $id_string . $keyword_string . $county_string . $list_price_string . $listing_date_string . '&pageNumber=' . $page_number;
 

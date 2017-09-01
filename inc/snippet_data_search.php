@@ -270,6 +270,17 @@ class snippet_data_search {
 		} elseif ( $sqft_max = $this->sqft_max ) {
 			$parameters['size'] = '0:' . $sqft_max;
 		}
+		/**
+		 * Cap Rate Min & Max
+		 */
+		if ( ( $cap_rate_min = $this->cap_rate_min ) && ( $cap_rate_max = $this->cap_rate_max ) ) {
+			$parameters['cap_rate'] = $cap_rate_min . ':' . $cap_rate_max;
+		} elseif ( $cap_rate_min = $this->cap_rate_min ) {
+			$parameters['cap_rate'] = $cap_rate_min . ':100';
+		} elseif ( $cap_rate_max = $this->cap_rate_max ) {
+			$parameters['cap_rate'] = '0:' . $cap_rate_max;
+		}
+
 
 //		$status_array = array();
 //		if ( $this->status_active ) {
@@ -299,10 +310,6 @@ class snippet_data_search {
 		}
 
 
-		if ( $cap_rate_min = $this->cap_rate_min ) {
-		}
-		if ( $cap_rate_max = $this->cap_rate_max ) {
-		}
 		if ( $lot_size_min = $this->lot_size_min ) {
 		}
 		if ( $days_on_market = $this->days_on_market ) {
