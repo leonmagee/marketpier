@@ -58,7 +58,7 @@ class snippet_data_search {
 		} else {
 			$this->page_number = 1;
 		}
-		$this->page_size = 40;
+		$this->page_size = 10;
 
 		/**
 		 * Here you can process the WP search and then the IDX search
@@ -205,13 +205,22 @@ class snippet_data_search {
 
 		$snippet_objects    = array();
 		$map_data_array_src = array();
-		$args               = array(
-			'post_type'  => 'mp-listing',
-			'author'     => $this->author_id,
-			'meta_query' => $meta_search_array,
-			'date_query' => $date_query
+		$args                = array(
+			'post_type'      => 'mp-listing',
+			'author'         => $this->author_id,
+			'meta_query'     => $meta_search_array,
+			'posts_per_page' => $this->page_size,
+			'paged'          => $this->page_number,
+			'date_query'     => $date_query
 		);
-		$listing_query      = new WP_Query( $args );
+		$listing_query       = new WP_Query( $args );
+		$this->total_results = intval( $listing_query->found_posts );
+		/**
+		 * so you really need to have all of this data (for total number of posts), I think before you are submitting
+		 * requests for other posts - this will need to be it's own query - for both this and the listing query, and then
+		 * you'll use this info in the wrapper to choose which listings get displayed.
+		 */
+		//var_dump( intval($listing_query->found_posts) );
 
 		while ( $listing_query->have_posts() ) {
 
