@@ -10,6 +10,11 @@
     <form method="post" action="#"><!-- @todo form action to switch page to search results? -->
         <div class="main-form-inner">
             <input type="hidden" name="listing-search-form"/>
+			<?php if ( ! ( $page_number = $snippets_query->page_number ) ) {
+				$page_number = 1;
+			} ?>
+            <!--            <input value="<?php //echo $page_number; ?>" type="hidden" name="page-number" />-->
+            <input value="<?php echo $page_number; ?>" style='max-width: 40px; background-color: lightgreen' type="text" name="page-number"/>
 			<?php if ( $for_sale_lease_options = get_field( 'for_sale_for_lease_select_options', 'option' ) ) { ?>
                 <div class="input-wrap status">
                     <select name="for-sale-lease">
@@ -161,25 +166,27 @@
 		?>
         <div class="advanced-options-wrap">
             <a class="toggle-advanced-options">Advanced Options</a>
-            <?php if ( is_user_logged_in() ) {
+			<?php if ( is_user_logged_in() ) {
 
-		            global $wpdb;
-		            $prefix                 = $wpdb->prefix;
-		            $table_name             = $prefix . 'mp_saved_searches';
-		            $user_id = MP_LOGGED_IN_ID;
-		            $saved_search_query         = "SELECT * FROM `{$table_name}` WHERE `user_id` = '{$user_id}' AND `search_url` = '{$search_request}'";
-		            $saved_search_result = $wpdb->get_results($saved_search_query);
-		            if ( $saved_search_result ) {
-			            $saved_class = 'saved';
-		            } else {
-			            $saved_class = '';
-                    }
+				global $wpdb;
+				$prefix              = $wpdb->prefix;
+				$table_name          = $prefix . 'mp_saved_searches';
+				$user_id             = MP_LOGGED_IN_ID;
+				$saved_search_query  = "SELECT * FROM `{$table_name}` WHERE `user_id` = '{$user_id}' AND `search_url` = '{$search_request}'";
+				$saved_search_result = $wpdb->get_results( $saved_search_query );
+				if ( $saved_search_result ) {
+					$saved_class = 'saved';
+				} else {
+					$saved_class = '';
+				}
 
-                ?>
-            <a class="save-search-link <?php echo $saved_class; ?>" search_request="<?php echo $search_request; ?>" user_id="<?php echo MP_LOGGED_IN_ID; ?>">Save<span>d</span> Search<i class="fa fa-refresh fa-spin"></i></a>
-            <?php } else { ?>
+				?>
+                <a class="save-search-link <?php echo $saved_class; ?>" search_request="<?php echo $search_request; ?>"
+                   user_id="<?php echo MP_LOGGED_IN_ID; ?>">Save<span>d</span> Search<i
+                            class="fa fa-refresh fa-spin"></i></a>
+			<?php } else { ?>
                 <a class="save-search-link" data-open="login-modal">Save Search<i class="fa fa-refresh fa-spin"></i></a>
-            <?php } ?>
+			<?php } ?>
             <div class="advanced-options-toggle">
                 <div class="advanced-options-item price-min-max">
                     <h5>Price Range ($)</h5>
@@ -299,14 +306,14 @@
                     <h5>Days on Market</h5>
                     <div class="advanced-options-inputs input-style-snippet-wrap">
                         <select name="days-on-market">
-				            <?php foreach ( $days_on_market_array as $label => $value ) {
-				                if ( $snippets_query->days_on_market == $value ) { ?>
+							<?php foreach ( $days_on_market_array as $label => $value ) {
+								if ( $snippets_query->days_on_market == $value ) { ?>
                                     <option selected="selected"
                                             value="<?php echo $value; ?>"><?php echo $label; ?></option>
-					            <?php } else { ?>
+								<?php } else { ?>
                                     <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
-					            <?php }
-				            } ?>
+								<?php }
+							} ?>
                         </select>
                     </div>
                 </div>
@@ -314,14 +321,14 @@
                     <h5>Sold in Last</h5>
                     <div class="advanced-options-inputs input-style-snippet-wrap">
                         <select name="sold-in-last">
-				            <?php foreach ( $days_on_market_array as $label => $value ) {
-					            if ( $snippets_query->days_on_market == $value ) { ?>
+							<?php foreach ( $days_on_market_array as $label => $value ) {
+								if ( $snippets_query->days_on_market == $value ) { ?>
                                     <option selected="selected"
                                             value="<?php echo $value; ?>"><?php echo $label; ?></option>
-					            <?php } else { ?>
+								<?php } else { ?>
                                     <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
-					            <?php }
-				            } ?>
+								<?php }
+							} ?>
                         </select>
                     </div>
                 </div>

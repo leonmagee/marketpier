@@ -134,6 +134,29 @@
         }
     });
 
+    function get_page_number() {
+        var current_page_number = $('.search-form-wrap-snippets input[name="page-number"]').val();
+        return parseInt(current_page_number);
+    }
+
+    function set_page_number(page_number) {
+        $('.search-form-wrap-snippets input[name="page-number"]').val(page_number);
+    }
+
+    function submit_form() {
+        $('.search-form-wrap-snippets form').submit();
+    }
+
+    $('.nav-link.prev-page.active').click(function () {
+        $(this).unbind('click');
+        set_page_number(get_page_number() - 1);
+        submit_form();
+    });
+    $('.nav-link.next-page.active').click(function () {
+        $(this).unbind('click');
+        set_page_number(get_page_number() + 1);
+        submit_form();
+    });
 
     // $('.two-buttons #sale-listing').click(function () {
     //     $('div[data-name="listing_for_sale_or_for_lease"] select').val('for_sale');

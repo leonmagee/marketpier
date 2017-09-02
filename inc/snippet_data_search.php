@@ -10,6 +10,8 @@
  */
 class snippet_data_search {
 	public $total_results; // @todo add up WP and IDX search?
+	public $page_number;
+	public $page_size;
 	public $snippet_object_array;
 	public $map_data_array;
 	public $for_sale_lease;
@@ -35,6 +37,7 @@ class snippet_data_search {
 		 */
 		$this->author_id      = $author_id;
 		$this->status_all     = $status_all;
+		$this->page_number    = filter_input( INPUT_GET, 'page_number', FILTER_SANITIZE_ENCODED );
 		$this->for_sale_lease = filter_input( INPUT_GET, 'for_sale_lease', FILTER_SANITIZE_ENCODED );
 		$this->status_active  = filter_input( INPUT_GET, 'status_active', FILTER_SANITIZE_ENCODED );
 		$this->status_pending = filter_input( INPUT_GET, 'status_pending', FILTER_SANITIZE_ENCODED );
@@ -50,6 +53,12 @@ class snippet_data_search {
 		$this->cap_rate_max   = floatval( filter_input( INPUT_GET, 'cap_rate_max', FILTER_SANITIZE_SPECIAL_CHARS ) );
 		$this->lot_size_min   = intval( filter_input( INPUT_GET, 'lot_size_min', FILTER_SANITIZE_SPECIAL_CHARS ) );
 		$this->days_on_market = intval( filter_input( INPUT_GET, 'days_on_market', FILTER_SANITIZE_SPECIAL_CHARS ) );
+		if ( isset( $_GET['page_number'] ) ) {
+			$this->page_number = intval( filter_input( INPUT_GET, 'page_number', FILTER_SANITIZE_SPECIAL_CHARS ) );
+		} else {
+			$this->page_number = 1;
+		}
+		$this->page_size = 40;
 
 		/**
 		 * Here you can process the WP search and then the IDX search
@@ -241,6 +250,12 @@ class snippet_data_search {
 		$parameters = array();
 
 		/**
+		 * Page Number
+		 */
+		if ( ! ( $page_number = $this->page_number ) ) {
+			$page_number = 1;
+		}
+		/**
 		 * City or Zip
 		 */
 		if ( $city_zip = $this->city_zip ) {
@@ -319,13 +334,13 @@ class snippet_data_search {
 
 		$slipstream_token_query = new get_slipstream_token();
 		$market                 = 'sandicor';
-		$listing_page_size      = 500;
+		$listing_page_size      = $this->page_size;
 		$search                 = new api_listing_search(
 			$slipstream_token_query->slipstream_token,
 			$listing_page_size,
 			$market
 		);
-		$search->search_listings( $parameters );
+		$search->search_listings( $parameters, $page_number );
 
 		$listings = $search->search_result->listings;
 

@@ -18,14 +18,30 @@ get_header(); ?>
 				$search            = new api_listing_search(
 					$slipstream_token_query->slipstream_token,
 					$listing_page_size,
-					$market
+					$market,
+					'160045736|130048559|170019867|170029761|170034990|170041457'
 				);
+				//160045736
+				//130048559
+				//170019867
+				//170029761
+				//170034990
+				//170041457
 				$search->search_listings();
-				var_dump(  $search->search_result );
-				foreach ( $search->search_result->listings as $listing ) {
-					var_dump( $listing->status );
-					var_dump( $listing);
-                }
+				//var_dump( $search );
+				if ( $search->search_result ) {
+					//var_dump( $search->search_result );
+					foreach ( $search->search_result->listings as $listing ) {
+					    echo 'MLS Number: ' . $listing->id . '<br />';
+						echo 'Status: ' . $listing->status . '<br />';
+						echo 'Listing Type: ' . $listing->listingType . '<br />';
+						echo 'Style: ' . $listing->style . '<br />';
+						echo 'Property Type: ' . $listing->propertyType . '<br />';
+						echo 'List Price: ' . $listing->listPrice . '<br />';
+						//var_dump( $listing->status );
+						//var_dump( $listing );
+					}
+				}
 
 				//var_dump( $search->search_result->listings );
 				?>

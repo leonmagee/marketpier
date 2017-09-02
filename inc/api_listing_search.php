@@ -19,6 +19,7 @@ class api_listing_search {
 	public $page_size;
 	public $network_error;
 	public $mls_number;
+	public $listing_type;
 
 	public function __construct( $token, $page_size, $market, $mls_number = false ) {
 		$this->market        = $market;
@@ -30,6 +31,8 @@ class api_listing_search {
 		$this->network_error = false;
 		//$mls_number = '170039114';
 		$this->mls_number = $mls_number;
+		$this->listing_type = 'Commercial';
+		//$this->listing_type = false;
 	}
 
 	public function search_listings( $parameters = null, $page_number = 1 ) {
@@ -37,7 +40,10 @@ class api_listing_search {
 		/**
 		 * Get submitted fields
 		 */
-		$id_string = $zip_string = $city_string = $size_string = $cap_rate_string = $county_string = $list_price_string = $keyword_string = $listing_date_string = $status_string = '';
+		$listing_type_string = $id_string = $zip_string = $city_string = $size_string = $cap_rate_string = $county_string = $list_price_string = $keyword_string = $listing_date_string = $status_string = '';
+		if ($listing_type = $this->listing_type ) {
+			$listing_type_string = '&listingType=' . $listing_type;
+		}
 		if ( $id = $this->mls_number ) {
 			$id_string = '&id=' . $id;
 		}
@@ -61,6 +67,7 @@ class api_listing_search {
 		}
 
 
+
 		//$status_string = '&status=Contingent'; // @todo temp
 		//$status_string = '&status=Back on Market'; // @todo temp ???
 		//$status_string = '&status=Active'; // @todo temp
@@ -78,12 +85,16 @@ class api_listing_search {
 //		}
 		//@todo this should be somewhere else
 		//Commercial, Farm, Land, Multifamily, Rental, or Residential.
-		$listing_type = 'Commercial';
+		//$listing_type = 'Commercial';
 		//$listing_type = 'Residential';
 		//$listing_type = 'Farm';
 		//$listing_type = 'Land';
 		//$listing_type = 'Multifamily';
 		//$listing_type = 'Rental';
+//		$listing_type = '';
+//		if ( $listing_type ) {
+//
+//		}
 //		if ( $listing_date = $parameters['listing_date'] ) {
 //
 //			$listing_date_new = strtotime($listing_date);
@@ -115,14 +126,13 @@ class api_listing_search {
 				$listing_date_string = '&listingDate=<' . $listing_date_end;
 			}
 
-			//$listing_type = '';
 
 
 			//$listing_date_string = '&listingDate=' . $sale_date_start . ':' . $sale_date_end;
 		}
 
 
-		$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . '&listingType=' . $listing_type . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $status_string . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $listing_date_string . '&pageNumber=' . $page_number;
+		$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $status_string . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $listing_date_string . '&pageNumber=' . $page_number;
 
 		//$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $status_string . $id_string . $keyword_string . $county_string . $list_price_string . $listing_date_string . '&pageNumber=' . $page_number;
 
