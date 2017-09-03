@@ -32,6 +32,56 @@ require_once( 'inc/mp_ajax.php' );
 require_once( 'inc/get_slipstream_token.php' );
 require_once( 'inc/api_listing_search.php' );
 
+$extended_fields = get_field( 'home_junction_extended_fields', 'option' );
+//var_dump( $extended_fields );
+
+//foreach ( $extended_fields as $fields ) {
+//	if ( $fields['market'] === 'sandicor' ) {
+//		var_dump( $fields );
+//	}
+//}
+/**
+ * @todo remove classes I don't need
+ */
+/**
+ * @param $extended_fields
+ * @param $market
+ * @param $field_name
+ *
+ * @return string
+ */
+function get_key( $extended_fields, $market, $field_name ) {
+	$key = false;
+	foreach ( $extended_fields as $fields ) {
+		if ( $fields['market'] === $market ) {
+			foreach ( $fields['fields'] as $field ) {
+				if ( $field['field'] === $field_name ) {
+					$key = $field['key'];
+				}
+			}
+		}
+	}
+
+	return $key;
+}
+
+var_dump( get_key( $extended_fields, 'sandicor', 'cap_rate' ) );
+
+
+//require_once( 'inc/slipstream_market_array.php');
+//require_once( 'inc/slipstream_market_extended.php' );
+
+//$fields_array = array(
+//	array(
+//		'market' => 'sandicor',
+//		'field'  => 'xf_lm_dec_10'
+//	)
+//);
+
+//foreach ( $fields_array as $item ) {
+//
+//}
+
 /**
  * Create Tables
  */

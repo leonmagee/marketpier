@@ -55,6 +55,7 @@ class listing_data {
 	public $gross_rent_multiplier;
 	public $gross_operating_income;
 	public $operating_expenses;  // net oerating income = gross income - oerating expenses
+	public $market;
 
 	public function standardize_image_gallery_WP( $image_gallery ) {
 		$image_gallery_array = array();
@@ -149,6 +150,8 @@ class listing_data {
 		 * @todo - use the mls number as the id that works with the 'save listing' feature.
 		 */
 
+		$extended_fields = get_field( 'home_junction_extended_fields', 'option' );
+
 		$slipstream_token_query = new get_slipstream_token();
 		$market                 = 'sandicor';
 		$listing_page_size      = 1;
@@ -160,7 +163,7 @@ class listing_data {
 		);
 		$search->search_listings();
 
-		$listing = $search->search_result->listings[0];
+		$listing      = $search->search_result->listings[0];
 		$listing_type = $listing->listingType;
 		// also - public 'geoType' => string 'listing' (length=7)
 		if ( $listing_type == 'residential' ) {
@@ -175,6 +178,7 @@ class listing_data {
 		// @todo what does 'rent' look like? - check api docs for rent data?
 		//$this->rent          = $listing->???
 
+		$this->market                 = $listing->market;
 		$this->listing_id             = $mls_number; // @todo test with saving listing? do I need this twice?
 		$this->mls                    = $mls_number;
 		$this->price                  = $listing->listPrice;
@@ -195,13 +199,19 @@ class listing_data {
 		$this->listing_agent_id       = $listing->listingAgent->id;
 		$this->lat                    = $listing->coordinates->latitude;
 		$this->long                   = $listing->coordinates->longitude;
-		$this->gross_rent_multiplier  = $listing->xf_lm_char25_6; // gross rent multiplier
-		$this->gross_operating_income = $listing->xf_lm_char25_16; // gross operating income
-		$this->operating_expenses     = $listing->xf_lm_char30_24; // operating expenses
+		$gross_rent_field             = get_key( $extended_fields, $this->market, 'gross_rent_multiplier' );
+		$this->gross_rent_multiplier  = $listing->$gross_rent_field; // gross rent multiplier
+		$gross_income_field           = get_key( $extended_fields, $this->market, 'gross_operating_income' );
+		$this->gross_operating_income = $listing->$gross_income_field; // gross operating income
+		$op_expenses_field            = get_key( $extended_fields, $this->market, 'operating_expenses' );
+		$this->operating_expenses     = $listing->$op_expenses_field; // operating expenses
 		$this->lot_size               = $listing->lotSize->sqft; // @todo use acres if > 1 - can process this on fron end?
-		$this->apn_parcel_id          = $listing->xf_lm_char25_1;
-		$this->number_of_units        = $listing->xf_l_numunits; // number of units
-		$this->cap_rate               = $listing->xf_lm_dec_10; // cap rate
+		$apn_id_field                 = get_key( $extended_fields, $this->market, 'apn_parcel_id' );
+		$this->apn_parcel_id          = $listing->$apn_id_field;
+		$number_of_units_field        = get_key( $extended_fields, $this->market, 'number_of_units' );
+		$this->number_of_units        = $listing->$number_of_units_field; // number of units
+		$cap_rate_field               = get_key( $extended_fields, $this->market, 'cap_rate' );
+		$this->cap_rate               = $listing->$cap_rate_field; // cap rate
 		$this->listing_date           = date( 'n/j/Y', $listing->listingDate );
 		$this->days_on_market         = $listing->daysOnMarket;
 

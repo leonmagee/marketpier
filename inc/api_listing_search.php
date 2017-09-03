@@ -30,18 +30,18 @@ class api_listing_search {
 		$this->page_size     = $page_size;
 		$this->network_error = false;
 		//$mls_number = '170039114';
-		$this->mls_number = $mls_number;
+		$this->mls_number   = $mls_number;
 		$this->listing_type = 'Commercial';
 		//$this->listing_type = false;
 	}
 
 	public function search_listings( $parameters = null, $page_number = 1 ) {
-
+		$extended_fields = get_field( 'home_junction_extended_fields', 'option' );
 		/**
 		 * Get submitted fields
 		 */
 		$listing_type_string = $id_string = $zip_string = $city_string = $size_string = $cap_rate_string = $county_string = $list_price_string = $keyword_string = $listing_date_string = $status_string = '';
-		if ($listing_type = $this->listing_type ) {
+		if ( $listing_type = $this->listing_type ) {
 			$listing_type_string = '&listingType=' . $listing_type;
 		}
 		if ( $id = $this->mls_number ) {
@@ -57,7 +57,9 @@ class api_listing_search {
 			$size_string = '&size=' . $size;
 		}
 		if ( $cap_rate_range = $parameters['cap_rate'] ) {
-			$cap_rate_string = '&xf_lm_dec_10=' . $cap_rate_range;
+			$cap_rate_field = get_key( $extended_fields, $this->market, 'cap_rate' );
+			//$cap_rate_string = '&xf_lm_dec_10=' . $cap_rate_range;
+			$cap_rate_string = '&' . $cap_rate_field . '=' . $cap_rate_range;
 		}
 //		if ( $id = $parameters['mls'] ) {
 //			$id_string = '&id=' . $id;
@@ -65,7 +67,6 @@ class api_listing_search {
 		if ( $status = $parameters['status'] ) {
 			$status_string = '&status=' . $status;
 		}
-
 
 
 		//$status_string = '&status=Contingent'; // @todo temp
@@ -127,15 +128,11 @@ class api_listing_search {
 			}
 
 
-
 			//$listing_date_string = '&listingDate=' . $sale_date_start . ':' . $sale_date_end;
 		}
 
 
 		$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $status_string . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $listing_date_string . '&pageNumber=' . $page_number;
-
-		//$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $status_string . $id_string . $keyword_string . $county_string . $list_price_string . $listing_date_string . '&pageNumber=' . $page_number;
-
 
 		$listings = wp_remote_get( $url, array( 'headers' => array( 'HJI-Slipstream-Token' => $this->token ) ) );
 

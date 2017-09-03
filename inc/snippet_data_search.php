@@ -392,6 +392,12 @@ class snippet_data_search {
 		$this->map_data_array       = $map_data_array_src;
 	}
 
+	public function get_map_data_array() {
+		/**
+		 * @todo standardize this since it should be the same in both methods...
+		 */
+	}
+
 	public function map_price_label( $price_label ) {
 
 		if ( $price_label ) {
