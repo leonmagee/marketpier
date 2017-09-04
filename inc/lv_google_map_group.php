@@ -43,8 +43,7 @@ class lv_google_map_group {
                         lat: <?php echo $latitude; ?>,
                         lng: <?php echo $longitude; ?>
                     },
-                    //address: '<?php echo $location['address']; ?>',
-                    address: '2342342342sdlkfhskdlhfskdhfsdfhj',
+                    address: '<?php echo $location['address']; ?>',
                     price: '<?php echo $location['price']; ?>',
                     url: '<?php echo $location['url']; ?>'
                 });
@@ -73,6 +72,7 @@ class lv_google_map_group {
                         var listing_url = latlngArray[count].url;
                         var listing_price = latlngArray[count].price;
                         geo.geocode({address: new_address}, function (results, status) {
+                            console.log( new_address );
                             //console.log('count' + count, results);
                             if (!latitude || !longitude) {
                                 if (results[0]) {

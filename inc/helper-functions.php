@@ -76,6 +76,8 @@ function logged_in_check_redirect_profile() {
 }
 
 /**
+ * Return key for Slipstream market - these property names and keys are
+ * entered into theme options in an ACF repeater field.
  * @param $extended_fields
  * @param $market
  * @param $field_name
@@ -94,4 +96,25 @@ function get_key( $extended_fields, $market, $field_name ) {
 		}
 	}
 	return $key;
+}
+
+/**
+ * Determine how many idx listings to return based on page size, wp listing count, and current page
+ * @param $page_size
+ * @param $wp_count
+ * @param int $current_page
+ * @param string $idx_count
+ *
+ * @return int
+ */
+function idx_listings_page_size($page_size, $wp_count, $current_page = 1, $idx_count = 'deprecated') {
+	$difference = ( $page_size * $current_page ) - $wp_count;
+	if ( $difference <= 0 ) {
+		$query_page_size = 0;
+	} elseif ( $difference >= $page_size ) {
+		$query_page_size = $page_size;
+	} else {
+		$query_page_size = $difference;
+	}
+	return $query_page_size;
 }

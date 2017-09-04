@@ -10,6 +10,7 @@
  */
 class snippet_data_search {
 	public $total_results; // @todo add up WP and IDX search?
+	public $total_wp_results;
 	public $page_number;
 	public $page_size;
 	public $snippet_object_array;
@@ -58,12 +59,12 @@ class snippet_data_search {
 		} else {
 			$this->page_number = 1;
 		}
-		$this->page_size = 10;
+		$this->page_size = 3;
 
 		/**
 		 * Here you can process the WP search and then the IDX search
 		 */
-		//$this->process_wp_search();
+		$this->process_wp_search();
 
 		$this->process_idx_search();
 	}
@@ -203,9 +204,20 @@ class snippet_data_search {
 			$date_query = null;
 		}
 
-		$snippet_objects    = array();
-		$map_data_array_src = array();
-		$args                = array(
+		$snippet_objects     = array();
+		$map_data_array_src  = array();
+		$count_args          = array(
+			'post_type'      => 'mp-listing',
+			'author'         => $this->author_id,
+			'meta_query'     => $meta_search_array,
+			'posts_per_page' => $this->page_size,
+			'date_query'     => $date_query
+		);
+		$listing_query_count = new WP_Query( $count_args );
+		$this->total_results = intval( $listing_query_count->found_posts );
+		$this->total_wp_results = $this->total_results;
+
+		$args          = array(
 			'post_type'      => 'mp-listing',
 			'author'         => $this->author_id,
 			'meta_query'     => $meta_search_array,
@@ -213,8 +225,8 @@ class snippet_data_search {
 			'paged'          => $this->page_number,
 			'date_query'     => $date_query
 		);
-		$listing_query       = new WP_Query( $args );
-		$this->total_results = intval( $listing_query->found_posts );
+		$listing_query = new WP_Query( $args );
+		//$this->total_results = intval( $listing_query->found_posts );
 		/**
 		 * so you really need to have all of this data (for total number of posts), I think before you are submitting
 		 * requests for other posts - this will need to be it's own query - for both this and the listing query, and then
@@ -347,13 +359,15 @@ class snippet_data_search {
 		$search                 = new api_listing_search(
 			$slipstream_token_query->slipstream_token,
 			$listing_page_size,
-			$market
+			$market,
+			false,
+			$this->total_wp_results
 		);
 		$search->search_listings( $parameters, $page_number );
 
 		$listings = $search->search_result->listings;
 
-		$this->total_results = $search->total_listings;
+		$this->total_results = ( $this->total_results + $search->total_listings );
 		//$counter = 1;
 		foreach ( $listings as $listing ) {
 
@@ -388,8 +402,9 @@ class snippet_data_search {
 		}
 
 
-		$this->snippet_object_array = $snippet_objects;
-		$this->map_data_array       = $map_data_array_src;
+		$this->snippet_object_array = array_merge( $this->snippet_object_array, $snippet_objects );
+		$this->map_data_array       = array_merge( $this->map_data_array, $map_data_array_src );
+		var_dump( $this->map_data_array );
 	}
 
 	public function get_map_data_array() {
