@@ -74,3 +74,24 @@ function logged_in_check_redirect_profile() {
 		exit;
 	}
 }
+
+/**
+ * @param $extended_fields
+ * @param $market
+ * @param $field_name
+ *
+ * @return string, bool
+ */
+function get_key( $extended_fields, $market, $field_name ) {
+	$key = false;
+	foreach ( $extended_fields as $fields ) {
+		if ( $fields['market'] === $market ) {
+			foreach ( $fields['fields'] as $field ) {
+				if ( $field['field'] === $field_name ) {
+					$key = $field['key'];
+				}
+			}
+		}
+	}
+	return $key;
+}
