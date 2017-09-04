@@ -59,7 +59,7 @@ class snippet_data_search {
 		} else {
 			$this->page_number = 1;
 		}
-		$this->page_size = 3;
+		$this->page_size = 10;
 
 		/**
 		 * Here you can process the WP search and then the IDX search
@@ -385,11 +385,6 @@ class snippet_data_search {
 			//if ( ( $listing_data->lat && $listing_data->long ) || $listing_data->combined_address ) {
 
 			if ( $listing_data->combined_address ) {
-//				var_dump( $counter );
-//				$counter++;
-//				var_dump( $listing_data->lat );
-//				var_dump( $listing_data->long );
-
 
 				$map_data_array_src[] = array(
 					'lat'     => $listing_data->lat,
@@ -404,7 +399,6 @@ class snippet_data_search {
 
 		$this->snippet_object_array = array_merge( $this->snippet_object_array, $snippet_objects );
 		$this->map_data_array       = array_merge( $this->map_data_array, $map_data_array_src );
-		var_dump( $this->map_data_array );
 	}
 
 	public function get_map_data_array() {

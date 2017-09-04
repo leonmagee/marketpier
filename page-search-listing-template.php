@@ -17,10 +17,10 @@ $page_number = $snippets_query->page_number;
 $page_size   = $snippets_query->page_size;
 $total_results = $snippets_query->total_results;
 $total_pages = intval(ceil(( $total_results / $page_size )));
-var_dump( $page_number );
-var_dump( $page_size );
-var_dump( $total_results );
-var_dump( $total_pages );
+//var_dump( $page_number );
+//var_dump( $page_size );
+//var_dump( $total_results );
+//var_dump( $total_pages );
 
 get_header();
 ?>
