@@ -59,7 +59,8 @@ class snippet_data_search {
 		} else {
 			$this->page_number = 1;
 		}
-		$this->page_size = 10;
+		//$this->page_size = 10;
+		$this->page_size = 5;
 
 		/**
 		 * Here you can process the WP search and then the IDX search
@@ -204,17 +205,17 @@ class snippet_data_search {
 			$date_query = null;
 		}
 
-		$snippet_objects     = array();
-		$map_data_array_src  = array();
-		$count_args          = array(
+		$snippet_objects        = array();
+		$map_data_array_src     = array();
+		$count_args             = array(
 			'post_type'      => 'mp-listing',
 			'author'         => $this->author_id,
 			'meta_query'     => $meta_search_array,
 			'posts_per_page' => $this->page_size,
 			'date_query'     => $date_query
 		);
-		$listing_query_count = new WP_Query( $count_args );
-		$this->total_results = intval( $listing_query_count->found_posts );
+		$listing_query_count    = new WP_Query( $count_args );
+		$this->total_results    = intval( $listing_query_count->found_posts );
 		$this->total_wp_results = $this->total_results;
 
 		$args          = array(
@@ -340,9 +341,8 @@ class snippet_data_search {
 //			}
 //		}
 		if ( $property_type = $this->property_type ) {
-			if ( $property_type !== 'all_property_types' ) {
-
-			}
+//			if ( $property_type !== 'all_property_types' ) {
+//			}
 		}
 
 
@@ -368,37 +368,48 @@ class snippet_data_search {
 		$listings = $search->search_result->listings;
 
 		$this->total_results = ( $this->total_results + $search->total_listings );
-		//$counter = 1;
-		foreach ( $listings as $listing ) {
+		//var_dump( $this->total_results );
 
-			$listing_data = new snippet_data();
-			$listing_data->listing_data_from_IDX( $listing );
+		if ( $listings ) {
 
-			$snippet_objects[] = $listing_data;
+			foreach ( $listings as $listing ) {
 
-			$price_label = $this->map_price_label( $listing_data->price );
+				$listing_data = new snippet_data();
+				$listing_data->listing_data_from_IDX( $listing );
 
-			/**
-			 * Only add to this array if there are both lat and long, OR a complete address
-			 * Otherwise the listing can't show up on the map.
-			 */
-			//if ( ( $listing_data->lat && $listing_data->long ) || $listing_data->combined_address ) {
+				$snippet_objects[] = $listing_data;
 
-			if ( $listing_data->combined_address ) {
+				$price_label = $this->map_price_label( $listing_data->price );
 
-				$map_data_array_src[] = array(
-					'lat'     => $listing_data->lat,
-					'long'    => $listing_data->long,
-					'address' => $listing_data->combined_address,
-					'price'   => $price_label,
-					'url'     => $listing_data->listing_url
-				);
+				/**
+				 * Only add to this array if there are both lat and long, OR a complete address
+				 * Otherwise the listing can't show up on the map.
+				 */
+				//if ( ( $listing_data->lat && $listing_data->long ) || $listing_data->combined_address ) {
+
+				if ( $listing_data->combined_address ) {
+
+					$map_data_array_src[] = array(
+						'lat'     => $listing_data->lat,
+						'long'    => $listing_data->long,
+						'address' => $listing_data->combined_address,
+						'price'   => $price_label,
+						'url'     => $listing_data->listing_url
+					);
+				}
+			}
+
+			if ( $this->snippet_object_array ) {
+				$this->snippet_object_array = array_merge( $this->snippet_object_array, $snippet_objects );
+			} else {
+				$this->snippet_object_array = $snippet_objects;
+			}
+			if ( $this->map_data_array ) {
+				$this->map_data_array = array_merge( $this->map_data_array, $map_data_array_src );
+			} else {
+				$this->map_data_array = $map_data_array_src;
 			}
 		}
-
-
-		$this->snippet_object_array = array_merge( $this->snippet_object_array, $snippet_objects );
-		$this->map_data_array       = array_merge( $this->map_data_array, $map_data_array_src );
 	}
 
 	public function get_map_data_array() {

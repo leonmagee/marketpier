@@ -5,7 +5,7 @@
  */
 function mp_parse_url( $url ) {
 
-	$url_new = str_replace( array( 'http://', 'https://'  ), '', $url );
+	$url_new = str_replace( array( 'http://', 'https://' ), '', $url );
 
 	$url_final = 'https://' . $url_new;
 
@@ -20,16 +20,18 @@ function mp_parse_url( $url ) {
 
 function mp_encrypt( $hash ) {
 
-	$key = 323846238946239;
+	$key    = 323846238946239;
 	$number = $hash * $key;
-	return( $number );
+
+	return ( $number );
 }
 
 function mp_decrypt( $hash ) {
 
-	$key = 323846238946239;
+	$key    = 323846238946239;
 	$number = $hash / $key;
-	return( $number );
+
+	return ( $number );
 }
 
 
@@ -78,6 +80,7 @@ function logged_in_check_redirect_profile() {
 /**
  * Return key for Slipstream market - these property names and keys are
  * entered into theme options in an ACF repeater field.
+ *
  * @param $extended_fields
  * @param $market
  * @param $field_name
@@ -95,11 +98,13 @@ function get_key( $extended_fields, $market, $field_name ) {
 			}
 		}
 	}
+
 	return $key;
 }
 
 /**
  * Determine how many idx listings to return based on page size, wp listing count, and current page
+ *
  * @param $page_size
  * @param $wp_count
  * @param int $current_page
@@ -107,7 +112,7 @@ function get_key( $extended_fields, $market, $field_name ) {
  *
  * @return int
  */
-function idx_listings_page_size($page_size, $wp_count, $current_page = 1, $idx_count = 'deprecated') {
+function idx_listings_page_size( $page_size, $wp_count, $current_page = 1 ) {
 	$difference = ( $page_size * $current_page ) - $wp_count;
 	if ( $difference <= 0 ) {
 		$query_page_size = 0;
@@ -116,5 +121,6 @@ function idx_listings_page_size($page_size, $wp_count, $current_page = 1, $idx_c
 	} else {
 		$query_page_size = $difference;
 	}
+
 	return $query_page_size;
 }

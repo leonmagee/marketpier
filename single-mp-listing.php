@@ -317,44 +317,73 @@ if ( $request_details[2] == 'idx' ) {
                     <div class="listing-agent-name">
                         Listing Provided Courtesy of <?php echo $listing_agent_name; ?>
                     </div>
-                    <?php if ( $listing_agent_phone = $listing_data->listing_agent_phone ) { ?>
+					<?php if ( $listing_agent_phone = $listing_data->listing_agent_phone ) { ?>
                         <div class="listing-agent-phone"><?php echo $listing_agent_phone; ?></div>
-                    <?php } ?>
-	                <?php if ( $listing_agent_id = $listing_data->listing_agent_id ) { ?>
+					<?php } ?>
+					<?php if ( $listing_agent_id = $listing_data->listing_agent_id ) { ?>
                         <div class="listing-agent-id">#<?php echo $listing_agent_id; ?></div>
-	                <?php } ?>
+					<?php } ?>
                 </div>
 			<?php } ?>
         </div>
-
+        <!-- @todo add conditional to see if each image exists -->
         <div class="single-listing-gallery"><!-- @todo change the name of this class - holds more than images -->
-            <div class="image-wrap image-wrap-1">
-                <div class="single-gallery-image"><a rel="lightbox"
-                                                     href="<?php echo $listing_data->image_gallery[0]['link']; ?>"><img
-                                src="<?php echo $listing_data->image_gallery[0]['image']; ?>"/></a></div>
+            <div class="image-wrap-outer wrap-1">
+				<?php if ( $img_src = $listing_data->image_gallery[0]['image'] ) { ?>
+                    <a rel="lightbox"
+                       href="<?php echo $listing_data->image_gallery[0]['link']; ?>"
+                       class="image-container-wrap image-1"
+                       style="background-image: url(<?php echo $img_src; ?>);">
+                    </a>
+				<?php } ?>
             </div>
-            <div class="image-wrap image-wrap-2">
-                <div class="single-gallery-image"><a rel="lightbox"
-                                                     href="<?php echo $listing_data->image_gallery[1]['link']; ?>"><img
-                                src="<?php echo $listing_data->image_gallery[1]['image']; ?>"/></a></div>
-                <div class="single-gallery-image"><a rel="lightbox"
-                                                     href="<?php echo $listing_data->image_gallery[2]['link']; ?>"><img
-                                src="<?php echo $listing_data->image_gallery[2]['image']; ?>"/></a></div>
+            <div class="image-wrap-outer wrap-2">
+				<?php if ( $img_src = $listing_data->image_gallery[1]['image'] ) { ?>
+                    <a rel="lightbox"
+                       href="<?php echo $listing_data->image_gallery[1]['link']; ?>"
+                       class="image-container-wrap image-2"
+                       style="background-image: url(<?php echo $img_src; ?>);">
+                    </a>
+				<?php }
+				if ( $img_src = $listing_data->image_gallery[2]['image'] ) { ?>
+                    <a rel="lightbox"
+                       href="<?php echo $listing_data->image_gallery[2]['link']; ?>"
+                       class="image-container-wrap image-3"
+                       style="background-image: url(<?php echo $img_src; ?>);">
+                    </a>
+				<?php } ?>
             </div>
-            <div class="image-wrap image-wrap-4">
-                <div class="single-gallery-image"><a rel="lightbox"
-                                                     href="<?php echo $listing_data->image_gallery[3]['link']; ?>"><img
-                                src="<?php echo $listing_data->image_gallery[3]['image']; ?>"/></a></div>
-                <div class="single-gallery-image"><a rel="lightbox"
-                                                     href="<?php echo $listing_data->image_gallery[4]['link']; ?>"><img
-                                src="<?php echo $listing_data->image_gallery[4]['image']; ?>"/></a></div>
-                <div class="single-gallery-image"><a rel="lightbox"
-                                                     href="<?php echo $listing_data->image_gallery[5]['link']; ?>"><img
-                                src="<?php echo $listing_data->image_gallery[5]['image']; ?>"/></a></div>
-                <div class="single-gallery-image"><a rel="lightbox"
-                                                     href="<?php echo $listing_data->image_gallery[6]['link']; ?>"><img
-                                src="<?php echo $listing_data->image_gallery[6]['image']; ?>"/></a></div>
+            <div class="image-wrap-outer wrap-3">
+				<?php if ( $img_src = $listing_data->image_gallery[3]['image'] ) { ?>
+                    <a rel="lightbox"
+                       href="<?php echo $listing_data->image_gallery[3]['link']; ?>"
+                       class="image-container-wrap image-4"
+                       style="background-image: url(<?php echo $img_src; ?>);">
+                    </a>
+				<?php }
+				if ( $img_src = $listing_data->image_gallery[4]['image'] ) { ?>
+                    <a rel="lightbox"
+                       href="<?php echo $listing_data->image_gallery[4]['link']; ?>"
+                       class="image-container-wrap image-5"
+                       style="background-image: url(<?php echo $img_src; ?>);">
+                    </a>
+				<?php }
+				if ( $img_src = $listing_data->image_gallery[5]['image'] ) { ?>
+                    <a rel="lightbox"
+                       href="<?php echo $listing_data->image_gallery[5]['link']; ?>"
+                       class="image-container-wrap image-6"
+                       style="background-image: url(<?php echo $img_src; ?>);">
+                    </a>
+				<?php }
+				if ( $img_src = $listing_data->image_gallery[6]['image'] ) { ?>
+                    <a rel="lightbox"
+                       href="<?php echo $listing_data->image_gallery[6]['link']; ?>"
+                       class="image-container-wrap image-7"
+                       style="background-image: url(<?php echo $img_src; ?>);">
+                    </a>
+				<?php } ?>
             </div>
+
             <div class="gallery-hidden-images">
 				<?php
 				unset( $listing_data->image_gallery[0] );
