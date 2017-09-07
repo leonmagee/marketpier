@@ -8,6 +8,7 @@ class snippet_data {
 	public $listing_id; // @todo idx vs. WP?
 	public $title;
 	public $price;
+	public $status;
 	//public $main_image;
 	public $property_name;
 	public $address;
@@ -83,6 +84,11 @@ class snippet_data {
 		$days_passed           = floor( $days_passed_timestamp / ( 60 * 60 * 24 ) );
 		$this->days_on_market  = $days_passed;
 
+		// @todo this might ger removed if I change how status works to fit with IDX data - no Pending or Sold
+		$selected_status     = get_field( 'listing_status' );
+		$field_object_status = get_field_object( 'listing_status' );
+		$this->status        = $field_object_status['choices'][ $selected_status ];
+
 		$this->standardize_snippet_image_WP( get_field( 'listing_image_gallery' ) );
 
 
@@ -108,6 +114,8 @@ class snippet_data {
 
 	public function listing_data_from_IDX( $listing ) {
 
+		$extended_fields = get_field( 'home_junction_extended_fields', 'option' );
+
 		$listing_type = $listing->listingType;
 		if ( $listing_type == 'residential' ) {
 			$this->for_sale_for_lease = 'for_sale';
@@ -117,18 +125,24 @@ class snippet_data {
 			$this->for_sale_for_lease = 'for_sale';
 		}
 
-		$this->listing_id     = $listing->id; // mls number
-		$this->listing_url    = site_url() . '/listing/idx/' . $this->listing_id;
-		$this->price          = $listing->listPrice;
-		$this->address        = $listing->address->deliveryLine;
-		$this->city           = $listing->address->city;
-		$this->state          = $listing->address->state;
-		$this->zip            = $listing->address->zip;
-		$this->type           = $listing_type;
-		$this->building_size  = $listing->size;
-		$this->days_on_market = $listing->daysOnMarket;
-		$this->lat            = $listing->coordinates->latitude;
-		$this->long           = $listing->coordinates->longitude;
+		$this->listing_id      = $listing->id; // mls number
+		$this->listing_url     = site_url() . '/listing/idx/' . $this->listing_id;
+		$this->price           = $listing->listPrice;
+		$this->status          = $listing->status;
+		$this->address         = $listing->address->deliveryLine;
+		$this->city            = $listing->address->city;
+		$this->state           = $listing->address->state;
+		$this->zip             = $listing->address->zip;
+		$this->type            = $listing_type;
+		$this->building_size   = $listing->size;
+		$this->days_on_market  = $listing->daysOnMarket;
+		$this->lat             = $listing->coordinates->latitude;
+		$this->long            = $listing->coordinates->longitude;
+		$cap_rate_field        = get_key( $extended_fields, $listing->market, 'cap_rate' );
+		$this->cap_rate        = $listing->$cap_rate_field; // cap rate
+		$number_of_units_field = get_key( $extended_fields, $listing->market, 'number_of_units' );
+		$this->number_of_units = $listing->$number_of_units_field; // number of units
+		$this->lot_size        = $listing->lotSize->sqft; // @todo use acres if > 1 - can process this on front end?
 		$this->standardize_snippet_image_IDX( $listing->images );
 		$this->snippet_data_update();
 	}

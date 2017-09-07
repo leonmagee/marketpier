@@ -141,6 +141,11 @@ get_header();
 											<?php } ?>
                                         </div>
                                     </div>
+                                    <?php if ( $status = $snippet->status ) { ?>
+                                        <div class="status-bar">
+                                            <span><?php echo $status; ?></span>
+                                        </div>
+                                    <?php } ?>
                                     <img src="<?php echo $snippet->image_gallery_first; ?>"/>
                                 </div>
                                 <div class="right-side-outer">
