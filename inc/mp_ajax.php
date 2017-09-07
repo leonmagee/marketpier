@@ -103,7 +103,7 @@ add_action( 'wp_ajax_mp_register_user', 'mp_register_user' ); //@todo remove thi
 add_action( 'wp_ajax_nopriv_mp_register_user', 'mp_register_user' );
 
 /**
- *  Add New Note
+ *  Favorite Listing
  */
 function mp_save_favorite_listing() {
 	if ( isset( $_POST['listing_id'] ) ) {
@@ -139,7 +139,7 @@ add_action( 'wp_ajax_mp_favorite_listing', 'mp_save_favorite_listing' );
 
 
 /**
- *  Add New Note
+ *  Save Search
  */
 function mp_save_search() {
 	if ( isset( $_POST['search_request'] ) ) {
@@ -170,3 +170,44 @@ function mp_save_search() {
 }
 
 add_action( 'wp_ajax_mp_save_search', 'mp_save_search' );
+
+
+
+/**
+ *  Send Listing Agent Email - @todo get code from CCG?
+ */
+function mp_send_listing_agent_email() {
+
+
+
+
+	if ( isset( $_POST['search_request'] ) ) {
+
+		$user_id    = $_POST['user_id'];
+		$search_url = $_POST['search_request'];
+
+		global $wpdb;
+		$prefix     = $wpdb->prefix;
+		$table_name = $prefix . 'mp_saved_searches';
+
+		$saved_search_query         = "SELECT * FROM `{$table_name}` WHERE `user_id` = '{$user_id}' AND `search_url` = '{$search_url}'";
+		$query_saved_search = $wpdb->get_results( $saved_search_query );
+
+		if ( $query_saved_search ) {
+			$entry_id              = $query_saved_search[0]->id;
+			$save_search_delete = "DELETE FROM `{$table_name}` WHERE `id` = '{$entry_id}'";
+			$wpdb->get_results( $save_search_delete );
+		} else {
+
+			$wpdb->insert( $table_name, array(
+				'time'       => current_time( 'mysql' ),
+				'user_id'    => $user_id,
+				'search_url' => $search_url
+			) );
+		}
+	}
+}
+
+// should work whether or not logged in
+add_action( 'wp_ajax_mp_send_listing_agent_email', 'mp_send_listing_agent_email' );
+add_action( 'wp_ajax_nopriv_mp_send_listing_agent_email', 'mp_send_listing_agent_email' );

@@ -179,7 +179,7 @@ jQuery(function ($) {
         var user_id = $(this).attr('user_id');
         var current_link = $(this);
 
-       console.log( 'search', search_request, user_id);
+        console.log('search', search_request, user_id);
 
         /**
          * This will toggle the saved link, and also change it in the database - removing it if already set...
@@ -213,7 +213,55 @@ jQuery(function ($) {
             });
         }
 
-    })
+    });
+
+
+    /**
+     * Process ajax to submit contact agent form
+     */
+    $(".listing-agent-form-wrap input.submit").click(function (event) {
+
+        event.preventDefault();
+        $('.uploads-spinner').css({'display': 'flex'});
+
+        var user_name = $(".listing-agent-form-wrap input.name").val();
+        var user_phone = $(".listing-agent-form-wrap input.phone").val();
+        var user_email = $(".listing-agent-form-wrap input.email").val();
+        var user_comment = $(".listing-agent-form-wrap textarea.comment").val();
+        var agent_email = $(".listing-agent-form-wrap input.agent_email").val();
+        console.log(user_name, user_phone, user_email, user_comment, agent_email);
+
+        var formdata = new FormData();
+
+        formdata.append("mp_email_listing_agent_click", 'click');
+
+        formdata.append("user_name", user_name);
+        formdata.append("user_phone", user_phone);
+        formdata.append("user_email", user_email);
+        formdata.append("phone_number", phone_number);
+        formdata.append("user_comment", user_comment);
+        formdata.append("agent_email", agent_email);
+
+        formdata.append("action", "mp_send_listing_agent_email");
+
+        $.ajax({
+            type: 'POST',
+            url: ajaxurl,
+            data: formdata,
+            contentType: false,
+            processData: false,
+            success: function (data, textStatus, XMLHttpRequest) {
+                $('.uploads-spinner').hide();
+                //$('.mp-update-success').show();
+                //@todo trigger modal here
+            },
+            error: function (MLHttpRequest, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
+        });
+
+
+    });
 
 
 });

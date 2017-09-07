@@ -39,6 +39,10 @@
     $('.listing-agent-form-wrap .agent-choice-wrap').click(function () {
         $('.listing-agent-form-wrap .agent-choice-wrap.active').removeClass('active');
         $(this).addClass('active');
+        var agent_email = $(this).find('.agent-email').html();
+        console.log('email: ', agent_email);
+        // @todo get email address here?
+        $('input[name="agent_email"]').val(agent_email);
     });
 
     $('.toggle-advanced-options').click(function () {

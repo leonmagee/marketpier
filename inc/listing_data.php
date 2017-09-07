@@ -45,6 +45,7 @@ class listing_data {
 	public $favorite_listing;
 	public $author;
 	public $author_name;
+	public $author_email;
 	public $space_available;
 	public $rate_sf_month;
 	public $is_for_sale;
@@ -122,6 +123,9 @@ class listing_data {
 		$this->author               = get_the_author_meta( 'user_nicename', $author_id );
 		$first_name                 = get_user_meta( $author_id, 'first_name', true );
 		$last_name                  = get_user_meta( $author_id, 'last_name', true );
+		$user_data                  = get_userdata( $author_id );
+		$this->author_email         = $user_data->data->user_email;
+		//var_dump( get_field( 'phone_number', 'user_'  . $author_id) ); // @todo get ACF user data
 		if ( $first_name && $last_name ) {
 			$this->author_name = $first_name . ' ' . $last_name;
 		} elseif ( $first_name ) {

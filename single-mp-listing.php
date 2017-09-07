@@ -4,6 +4,8 @@
  *
  * @package MarketPier
  */
+get_template_part( 'template-parts/spinner' );
+
 get_header();
 
 require_once( 'inc/lv_google_map.php' );
@@ -416,13 +418,22 @@ if ( $request_details[2] == 'idx' ) {
 				} ?>
             </div>
 
+			<?php
+			$form_modal = new mp_output_modal_generic(
+				'contact-agent-modal',
+				'Thank You',
+				'An email has been sent. Someone will be in touch soon!'
+			);
+			$form_modal->output_modal(); ?>
+
             <div class="listing-agent-form-wrap">
                 <h3>Contact Agent</h3>
                 <form method="post">
                     <input class='name' type="text" name="your-name" placeholder="Your Name"/>
                     <input class='phone' type="number" name="your-phone" placeholder="Phone"/>
                     <input class='email' type="email" name="your-email" placeholder="Email"/>
-                    <textarea name="listing-comment">I am interested in <?php echo $address; ?></textarea>
+                    <textarea class='comment'
+                              ame="listing-comment">I am interested in <?php echo $address; ?></textarea>
                     <!-- @todo conditional based on email and name existing? -->
                     <div class="agent-choice-wrap">
                         <div class="agent-radio">
@@ -435,6 +446,7 @@ if ( $request_details[2] == 'idx' ) {
                             <div class="details-wrap">
                                 <div class="agent-name"><?php echo $listing_data->author_name; ?></div>
                                 <div class="broker-name">Listing Agent</div>
+                                <div class="agent-email"><?php echo $listing_data->author_email; ?></div>
                             </div>
                         </div>
                     </div>
@@ -449,9 +461,12 @@ if ( $request_details[2] == 'idx' ) {
                             <div class="details-wrap">
                                 <div class="agent-name">Dan Haas</div>
                                 <div class="broker-name">MarketPier Agent</div>
+								<?php $admin_email = get_option( 'admin_email' ); ?>
+                                <div class="agent-email"><?php echo $admin_email; ?></div>
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" name="agent_email" value="<?php echo $admin_email; ?>"/>
                     <input type="submit" class="submit" name="Contact Agent" value="Contact Agent"/>
                 </form>
             </div>
