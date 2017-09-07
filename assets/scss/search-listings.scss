@@ -99,6 +99,13 @@ a.snippet-link-outer {
     }
     .image-wrap { // @todo something is weird about sizing the images like this
       position: relative;
+      //width: 300px; //@todo media query or percent? remove img?
+      //height: 180px;
+      width: 320px;
+      height: 160px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
       .status-bar {
         position: absolute;
         height: 30px;
@@ -113,18 +120,18 @@ a.snippet-link-outer {
         font-size: 13px;
         text-transform: uppercase;
       }
-      img { // @todo use the background image method instead...
-        //max-height: 200px;
-        //min-width: 100px;
-        width: 100%;
-        @media(min-width: $screen-sm) {
-          width: auto;
-          //max-width: 275px;
-          max-width: 210px;
-          //min-height: 197px;
-          min-height: 150px;
-        }
-      }
+      //img { // @todo use the background image method instead...
+      //  //max-height: 200px;
+      //  //min-width: 100px;
+      //  width: 100%;
+      //  @media(min-width: $screen-sm) {
+      //    width: auto;
+      //    //max-width: 275px;
+      //    max-width: 210px;
+      //    //min-height: 197px;
+      //    min-height: 150px;
+      //  }
+      //}
       .image-overlay {
         position: absolute;
         z-index: 1;

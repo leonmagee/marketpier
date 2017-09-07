@@ -130,7 +130,7 @@ get_header();
                         </div>
                         <a class="snippet-link-outer" href="<?php echo $snippet->listing_url; ?>">
                             <div class="snippet-outer-wrap">
-                                <div class="image-wrap">
+                                <div class="image-wrap" style="background-image: url(<?php echo $snippet->image_gallery_first; ?>);">
                                     <div class="image-overlay">
                                         <div class="image-overlay-text">
 											<?php if ( $title = $snippet->property_name ) { ?>
@@ -146,7 +146,6 @@ get_header();
                                             <span><?php echo $status; ?></span>
                                         </div>
                                     <?php } ?>
-                                    <img src="<?php echo $snippet->image_gallery_first; ?>"/>
                                 </div>
                                 <div class="right-side-outer">
                                     <div class="top-line">
