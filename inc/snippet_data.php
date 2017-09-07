@@ -54,6 +54,25 @@ class snippet_data {
 		}
 	}
 
+	public function favorite_listing() {
+		/**
+		 * Check if listing is favorite of current user
+		 */
+		if ( is_user_logged_in() ) {
+			global $wpdb;
+			$prefix                 = $wpdb->prefix;
+			$table_name             = $prefix . 'mp_favorite_listings';
+			$user_id                = MP_LOGGED_IN_ID;
+			$favorite_query         = "SELECT * FROM `{$table_name}` WHERE `user_id` = '{$user_id}' AND `listing_id` = '{$this->listing_id}'";
+			$query_favorite_listing = $wpdb->get_results( $favorite_query );
+			if ( $query_favorite_listing ) {
+				$this->favorite_listing = true;
+			}
+		} else {
+			$this->favorite_listing = false;
+		}
+	}
+
 	public function listing_data_from_WP() {
 		$this->listing_id = get_the_ID();
 		$this->title      = get_the_title(); // @todo might not need this
@@ -90,25 +109,7 @@ class snippet_data {
 		$this->status        = $field_object_status['choices'][ $selected_status ];
 
 		$this->standardize_snippet_image_WP( get_field( 'listing_image_gallery' ) );
-
-
-		/**
-		 * Check if listing is favorite of current user
-		 */
-		if ( is_user_logged_in() ) {
-			global $wpdb;
-			$prefix                 = $wpdb->prefix;
-			$table_name             = $prefix . 'mp_favorite_listings';
-			$user_id                = MP_LOGGED_IN_ID;
-			$favorite_query         = "SELECT * FROM `{$table_name}` WHERE `user_id` = '{$user_id}' AND `listing_id` = '{$this->listing_id}'";
-			$query_favorite_listing = $wpdb->get_results( $favorite_query );
-			if ( $query_favorite_listing ) {
-				$this->favorite_listing = true;
-			}
-		} else {
-			$this->favorite_listing = false;
-		}
-
+		$this->favorite_listing();
 		$this->snippet_data_update();
 	}
 
@@ -144,6 +145,7 @@ class snippet_data {
 		$this->number_of_units = $listing->$number_of_units_field; // number of units
 		$this->lot_size        = $listing->lotSize->sqft; // @todo use acres if > 1 - can process this on front end?
 		$this->standardize_snippet_image_IDX( $listing->images );
+		$this->favorite_listing();
 		$this->snippet_data_update();
 	}
 
