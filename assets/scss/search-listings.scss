@@ -115,9 +115,9 @@ a.snippet-link-outer {
         height: 30px;
         width: 100%;
         padding: 0 15px;
-        background: rgba(0,0,0,0.2);
+        background: rgba(0, 0, 0, 0.2);
         color: #FFF;
-        text-shadow: 1px 1px rgba(0,0,0,0.1);
+        text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
         font-weight: 700;
         display: flex;
         align-items: center;
@@ -250,8 +250,10 @@ a.snippet-link-outer {
   justify-content: space-between;
   align-items: center;
   padding: 10px 25px;
-  background-color: #DDD;
-  border-bottom: 1px solid #D7D7D7;
+  background-color: #E7E7E7;
+  //border: 1px solid #DADADA;
+  //border-top: 1px solid #DADADA;
+  border-bottom: 1px solid #DDD;
   color: #444;
   text-transform: uppercase;
   font-weight: 700;
@@ -276,3 +278,34 @@ a.snippet-link-outer {
   }
 }
 
+.search-active-sold-wrap {
+  padding-top: 15px;
+  display: flex;
+  justify-content: space-around;
+  .active-sold-link {
+    padding: 5px;
+    background-color: #999;
+    border: 3px solid #999;
+    color: #FFF;
+    text-align: center;
+    font-weight: 700;
+    font-size: 14px;
+    flex: 0 1 40%;
+    text-transform: uppercase;
+    @media(min-width: $screen-sm) {
+      flex: 0 1 30%;
+    }
+    &:hover {
+      background-color: $brand-primary;
+      border-color: $brand-primary;
+    }
+    &.current {
+      background-color: lighten($brand-primary, 8%);
+      border-color: $brand-primary;
+      &:hover {
+        cursor: default;
+        //background-color: lighten( $brand-primary, 5%);
+      }
+    }
+  }
+}

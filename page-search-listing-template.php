@@ -1,6 +1,8 @@
 <?php
 /**
  * Template Name: Search Listings
+ * toggle different forms - with active vs. sold
+ * @todo remove status field, combine Lot size and days on market / sold in last into one field
  *
  * @package MarketPier
  */
@@ -10,13 +12,13 @@ require_once( 'inc/lv_google_map_group.php' );
 require_once( 'inc/form-process-submit.php' );
 $snippets_query = new snippet_data_search();
 //var_dump( $snippets_query );
-$snippets       = $snippets_query->snippet_object_array;
+$snippets = $snippets_query->snippet_object_array;
 //var_dump( $snippets );
 //var_dump( $snippets_query );
-$page_number = $snippets_query->page_number;
-$page_size   = $snippets_query->page_size;
+$page_number   = $snippets_query->page_number;
+$page_size     = $snippets_query->page_size;
 $total_results = $snippets_query->total_results;
-$total_pages = intval(ceil(( $total_results / $page_size )));
+$total_pages   = intval( ceil( ( $total_results / $page_size ) ) );
 //var_dump( $page_number );
 //var_dump( $page_size );
 //var_dump( $total_results );
@@ -81,18 +83,23 @@ get_header();
                     <i class="fa fa-chevron-left"></i> Prev
                 </div>
                 <div class="total-results">
-                    Total Results: <?php echo $snippets_query->total_results . ' (' . $listing_start . ' - ' . $listing_end . ' )'; ?>
+                    Total
+                    Results: <?php echo $snippets_query->total_results . ' (' . $listing_start . ' - ' . $listing_end . ' )'; ?>
                 </div>
                 <div class="nav-link next-page <?php echo $next_page_class; ?>">
                     Next <i class="fa fa-chevron-right"></i>
                 </div>
 
             </div>
+            <div class="search-active-sold-wrap">
+                <a class="active-sold-link current">Active Listings</a>
+                <a class="active-sold-link">Sold Listings</a>
+            </div>
 			<?php
 			/**
 			 * This template part doesn't have access to the data it needs...
 			 */
-			include( locate_template( 'template-parts/homepage-form-snippets.php' ) );
+			include( locate_template( 'template-parts/search-form-active.php' ) );
 			if ( $snippets ) {
 
 				foreach ( $snippets as $snippet ) {
@@ -130,7 +137,8 @@ get_header();
                         </div>
                         <a class="snippet-link-outer" href="<?php echo $snippet->listing_url; ?>">
                             <div class="snippet-outer-wrap">
-                                <div class="image-wrap" style="background-image: url(<?php echo $snippet->image_gallery_first; ?>);">
+                                <div class="image-wrap"
+                                     style="background-image: url(<?php echo $snippet->image_gallery_first; ?>);">
                                     <div class="image-overlay">
                                         <div class="image-overlay-text">
 											<?php if ( $title = $snippet->property_name ) { ?>
@@ -141,11 +149,11 @@ get_header();
 											<?php } ?>
                                         </div>
                                     </div>
-                                    <?php if ( $status = $snippet->status ) { ?>
+									<?php if ( $status = $snippet->status ) { ?>
                                         <div class="status-bar">
                                             <span><?php echo $status; ?></span>
                                         </div>
-                                    <?php } ?>
+									<?php } ?>
                                 </div>
                                 <div class="right-side-outer">
                                     <div class="top-line">
