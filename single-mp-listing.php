@@ -435,32 +435,38 @@ if ( $request_details[2] == 'idx' ) {
                     <textarea class='comment'
                               ame="listing-comment">I am interested in <?php echo $address; ?></textarea>
                     <!-- @todo conditional based on email and name existing? -->
-                    <div class="agent-choice-wrap">
-                        <div class="agent-radio">
-                            <i class="fa fa-circle-o" aria-hidden="true"></i>
-                        </div>
-                        <div class="agent-choice">
-                            <div class="avatar-wrap">
-								<?php
-								$headshot_field = get_field(
-									'headshot',
-									'user_' . $listing_data->author_id
-								);
-								if ( $headshot_field ) {
-									$headshot = $headshot_field['sizes']['thumbnail']; ?>
-                                    <img src="<?php echo $headshot; ?>"/>
-								<?php } else { ?>
-                                    <i class="fa fa-user"></i>
-								<?php } ?>
+					<?php
+					$default_class = 'one-link';
+					if ( $listing_data->author_name && $listing_data->author_email ) {
+						$default_class = '';
+						?>
+                        <div class="agent-choice-wrap">
+                            <div class="agent-radio">
+                                <i class="fa fa-circle-o" aria-hidden="true"></i>
                             </div>
-                            <div class="details-wrap">
-                                <div class="agent-name"><?php echo $listing_data->author_name; ?></div>
-                                <div class="broker-name">Listing Agent</div>
-                                <div class="agent-email"><?php echo $listing_data->author_email; ?></div>
+                            <div class="agent-choice">
+                                <div class="avatar-wrap">
+									<?php
+									$headshot_field = get_field(
+										'headshot',
+										'user_' . $listing_data->author_id
+									);
+									if ( $headshot_field ) {
+										$headshot = $headshot_field['sizes']['thumbnail']; ?>
+                                        <img src="<?php echo $headshot; ?>"/>
+									<?php } else { ?>
+                                        <i class="fa fa-user"></i>
+									<?php } ?>
+                                </div>
+                                <div class="details-wrap">
+                                    <div class="agent-name"><?php echo $listing_data->author_name; ?></div>
+                                    <div class="broker-name">Listing Agent</div>
+                                    <div class="agent-email"><?php echo $listing_data->author_email; ?></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="agent-choice-wrap">
+					<?php } ?>
+                    <div class="agent-choice-wrap <?php echo $default_class; ?>">
                         <div class="agent-radio">
                             <i class="fa fa-circle-o" aria-hidden="true"></i>
                         </div>
@@ -480,7 +486,7 @@ if ( $request_details[2] == 'idx' ) {
                     <input type="submit" class="submit" name="Contact Agent" value="Contact Agent"/>
                 </form>
             </div>
-<!--            <div class="pushbottom"></div>-->
+            <!--            <div class="pushbottom"></div>-->
         </div>
 
         <div class="google-map-wrapper">

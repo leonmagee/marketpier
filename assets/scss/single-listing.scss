@@ -359,10 +359,18 @@ h5.section-title {
     }
 
     .agent-choice-wrap {
-      display: flex;
-      flex: 1 1 50%;
-      //justify-content: flex-start;
       margin-bottom: 15px;
+      display: flex;
+      flex: 1 1 100%;
+      @media(min-width: $screen-sm) {
+        flex: 1 1 50%;
+      }
+      &.one-link {
+        @media(min-width: $screen-sm) {
+          flex: 1 1 100%;
+          padding: 0 18%;
+        }
+      }
       .agent-radio {
         display: flex;
         align-items: center;
@@ -378,10 +386,6 @@ h5.section-title {
         padding: 5px;
         border: 1px solid #DDD;
         flex: 1 1 85%;
-        //transition: 0.1s;
-        @media(min-width: $screen-sm) {
-          //flex: 0 1 49%;
-        }
         .avatar-wrap {
           flex: 0 1 25%;
           display: flex;
@@ -414,7 +418,6 @@ h5.section-title {
         }
         .agent-radio {
           i {
-            //font-size: 20px;
             color: $brand-primary;
           }
         }
@@ -426,7 +429,6 @@ h5.section-title {
         }
         .agent-radio {
           i {
-            //font-size: 20px;
             color: $brand-primary;
             &:before {
               content: "\f192";
@@ -435,7 +437,6 @@ h5.section-title {
         }
       }
     }
-
   }
 }
 
