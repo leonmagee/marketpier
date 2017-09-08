@@ -39,11 +39,12 @@ class api_listing_search {
 
 	public function search_listings( $parameters = null, $page_number = 1 ) {
 
-		$query_page_size = idx_listings_page_size(
-			$this->page_size,
-			$this->wp_listing_count,
-			$page_number
-		);
+//		$query_page_size = idx_listings_page_size(
+//			$this->page_size,
+//			$this->wp_listing_count,
+//			$page_number
+//		);
+		$query_page_size = $this->page_size;
 
 		//if ( $query_page_size ) {
 
