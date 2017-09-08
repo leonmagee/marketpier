@@ -480,6 +480,7 @@ if ( $request_details[2] == 'idx' ) {
                     <input type="submit" class="submit" name="Contact Agent" value="Contact Agent"/>
                 </form>
             </div>
+<!--            <div class="pushbottom"></div>-->
         </div>
 
         <div class="google-map-wrapper">
