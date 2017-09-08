@@ -441,7 +441,17 @@ if ( $request_details[2] == 'idx' ) {
                         </div>
                         <div class="agent-choice">
                             <div class="avatar-wrap">
-                                <i class="fa fa-user"></i>
+								<?php
+								$headshot_field = get_field(
+									'headshot',
+									'user_' . $listing_data->author_id
+								);
+								if ( $headshot_field ) {
+									$headshot = $headshot_field['sizes']['thumbnail']; ?>
+                                    <img src="<?php echo $headshot; ?>"/>
+								<?php } else { ?>
+                                    <i class="fa fa-user"></i>
+								<?php } ?>
                             </div>
                             <div class="details-wrap">
                                 <div class="agent-name"><?php echo $listing_data->author_name; ?></div>
@@ -466,26 +476,21 @@ if ( $request_details[2] == 'idx' ) {
                             </div>
                         </div>
                     </div>
-                    <input type="hidden" name="agent_email" value="<?php echo $admin_email; ?>"/>
+                    <input type="hidden" class="agent_email" name="agent_email" value="<?php echo $admin_email; ?>"/>
                     <input type="submit" class="submit" name="Contact Agent" value="Contact Agent"/>
                 </form>
             </div>
-
-
         </div>
-
 
         <div class="google-map-wrapper">
 			<?php
 			if ( ( $listing_data->lat && $listing_data->long ) || $listing_data->combined_address ) {
-
 				$google_map = new lv_google_map(
 					$listing_data->lat,
 					$listing_data->long,
 					$listing_data->title,
 					$listing_data->combined_address
 				);
-
 				$google_map->output_map();
 			}
 			?>

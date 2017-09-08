@@ -179,6 +179,14 @@
     //     $('.for-lease-listing').fadeIn();
     // });
 
+    // var agent_modal = $('#contact-agent-modal');
+    //
+    // agent_modal.foundation('open');
+
+    // $.ajax('/url')
+    //     .done(function(resp){
+    //         $modal.html(resp).foundation('open');
+
 
 }(jQuery));
 

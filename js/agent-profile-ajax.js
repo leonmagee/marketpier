@@ -238,7 +238,6 @@ jQuery(function ($) {
         formdata.append("user_name", user_name);
         formdata.append("user_phone", user_phone);
         formdata.append("user_email", user_email);
-        formdata.append("phone_number", phone_number);
         formdata.append("user_comment", user_comment);
         formdata.append("agent_email", agent_email);
 
@@ -251,9 +250,10 @@ jQuery(function ($) {
             contentType: false,
             processData: false,
             success: function (data, textStatus, XMLHttpRequest) {
+                //console.log('data!', data);
                 $('.uploads-spinner').hide();
-                //$('.mp-update-success').show();
-                //@todo trigger modal here
+                var agent_modal = $('#contact-agent-modal');
+                agent_modal.foundation('open');
             },
             error: function (MLHttpRequest, textStatus, errorThrown) {
                 alert(errorThrown);

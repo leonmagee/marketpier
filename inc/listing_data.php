@@ -44,6 +44,7 @@ class listing_data {
 	public $file_attachments;
 	public $favorite_listing;
 	public $author;
+	public $author_id;
 	public $author_name;
 	public $author_email;
 	public $space_available;
@@ -119,11 +120,11 @@ class listing_data {
 		$this->rental_unit_mix      = get_field( 'rental_unit_mix' );
 		$this->file_attachments     = get_field( 'listing_file_attachments' );
 		$this->space_available      = get_field( 'listing_space_available' );
-		$author_id                  = get_post_field( 'post_author', $this->listing_id );
-		$this->author               = get_the_author_meta( 'user_nicename', $author_id );
-		$first_name                 = get_user_meta( $author_id, 'first_name', true );
-		$last_name                  = get_user_meta( $author_id, 'last_name', true );
-		$user_data                  = get_userdata( $author_id );
+		$this->author_id            = get_post_field( 'post_author', $this->listing_id );
+		$this->author               = get_the_author_meta( 'user_nicename', $this->author_id );
+		$first_name                 = get_user_meta( $this->author_id, 'first_name', true );
+		$last_name                  = get_user_meta( $this->author_id, 'last_name', true );
+		$user_data                  = get_userdata( $this->author_id );
 		$this->author_email         = $user_data->data->user_email;
 		//var_dump( get_field( 'phone_number', 'user_'  . $author_id) ); // @todo get ACF user data
 		if ( $first_name && $last_name ) {

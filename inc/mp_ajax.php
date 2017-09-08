@@ -136,8 +136,6 @@ function mp_save_favorite_listing() {
 add_action( 'wp_ajax_mp_favorite_listing', 'mp_save_favorite_listing' );
 
 
-
-
 /**
  *  Save Search
  */
@@ -151,11 +149,11 @@ function mp_save_search() {
 		$prefix     = $wpdb->prefix;
 		$table_name = $prefix . 'mp_saved_searches';
 
-		$saved_search_query         = "SELECT * FROM `{$table_name}` WHERE `user_id` = '{$user_id}' AND `search_url` = '{$search_url}'";
+		$saved_search_query = "SELECT * FROM `{$table_name}` WHERE `user_id` = '{$user_id}' AND `search_url` = '{$search_url}'";
 		$query_saved_search = $wpdb->get_results( $saved_search_query );
 
 		if ( $query_saved_search ) {
-			$entry_id              = $query_saved_search[0]->id;
+			$entry_id           = $query_saved_search[0]->id;
 			$save_search_delete = "DELETE FROM `{$table_name}` WHERE `id` = '{$entry_id}'";
 			$wpdb->get_results( $save_search_delete );
 		} else {
@@ -172,39 +170,23 @@ function mp_save_search() {
 add_action( 'wp_ajax_mp_save_search', 'mp_save_search' );
 
 
-
 /**
  *  Send Listing Agent Email - @todo get code from CCG?
  */
 function mp_send_listing_agent_email() {
 
 
+	if ( isset( $_POST['mp_email_listing_agent_click'] ) ) {
 
+		$user_name    = $_POST['user_name'];
+		$user_phone   = $_POST['user_phone'];
+		$user_email   = $_POST['user_email'];
+		$user_comment = $_POST['user_comment'];
+		$agent_email  = $_POST['agent_email'];
 
-	if ( isset( $_POST['search_request'] ) ) {
-
-		$user_id    = $_POST['user_id'];
-		$search_url = $_POST['search_request'];
-
-		global $wpdb;
-		$prefix     = $wpdb->prefix;
-		$table_name = $prefix . 'mp_saved_searches';
-
-		$saved_search_query         = "SELECT * FROM `{$table_name}` WHERE `user_id` = '{$user_id}' AND `search_url` = '{$search_url}'";
-		$query_saved_search = $wpdb->get_results( $saved_search_query );
-
-		if ( $query_saved_search ) {
-			$entry_id              = $query_saved_search[0]->id;
-			$save_search_delete = "DELETE FROM `{$table_name}` WHERE `id` = '{$entry_id}'";
-			$wpdb->get_results( $save_search_delete );
-		} else {
-
-			$wpdb->insert( $table_name, array(
-				'time'       => current_time( 'mysql' ),
-				'user_id'    => $user_id,
-				'search_url' => $search_url
-			) );
-		}
+		$send_emails = new mp_send_email( $user_email, $user_name, $user_phone, $user_comment, $agent_email );
+		$send_emails->send_email();
+		//wp_die('email sent! ' . $agent_email);
 	}
 }
 
