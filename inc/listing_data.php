@@ -164,11 +164,13 @@ class listing_data {
 			$slipstream_token_query->slipstream_token,
 			$listing_page_size,
 			$market,
-			$mls_number
+			$mls_number,
+			false,
+			false
 		);
 		$search->search_listings();
 
-		$listing      = $search->search_result->listings[0];
+		$listing      = $search->search_result[0];
 		$listing_type = $listing->listingType;
 		// also - public 'geoType' => string 'listing' (length=7)
 		if ( $listing_type == 'residential' ) {
