@@ -61,7 +61,7 @@ class snippet_data_search {
 		}
 		//$this->page_size = 10;
 		//$this->page_size = 3;
-		$this->page_size = 5;
+		$this->page_size = 3;
 
 		/**
 		 * Here you can process the WP search and then the IDX search

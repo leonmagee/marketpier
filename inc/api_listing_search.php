@@ -6,6 +6,9 @@
  * I need to read through this and see exactly what it does. Then I can tweak out a method to just populate the fields that I
  * already have. For the other class, I need to break apart things that are specific for WP for not specific. Any functionality
  * that is manipulating the data after having been retrieved needs to be abstracted to a different method.
+ *
+ * @todo I broke this for single listngs when I made the changes for the searh.. there needs to be a conditional in here somewhere
+ * when this is for snippets vs. for a single listing?
  */
 class api_listing_search {
 
@@ -117,6 +120,12 @@ class api_listing_search {
 
 		} else {
 			$listing_data = json_decode( $listings['body'] );
+
+			/**
+			 * I need a big conditional here to check to see if this is a snippet search or a single listing...
+			 *
+			 */
+
 			$this->transient_name = 'ex-' . $this->market . $listing_type_string . $this->page_size . $status_string . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $listing_date_string;
 			if ( $idx_listings_needed ) {
 
@@ -149,16 +158,17 @@ class api_listing_search {
 
 				} elseif ( $number_results_returned < $idx_listings_needed ) {
 
+					var_dump( 'this is happening!' );
 					/**
 					 * @todo I can do math here to see how many we need?
 					 * here we get the transient data.
+					 * Here we need to deal with situations where the number of extra IDX listings falls to two pages,
+					 * in this case I need to pop off the required items from the transient (data should aways be retrieved
+					 * like this, and then if the transient array still exists you can re-save it.
 					 */
-					$extra_data_serial              = get_transient( $this->transient_name );
-					//var_dump( $this->transient_name );
-					//var_dump( $extra_data_serial );
+					$extra_data_serial = get_transient( $this->transient_name );
 					if ( $extra_data_serial ) {
 						$extra_data                     = unserialize( $extra_data_serial );
-						//var_dump( $extra_data );
 						$listing_data->result->listings = array_merge( $listing_data->result->listings, $extra_data );
 					}
 				}
@@ -167,5 +177,5 @@ class api_listing_search {
 			}
 			$this->total_listings = $listing_data->result->total;
 		}
-	}
+}
 }
