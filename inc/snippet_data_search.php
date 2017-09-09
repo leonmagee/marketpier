@@ -60,6 +60,7 @@ class snippet_data_search {
 			$this->page_number = 1;
 		}
 		//$this->page_size = 10;
+		//$this->page_size = 3;
 		$this->page_size = 5;
 
 		/**
@@ -365,7 +366,8 @@ class snippet_data_search {
 		);
 		$search->search_listings( $parameters, $page_number );
 
-		$listings = $search->search_result->listings;
+		//$listings = $search->search_result->listings;
+		$listings = $search->search_result;
 
 		$this->total_results = ( $this->total_results + $search->total_listings );
 		//var_dump( $this->total_results );

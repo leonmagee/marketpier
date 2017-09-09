@@ -12,7 +12,6 @@ class api_listing_search {
 	public $market;
 	public $search_result;
 	public $total_listings;
-	//public $search_parameters_array;
 	public $details;
 	public $extended;
 	public $features;
@@ -21,32 +20,32 @@ class api_listing_search {
 	public $mls_number;
 	public $listing_type;
 	public $wp_listing_count;
+	public $transient_name;
 
 	public function __construct( $token, $page_size, $market, $mls_number = false, $wp_listing_count = false ) {
-		$this->market        = $market;
-		$this->token         = $token;
-		$this->details       = true;
-		$this->extended      = true;
-		$this->features      = true;
-		$this->page_size     = $page_size;
-		$this->network_error = false;
-		//$mls_number = '170039114';
+		$this->market           = $market;
+		$this->token            = $token;
+		$this->details          = true;
+		$this->extended         = true;
+		$this->features         = true;
+		$this->page_size        = $page_size;
+		$this->network_error    = false;
 		$this->mls_number       = $mls_number;
 		$this->listing_type     = 'Commercial';
 		$this->wp_listing_count = $wp_listing_count;
-		//$this->listing_type = false;
 	}
 
 	public function search_listings( $parameters = null, $page_number = 1 ) {
 
-//		$query_page_size = idx_listings_page_size(
-//			$this->page_size,
-//			$this->wp_listing_count,
-//			$page_number
-//		);
-		$query_page_size = $this->page_size;
+		$idx_listings_needed = idx_listings_page_size(
+			$this->page_size,
+			$this->wp_listing_count,
+			$page_number
+		);
+		var_dump( 'IDX Needed', $idx_listings_needed );
 
-		//if ( $query_page_size ) {
+		$page_number = idx_listings_current_page( $this->page_size, $this->wp_listing_count, $page_number );
+		var_dump( 'IDX Page Number', $page_number );
 
 		$extended_fields = get_field( 'home_junction_extended_fields', 'option' );
 		/**
@@ -69,50 +68,15 @@ class api_listing_search {
 			$size_string = '&size=' . $size;
 		}
 		if ( $cap_rate_range = $parameters['cap_rate'] ) {
-			$cap_rate_field = get_key( $extended_fields, $this->market, 'cap_rate' );
-			//$cap_rate_string = '&xf_lm_dec_10=' . $cap_rate_range;
+			$cap_rate_field  = get_key( $extended_fields, $this->market, 'cap_rate' );
 			$cap_rate_string = '&' . $cap_rate_field . '=' . $cap_rate_range;
 		}
-//		if ( $id = $parameters['mls'] ) {
-//			$id_string = '&id=' . $id;
-//		}
 		if ( $status = $parameters['status'] ) {
 			$status_string = '&status=' . $status;
 		}
-
-
-		//$status_string = '&status=Contingent'; // @todo temp
-		//$status_string = '&status=Back on Market'; // @todo temp ???
-		//$status_string = '&status=Active'; // @todo temp
-//		if ( $county = $parameters['county'] ) {
-//			$county_string = '&county=' . $county;
-//		}
 		if ( $list_price = $parameters['listPrice'] ) {
 			$list_price_string = '&listPrice=' . $list_price;
 		}
-//		if ( $sale_price = $parameters['salePrice'] ) {
-//			$sale_price_string = '&salePrice=' . $sale_price;
-//		}
-//		if ( $keyword = $parameters['address-keyword'] ) {
-//			$keyword_string = '&keyword=' . $keyword;
-//		}
-		//@todo this should be somewhere else
-		//Commercial, Farm, Land, Multifamily, Rental, or Residential.
-		//$listing_type = 'Commercial';
-		//$listing_type = 'Residential';
-		//$listing_type = 'Farm';
-		//$listing_type = 'Land';
-		//$listing_type = 'Multifamily';
-		//$listing_type = 'Rental';
-//		$listing_type = '';
-//		if ( $listing_type ) {
-//
-//		}
-//		if ( $listing_date = $parameters['listing_date'] ) {
-//
-//			$listing_date_new = strtotime($listing_date);
-//			$listing_date_string = '&listingDate=' . $listing_date_new;
-//		}
 
 		/**
 		 * Create query string for Listing Date...
@@ -138,13 +102,11 @@ class api_listing_search {
 				$listing_date_end    = strtotime( $listing_date_end );
 				$listing_date_string = '&listingDate=<' . $listing_date_end;
 			}
-
-
-			//$listing_date_string = '&listingDate=' . $sale_date_start . ':' . $sale_date_end;
 		}
 
+		var_dump( 'Real Page Number: ' . $page_number );
 
-		$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $query_page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $status_string . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $listing_date_string . '&pageNumber=' . $page_number;
+		$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $status_string . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $listing_date_string . '&pageNumber=' . $page_number;
 
 		$listings = wp_remote_get( $url, array( 'headers' => array( 'HJI-Slipstream-Token' => $this->token ) ) );
 
@@ -154,13 +116,56 @@ class api_listing_search {
 			$this->network_error = true;
 
 		} else {
+			$listing_data = json_decode( $listings['body'] );
+			$this->transient_name = 'ex-' . $this->market . $listing_type_string . $this->page_size . $status_string . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $listing_date_string;
+			if ( $idx_listings_needed ) {
 
-			$listing_data        = json_decode( $listings['body'] );
-			if ( $query_page_size ) {
-				$this->search_result = $listing_data->result;
+				$number_results_returned = count( $listing_data->result->listings );
+				//var_dump( $listing_data->result->listings );
+				var_dump( 'count results: ', $number_results_returned );
+				/**
+				 * I need to remove two items here.
+				 * @todo how to tell if this is one of the last two pages?
+				 * maybe simply check to see if the returned IDX results are less than the page size, and if they are, then
+				 * we can paste the transient back on...
+				 */
+				if ( $number_results_returned > $idx_listings_needed ) {
+					/**
+					 * Store extras in transient
+					 */
+					$extra_amount = ( $number_results_returned - $idx_listings_needed );
+					//var_dump( 'extra: ', $extra_amount );
+
+					var_dump( $this->transient_name );
+					$save_listing_array = array();
+
+					for ( $x = 0; $x < $extra_amount; ++ $x ) {
+						$save_listing_array[] = array_pop( $listing_data->result->listings );
+					}
+					$extra_listings_serial = serialize( $save_listing_array );
+					set_transient( $this->transient_name, $extra_listings_serial, 60000 );
+					//var_dump( $save_listing_array );
+					//$this->search_result = $listing_data->result->listings;
+
+				} elseif ( $number_results_returned < $idx_listings_needed ) {
+
+					/**
+					 * @todo I can do math here to see how many we need?
+					 * here we get the transient data.
+					 */
+					$extra_data_serial              = get_transient( $this->transient_name );
+					//var_dump( $this->transient_name );
+					//var_dump( $extra_data_serial );
+					if ( $extra_data_serial ) {
+						$extra_data                     = unserialize( $extra_data_serial );
+						//var_dump( $extra_data );
+						$listing_data->result->listings = array_merge( $listing_data->result->listings, $extra_data );
+					}
+				}
+
+				$this->search_result = $listing_data->result->listings;
 			}
 			$this->total_listings = $listing_data->result->total;
 		}
-		//}
 	}
 }

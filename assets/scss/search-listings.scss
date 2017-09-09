@@ -279,10 +279,11 @@ a.snippet-link-outer {
 }
 
 .search-active-sold-wrap {
-  padding-top: 15px;
+  padding: 15px 10px 0;
   display: flex;
-  justify-content: space-around;
+  //justify-content: space-around;
   .active-sold-link {
+    margin: 0 8px;
     padding: 5px;
     background-color: #999;
     border: 3px solid #999;

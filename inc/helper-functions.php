@@ -113,14 +113,25 @@ function get_key( $extended_fields, $market, $field_name ) {
  * @return int
  */
 function idx_listings_page_size( $page_size, $wp_count, $current_page = 1 ) {
+	/**
+	 * I need to program this to subtract from the $current_page the number of times that there are no IDX results.
+	 */
 	$difference = ( $page_size * $current_page ) - $wp_count;
 	if ( $difference <= 0 ) {
-		$query_page_size = 0;
+		$idx_listings_needed = 0;
 	} elseif ( $difference >= $page_size ) {
-		$query_page_size = $page_size;
+		$idx_listings_needed = $page_size;
 	} else {
-		$query_page_size = $difference;
+		$idx_listings_needed = $difference;
 	}
 
-	return $query_page_size;
+	return $idx_listings_needed;
+}
+
+function idx_listings_current_page( $page_size, $wp_count, $page_number ) {
+	$divide             = ( $wp_count / $page_size );
+	$subtraction_amount = intval( $divide );
+	$page_number_new    = $page_number - $subtraction_amount;
+
+	return $page_number_new;
 }

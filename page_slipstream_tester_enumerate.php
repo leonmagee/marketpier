@@ -13,6 +13,9 @@ $slipstream_token = new get_slipstream_token();
  */
 
 //set_transient( $transient, $value, $expiration );
+$trans_key = 'ex-sandicor&listingType=Commercial5&xf_lm_dec_10=3:4';
+$trans = get_transient( $trans_key );
+var_dump( $trans );
 
 $array            = array( 'leon', 'bonnie', array( 'maryana', 'kara' ) );
 $serialized_array = serialize( $array );
