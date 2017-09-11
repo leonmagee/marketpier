@@ -31,7 +31,7 @@ class snippet_data_search {
 	public $lot_size_min;
 	public $days_on_market;
 	public $author_id;
-	public $status_all; // fix to show all listings on author.php
+	public $status_all; // @todo is this needed? - fix to show all listings on author.php
 
 	public function __construct( $author_id = false, $status_all = false ) {
 		/**
@@ -61,9 +61,8 @@ class snippet_data_search {
 		} else {
 			$this->page_number = 1;
 		}
-		//$this->page_size = 10;
+		$this->page_size = 10;
 		//$this->page_size = 3;
-		$this->page_size = 3;
 
 		/**
 		 * Here you can process the WP search and then the IDX search
@@ -292,6 +291,12 @@ class snippet_data_search {
 		 */
 		if ( ! ( $page_number = $this->page_number ) ) {
 			$page_number = 1;
+		}
+		/**
+		 * Status
+		 */
+		if ( $status = $this->status ) {
+			$parameters['status'] = $status;
 		}
 		/**
 		 * City or Zip

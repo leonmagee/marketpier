@@ -47,7 +47,14 @@ class api_listing_search {
 		/**
 		 * Get submitted fields
 		 */
-		$listing_type_string = $id_string = $zip_string = $city_string = $size_string = $cap_rate_string = $county_string = $list_price_string = $keyword_string = $listing_date_string = $status_string = '';
+		$listing_type_string = $id_string = $zip_string = $city_string = $size_string = $cap_rate_string = $county_string = $list_price_string = $keyword_string = $listing_date_string = '';
+		if ( $status = $parameters['status'] ) {
+			if ( $status === 'sold' ) {
+				$active_sold_key = 'sales';
+			} else {
+				$active_sold_key = 'listings';
+			}
+		}
 		if ( $listing_type = $this->listing_type ) {
 			$listing_type_string = '&listingType=' . $listing_type;
 		}
@@ -66,9 +73,6 @@ class api_listing_search {
 		if ( $cap_rate_range = $parameters['cap_rate'] ) {
 			$cap_rate_field  = get_key( $extended_fields, $this->market, 'cap_rate' );
 			$cap_rate_string = '&' . $cap_rate_field . '=' . $cap_rate_range;
-		}
-		if ( $status = $parameters['status'] ) {
-			$status_string = '&status=' . $status;
 		}
 		if ( $list_price = $parameters['listPrice'] ) {
 			$list_price_string = '&listPrice=' . $list_price;
@@ -100,7 +104,7 @@ class api_listing_search {
 			}
 		}
 
-		$this->transient_name = 'ex-' . $this->market . $listing_type_string . $this->page_size . $status_string . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $listing_date_string;
+		$this->transient_name = 'ex-' . $this->market . $listing_type_string . $this->page_size . $this->status . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $listing_date_string;
 
 		$count_listings_trans = 'n_' . $this->transient_name;
 		$total_num_listings   = get_transient( $count_listings_trans );
@@ -116,15 +120,25 @@ class api_listing_search {
 				$page_number,
 				$total_num_listings
 			);
-			//var_dump( 'IDX Needed', $idx_listings_needed );
+			var_dump( 'IDX Needed', $idx_listings_needed );
 
 			$page_number = idx_listings_current_page( $this->page_size, $this->wp_listing_count, $page_number );
-			//var_dump( 'IDX Page Number', $page_number );
+			var_dump( 'IDX Page Number', $page_number );
 		}
 
-		$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $status_string . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $listing_date_string . '&pageNumber=' . $page_number;
+		if ( $status === 'sold' ) {
+			$url = 'https://slipstream.homejunction.com/ws/sales/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $listing_date_string . '&pageNumber=' . $page_number;
+
+		} else {
+			$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $listing_date_string . '&pageNumber=' . $page_number;
+		}
 
 		$listings = wp_remote_get( $url, array( 'headers' => array( 'HJI-Slipstream-Token' => $this->token ) ) );
+
+		/**
+		 * data will need to be accessed differently if these are sold results
+		 */
+		//var_dump( $listings );
 
 
 		if ( $listings->errors['http_request_failed'] ) {
@@ -133,6 +147,7 @@ class api_listing_search {
 
 		} else {
 			$listing_data = json_decode( $listings['body'] );
+			//var_dump( $listing_data );
 
 			/**
 			 * I need a big conditional here to check to see if this is a snippet search or a single listing...
@@ -144,9 +159,10 @@ class api_listing_search {
 //				$this->transient_name = 'ex-' . $this->market . $listing_type_string . $this->page_size . $status_string . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $listing_date_string;
 				if ( $idx_listings_needed ) {
 
-					$number_results_returned = count( $listing_data->result->listings );
+					//$number_results_returned = count( $listing_data->result->listings );
+					$number_results_returned = count( $listing_data->result->$active_sold_key );
 					//var_dump( $listing_data->result->listings );
-					//var_dump( 'count results: ', $number_results_returned );
+					var_dump( 'count results: ', $number_results_returned );
 					/**
 					 * I need to remove two items here.
 					 * @todo how to tell if this is one of the last two pages?
@@ -158,13 +174,14 @@ class api_listing_search {
 						 * Store extras in transient
 						 */
 						$extra_amount = ( $number_results_returned - $idx_listings_needed );
-						//var_dump( 'extra: ', $extra_amount );
+						var_dump( 'extra: ', $extra_amount );
 
-						//var_dump( $this->transient_name );
+						var_dump( $this->transient_name );
 						$save_listing_array = array();
 
 						for ( $x = 0; $x < $extra_amount; ++ $x ) {
-							$save_listing_array[] = array_pop( $listing_data->result->listings );
+							//$save_listing_array[] = array_pop( $listing_data->result->listings );
+							$save_listing_array[] = array_pop( $listing_data->result->$active_sold_key );
 						}
 						$extra_listings_serial = serialize( $save_listing_array );
 						set_transient( $this->transient_name, $extra_listings_serial, 60000 );
@@ -198,11 +215,13 @@ class api_listing_search {
 								set_transient( $this->transient_name, $extra_listings_serial, 60000 );
 							}
 
-							$listing_data->result->listings = array_merge( $listing_data->result->listings, $new_data_array );
+							//$listing_data->result->listings = array_merge( $listing_data->result->listings, $new_data_array );
+							$listing_data->result->$active_sold_key = array_merge( $listing_data->result->$active_sold_key, $new_data_array );
 						}
 					}
 
-					$this->search_result = $listing_data->result->listings;
+					//$this->search_result = $listing_data->result->listings;
+					$this->search_result = $listing_data->result->$active_sold_key;
 				} elseif ( $page_number > 1 ) {
 					/**
 					 * Code repeated here, should be more try
@@ -223,12 +242,14 @@ class api_listing_search {
 //							set_transient( $this->transient_name, $extra_listings_serial, 60000 );
 //						}
 
-						$listing_data->result->listings = $extra_data;
+						$listing_data->result->$active_sold_key = $extra_data;
 					}
-					$this->search_result = $listing_data->result->listings;
+					//$this->search_result = $listing_data->result->listings;/
+					$this->search_result = $listing_data->result->$active_sold_key;
 				}
 			} else {
-				$this->search_result = $listing_data->result->listings;
+				//$this->search_result = $listing_data->result->listings;
+				$this->search_result = $listing_data->result->$active_sold_key;
 			}
 
 			//$count_listings_trans = 'n_' . $this->transient_name;
