@@ -283,7 +283,7 @@ a.snippet-link-outer {
   margin: 0 21px;
   display: flex;
   justify-content: space-between;
-  .active-sold-link {
+  a.active-sold-link {
     //margin: 0 8px;
     padding: 5px;
     background-color: #999;
@@ -301,6 +301,7 @@ a.snippet-link-outer {
     &:hover {
       background-color: $brand-primary;
       border-color: $brand-primary;
+      color: #FFF;
     }
     &.current {
       //background-color: lighten($brand-primary, 8%);

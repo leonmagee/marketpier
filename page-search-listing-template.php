@@ -11,6 +11,7 @@ require_once( 'inc/snippet_data_search.php' );
 require_once( 'inc/lv_google_map_group.php' );
 require_once( 'inc/form-process-submit.php' );
 $snippets_query = new snippet_data_search();
+//var_dump( $snippets_query->status );
 //var_dump( $snippets_query );
 $snippets = $snippets_query->snippet_object_array;
 //var_dump( $snippets );
@@ -91,15 +92,29 @@ get_header();
                 </div>
 
             </div>
-            <?php
-            /**
-             * @todo disabe current link
-             */
-            ?>
+			<?php
+			/**
+			 * @todo disabe current link
+			 */
+			?>
             <div class="search-active-sold-wrap">
-                <a class="active-sold-link current" href="<?php echo site_url(); ?>/search-listings/?status=active&for_sale_lease=for_sale">Active Listings</a>
-                <a class="active-sold-link" href="<?php echo site_url(); ?>/search-listings/?status=sold&for_sale_lease=for_sale">Sold Listings</a>
-                <a class="active-sold-link" href="<?php echo site_url(); ?>/search-listings/?status=active&for_sale_lease=for_sale">Reset Search</a>
+				<?php if ( $snippets_query->status !== 'active' ) { ?>
+                    <a class="active-sold-link"
+                       href="<?php echo site_url(); ?>/search-listings/?status=active&for_sale_lease=for_sale">Active
+                        Listings</a>
+				<?php } else { ?>
+                    <a class="active-sold-link current">Active Listings</a>
+				<?php } ?>
+				<?php if ( $snippets_query->status !== 'sold' ) { ?>
+                    <a class="active-sold-link"
+                       href="<?php echo site_url(); ?>/search-listings/?status=sold&for_sale_lease=for_sale">Sold
+                        Listings</a>
+				<?php } else { ?>
+                    <a class="active-sold-link current">Sold Listings</a>
+				<?php } ?>
+                <a class="active-sold-link"
+                   href="<?php echo site_url(); ?>/search-listings/?status=active&for_sale_lease=for_sale">Reset
+                    Search</a>
             </div>
 			<?php
 			/**
