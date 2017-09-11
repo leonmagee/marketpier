@@ -16,9 +16,10 @@ class snippet_data_search {
 	public $snippet_object_array;
 	public $map_data_array;
 	public $for_sale_lease;
-	public $status_active;
-	public $status_pending;
-	public $status_sold;
+	public $status;
+	//public $status_active;
+	//public $status_pending;
+	//public $status_sold;
 	public $property_type;
 	public $city_zip;
 	public $price_min;
@@ -40,9 +41,10 @@ class snippet_data_search {
 		$this->status_all     = $status_all;
 		$this->page_number    = filter_input( INPUT_GET, 'page_number', FILTER_SANITIZE_ENCODED );
 		$this->for_sale_lease = filter_input( INPUT_GET, 'for_sale_lease', FILTER_SANITIZE_ENCODED );
-		$this->status_active  = filter_input( INPUT_GET, 'status_active', FILTER_SANITIZE_ENCODED );
-		$this->status_pending = filter_input( INPUT_GET, 'status_pending', FILTER_SANITIZE_ENCODED );
-		$this->status_sold    = filter_input( INPUT_GET, 'status_sold', FILTER_SANITIZE_ENCODED );
+		$this->status         = filter_input( INPUT_GET, 'status', FILTER_SANITIZE_ENCODED );
+		//$this->status_active  = filter_input( INPUT_GET, 'status_active', FILTER_SANITIZE_ENCODED );
+		//$this->status_pending = filter_input( INPUT_GET, 'status_pending', FILTER_SANITIZE_ENCODED );
+		//$this->status_sold    = filter_input( INPUT_GET, 'status_sold', FILTER_SANITIZE_ENCODED );
 		$this->property_type  = filter_input( INPUT_GET, 'property_type', FILTER_SANITIZE_SPECIAL_CHARS );
 		$city_zip             = filter_input( INPUT_GET, 'city_zip', FILTER_SANITIZE_SPECIAL_CHARS );
 		$this->city_zip       = rawurldecode( $city_zip );
@@ -75,16 +77,16 @@ class snippet_data_search {
 		/**
 		 * @todo step 1 - get data - step 2 - process WP search terms?
 		 */
-		$status_array = array();
-		if ( $this->status_active ) {
-			$status_array[] = 'active';
-		}
-		if ( $this->status_pending ) {
-			$status_array[] = 'pending';
-		}
-		if ( $this->status_sold ) {
-			$status_array[] = 'sold';
-		}
+//		$status_array = array();
+//		if ( $this->status_active ) {
+//			$status_array[] = 'active';
+//		}
+//		if ( $this->status_pending ) {
+//			$status_array[] = 'pending';
+//		}
+//		if ( $this->status_sold ) {
+//			$status_array[] = 'sold';
+//		}
 
 		/**
 		 * @todo use this same function for IDX city or zip code search?
@@ -118,21 +120,34 @@ class snippet_data_search {
 				'value' => 'for_sale'
 			);
 		}
-		if ( $status_array ) {
+
+		if ( $status = $this->status ) {
 			$meta_search_array[] = array(
-				'key'     => 'listing_status',
-				'value'   => $status_array,
-				'compare' => 'IN'
+				'key'   => 'listing_status',
+				'value' => $status
 			);
 		} else {
-			if ( ! $this->status_all ) {
-
-				$meta_search_array[] = array(
-					'key'   => 'listing_status',
-					'value' => 'active'
-				);
-			}
+			$meta_search_array[] = array(
+				'key'   => 'listing_status',
+				'value' => 'active'
+			);
 		}
+
+//		if ( $status_array ) {
+//			$meta_search_array[] = array(
+//				'key'     => 'listing_status',
+//				'value'   => $status_array,
+//				'compare' => 'IN'
+//			);
+//		} else {
+//			if ( ! $this->status_all ) {
+//
+//				$meta_search_array[] = array(
+//					'key'   => 'listing_status',
+//					'value' => 'active'
+//				);
+//			}
+//		}
 		if ( $property_type = $this->property_type ) {
 			if ( $property_type !== 'all_property_types' ) {
 				$meta_search_array[] = array(

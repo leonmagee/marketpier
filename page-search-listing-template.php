@@ -91,9 +91,15 @@ get_header();
                 </div>
 
             </div>
+            <?php
+            /**
+             * @todo disabe current link
+             */
+            ?>
             <div class="search-active-sold-wrap">
-                <a class="active-sold-link current">Active Listings</a>
-                <a class="active-sold-link">Sold Listings</a>
+                <a class="active-sold-link current" href="<?php echo site_url(); ?>/search-listings/?status=active&for_sale_lease=for_sale">Active Listings</a>
+                <a class="active-sold-link" href="<?php echo site_url(); ?>/search-listings/?status=sold&for_sale_lease=for_sale">Sold Listings</a>
+                <a class="active-sold-link" href="<?php echo site_url(); ?>/search-listings/?status=active&for_sale_lease=for_sale">Reset Search</a>
             </div>
 			<?php
 			/**
