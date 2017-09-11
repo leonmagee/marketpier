@@ -118,7 +118,7 @@ function idx_listings_page_size( $page_size, $wp_count, $current_page = 1, $tota
 	 * I need to program this to subtract from the $current_page the number of times that there are no IDX results.
 	 */
 
-	if ( $total_idx_listings ) {
+	if ( $total_idx_listings && $wp_count ) {
 		$total_listings = ( $total_idx_listings + $wp_count );
 		// everything might work fine up until the point that we need 0 listings, so it's ok to have a page size of 5 when there is only one IDX listing to retrieve, but we need to make no IDX query when there are no listings, since it will return data that we don't want...
 		$listings_so_far = ($current_page * $page_size );

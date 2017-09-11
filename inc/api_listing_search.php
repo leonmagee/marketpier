@@ -43,7 +43,6 @@ class api_listing_search {
 	public function search_listings( $parameters = null, $page_number = 1 ) {
 
 
-
 		$extended_fields = get_field( 'home_junction_extended_fields', 'option' );
 		/**
 		 * Get submitted fields
@@ -104,7 +103,7 @@ class api_listing_search {
 		$this->transient_name = 'ex-' . $this->market . $listing_type_string . $this->page_size . $status_string . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $listing_date_string;
 
 		$count_listings_trans = 'n_' . $this->transient_name;
-		$total_num_listings = get_transient( $count_listings_trans );
+		$total_num_listings   = get_transient( $count_listings_trans );
 
 //		if ( ! get_transient( $count_listings_trans ) ) {
 //			set_transient( $count_listings_trans, $listing_data->result->total, 3600 );
@@ -204,13 +203,14 @@ class api_listing_search {
 					}
 
 					$this->search_result = $listing_data->result->listings;
-				} else {
+				} elseif ( $page_number > 1 ) {
 					/**
 					 * Code repeated here, should be more try
 					 */
+
 					$extra_data_serial = get_transient( $this->transient_name );
 					if ( $extra_data_serial ) { // here we can assume this will all go on one page
-						$extra_data     = unserialize( $extra_data_serial );
+						$extra_data = unserialize( $extra_data_serial );
 						//var_dump( $extra_data );
 //						$new_data_array = array();
 //						for ( $x = 0; $x < $transient_listings_needed; ++ $x ) {
