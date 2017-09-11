@@ -120,7 +120,7 @@ get_header();
 			/**
 			 * This template part doesn't have access to the data it needs...
 			 */
-			include( locate_template( 'template-parts/search-form-active.php' ) );
+			include( locate_template( 'template-parts/search-form.php' ) );
 			if ( $snippets ) {
 
 				foreach ( $snippets as $snippet ) {

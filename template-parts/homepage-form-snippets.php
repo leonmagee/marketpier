@@ -1,9 +1,11 @@
 <!-- homepage form for snippets page -->
 <?php
-
+/**
+ * Deprecated?
+ */
+die('deprecated - homepage-form-snippets');
 //$form_price_min = intval( filter_input( INPUT_GET, 'price_min', FILTER_SANITIZE_SPECIAL_CHARS ) );
 //var_dump( $form_price_min );
-
 ?>
 
 <div class="search-form-wrap-snippets">
