@@ -116,10 +116,10 @@ class api_listing_search {
 				$page_number,
 				$total_num_listings
 			);
-			var_dump( 'IDX Needed', $idx_listings_needed );
+			//var_dump( 'IDX Needed', $idx_listings_needed );
 
 			$page_number = idx_listings_current_page( $this->page_size, $this->wp_listing_count, $page_number );
-			var_dump( 'IDX Page Number', $page_number );
+			//var_dump( 'IDX Page Number', $page_number );
 		}
 
 		$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $status_string . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $listing_date_string . '&pageNumber=' . $page_number;
@@ -146,7 +146,7 @@ class api_listing_search {
 
 					$number_results_returned = count( $listing_data->result->listings );
 					//var_dump( $listing_data->result->listings );
-					var_dump( 'count results: ', $number_results_returned );
+					//var_dump( 'count results: ', $number_results_returned );
 					/**
 					 * I need to remove two items here.
 					 * @todo how to tell if this is one of the last two pages?
@@ -160,7 +160,7 @@ class api_listing_search {
 						$extra_amount = ( $number_results_returned - $idx_listings_needed );
 						//var_dump( 'extra: ', $extra_amount );
 
-						var_dump( $this->transient_name );
+						//var_dump( $this->transient_name );
 						$save_listing_array = array();
 
 						for ( $x = 0; $x < $extra_amount; ++ $x ) {

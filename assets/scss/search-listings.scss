@@ -301,7 +301,8 @@ a.snippet-link-outer {
       border-color: $brand-primary;
     }
     &.current {
-      background-color: lighten($brand-primary, 8%);
+      //background-color: lighten($brand-primary, 8%);
+      background-color: $brand-primary;
       border-color: $brand-primary;
       &:hover {
         cursor: default;
