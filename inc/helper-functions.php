@@ -111,11 +111,24 @@ function get_key( $extended_fields, $market, $field_name ) {
  * @param string $idx_count
  *
  * @return int
+ * @todo also take in total number of listings, so idx listings needed will also account for that
  */
-function idx_listings_page_size( $page_size, $wp_count, $current_page = 1 ) {
+function idx_listings_page_size( $page_size, $wp_count, $current_page = 1, $total_idx_listings = false ) {
 	/**
 	 * I need to program this to subtract from the $current_page the number of times that there are no IDX results.
 	 */
+
+	if ( $total_idx_listings ) {
+		$total_listings = ( $total_idx_listings + $wp_count );
+		// everything might work fine up until the point that we need 0 listings, so it's ok to have a page size of 5 when there is only one IDX listing to retrieve, but we need to make no IDX query when there are no listings, since it will return data that we don't want...
+		$listings_so_far = ($current_page * $page_size );
+		//echo 'Listings so far: ' . $listings_so_far . "\n";
+		//echo 'Total Listings: ' . $total_listings . "\n";
+		if ( $total_listings < $listings_so_far ) {
+			//echo "so far condition reached... \n";
+			return 0;
+		}
+	}
 	$difference = ( $page_size * $current_page ) - $wp_count;
 	if ( $difference <= 0 ) {
 		$idx_listings_needed = 0;

@@ -42,17 +42,7 @@ class api_listing_search {
 
 	public function search_listings( $parameters = null, $page_number = 1 ) {
 
-		if ( $this->is_search ) {
-			$idx_listings_needed = idx_listings_page_size(
-				$this->page_size,
-				$this->wp_listing_count,
-				$page_number
-			);
-			var_dump( 'IDX Needed', $idx_listings_needed );
 
-			$page_number = idx_listings_current_page( $this->page_size, $this->wp_listing_count, $page_number );
-			var_dump( 'IDX Page Number', $page_number );
-		}
 
 		$extended_fields = get_field( 'home_junction_extended_fields', 'option' );
 		/**
@@ -111,7 +101,27 @@ class api_listing_search {
 			}
 		}
 
-		//var_dump( 'Real Page Number: ' . $page_number );
+		$this->transient_name = 'ex-' . $this->market . $listing_type_string . $this->page_size . $status_string . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $listing_date_string;
+
+		$count_listings_trans = 'n_' . $this->transient_name;
+		$total_num_listings = get_transient( $count_listings_trans );
+
+//		if ( ! get_transient( $count_listings_trans ) ) {
+//			set_transient( $count_listings_trans, $listing_data->result->total, 3600 );
+//		}
+
+		if ( $this->is_search ) {
+			$idx_listings_needed = idx_listings_page_size(
+				$this->page_size,
+				$this->wp_listing_count,
+				$page_number,
+				$total_num_listings
+			);
+			var_dump( 'IDX Needed', $idx_listings_needed );
+
+			$page_number = idx_listings_current_page( $this->page_size, $this->wp_listing_count, $page_number );
+			var_dump( 'IDX Page Number', $page_number );
+		}
 
 		$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $status_string . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $listing_date_string . '&pageNumber=' . $page_number;
 
@@ -132,7 +142,7 @@ class api_listing_search {
 
 			if ( $this->is_search ) {
 
-				$this->transient_name = 'ex-' . $this->market . $listing_type_string . $this->page_size . $status_string . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $listing_date_string;
+//				$this->transient_name = 'ex-' . $this->market . $listing_type_string . $this->page_size . $status_string . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $listing_date_string;
 				if ( $idx_listings_needed ) {
 
 					$number_results_returned = count( $listing_data->result->listings );
@@ -164,7 +174,10 @@ class api_listing_search {
 
 					} elseif ( $number_results_returned < $idx_listings_needed ) {
 
-						var_dump( 'this is happening!' );
+						$transient_listings_needed = ( $idx_listings_needed - $number_results_returned );
+						//var_dump( 'trans needed: ' . $transient_listings_needed );
+
+						//var_dump( 'this is happening!' );
 						/**
 						 * @todo I can do math here to see how many we need?
 						 * here we get the transient data.
@@ -174,18 +187,59 @@ class api_listing_search {
 						 */
 						$extra_data_serial = get_transient( $this->transient_name );
 						if ( $extra_data_serial ) {
-							$extra_data                     = unserialize( $extra_data_serial );
-							$listing_data->result->listings = array_merge( $listing_data->result->listings, $extra_data );
+							$extra_data     = unserialize( $extra_data_serial );
+							$new_data_array = array();
+							for ( $x = 0; $x < $transient_listings_needed; ++ $x ) {
+								$new_data_array[] = array_pop( $extra_data );
+							}
+
+							if ( $extra_data ) {
+								$extra_listings_serial = serialize( $extra_data );
+								// @todo resave transient with less data...
+								set_transient( $this->transient_name, $extra_listings_serial, 60000 );
+							}
+
+							$listing_data->result->listings = array_merge( $listing_data->result->listings, $new_data_array );
 						}
 					}
 
+					$this->search_result = $listing_data->result->listings;
+				} else {
+					/**
+					 * Code repeated here, should be more try
+					 */
+					$extra_data_serial = get_transient( $this->transient_name );
+					if ( $extra_data_serial ) { // here we can assume this will all go on one page
+						$extra_data     = unserialize( $extra_data_serial );
+						//var_dump( $extra_data );
+//						$new_data_array = array();
+//						for ( $x = 0; $x < $transient_listings_needed; ++ $x ) {
+//							$new_data_array[] = array_pop( $extra_data );
+//						}
+
+//						if ( $extra_data ) {
+//							$extra_listings_serial = serialize( $extra_data );
+//							// @todo resave transient with less data...
+//							set_transient( $this->transient_name, $extra_listings_serial, 60000 );
+//						}
+
+						$listing_data->result->listings = $extra_data;
+					}
 					$this->search_result = $listing_data->result->listings;
 				}
 			} else {
 				$this->search_result = $listing_data->result->listings;
 			}
 
+			//$count_listings_trans = 'n_' . $this->transient_name;
+			if ( ! get_transient( $count_listings_trans ) ) {
+				set_transient( $count_listings_trans, $listing_data->result->total, 3600 );
+			}
+
 			$this->total_listings = $listing_data->result->total;
+			/**
+			 * Here we need to save the total number of listings into a transient
+			 */
 		}
 	}
 }
