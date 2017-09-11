@@ -4,8 +4,11 @@
  */
 if ( isset( $_POST['listing-search-form'] ) ) {
 
+
 	$page_number           = filter_input( INPUT_POST, 'page-number', FILTER_SANITIZE_ENCODED );
 	$search_for_sale_lease = filter_input( INPUT_POST, 'for-sale-lease', FILTER_SANITIZE_ENCODED );
+	//var_dump( 'posty', $search_for_sale_lease );
+	//die('x');
 	$search_status                = filter_input( INPUT_POST, 'status', FILTER_SANITIZE_ENCODED );
 	//$status_active         = filter_input( INPUT_POST, 'status-active', FILTER_SANITIZE_ENCODED );
 	//$status_pending        = filter_input( INPUT_POST, 'status-pending', FILTER_SANITIZE_ENCODED );
@@ -46,6 +49,8 @@ if ( isset( $_POST['listing-search-form'] ) ) {
 	}
 	$search_for_sale_lease_string = 'for_sale_lease=' . $search_for_sale_lease;
 	$search_input_array[]         = $search_for_sale_lease_string;
+	//var_dump( $search_input_array );
+	//die('y');
 
 	// different status possibilities
 	if ( $status_active ) {
@@ -122,6 +127,9 @@ if ( isset( $_POST['listing-search-form'] ) ) {
 	$search_string = '?' . $search_string_combo;
 
 	$search_url = site_url() . '/search-listings/' . $search_string;
+
+//	var_dump( $search_url );
+//	die('search url?');
 
 	wp_redirect( $search_url );
 

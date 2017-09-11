@@ -2,6 +2,22 @@
 /**
  * This is the main search form for the snippets page.
  */
+
+//$for_sale_lease_options = get_field( 'for_sale_for_lease_select_options', 'option' );
+//var_dump( $for_sale_lease_options );
+//var_dump( 'current snippets query', $snippets_query->for_sale_lease );
+//foreach ( $for_sale_lease_options as $option ) {
+//	if ( $option == $snippets_query->for_sale_lease ) {
+//	    echo 'option' . $option . '<br />';
+//	    echo 'options_status' . $option['status'];
+//
+//		echo '<option selected="selected" value="' . $option['status_name'] . '">' . $option['status'] . '</option>';
+//	} else {
+//		//echo '<option value="' . $option["status_name"] . '">' . $option['status'] . '</option>';
+//	}
+//}
+//die('x');
+
 ?>
 <div class="search-form-wrap-snippets">
     <form method="post" action="#"><!-- @todo form action to switch page to search results? -->
@@ -10,21 +26,22 @@
 			<?php if ( ! ( $page_number = $snippets_query->page_number ) ) {
 				$page_number = 1;
 			} ?>
+			<?php if ( isset( $_GET['status'] ) ) {
+				$status = $_GET['status'];
+			} else {
+				$status = 'active';
+			} ?>
+            <input type="hidden" name="status" value="<?php echo $status; ?>"/>
             <input value="<?php echo $page_number; ?>" type="hidden" name="page-number"/>
 			<?php if ( $for_sale_lease_options = get_field( 'for_sale_for_lease_select_options', 'option' ) ) { ?>
-				<?php if ( isset( $_GET['status'] ) ) {
-					$status = $_GET['status'];
-				} else {
-					$status = 'active';
-				} ?>
-                <input type="hidden" name="status" value="<?php echo $status; ?>"/>
                 <div class="input-wrap status">
                     <select name="for-sale-lease">
-						<?php foreach ( $for_sale_lease_options as $option ) {
-							if ( $option['status_name'] == $snippets_query->status ) {
-								echo '<option selected="selected" value="' . $option["status_name"] . '">' . $option['status'] . '</option>';
+						<?php
+						foreach ( $for_sale_lease_options as $option ) {
+							if ( $option['status_name'] == $snippets_query->for_sale_lease ) {
+								echo '<option selected="selected" value="' . $option['status_name'] . '">' . $option['status'] . '</option>';
 							} else {
-								echo '<option value="' . $option["status_name"] . '">' . $option['status'] . '</option>';
+								echo '<option value="' . $option['status_name'] . '">' . $option['status'] . '</option>';
 							}
 						} ?>
                     </select>
