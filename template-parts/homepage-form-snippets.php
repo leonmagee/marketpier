@@ -319,6 +319,8 @@ die('deprecated - homepage-form-snippets');
                         </select>
                     </div>
                 </div>
+
+
                 <div class="advanced-options-item sold-in-last quarter">
                     <h5>Sold in Last</h5>
                     <div class="advanced-options-inputs input-style-snippet-wrap">

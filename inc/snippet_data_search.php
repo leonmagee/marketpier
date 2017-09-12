@@ -56,6 +56,7 @@ class snippet_data_search {
 		$this->cap_rate_max   = floatval( filter_input( INPUT_GET, 'cap_rate_max', FILTER_SANITIZE_SPECIAL_CHARS ) );
 		$this->lot_size_min   = intval( filter_input( INPUT_GET, 'lot_size_min', FILTER_SANITIZE_SPECIAL_CHARS ) );
 		$this->days_on_market = intval( filter_input( INPUT_GET, 'days_on_market', FILTER_SANITIZE_SPECIAL_CHARS ) );
+		$this->sold_in_last = intval( filter_input( INPUT_GET, 'sold_in_last', FILTER_SANITIZE_SPECIAL_CHARS ) );
 		if ( isset( $_GET['page_number'] ) ) {
 			$this->page_number = intval( filter_input( INPUT_GET, 'page_number', FILTER_SANITIZE_SPECIAL_CHARS ) );
 		} else {

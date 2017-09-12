@@ -9,7 +9,7 @@ if ( isset( $_POST['listing-search-form'] ) ) {
 	$search_for_sale_lease = filter_input( INPUT_POST, 'for-sale-lease', FILTER_SANITIZE_ENCODED );
 	//var_dump( 'posty', $search_for_sale_lease );
 	//die('x');
-	$search_status                = filter_input( INPUT_POST, 'status', FILTER_SANITIZE_ENCODED );
+	$search_status = filter_input( INPUT_POST, 'status', FILTER_SANITIZE_ENCODED );
 	//$status_active         = filter_input( INPUT_POST, 'status-active', FILTER_SANITIZE_ENCODED );
 	//$status_pending        = filter_input( INPUT_POST, 'status-pending', FILTER_SANITIZE_ENCODED );
 	//$status_sold           = filter_input( INPUT_POST, 'status-sold', FILTER_SANITIZE_ENCODED );
@@ -23,6 +23,7 @@ if ( isset( $_POST['listing-search-form'] ) ) {
 	$cap_rate_max         = filter_input( INPUT_POST, 'cap-rate-max', FILTER_SANITIZE_SPECIAL_CHARS );
 	$lot_size_min         = filter_input( INPUT_POST, 'lot-size', FILTER_SANITIZE_SPECIAL_CHARS );
 	$days_on_market       = filter_input( INPUT_POST, 'days-on-market', FILTER_SANITIZE_SPECIAL_CHARS );
+	$sold_in_last         = filter_input( INPUT_POST, 'sold-in-last', FILTER_SANITIZE_SPECIAL_CHARS );
 
 //	var_dump( $status_active );
 //	var_dump( $status_pending );
@@ -42,7 +43,7 @@ if ( isset( $_POST['listing-search-form'] ) ) {
 		$search_status = 'active';
 	}
 	$search_status_string = 'status=' . $search_status;
-	$search_input_array[]         = $search_status_string;
+	$search_input_array[] = $search_status_string;
 
 	if ( ! $search_for_sale_lease ) {
 		$search_for_sale_lease = 'for_sale';
@@ -53,18 +54,18 @@ if ( isset( $_POST['listing-search-form'] ) ) {
 	//die('y');
 
 	// different status possibilities
-	if ( $status_active ) {
-		$status_string        = 'status_active=1';
-		$search_input_array[] = $status_string;
-	}
-	if ( $status_pending ) {
-		$status_string        = 'status_pending=1';
-		$search_input_array[] = $status_string;
-	}
-	if ( $status_sold ) {
-		$status_string        = 'status_sold=1';
-		$search_input_array[] = $status_string;
-	}
+//	if ( $status_active ) {
+//		$status_string        = 'status_active=1';
+//		$search_input_array[] = $status_string;
+//	}
+//	if ( $status_pending ) {
+//		$status_string        = 'status_pending=1';
+//		$search_input_array[] = $status_string;
+//	}
+//	if ( $status_sold ) {
+//		$status_string        = 'status_sold=1';
+//		$search_input_array[] = $status_string;
+//	}
 
 	if ( $search_property_type ) {
 		$property_type_string = 'property_type=' . $search_property_type;
@@ -114,6 +115,11 @@ if ( isset( $_POST['listing-search-form'] ) ) {
 	if ( $days_on_market ) {
 		$days_on_market_string = 'days_on_market=' . $days_on_market;
 		$search_input_array[]  = $days_on_market_string;
+	}
+
+	if ( $sold_in_last ) {
+		$sold_in_last_string = 'sold_in_last=' . $sold_in_last;
+		$search_input_array[]  = $sold_in_last_string;
 	}
 
 	if ( $page_number ) {

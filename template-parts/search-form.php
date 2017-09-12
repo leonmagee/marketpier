@@ -18,6 +18,10 @@
 //}
 //die('x');
 
+if ( isset( $_GET['status'] ) ) {
+	$active_sold = $_GET['status'];
+}
+
 ?>
 <div class="search-form-wrap-snippets">
     <form method="post" action="#"><!-- @todo form action to switch page to search results? -->
@@ -259,55 +263,79 @@
                         </select>
                     </div>
                 </div>
-                <div class="advanced-options-item cap-rate-min-max">
-                    <h5>Cap Rate (%)</h5>
-                    <div class="advanced-options-inputs input-style-snippet-wrap">
-						<?php
-						if ( $cap_rate_min = $snippets_query->cap_rate_min ) {
-							?>
-                            <input type="text" name="cap-rate-min" value="<?php echo $cap_rate_min; ?>"/>
-						<?php } else { ?>
-                            <input type="text" name="cap-rate-min" placeholder="0.00"/>
-						<?php } ?>
-						<?php
-						if ( $cap_rate_max = $snippets_query->cap_rate_max ) {
-							?>
-                            <input type="text" name="cap-rate-max" value="<?php echo $cap_rate_max; ?>"/>
-						<?php } else { ?>
-                            <input type="text" name="cap-rate-max" placeholder="0.00"/>
-						<?php } ?>
+
+				<?php if ( $active_sold !== 'sold' ) { ?>
+                    <div class="advanced-options-item cap-rate-min-max">
+                        <h5>Cap Rate (%)</h5>
+                        <div class="advanced-options-inputs input-style-snippet-wrap">
+							<?php
+							if ( $cap_rate_min = $snippets_query->cap_rate_min ) {
+								?>
+                                <input type="text" name="cap-rate-min" value="<?php echo $cap_rate_min; ?>"/>
+							<?php } else { ?>
+                                <input type="text" name="cap-rate-min" placeholder="0.00"/>
+							<?php } ?>
+							<?php
+							if ( $cap_rate_max = $snippets_query->cap_rate_max ) {
+								?>
+                                <input type="text" name="cap-rate-max" value="<?php echo $cap_rate_max; ?>"/>
+							<?php } else { ?>
+                                <input type="text" name="cap-rate-max" placeholder="0.00"/>
+							<?php } ?>
+                        </div>
                     </div>
-                </div>
-                <div class="advanced-options-item lot-size quarter">
-                    <h5>Lot Size (SF or AC)</h5>
-                    <div class="advanced-options-inputs input-style-snippet-wrap">
-                        <select name="lot-size">
-							<?php foreach ( $lot_size_array as $label => $value ) {
-								if ( $snippets_query->lot_size_min == $value ) { ?>
-                                    <option selected="selected"
-                                            value="<?php echo $value; ?>"><?php echo $label; ?></option>
-								<?php } else { ?>
-                                    <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
-								<?php }
-							} ?>
-                        </select>
+				<?php } ?>
+				<?php if ( $active_sold !== 'sold' ) { ?>
+                    <div class="advanced-options-item lot-size quarter">
+                        <h5>Lot Size (SF or AC)</h5>
+                        <div class="advanced-options-inputs input-style-snippet-wrap">
+                            <select name="lot-size">
+								<?php foreach ( $lot_size_array as $label => $value ) {
+									if ( $snippets_query->lot_size_min == $value ) { ?>
+                                        <option selected="selected"
+                                                value="<?php echo $value; ?>"><?php echo $label; ?></option>
+									<?php } else { ?>
+                                        <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
+									<?php }
+								} ?>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="advanced-options-item days-on-market quarter">
-                    <h5>Days on Market</h5>
-                    <div class="advanced-options-inputs input-style-snippet-wrap">
-                        <select name="days-on-market">
-							<?php foreach ( $days_on_market_array as $label => $value ) {
-								if ( $snippets_query->days_on_market == $value ) { ?>
-                                    <option selected="selected"
-                                            value="<?php echo $value; ?>"><?php echo $label; ?></option>
-								<?php } else { ?>
-                                    <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
-								<?php }
-							} ?>
-                        </select>
+				<?php } ?>
+				<?php if ( $active_sold !== 'sold' ) { ?>
+                    <div class="advanced-options-item days-on-market quarter">
+                        <h5>Days on Market</h5>
+                        <div class="advanced-options-inputs input-style-snippet-wrap">
+                            <select name="days-on-market">
+								<?php foreach ( $days_on_market_array as $label => $value ) {
+									if ( $snippets_query->days_on_market == $value ) { ?>
+                                        <option selected="selected"
+                                                value="<?php echo $value; ?>"><?php echo $label; ?></option>
+									<?php } else { ?>
+                                        <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
+									<?php }
+								} ?>
+                            </select>
+                        </div>
                     </div>
-                </div>
+				<?php } ?>
+				<?php if ( $active_sold === 'sold' ) { ?>
+                    <div class="advanced-options-item sold-in-last quarter">
+                        <h5>Sold in Last</h5>
+                        <div class="advanced-options-inputs input-style-snippet-wrap">
+                            <select name="sold-in-last">
+								<?php foreach ( $days_on_market_array as $label => $value ) {
+									if ( $snippets_query->days_on_market == $value ) { ?>
+                                        <option selected="selected"
+                                                value="<?php echo $value; ?>"><?php echo $label; ?></option>
+									<?php } else { ?>
+                                        <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
+									<?php }
+								} ?>
+                            </select>
+                        </div>
+                    </div>
+				<?php } ?>
             </div>
         </div>
     </form>

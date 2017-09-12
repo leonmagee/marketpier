@@ -248,8 +248,12 @@ class api_listing_search {
 					$this->search_result = $listing_data->result->$active_sold_key;
 				}
 			} else {
-				//$this->search_result = $listing_data->result->listings;
-				$this->search_result = $listing_data->result->$active_sold_key;
+				/**
+				 * Just a single listing
+				 * @todo this needs to change when it's a single 'sales' listing.
+				 */
+				var_dump( $listing_data->result );
+				$this->search_result = $listing_data->result->listings;
 			}
 
 			//$count_listings_trans = 'n_' . $this->transient_name;
