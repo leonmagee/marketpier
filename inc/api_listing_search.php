@@ -47,7 +47,8 @@ class api_listing_search {
 		/**
 		 * Get submitted fields
 		 */
-		$listing_type_string = $id_string = $zip_string = $city_string = $size_string = $cap_rate_string = $county_string = $list_price_string = $keyword_string = $listing_date_string = '';
+		$listing_type_string = $id_string = $zip_string = $city_string = $size_string = $cap_rate_string = $county_string = $list_price_string = $keyword_string = $days_on_market_string = $sold_in_last_string = '';
+
 		if ( $status = $parameters['status'] ) {
 			if ( $status === 'sold' ) {
 				$active_sold_key = 'sales';
@@ -77,34 +78,43 @@ class api_listing_search {
 		if ( $list_price = $parameters['listPrice'] ) {
 			$list_price_string = '&listPrice=' . $list_price;
 		}
-
-		/**
-		 * Create query string for Listing Date...
-		 */
-		if ( $parameters['listing_date_start'] || $parameters['listing_date_end'] ) {
-
-			$listing_date_start = $parameters['listing_date_start'];
-			$listing_date_end   = $parameters['listing_date_end'];
-
-			if ( $listing_date_start && $listing_date_end ) {
-
-				$listing_date_start  = strtotime( $listing_date_start );
-				$listing_date_end    = strtotime( $listing_date_end );
-				$listing_date_string = '&listingDate=' . $listing_date_start . ':' . $listing_date_end;
-
-			} elseif ( $listing_date_start ) {
-
-				$listing_date_start  = strtotime( $listing_date_start );
-				$listing_date_string = '&listingDate=>' . $listing_date_start;
-
-			} elseif ( $listing_date_end ) {
-
-				$listing_date_end    = strtotime( $listing_date_end );
-				$listing_date_string = '&listingDate=<' . $listing_date_end;
-			}
+		if ( $days_on_market = $parameters['days_on_market'] ) {
+			$current_time = time();
+			$days_seconds = $current_time - ( $days_on_market * 60 * 60 * 24 );
+			$days_on_market_string = '&listingDate=' . $days_seconds . ':' . $current_time;
+			var_dump( 'dayzzzz',$days_on_market_string );
+		}
+		if ( $sold_in_last = $parameters['sold_in_last'] ) {
+			$sold_in_last_string = 'listingDate>' . ( $sold_in_last * 60 * 60 * 24 );
 		}
 
-		$this->transient_name = 'ex-' . $this->market . $listing_type_string . $this->page_size . $this->status . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $listing_date_string;
+		/**
+		 * Create query string for Listing Date
+		 */
+//		if ( $parameters['listing_date_start'] || $parameters['listing_date_end'] ) {
+//
+//			$listing_date_start = $parameters['listing_date_start'];
+//			$listing_date_end   = $parameters['listing_date_end'];
+//
+//			if ( $listing_date_start && $listing_date_end ) {
+//
+//				$listing_date_start  = strtotime( $listing_date_start );
+//				$listing_date_end    = strtotime( $listing_date_end );
+//				$listing_date_string = '&listingDate=' . $listing_date_start . ':' . $listing_date_end;
+//
+//			} elseif ( $listing_date_start ) {
+//
+//				$listing_date_start  = strtotime( $listing_date_start );
+//				$listing_date_string = '&listingDate=>' . $listing_date_start;
+//
+//			} elseif ( $listing_date_end ) {
+//
+//				$listing_date_end    = strtotime( $listing_date_end );
+//				$listing_date_string = '&listingDate=<' . $listing_date_end;
+//			}
+//		}
+
+		$this->transient_name = 'ex-' . $this->market . $listing_type_string . $this->page_size . $this->status . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $days_on_market_string;
 
 		$count_listings_trans = 'n_' . $this->transient_name;
 		$total_num_listings   = get_transient( $count_listings_trans );
@@ -127,10 +137,10 @@ class api_listing_search {
 		}
 
 		if ( $status === 'sold' ) {
-			$url = 'https://slipstream.homejunction.com/ws/sales/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $listing_date_string . '&pageNumber=' . $page_number;
+			$url = 'https://slipstream.homejunction.com/ws/sales/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $sold_in_last_string . '&pageNumber=' . $page_number;
 
 		} else {
-			$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $listing_date_string . '&pageNumber=' . $page_number;
+			$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $days_on_market_string . '&pageNumber=' . $page_number;
 		}
 
 		$listings = wp_remote_get( $url, array( 'headers' => array( 'HJI-Slipstream-Token' => $this->token ) ) );
@@ -252,7 +262,7 @@ class api_listing_search {
 				 * Just a single listing
 				 * @todo this needs to change when it's a single 'sales' listing.
 				 */
-				var_dump( $listing_data->result );
+				//var_dump( $listing_data->result );
 				$this->search_result = $listing_data->result->listings;
 			}
 

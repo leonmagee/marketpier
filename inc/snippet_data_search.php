@@ -340,6 +340,14 @@ class snippet_data_search {
 			$parameters['cap_rate'] = '0:' . $cap_rate_max;
 		}
 
+		/**
+		 * Days on Market
+		 */
+		if ( $days_on_market = $this->days_on_market ) {
+			$parameters['days_on_market'] = $days_on_market;
+		}
+
+
 
 //		$status_array = array();
 //		if ( $this->status_active ) {
