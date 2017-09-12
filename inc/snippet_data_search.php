@@ -56,7 +56,7 @@ class snippet_data_search {
 		$this->cap_rate_max   = floatval( filter_input( INPUT_GET, 'cap_rate_max', FILTER_SANITIZE_SPECIAL_CHARS ) );
 		$this->lot_size_min   = intval( filter_input( INPUT_GET, 'lot_size_min', FILTER_SANITIZE_SPECIAL_CHARS ) );
 		$this->days_on_market = intval( filter_input( INPUT_GET, 'days_on_market', FILTER_SANITIZE_SPECIAL_CHARS ) );
-		$this->sold_in_last = intval( filter_input( INPUT_GET, 'sold_in_last', FILTER_SANITIZE_SPECIAL_CHARS ) );
+		$this->sold_in_last   = intval( filter_input( INPUT_GET, 'sold_in_last', FILTER_SANITIZE_SPECIAL_CHARS ) );
 		if ( isset( $_GET['page_number'] ) ) {
 			$this->page_number = intval( filter_input( INPUT_GET, 'page_number', FILTER_SANITIZE_SPECIAL_CHARS ) );
 		} else {
@@ -212,6 +212,16 @@ class snippet_data_search {
 				'type'    => 'NUMERIC'
 			);
 		}
+		if ( $sold_in_last = $this->sold_in_last ) {
+			$meta_search_array[] = array(
+				'key'     => 'sale_date',
+				'value'   => $sold_in_last,
+				'compare' => '>=',
+				'type'    => 'NUMERIC'
+			);
+			//$parameters['sold_in_last'] = $sold_in_last;
+		}
+
 		if ( $days_on_market = $this->days_on_market ) {
 			$date_query = array(
 				'column' => 'post_date',
@@ -347,6 +357,12 @@ class snippet_data_search {
 			$parameters['days_on_market'] = $days_on_market;
 		}
 
+		/**
+		 * Sold in Last
+		 */
+		if ( $sold_in_last = $this->sold_in_last ) {
+			$parameters['sold_in_last'] = $sold_in_last;
+		}
 
 
 //		$status_array = array();

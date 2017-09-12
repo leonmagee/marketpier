@@ -18,8 +18,17 @@ $request_uri     = $_SERVER['REQUEST_URI'];
 $request_details = explode( '/', $request_uri );
 
 if ( $request_details[2] == 'idx' ) {
-	$mls_number = $request_details[3];
-	$listing_data->listing_data_from_IDX( $mls_number );
+	$mls_number = $request_details[4];
+	$status     = $request_details[3];
+	if ( $status === 'sold' ) {
+		$sold_single = true;
+		//die('true!!!');
+	} else {
+		$sold_single = false;
+	}
+	//var_dump( $mls_number );
+	$listing_data->listing_data_from_IDX( $mls_number, $sold_single ); // @todo pass something here to make it a sales query?
+	//var_dump( $listing_data );
 } else {
 	$listing_data->listing_data_from_WP();
 }
@@ -177,6 +186,13 @@ if ( $request_details[2] == 'idx' ) {
                         <div class="detail">
                             <div class="detail-label">Days Active</div>
                             <div class="detail-content"><?php echo $listing_data->days_on_market; ?></div>
+                        </div>
+					<?php }
+					if ( $listing_data->sale_date ) { ?>
+                        <!-- @todo auto generate this number -->
+                        <div class="detail">
+                            <div class="detail-label">Sale Date</div>
+                            <div class="detail-content"><?php echo $listing_data->sale_date; ?></div>
                         </div>
 					<?php }
 					if ( $listing_data->space_available ) { ?>

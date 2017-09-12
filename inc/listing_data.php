@@ -58,6 +58,7 @@ class listing_data {
 	public $gross_operating_income;
 	public $operating_expenses;  // net oerating income = gross income - oerating expenses
 	public $market;
+	public $sale_date;
 
 	public function standardize_image_gallery_WP( $image_gallery ) {
 		$image_gallery_array = array();
@@ -120,13 +121,15 @@ class listing_data {
 		$this->rental_unit_mix      = get_field( 'rental_unit_mix' );
 		$this->file_attachments     = get_field( 'listing_file_attachments' );
 		$this->space_available      = get_field( 'listing_space_available' );
-		$this->author_id            = get_post_field( 'post_author', $this->listing_id );
-		$this->author               = get_the_author_meta( 'user_nicename', $this->author_id );
-		$first_name                 = get_user_meta( $this->author_id, 'first_name', true );
-		$last_name                  = get_user_meta( $this->author_id, 'last_name', true );
-		$user_data                  = get_userdata( $this->author_id );
-		$this->author_email         = $user_data->data->user_email;
-		//var_dump( get_field( 'phone_number', 'user_'  . $author_id) ); // @todo get ACF user data
+		if ( get_field( 'sale_date' ) ) {
+			$this->sale_date = date( 'n/j/Y', get_field( 'sale_date' ) );
+		}
+		$this->author_id    = get_post_field( 'post_author', $this->listing_id );
+		$this->author       = get_the_author_meta( 'user_nicename', $this->author_id );
+		$first_name         = get_user_meta( $this->author_id, 'first_name', true );
+		$last_name          = get_user_meta( $this->author_id, 'last_name', true );
+		$user_data          = get_userdata( $this->author_id );
+		$this->author_email = $user_data->data->user_email;
 		if ( $first_name && $last_name ) {
 			$this->author_name = $first_name . ' ' . $last_name;
 		} elseif ( $first_name ) {
@@ -149,7 +152,7 @@ class listing_data {
 	}
 
 
-	public function listing_data_from_IDX( $mls_number ) {
+	public function listing_data_from_IDX( $mls_number, $sold_single = false ) {
 
 		/**
 		 * @todo - use the mls number as the id that works with the 'save listing' feature.
@@ -166,8 +169,11 @@ class listing_data {
 			$market,
 			$mls_number,
 			false,
-			false
+			false,
+			$sold_single
 		);
+		//$parameters             = array( 'status' => 'sold' ); // @todo remove this - conditional for sold listing?
+		//$search->search_listings( $parameters );
 		$search->search_listings();
 
 		$listing      = $search->search_result[0];
@@ -221,6 +227,9 @@ class listing_data {
 		$this->cap_rate               = $listing->$cap_rate_field; // cap rate
 		$this->listing_date           = date( 'n/j/Y', $listing->listingDate );
 		$this->days_on_market         = $listing->daysOnMarket;
+		if ( $listing->saleDate ) {
+			$this->sale_date = date( 'n/j/Y', $listing->saleDate );
+		}
 
 		if ( $this->gross_operating_income && $this->operating_expenses ) {
 			$this->net_operating_income = ( $this->gross_operating_income - $this->operating_expenses );

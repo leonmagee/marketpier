@@ -15,16 +15,17 @@ get_header(); ?>
 				<?php var_dump( $slipstream_token_query->slipstream_token );
 				$market            = 'sandicor';
 				$listing_page_size = 100;
-//				$search            = new api_listing_search(
-//					$slipstream_token_query->slipstream_token,
-//					$listing_page_size,
-//					$market,
-//					'160045736|130048559|170019867|170029761|170034990|170041457'
-//				);
-				$search            = new api_listing_search(
+				//				$search            = new api_listing_search(
+				//					$slipstream_token_query->slipstream_token,
+				//					$listing_page_size,
+				//					$market,
+				//					'160045736|130048559|170019867|170029761|170034990|170041457'
+				//				);
+				$search = new api_listing_search(
 					$slipstream_token_query->slipstream_token,
 					$listing_page_size,
-					$market
+					$market,
+                    '170039793'
 				);
 				//160045736
 				//130048559
@@ -32,7 +33,9 @@ get_header(); ?>
 				//170029761
 				//170034990
 				//170041457
-				$search->search_listings();
+				//$parameters = array( 'status' => 'active' );
+				$parameters = array( 'status' => 'sold' );
+				$search->search_listings( $parameters );
 				//var_dump( $search );
 				//var_dump( $search );
 				if ( $search->search_result ) {

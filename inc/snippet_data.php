@@ -126,10 +126,11 @@ class snippet_data {
 			$this->for_sale_for_lease = 'for_sale';
 		}
 
-		$this->listing_id      = $listing->id; // mls number
-		$this->listing_url     = site_url() . '/listing/idx/' . $this->listing_id;
+		$this->listing_id = $listing->id; // mls number
+		$this->status     = $listing->status;
+		$this->listing_url = site_url() . '/listing/idx/' . strtolower( $this->status ) . '/' . $this->listing_id;
+		//var_dump( $this->listing_url );
 		$this->price           = $listing->listPrice;
-		$this->status          = $listing->status;
 		$this->address         = $listing->address->deliveryLine;
 		$this->city            = $listing->address->city;
 		$this->state           = $listing->address->state;

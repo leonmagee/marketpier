@@ -25,8 +25,9 @@ class api_listing_search {
 	public $wp_listing_count;
 	public $transient_name;
 	public $is_search;
+	public $sold_single;
 
-	public function __construct( $token, $page_size, $market, $mls_number = false, $wp_listing_count = false, $is_search = true ) {
+	public function __construct( $token, $page_size, $market, $mls_number = false, $wp_listing_count = false, $is_search = true, $sold_single = false ) {
 		$this->market           = $market;
 		$this->token            = $token;
 		$this->details          = true;
@@ -38,6 +39,7 @@ class api_listing_search {
 		$this->listing_type     = 'Commercial';
 		$this->wp_listing_count = $wp_listing_count;
 		$this->is_search        = $is_search;
+		$this->sold_single      = $sold_single;
 	}
 
 	public function search_listings( $parameters = null, $page_number = 1 ) {
@@ -49,6 +51,15 @@ class api_listing_search {
 		 */
 		$listing_type_string = $id_string = $zip_string = $city_string = $size_string = $cap_rate_string = $county_string = $list_price_string = $keyword_string = $days_on_market_string = $sold_in_last_string = '';
 
+		/**
+		 * I need to make it sold here when it's a single sold listing....
+		 */
+
+		if ( $this->sold_single ) {
+			$parameters['status'] = 'sold';
+		}
+
+		$active_sold_key = 'listings';
 		if ( $status = $parameters['status'] ) {
 			if ( $status === 'sold' ) {
 				$active_sold_key = 'sales';
@@ -79,14 +90,24 @@ class api_listing_search {
 			$list_price_string = '&listPrice=' . $list_price;
 		}
 		if ( $days_on_market = $parameters['days_on_market'] ) {
-			$current_time = time();
-			$days_seconds = $current_time - ( $days_on_market * 60 * 60 * 24 );
+			$current_time          = time();
+			$days_seconds          = $current_time - ( $days_on_market * 60 * 60 * 24 );
 			$days_on_market_string = '&listingDate=' . $days_seconds . ':' . $current_time;
-			var_dump( 'dayzzzz',$days_on_market_string );
+		}
+		if ( $days_on_market = $parameters['days_on_market'] ) {
+			$current_time          = time();
+			$days_seconds          = $current_time - ( $days_on_market * 60 * 60 * 24 );
+			$days_on_market_string = '&listingDate=' . $days_seconds . ':' . $current_time;
 		}
 		if ( $sold_in_last = $parameters['sold_in_last'] ) {
-			$sold_in_last_string = 'listingDate>' . ( $sold_in_last * 60 * 60 * 24 );
+			$current_time        = time();
+			$days_seconds        = $current_time - ( $sold_in_last * 60 * 60 * 24 );
+			$sold_in_last_string = '&saleDate=' . $days_seconds . ':' . $current_time;
 		}
+		//saleDate
+//		if ( $sold_in_last = $parameters['sold_in_last'] ) {
+//			$sold_in_last_string = 'listingDate>' . ( $sold_in_last * 60 * 60 * 24 );
+//		}
 
 		/**
 		 * Create query string for Listing Date
@@ -114,7 +135,7 @@ class api_listing_search {
 //			}
 //		}
 
-		$this->transient_name = 'ex-' . $this->market . $listing_type_string . $this->page_size . $this->status . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $days_on_market_string;
+		$this->transient_name = 'ex-' . $this->market . $listing_type_string . $this->page_size . $active_sold_key . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $days_on_market_string . $sold_in_last_string;
 
 		$count_listings_trans = 'n_' . $this->transient_name;
 		$total_num_listings   = get_transient( $count_listings_trans );
@@ -137,7 +158,7 @@ class api_listing_search {
 		}
 
 		if ( $status === 'sold' ) {
-			$url = 'https://slipstream.homejunction.com/ws/sales/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $sold_in_last_string . '&pageNumber=' . $page_number;
+			$url = 'https://slipstream.homejunction.com/ws/sales/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $sold_in_last_string . '&pageNumber=' . $page_number;
 
 		} else {
 			$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $days_on_market_string . '&pageNumber=' . $page_number;
@@ -263,7 +284,7 @@ class api_listing_search {
 				 * @todo this needs to change when it's a single 'sales' listing.
 				 */
 				//var_dump( $listing_data->result );
-				$this->search_result = $listing_data->result->listings;
+				$this->search_result = $listing_data->result->$active_sold_key;
 			}
 
 			//$count_listings_trans = 'n_' . $this->transient_name;
