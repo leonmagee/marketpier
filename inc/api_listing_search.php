@@ -68,7 +68,9 @@ class api_listing_search {
 			}
 		}
 		if ( $listing_type = $this->listing_type ) {
+			// @todo this needs to vary depending on other factors...
 			$listing_type_string = '&listingType=' . $listing_type;
+			//$listing_type_string = '&listingType=' . $listing_type . '|Residential';
 		}
 		if ( $id = $this->mls_number ) {
 			$id_string = '&id=' . $id;

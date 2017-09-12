@@ -213,9 +213,13 @@ class snippet_data_search {
 			);
 		}
 		if ( $sold_in_last = $this->sold_in_last ) {
+			$current_time          = time();
+			$days_seconds          = $current_time - ( $sold_in_last * 60 * 60 * 24 );
+//			var_dump( $sold_in_last );
+//			die('so far');
 			$meta_search_array[] = array(
 				'key'     => 'sale_date',
-				'value'   => $sold_in_last,
+				'value'   => $days_seconds,
 				'compare' => '>=',
 				'type'    => 'NUMERIC'
 			);
