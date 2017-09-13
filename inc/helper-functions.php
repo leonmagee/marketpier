@@ -114,32 +114,38 @@ function get_key( $extended_fields, $market, $field_name ) {
  * @todo also take in total number of listings, so idx listings needed will also account for that
  */
 function idx_listings_page_size( $page_size, $wp_count, $current_page = 1, $total_idx_listings = false ) {
-	var_dump( 'page size', $page_size );
-	var_dump( 'wp count', $wp_count );
-	var_dump( 'current page', $current_page );
-	var_dump( 'total idx', $total_idx_listings );
+//	var_dump( 'page size', $page_size );
+//	var_dump( 'wp count', $wp_count );
+//	var_dump( 'current page', $current_page );
+//	var_dump( 'total idx', $total_idx_listings );
+	/**
+	 * I think we need to also figure out how many pages there should be total
+	 */
+
+	$total_listings = ( $total_idx_listings + $wp_count );
+
+	$max_pages = ceil( $total_listings / $page_size );
+	if ( $current_page > $max_pages ) {
+		return 0;
+	}
+	//var_dump( 'max', $max_pages );
 	/**
 	 * I need to program this to subtract from the $current_page the number of times that there are no IDX results.
 	 */
 
+
 	if ( $total_idx_listings && $wp_count ) {
-		$total_listings = ( $total_idx_listings + $wp_count );
-		// everything might work fine up until the point that we need 0 listings, so it's ok to have a page size of 5 when there is only one IDX listing to retrieve, but we need to make no IDX query when there are no listings, since it will return data that we don't want...
-		/**
-		 * Listings so far can be more than the actual number of listings on the final page (it will always be more when
-		 * the last page does't have a number of listings that match the page size?)
-		 */
-		//$listings_so_far = ($current_page * $page_size );
-		//var_dump( 'listings so far', $listings_so_far );
-		//echo 'Listings so far: ' . $listings_so_far . "\n";
-		//echo 'Total Listings: ' . $total_listings . "\n";
-//		if ( $total_listings < $listings_so_far ) {
-//			//echo "so far condition reached... \n";
-//			return 0;
-//		}
+		//$total_listings      = ( $total_idx_listings + $wp_count );
+		$max_listings_so_far = ( $current_page * $page_size );
+		if ( $total_listings < $max_listings_so_far ) {
+			$listing_diff       = ( $max_listings_so_far - $total_listings );
+			$listings_this_page = ( $page_size - $listing_diff );
+
+			return $listings_this_page;
+		}
 	}
 	$difference = ( $page_size * $current_page ) - $wp_count;
-	var_dump( 'difference', $difference );
+	var_dump( 'DIFF', $difference );
 	if ( $difference <= 0 ) {
 		$idx_listings_needed = 0;
 	} elseif ( $difference >= $page_size ) {
