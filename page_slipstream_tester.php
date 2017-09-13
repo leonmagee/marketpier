@@ -35,7 +35,8 @@ get_header(); ?>
 				$parameters = false;
 				//$parameters = array( 'status' => 'active' );
 				//$parameters = array( 'status' => 'sold' );
-				$parameters = array( 'property_type' => '&propertyType=Mixed Usage' );
+				//$parameters = array( 'property_type' => '&propertyType=Mixed Usage' );
+				$parameters = array( 'property_type' => '&propertyType=Other/Remarks' );
 				//					$parameters['property_type'] = '&propertyType=Res Income 2-4 Units';
 				$search->search_listings( $parameters );
 				//var_dump( $search );

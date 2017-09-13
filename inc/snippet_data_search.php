@@ -376,8 +376,6 @@ class snippet_data_search {
 		/**
 		 * Property Type
 		 */
-//Mixed Usage = (I don’t see as a category in the MLS)
-//Other/Remarks = (I don’t see as a category in the MLS)
 		if ( $property_type = $this->property_type ) {
 			if ( $property_type !== 'all_property_types' ) {
 				if ( $property_type === 'industrial' ) { // working
@@ -394,42 +392,14 @@ class snippet_data_search {
 					$parameters['property_type'] = '&propertyType=Com-Hotel Motel';
 				} elseif ( $property_type === 'land' ) {
 					$parameters['property_type'] = '&propertyType=Lots/Land';
-
 				} elseif ( $property_type === 'residential_income' ) {
-
+					//@todo ?????
 				}
 			} else {
-				$parameters['property_type'] = '&listingType=Commercial';
+				//$parameters['property_type'] = '&listingType=Commercial';
+				$parameters['property_type'] = '&propertyType=Warehouse|Heavy Mfg|Light Mfg|Com-BusOp|Res Income 2-4 Units|Com-Res Income|Com-MobHmPark|Office|Retail|Com-Hotel Motel|Lots/Land';
 			}
 		}
-
-
-//		$status_array = array();
-//		if ( $this->status_active ) {
-//			$status_array[] = 'active';
-//		}
-//		if ( $this->status_pending ) {
-//			$status_array[] = 'pending';
-//		}
-//		if ( $this->status_sold ) {
-//			$status_array[] = 'sold';
-//		}
-//		if ( $for_sale_lease = $this->for_sale_lease ) {
-//		} else {
-//		}
-//		if ( $status_array ) {
-//
-//		} else {
-//			if ( ! $this->status_all ) {
-//
-//
-//			}
-//		}
-//		if ( $property_type = $this->property_type ) {
-////			if ( $property_type !== 'all_property_types' ) {
-////			}
-//		}
-
 
 		if ( $lot_size_min = $this->lot_size_min ) {
 		}

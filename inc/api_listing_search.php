@@ -67,12 +67,8 @@ class api_listing_search {
 				$active_sold_key = 'listings';
 			}
 		}
-//		if ( $listing_type = $this->listing_type ) {
-//			$listing_type_string = '&listingType=' . $listing_type;
-//			//$listing_type_string = '&listingType=' . $listing_type . '|Residential';
-//		}
 		/**
-		 * Listing Type and Property Type combined
+		 * Property Type (Listing Type Not required if we are always specifying a property type)
 		 */
 		if ( $listing_property_type = $parameters['property_type'] ) {
 			$listing_type_string = $listing_property_type;
@@ -119,7 +115,9 @@ class api_listing_search {
 			}
 		}
 
-		$this->transient_name = 'ex-' . $this->market . $listing_type_string . $this->page_size . $active_sold_key . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $days_on_market_string . $sold_in_last_string;
+		$transient_name_string = 'ex-' . $this->market . $listing_type_string . $this->page_size . $active_sold_key . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $days_on_market_string . $sold_in_last_string;
+
+		$this->transient_name = str_replace( ' ', '', $transient_name_string );
 
 		$count_listings_trans = 'n_' . $this->transient_name;
 		$total_num_listings   = get_transient( $count_listings_trans );
