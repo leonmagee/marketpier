@@ -170,9 +170,7 @@
      * @todo seen page one of yet... and the pagination will probably be off.
      */
     $('.search-form-wrap-snippets input.submit-input').click(function () {
-        //e.preventDefault();
         $('input[name="page-number"]').val(1);
-        //submit_form();
     });
 
     // $('.two-buttons #sale-listing').click(function () {
