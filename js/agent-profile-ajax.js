@@ -25,7 +25,7 @@ jQuery(function ($) {
         var instagram_url = $(".profile-update-form-wrapper input.instagram_url").val();
         var pinterest_url = $(".profile-update-form-wrapper input.pinterest_url").val();
 
-        console.log('phone', phone_number);
+        //console.log('phone', phone_number);
 
         var formdata = new FormData();
 
@@ -159,7 +159,7 @@ jQuery(function ($) {
                 contentType: false,
                 processData: false,
                 success: function (data, textStatus, XMLHttpRequest) {
-                    console.log('save listing?');
+                    //console.log('save listing?');
                     current_link.toggleClass('saved').find('.fa-spin').css({'opacity': '0'});
                 },
                 error: function (MLHttpRequest, textStatus, errorThrown) {
@@ -179,7 +179,7 @@ jQuery(function ($) {
         var user_id = $(this).attr('user_id');
         var current_link = $(this);
 
-        console.log('search', search_request, user_id);
+        //console.log('search', search_request, user_id);
 
         /**
          * This will toggle the saved link, and also change it in the database - removing it if already set...
@@ -204,7 +204,7 @@ jQuery(function ($) {
                 contentType: false,
                 processData: false,
                 success: function (data, textStatus, XMLHttpRequest) {
-                    console.log('save search ajax success?');
+                    //console.log('save search ajax success?');
                     current_link.toggleClass('saved').find('.fa-spin').css({'opacity': '0'});
                 },
                 error: function (MLHttpRequest, textStatus, errorThrown) {
@@ -229,7 +229,7 @@ jQuery(function ($) {
         var user_email = $(".listing-agent-form-wrap input.email").val();
         var user_comment = $(".listing-agent-form-wrap textarea.comment").val();
         var agent_email = $(".listing-agent-form-wrap input.agent_email").val();
-        console.log(user_name, user_phone, user_email, user_comment, agent_email);
+        //console.log(user_name, user_phone, user_email, user_comment, agent_email);
 
         var formdata = new FormData();
 

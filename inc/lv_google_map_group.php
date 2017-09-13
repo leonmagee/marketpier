@@ -72,7 +72,7 @@ class lv_google_map_group {
                         var listing_url = latlngArray[count].url;
                         var listing_price = latlngArray[count].price;
                         geo.geocode({address: new_address}, function (results, status) {
-                            console.log( new_address );
+                            //console.log( new_address );
                             //console.log('count' + count, results);
                             if (!latitude || !longitude) {
                                 if (results[0]) {

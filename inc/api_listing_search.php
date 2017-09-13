@@ -100,8 +100,18 @@ class api_listing_search {
 			$cap_rate_field  = get_key( $extended_fields, $this->market, 'cap_rate' );
 			$cap_rate_string = '&' . $cap_rate_field . '=' . $cap_rate_range;
 		}
-		if ( $list_price = $parameters['price_range'] ) {
+		if ( ( $list_price = $parameters['price_range'] ) && ( $parameters['for_sale_for_lease'] !== 'for_lease' ) ) {
 			$list_price_string = '&listPrice=' . $list_price;
+		} else {
+			if ( $for_sale_for_lease = $parameters['for_sale_for_lease'] ) {
+				if ( $for_sale_for_lease === 'for_lease' ) {
+					$list_price_string = '&listPrice=0:100000';
+				} else {
+					$list_price_string = '&listPrice=99999:1000000000000';
+				}
+			} else {
+				$list_price_string = '&listPrice=99999:1000000000000';
+			}
 		}
 		if ( $days_on_market = $parameters['days_on_market'] ) {
 			$current_time          = time();

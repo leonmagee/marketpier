@@ -40,7 +40,7 @@
         $('.listing-agent-form-wrap .agent-choice-wrap.active').removeClass('active');
         $(this).addClass('active');
         var agent_email = $(this).find('.agent-email').html();
-        console.log('email: ', agent_email);
+        //console.log('email: ', agent_email);
         // @todo get email address here?
         $('input[name="agent_email"]').val(agent_email);
     });
@@ -169,10 +169,10 @@
      * @todo should then disable the pagination features, since you will be going to the 'next' page of a search' you haven't
      * @todo seen page one of yet... and the pagination will probably be off.
      */
-    $('.search-form-wrap-snippets input.submit-input').click(function (e) {
-        e.preventDefault();
+    $('.search-form-wrap-snippets input.submit-input').click(function () {
+        //e.preventDefault();
         $('input[name="page-number"]').val(1);
-        submit_form();
+        //submit_form();
     });
 
     // $('.two-buttons #sale-listing').click(function () {
