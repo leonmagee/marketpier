@@ -377,6 +377,7 @@ class snippet_data_search {
 		 * Property Type
 		 */
 		if ( $property_type = $this->property_type ) {
+			$parameters['property_type_key'] = $property_type;
 			if ( $property_type !== 'all_property_types' ) {
 				if ( $property_type === 'industrial' ) { // working
 					$parameters['property_type'] = '&propertyType=Warehouse|Heavy Mfg|Light Mfg';

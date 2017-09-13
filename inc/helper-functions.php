@@ -145,7 +145,7 @@ function idx_listings_page_size( $page_size, $wp_count, $current_page = 1, $tota
 		}
 	}
 	$difference = ( $page_size * $current_page ) - $wp_count;
-	var_dump( 'DIFF', $difference );
+	//var_dump( 'DIFF', $difference );
 	if ( $difference <= 0 ) {
 		$idx_listings_needed = 0;
 	} elseif ( $difference >= $page_size ) {
