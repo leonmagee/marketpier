@@ -32,9 +32,11 @@ get_header(); ?>
 				//170029761
 				//170034990
 				//170041457
-                $parameters = false;
+				$parameters = false;
 				//$parameters = array( 'status' => 'active' );
 				//$parameters = array( 'status' => 'sold' );
+				$parameters = array( 'property_type' => '&propertyType=Mixed Usage' );
+				//					$parameters['property_type'] = '&propertyType=Res Income 2-4 Units';
 				$search->search_listings( $parameters );
 				//var_dump( $search );
 				//var_dump( $search );
@@ -48,9 +50,10 @@ get_header(); ?>
 //						echo 'Style: ' . $listing->style . '<br />';
 //						echo 'Property Type: ' . $listing->propertyType . '<br />';
 //						echo 'List Price: ' . $listing->listPrice . '<br />';
+						var_dump( $listing );
 						//var_dump( $listing->status );
-						var_dump( $listing->listPrice);
-						var_dump( $listing->style );
+						//var_dump( $listing->listPrice);
+						//var_dump( $listing->style );
 						echo "<br /><br />";
 						//var_dump( 'sold date', $listing->saleDate );
 					}

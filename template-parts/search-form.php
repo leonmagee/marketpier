@@ -53,20 +53,21 @@ if ( isset( $_GET['status'] ) ) {
                     </div>
 				<?php } ?>
 			<?php } ?>
-
-			<?php if ( $property_type_options = get_field( 'property_type_select_options', 'option' ) ) { ?>
-                <div class="input-wrap property-type">
-                    <select name="property-type">
-                        <option value="all_property_types">All Property Types</option>
-						<?php foreach ( $property_type_options as $option ) {
-							if ( $option['property_type_name'] == $snippets_query->property_type ) {
-								echo '<option selected="selected" value="' . $option["property_type_name"] . '">' . $option['property_type'] . '</option>';
-							} else {
-								echo '<option value="' . $option["property_type_name"] . '">' . $option['property_type'] . '</option>';
-							}
-						} ?>
-                    </select>
-                </div>
+			<?php if ( $active_sold !== 'sold' ) { ?>
+				<?php if ( $property_type_options = get_field( 'property_type_select_options', 'option' ) ) { ?>
+                    <div class="input-wrap property-type">
+                        <select name="property-type">
+                            <option value="all_property_types">All Property Types</option>
+							<?php foreach ( $property_type_options as $option ) {
+								if ( $option['property_type_name'] == $snippets_query->property_type ) {
+									echo '<option selected="selected" value="' . $option["property_type_name"] . '">' . $option['property_type'] . '</option>';
+								} else {
+									echo '<option value="' . $option["property_type_name"] . '">' . $option['property_type'] . '</option>';
+								}
+							} ?>
+                        </select>
+                    </div>
+				<?php } ?>
 			<?php } ?>
             <div class="input-wrap main-input">
 				<?php if ( $city_zip = $snippets_query->city_zip ) { ?>

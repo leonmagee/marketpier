@@ -21,22 +21,22 @@ class api_listing_search {
 	public $page_size;
 	public $network_error;
 	public $mls_number;
-	public $listing_type;
+	//public $listing_type;
 	public $wp_listing_count;
 	public $transient_name;
 	public $is_search;
 	public $sold_single;
 
 	public function __construct( $token, $page_size, $market, $mls_number = false, $wp_listing_count = false, $is_search = true, $sold_single = false ) {
-		$this->market           = $market;
-		$this->token            = $token;
-		$this->details          = true;
-		$this->extended         = true;
-		$this->features         = true;
-		$this->page_size        = $page_size;
-		$this->network_error    = false;
-		$this->mls_number       = $mls_number;
-		$this->listing_type     = 'Commercial';
+		$this->market        = $market;
+		$this->token         = $token;
+		$this->details       = true;
+		$this->extended      = true;
+		$this->features      = true;
+		$this->page_size     = $page_size;
+		$this->network_error = false;
+		$this->mls_number    = $mls_number;
+		//$this->listing_type     = 'Commercial';
 		$this->wp_listing_count = $wp_listing_count;
 		$this->is_search        = $is_search;
 		$this->sold_single      = $sold_single;
@@ -67,10 +67,19 @@ class api_listing_search {
 				$active_sold_key = 'listings';
 			}
 		}
-		if ( $listing_type = $this->listing_type ) {
-			// @todo this needs to vary depending on other factors...
-			$listing_type_string = '&listingType=' . $listing_type;
-			//$listing_type_string = '&listingType=' . $listing_type . '|Residential';
+//		if ( $listing_type = $this->listing_type ) {
+//			$listing_type_string = '&listingType=' . $listing_type;
+//			//$listing_type_string = '&listingType=' . $listing_type . '|Residential';
+//		}
+		/**
+		 * Listing Type and Property Type combined
+		 */
+		if ( $listing_property_type = $parameters['property_type'] ) {
+			$listing_type_string = $listing_property_type;
+		} else {
+			if ( $this->is_search ) {
+				$listing_type_string = '&listingType=Commercial';
+			}
 		}
 		if ( $id = $this->mls_number ) {
 			$id_string = '&id=' . $id;
@@ -96,17 +105,12 @@ class api_listing_search {
 			$days_seconds          = $current_time - ( $days_on_market * 60 * 60 * 24 );
 			$days_on_market_string = '&listingDate=' . $days_seconds . ':' . $current_time;
 		}
-		if ( $days_on_market = $parameters['days_on_market'] ) {
-			$current_time          = time();
-			$days_seconds          = $current_time - ( $days_on_market * 60 * 60 * 24 );
-			$days_on_market_string = '&listingDate=' . $days_seconds . ':' . $current_time;
-		}
 		if ( $sold_in_last = $parameters['sold_in_last'] ) {
 			$current_time        = time();
 			$days_seconds        = $current_time - ( $sold_in_last * 60 * 60 * 24 );
 			$sold_in_last_string = '&saleDate=' . $days_seconds . ':' . $current_time;
 		}
-		if ( $for_sale_for_lease = $parameters['for_sale_for_lease']) {
+		if ( $for_sale_for_lease = $parameters['for_sale_for_lease'] ) {
 			/**
 			 * For rental search, max price is $100 - there is no 'rental price', we must filter by listPrice
 			 */
@@ -114,46 +118,11 @@ class api_listing_search {
 				$list_price_string = '&listPrice=0:100000';
 			}
 		}
-		//var_dump( $parameters );
-		//saleDate
-//		if ( $sold_in_last = $parameters['sold_in_last'] ) {
-//			$sold_in_last_string = 'listingDate>' . ( $sold_in_last * 60 * 60 * 24 );
-//		}
-
-		/**
-		 * Create query string for Listing Date
-		 */
-//		if ( $parameters['listing_date_start'] || $parameters['listing_date_end'] ) {
-//
-//			$listing_date_start = $parameters['listing_date_start'];
-//			$listing_date_end   = $parameters['listing_date_end'];
-//
-//			if ( $listing_date_start && $listing_date_end ) {
-//
-//				$listing_date_start  = strtotime( $listing_date_start );
-//				$listing_date_end    = strtotime( $listing_date_end );
-//				$listing_date_string = '&listingDate=' . $listing_date_start . ':' . $listing_date_end;
-//
-//			} elseif ( $listing_date_start ) {
-//
-//				$listing_date_start  = strtotime( $listing_date_start );
-//				$listing_date_string = '&listingDate=>' . $listing_date_start;
-//
-//			} elseif ( $listing_date_end ) {
-//
-//				$listing_date_end    = strtotime( $listing_date_end );
-//				$listing_date_string = '&listingDate=<' . $listing_date_end;
-//			}
-//		}
 
 		$this->transient_name = 'ex-' . $this->market . $listing_type_string . $this->page_size . $active_sold_key . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $days_on_market_string . $sold_in_last_string;
 
 		$count_listings_trans = 'n_' . $this->transient_name;
 		$total_num_listings   = get_transient( $count_listings_trans );
-
-//		if ( ! get_transient( $count_listings_trans ) ) {
-//			set_transient( $count_listings_trans, $listing_data->result->total, 3600 );
-//		}
 
 		if ( $this->is_search ) {
 			$idx_listings_needed = idx_listings_page_size(
@@ -170,11 +139,9 @@ class api_listing_search {
 
 		if ( $status === 'sold' ) {
 			$url = 'https://slipstream.homejunction.com/ws/sales/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $sold_in_last_string . '&pageNumber=' . $page_number;
-			var_dump( $url );
 
 		} else {
 			$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $days_on_market_string . '&pageNumber=' . $page_number;
-			var_dump( $url );
 		}
 
 		$listings = wp_remote_get( $url, array( 'headers' => array( 'HJI-Slipstream-Token' => $this->token ) ) );
