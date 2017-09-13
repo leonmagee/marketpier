@@ -162,6 +162,19 @@
         submit_form();
     });
 
+
+    /**
+     * Reset Page Number on Submit click
+     * @todo maybe when you have pagination available for a search ('next'), and then you change any of the search terms, that
+     * @todo should then disable the pagination features, since you will be going to the 'next' page of a search' you haven't
+     * @todo seen page one of yet... and the pagination will probably be off.
+     */
+    $('.search-form-wrap-snippets input.submit-input').click(function (e) {
+        e.preventDefault();
+        $('input[name="page-number"]').val(1);
+        submit_form();
+    });
+
     // $('.two-buttons #sale-listing').click(function () {
     //     $('div[data-name="listing_for_sale_or_for_lease"] select').val('for_sale');
     //     $('.two-buttons #lease-listing').removeClass('active');
