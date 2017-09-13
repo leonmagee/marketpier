@@ -213,8 +213,8 @@ class snippet_data_search {
 			);
 		}
 		if ( $sold_in_last = $this->sold_in_last ) {
-			$current_time          = time();
-			$days_seconds          = $current_time - ( $sold_in_last * 60 * 60 * 24 );
+			$current_time = time();
+			$days_seconds = $current_time - ( $sold_in_last * 60 * 60 * 24 );
 //			var_dump( $sold_in_last );
 //			die('so far');
 			$meta_search_array[] = array(
@@ -327,11 +327,11 @@ class snippet_data_search {
 		 * Price Min & Max
 		 */
 		if ( ( $price_min = $this->price_min ) && ( $price_max = $this->price_max ) ) {
-			$parameters['listPrice'] = $price_min . ':' . $price_max;
+			$parameters['price_range'] = $price_min . ':' . $price_max;
 		} elseif ( $price_min = $this->price_min ) {
-			$parameters['listPrice'] = $price_min . ':99999999999';
+			$parameters['price_range'] = $price_min . ':99999999999';
 		} elseif ( $price_max = $this->price_max ) {
-			$parameters['listPrice'] = '0:' . $price_max;
+			$parameters['price_range'] = '0:' . $price_max;
 		}
 		/**
 		 * SQFT Min & Max
@@ -353,19 +353,38 @@ class snippet_data_search {
 		} elseif ( $cap_rate_max = $this->cap_rate_max ) {
 			$parameters['cap_rate'] = '0:' . $cap_rate_max;
 		}
-
 		/**
 		 * Days on Market
 		 */
 		if ( $days_on_market = $this->days_on_market ) {
 			$parameters['days_on_market'] = $days_on_market;
 		}
-
 		/**
 		 * Sold in Last
 		 */
 		if ( $sold_in_last = $this->sold_in_last ) {
 			$parameters['sold_in_last'] = $sold_in_last;
+		}
+		/**
+		 * For Sale For Lease
+		 */
+		if ( $for_sale_lease = $this->for_sale_lease ) {
+			$parameters['for_sale_for_lease'] = $for_sale_lease;
+			//var_dump( 'for salez leazsldfjs' );
+			//var_dump( $for_sale_lease );
+		}
+		/**
+		 * Property Type
+		 */
+		if ( $property_type = $this->property_type ) {
+			if ( $property_type !== 'all_property_types' ) {
+				if ( $property_type === '' ) {
+					$parameters['property_type'] = '&listingType=Commercial&propertyType=';
+				}
+				$parameters['property_type'] = $property_type;
+			} else {
+				$parameters['property_type'] = '&listingType=Commercial';
+			}
 		}
 
 

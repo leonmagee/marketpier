@@ -37,20 +37,23 @@ if ( isset( $_GET['status'] ) ) {
 			} ?>
             <input type="hidden" name="status" value="<?php echo $status; ?>"/>
             <input value="<?php echo $page_number; ?>" type="hidden" name="page-number"/>
-			<?php if ( $for_sale_lease_options = get_field( 'for_sale_for_lease_select_options', 'option' ) ) { ?>
-                <div class="input-wrap status">
-                    <select name="for-sale-lease">
-						<?php
-						foreach ( $for_sale_lease_options as $option ) {
-							if ( $option['status_name'] == $snippets_query->for_sale_lease ) {
-								echo '<option selected="selected" value="' . $option['status_name'] . '">' . $option['status'] . '</option>';
-							} else {
-								echo '<option value="' . $option['status_name'] . '">' . $option['status'] . '</option>';
-							}
-						} ?>
-                    </select>
-                </div>
+			<?php if ( $active_sold !== 'sold' ) { ?>
+				<?php if ( $for_sale_lease_options = get_field( 'for_sale_for_lease_select_options', 'option' ) ) { ?>
+                    <div class="input-wrap for-sale-for-lease">
+                        <select name="for-sale-lease">
+							<?php
+							foreach ( $for_sale_lease_options as $option ) {
+								if ( $option['status_name'] == $snippets_query->for_sale_lease ) {
+									echo '<option selected="selected" value="' . $option['status_name'] . '">' . $option['status'] . '</option>';
+								} else {
+									echo '<option value="' . $option['status_name'] . '">' . $option['status'] . '</option>';
+								}
+							} ?>
+                        </select>
+                    </div>
+				<?php } ?>
 			<?php } ?>
+
 			<?php if ( $property_type_options = get_field( 'property_type_select_options', 'option' ) ) { ?>
                 <div class="input-wrap property-type">
                     <select name="property-type">

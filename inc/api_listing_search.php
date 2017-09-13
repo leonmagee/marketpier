@@ -88,7 +88,7 @@ class api_listing_search {
 			$cap_rate_field  = get_key( $extended_fields, $this->market, 'cap_rate' );
 			$cap_rate_string = '&' . $cap_rate_field . '=' . $cap_rate_range;
 		}
-		if ( $list_price = $parameters['listPrice'] ) {
+		if ( $list_price = $parameters['price_range'] ) {
 			$list_price_string = '&listPrice=' . $list_price;
 		}
 		if ( $days_on_market = $parameters['days_on_market'] ) {
@@ -106,6 +106,15 @@ class api_listing_search {
 			$days_seconds        = $current_time - ( $sold_in_last * 60 * 60 * 24 );
 			$sold_in_last_string = '&saleDate=' . $days_seconds . ':' . $current_time;
 		}
+		if ( $for_sale_for_lease = $parameters['for_sale_for_lease']) {
+			/**
+			 * For rental search, max price is $100 - there is no 'rental price', we must filter by listPrice
+			 */
+			if ( $for_sale_for_lease === 'for_lease' ) {
+				$list_price_string = '&listPrice=0:100000';
+			}
+		}
+		//var_dump( $parameters );
 		//saleDate
 //		if ( $sold_in_last = $parameters['sold_in_last'] ) {
 //			$sold_in_last_string = 'listingDate>' . ( $sold_in_last * 60 * 60 * 24 );
@@ -161,9 +170,11 @@ class api_listing_search {
 
 		if ( $status === 'sold' ) {
 			$url = 'https://slipstream.homejunction.com/ws/sales/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $sold_in_last_string . '&pageNumber=' . $page_number;
+			var_dump( $url );
 
 		} else {
 			$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $days_on_market_string . '&pageNumber=' . $page_number;
+			var_dump( $url );
 		}
 
 		$listings = wp_remote_get( $url, array( 'headers' => array( 'HJI-Slipstream-Token' => $this->token ) ) );

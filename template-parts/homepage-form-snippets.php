@@ -18,7 +18,7 @@ die('deprecated - homepage-form-snippets');
                         <input value="<?php echo $page_number; ?>" type="hidden" name="page-number" />
 <!--            <input value="--><?php //echo $page_number; ?><!--" style='max-width: 40px; background-color: lightgreen' type="text" name="page-number"/>-->
 			<?php if ( $for_sale_lease_options = get_field( 'for_sale_for_lease_select_options', 'option' ) ) { ?>
-                <div class="input-wrap status">
+                <div class="input-wrap for-sale-for-lease">
                     <select name="for-sale-lease">
 						<?php foreach ( $for_sale_lease_options as $option ) {
 							if ( $option['status_name'] == $snippets_query->status ) {
