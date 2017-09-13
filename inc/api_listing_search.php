@@ -70,12 +70,14 @@ class api_listing_search {
 		/**
 		 * Property Type (Listing Type Not required if we are always specifying a property type)
 		 */
-		if ( $listing_property_type = $parameters['property_type'] ) {
-			$listing_type_string = $listing_property_type;
-		} else {
-			if ( $this->is_search ) {
-				//$listing_type_string = '&listingType=Commercial';
-				$listing_type_string = '&propertyType=Warehouse|Heavy Mfg|Light Mfg|Com-BusOp|Res Income 2-4 Units|Com-Res Income|Com-MobHmPark|Office|Retail|Com-Hotel Motel|Lots/Land';
+		if ( $status !== 'sold' ) {
+			if ( $listing_property_type = $parameters['property_type'] ) {
+				$listing_type_string = $listing_property_type;
+			} else {
+				if ( $this->is_search ) {
+					//$listing_type_string = '&listingType=Commercial';
+					$listing_type_string = '&propertyType=Warehouse|Heavy Mfg|Light Mfg|Com-BusOp|Res Income 2-4 Units|Com-Res Income|Com-MobHmPark|Office|Retail|Com-Hotel Motel|Lots/Land';
+				}
 			}
 		}
 		// just used for transient names
