@@ -51,10 +51,12 @@ header#masthead {
     min-width: 225px;
     position: relative;
     padding: 10px 10px;
-    @media(min-width: $screen-sm) {
-      display: flex;
-      align-items: center;
-    }
+    display: flex;
+    align-items: center;
+    //@media(min-width: $screen-sm) {
+    //  display: flex;
+    //  align-items: center;
+    //}
     .menu-drop-down-icon {
       i {
         font-size: 1.5em;

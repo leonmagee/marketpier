@@ -212,7 +212,7 @@ class api_listing_search {
 							$save_listing_array[] = array_pop( $listing_data->result->$active_sold_key );
 						}
 						$extra_listings_serial = serialize( $save_listing_array );
-						set_transient( $this->transient_name, $extra_listings_serial, 60000 );
+						set_transient( $this->transient_name, $extra_listings_serial, 7200 );
 						//var_dump( $save_listing_array );
 						//$this->search_result = $listing_data->result->listings;
 
@@ -240,7 +240,7 @@ class api_listing_search {
 							if ( $extra_data ) {
 								$extra_listings_serial = serialize( $extra_data );
 								// @todo resave transient with less data...
-								set_transient( $this->transient_name, $extra_listings_serial, 60000 );
+								set_transient( $this->transient_name, $extra_listings_serial, 7200 );
 							}
 
 							//$listing_data->result->listings = array_merge( $listing_data->result->listings, $new_data_array );
@@ -288,7 +288,7 @@ class api_listing_search {
 			if ( ! get_transient( $count_listings_trans ) ) {
 //				var_dump( $listing_data->result->total );
 //				var_dump( $count_listings_trans );
-				set_transient( $count_listings_trans, $listing_data->result->total, 3600 );
+				set_transient( $count_listings_trans, $listing_data->result->total, 7200 );
 			}
 
 			$this->total_listings = $listing_data->result->total;
