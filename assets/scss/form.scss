@@ -148,7 +148,10 @@
       }
     }
     .input-wrap {
-      padding: 0 5px;
+      padding: 5px;
+      @media(min-width: $screen-sm) {
+        padding: 0 5px;
+      }
       &.for-sale-for-lease {
         @media(min-width: $screen-sm) {
           flex: 0 1 18%;
@@ -198,9 +201,11 @@
       background-color: $brand-primary;
       color: #FFF;
       font-weight: 700;
-      font-size: 14px;
+      font-size: 20px;
+      margin: 15px auto;
       @media(min-width: $screen-sm) {
         margin: 0 5px;
+        font-size: 14px;
       }
       &:hover {
         background-color: lighten($brand-primary, 5%);
@@ -253,9 +258,15 @@
       }
 
       .advanced-options-item {
-        flex: 0 1 50%;
+        flex: 0 1 100%;
+        @media(min-width: $screen-sm) {
+          flex: 0 1 50%;
+        }
         &.quarter {
-          flex: 0 1 25%;
+          flex: 0 1 50%;
+          @media(min-width: $screen-sm) {
+            flex: 0 1 25%;
+          }
         }
         h5 {
           font-size: 13px;
