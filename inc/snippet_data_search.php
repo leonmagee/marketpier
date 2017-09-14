@@ -62,7 +62,7 @@ class snippet_data_search {
 		} else {
 			$this->page_number = 1;
 		}
-		$this->page_size = 10;
+		$this->page_size = 500;
 		//$this->page_size = 3;
 
 		/**
@@ -398,7 +398,7 @@ class snippet_data_search {
 				}
 			} else {
 				//$parameters['property_type'] = '&listingType=Commercial';
-				$parameters['property_type'] = '&propertyType=Warehouse|Heavy Mfg|Light Mfg|Com-BusOp|Res Income 2-4 Units|Com-Res Income|Com-MobHmPark|Office|Retail|Com-Hotel Motel|Lots/Land';
+				$parameters['property_type'] = '&propertyType=Warehouse|Heavy Mfg|Light Mfg|Com-BusOp|Res Income 2-4 Units|Com-Res Income|Com-MobHmPark|Office|Retail|Com-Hotel Motel|Lots/Land|Other/Remarks|Mixed Usage';
 			}
 		}
 
