@@ -411,6 +411,8 @@ class snippet_data_search {
 
 		$slipstream_token_query = new get_slipstream_token();
 		$market                 = 'sandicor';
+		//$market                 = 'crmls';
+		//$market                 = 'sandicor,crmls';
 		$listing_page_size      = $this->page_size;
 		$search                 = new api_listing_search(
 			$slipstream_token_query->slipstream_token,

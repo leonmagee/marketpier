@@ -454,12 +454,42 @@ h5.section-title {
   display: none;
 }
 
-.listing-agent-attribution {
-  margin: 10px 0;
-  background-color: #FCFCFC;
-  border: 1px solid #EEE;
-  padding: 5px 10px;
-  color: #555;
-  font-size: 12px;
-  width: auto;
+.listing-agent-attribution-wrap {
+  @media(min-width: $screen-sm) {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10px;
+  }
+  .listing-agent-attribution {
+    margin: 20px 0 30px;
+    background-color: #FCFCFC;
+    border: 1px solid #EEE;
+    color: #555;
+    font-size: 12px;
+    width: auto;
+    @media(min-width: $screen-sm) {
+      flex: 0 1 47%;
+      margin: 15px 0;
+    }
+    .listing-agent-attribution-inner-wrap {
+      padding: 5px 0;
+    }
+    .title-block {
+      padding: 5px 10px;
+      text-align: center;
+      color: #444;
+      font-weight: 600;
+      background: rgba(0,0,0,0.03);
+    }
+    .listing-agent-name {
+      padding: 3px 15px;
+    }
+    .listing-agent-phone, .listing-agent-id {
+      padding: 3px 15px;
+    }
+    span {
+      color: #777;
+      margin-right: 5px;
+    }
+  }
 }

@@ -330,32 +330,35 @@ if ( $request_details[2] == 'idx' ) {
 					<?php } ?>
                 </div>
 			<?php } ?>
-			<?php if ( $listing_agent_name = $listing_data->listing_agent_name ) { ?>
-                <div class="listing-agent-attribution">
-                    <div class="listing-agent-name">
-                        Listing Provided Courtesy of <?php echo $listing_agent_name; ?>
+            <div class="listing-agent-attribution-wrap">
+				<?php if ( $listing_agent_name = $listing_data->listing_agent_name ) { ?>
+                    <div class="listing-agent-attribution">
+                        <div class="title-block">Listing Agent</div>
+                        <div class="listing-agent-attribution-inner-wrap">
+                            <div class="listing-agent-name"><span>Name:</span><?php echo $listing_agent_name; ?></div>
+							<?php if ( $listing_agent_phone = $listing_data->listing_agent_phone ) { ?>
+                                <div class="listing-agent-phone"><span>Phone:</span><?php echo $listing_agent_phone; ?>
+                                </div>
+							<?php } ?>
+							<?php if ( $listing_agent_id = $listing_data->listing_agent_id ) { ?>
+                                <div class="listing-agent-id"><span>ID:</span>#<?php echo $listing_agent_id; ?></div>
+							<?php } ?>
+                        </div>
                     </div>
-					<?php if ( $listing_agent_phone = $listing_data->listing_agent_phone ) { ?>
-                        <div class="listing-agent-phone"><?php echo $listing_agent_phone; ?></div>
-					<?php } ?>
-					<?php if ( $listing_agent_id = $listing_data->listing_agent_id ) { ?>
-                        <div class="listing-agent-id">#<?php echo $listing_agent_id; ?></div>
-					<?php } ?>
-                </div>
-			<?php } ?>
-	        <?php if ( $listing_office_name = $listing_data->listing_office_name ) { ?>
-                <div class="listing-agent-attribution">
-                    <div class="listing-agent-name">
-                        Listing Provided Courtesy of <?php echo $listing_office_name; ?>
+				<?php } ?>
+				<?php if ( $listing_office_name = $listing_data->listing_office_name ) { ?>
+                    <div class="listing-agent-attribution">
+                        <div class="title-block">Listing Office</div>
+                        <div class="listing-agent-name"><?php echo $listing_office_name; ?></div>
+						<?php if ( $listing_office_phone = $listing_data->listing_office_phone ) { ?>
+                            <div class="listing-agent-phone"><?php echo $listing_office_phone; ?></div>
+						<?php } ?>
+						<?php if ( $listing_office_id = $listing_data->listing_office_id ) { ?>
+                            <div class="listing-agent-id">#<?php echo $listing_office_id; ?></div>
+						<?php } ?>
                     </div>
-			        <?php if ( $listing_office_phone = $listing_data->listing_office_phone ) { ?>
-                        <div class="listing-agent-phone"><?php echo $listing_office_phone; ?></div>
-			        <?php } ?>
-			        <?php if ( $listing_office_id = $listing_data->listing_office_id ) { ?>
-                        <div class="listing-agent-id">#<?php echo $listing_office_id; ?></div>
-			        <?php } ?>
-                </div>
-	        <?php } ?>
+				<?php } ?>
+            </div>
         </div>
         <div class="single-listing-right-side-wrap">
 			<?php
