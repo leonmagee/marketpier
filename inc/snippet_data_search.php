@@ -63,6 +63,7 @@ class snippet_data_search {
 			$this->page_number = 1;
 		}
 		$this->page_size = 500;
+		//$this->page_size = 10;
 		//$this->page_size = 3;
 
 		/**
@@ -215,8 +216,6 @@ class snippet_data_search {
 		if ( $sold_in_last = $this->sold_in_last ) {
 			$current_time = time();
 			$days_seconds = $current_time - ( $sold_in_last * 60 * 60 * 24 );
-//			var_dump( $sold_in_last );
-//			die('so far');
 			$meta_search_array[] = array(
 				'key'     => 'sale_date',
 				'value'   => $days_seconds,
@@ -263,7 +262,6 @@ class snippet_data_search {
 		 * requests for other posts - this will need to be it's own query - for both this and the listing query, and then
 		 * you'll use this info in the wrapper to choose which listings get displayed.
 		 */
-		//var_dump( intval($listing_query->found_posts) );
 
 		while ( $listing_query->have_posts() ) {
 
@@ -283,12 +281,15 @@ class snippet_data_search {
 			//if ( ( $listing_data->lat && $listing_data->long ) || $listing_data->combined_address ) {
 			if ( $listing_data->combined_address ) {
 
+				$address_new = str_replace( "'", "\'", $listing_data->combined_address );
+				$address_new2 = str_replace( '"', '\"', $address_new );
+
 				$map_data_array_src[] = array(
 					//'lat'     => $listing_data->lat,
 					//'long'    => $listing_data->long,
 					'lat'     => false,
 					'long'    => false,
-					'address' => $listing_data->combined_address,
+					'address' => $address_new2,
 					'price'   => $price_label,
 					'url'     => $listing_data->listing_url
 				);
@@ -370,8 +371,6 @@ class snippet_data_search {
 		 */
 		if ( $for_sale_lease = $this->for_sale_lease ) {
 			$parameters['for_sale_for_lease'] = $for_sale_lease;
-			//var_dump( 'for salez leazsldfjs' );
-			//var_dump( $for_sale_lease );
 		}
 		/**
 		 * Property Type
@@ -427,7 +426,6 @@ class snippet_data_search {
 		$listings = $search->search_result;
 
 		$this->total_results = ( $this->total_results + $search->total_listings );
-		//var_dump( $this->total_results );
 
 		if ( $listings ) {
 
@@ -448,10 +446,13 @@ class snippet_data_search {
 
 				if ( $listing_data->combined_address ) {
 
+					$address_new = str_replace( "'", "\'", $listing_data->combined_address );
+					$address_new2 = str_replace( '"', '\"', $address_new );
+
 					$map_data_array_src[] = array(
 						'lat'     => $listing_data->lat,
 						'long'    => $listing_data->long,
-						'address' => $listing_data->combined_address,
+						'address' => $address_new2,
 						'price'   => $price_label,
 						'url'     => $listing_data->listing_url
 					);
