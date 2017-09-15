@@ -54,6 +54,9 @@ class listing_data {
 	public $listing_agent_name;
 	public $listing_agent_phone;
 	public $listing_agent_id;
+	public $listing_office_name;
+	public $listing_office_phone;
+	public $listing_office_id;
 	public $gross_rent_multiplier;
 	public $gross_operating_income;
 	public $operating_expenses;  // net oerating income = gross income - oerating expenses
@@ -210,6 +213,9 @@ class listing_data {
 		$this->listing_agent_name     = $listing->listingAgent->name;
 		$this->listing_agent_phone    = $listing->listingAgent->phone;
 		$this->listing_agent_id       = $listing->listingAgent->id;
+		$this->listing_office_name    = $listing->listingOffice->name;
+		$this->listing_office_phone   = $listing->listingOffice->phone;
+		$this->listing_office_id      = $listing->listingOffice->id;
 		$this->lat                    = $listing->coordinates->latitude;
 		$this->long                   = $listing->coordinates->longitude;
 		$gross_rent_field             = get_key( $extended_fields, $this->market, 'gross_rent_multiplier' );

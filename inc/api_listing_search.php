@@ -183,10 +183,8 @@ class api_listing_search {
 			 */
 
 			if ( $this->is_search ) {
-
 //				$this->transient_name = 'ex-' . $this->market . $listing_type_string . $this->page_size . $status_string . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $listing_date_string;
 				if ( $idx_listings_needed ) {
-
 					//$number_results_returned = count( $listing_data->result->listings );
 					$number_results_returned = count( $listing_data->result->$active_sold_key );
 					//var_dump( $listing_data->result->listings );

@@ -119,14 +119,17 @@ function idx_listings_page_size( $page_size, $wp_count, $current_page = 1, $tota
 //	var_dump( 'current page', $current_page );
 //	var_dump( 'total idx', $total_idx_listings );
 	/**
-	 * I think we need to also figure out how many pages there should be total
+	 * total_listings relies on a transient being set, so this
+	 * can't run on the first page?
 	 */
+	if ( $total_idx_listings ) {
 
-	$total_listings = ( $total_idx_listings + $wp_count );
+		$total_listings = ( $total_idx_listings + $wp_count );
 
-	$max_pages = ceil( $total_listings / $page_size );
-	if ( $current_page > $max_pages ) {
-		return 0;
+		$max_pages = ceil( $total_listings / $page_size );
+		if ( $current_page > $max_pages ) {
+			return 0;
+		}
 	}
 	//var_dump( 'max', $max_pages );
 	/**

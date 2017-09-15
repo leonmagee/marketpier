@@ -33,32 +33,35 @@ get_header(); ?>
 				//170034990
 				//170041457
 				$parameters = false;
-				//$parameters = array( 'status' => 'active' );
+				//$parameters = array( 'status' => 'active', 'price_min' => '102342', 'cap_rate_min' => '3' );
 				//$parameters = array( 'status' => 'sold' );
+				//$parameters = array( 'property_type' => '&listingType=Commercial', 'status' => 'sold' );
+				$parameters = array( 'zip' => '92108' );
 				//$parameters = array( 'property_type' => '&propertyType=Mixed Usage' );
-				$parameters = array( 'property_type' => '&propertyType=Other/Remarks' );
+				//$parameters = array( 'property_type' => '&propertyType=Other/Remarks' );
 				//					$parameters['property_type'] = '&propertyType=Res Income 2-4 Units';
 				$search->search_listings( $parameters );
+				var_dump( $search );
+				echo "<h1>Listings</h1>";
 				//var_dump( $search );
-				//var_dump( $search );
-				if ( $search->search_result ) {
-					//var_dump( $search->search_result );
-					foreach ( $search->search_result as $listing ) {
-						//foreach ( $search->search_result->listings as $listing ) {
-//					    echo 'MLS Number: ' . $listing->id . '<br />';
-//						echo 'Status: ' . $listing->status . '<br />';
-//						echo 'Listing Type: ' . $listing->listingType . '<br />';
-//						echo 'Style: ' . $listing->style . '<br />';
-//						echo 'Property Type: ' . $listing->propertyType . '<br />';
-//						echo 'List Price: ' . $listing->listPrice . '<br />';
-						var_dump( $listing );
-						//var_dump( $listing->status );
-						//var_dump( $listing->listPrice);
-						//var_dump( $listing->style );
-						echo "<br /><br />";
-						//var_dump( 'sold date', $listing->saleDate );
-					}
-				}
+				//				if ( $search->search_result ) {
+				//					//var_dump( $search->search_result );
+				//					foreach ( $search->search_result as $listing ) {
+				//						//foreach ( $search->search_result->listings as $listing ) {
+				////					    echo 'MLS Number: ' . $listing->id . '<br />';
+				////						echo 'Status: ' . $listing->status . '<br />';
+				////						echo 'Listing Type: ' . $listing->listingType . '<br />';
+				////						echo 'Style: ' . $listing->style . '<br />';
+				////						echo 'Property Type: ' . $listing->propertyType . '<br />';
+				////						echo 'List Price: ' . $listing->listPrice . '<br />';
+				//						var_dump( $listing );
+				//						//var_dump( $listing->status );
+				//						//var_dump( $listing->listPrice);
+				//						//var_dump( $listing->style );
+				//						echo "<br /><br />";
+				//						//var_dump( 'sold date', $listing->saleDate );
+				//					}
+				//				}
 
 				//var_dump( $search->search_result->listings );
 				?>
