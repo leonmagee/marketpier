@@ -164,8 +164,8 @@ class listing_data {
 		$extended_fields = get_field( 'home_junction_extended_fields', 'option' );
 
 		$slipstream_token_query = new get_slipstream_token();
-		$market                 = 'sandicor';
-		//$market            = 'crmls';
+		//$market                 = 'sandicor';
+		$market            = 'crmls';
 		$listing_page_size = 1;
 		$search            = new api_listing_search(
 			$slipstream_token_query->slipstream_token,

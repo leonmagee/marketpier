@@ -32,11 +32,6 @@ if ( $request_details[2] == 'idx' ) {
 } else {
 	$listing_data->listing_data_from_WP();
 }
-
-
-var_dump( 'lat', $listing_data->lat );
-var_dump( 'long', $listing_data->long );
-var_dump( 'add', $listing_data->combined_address );
 ?>
     <div class="single-listing-wrap">
 

@@ -13,8 +13,9 @@ get_header(); ?>
             <div class="page-content-wrap">
                 <h1>Slipstream Testing</h1>
 				<?php var_dump( $slipstream_token_query->slipstream_token );
-				$market            = 'sandicor';
-				$listing_page_size = 100;
+				//$market            = 'sandicor';
+				$market            = 'crmls';
+				$listing_page_size = 10;
 				//				$search            = new api_listing_search(
 				//					$slipstream_token_query->slipstream_token,
 				//					$listing_page_size,
@@ -24,7 +25,8 @@ get_header(); ?>
 				$search = new api_listing_search(
 					$slipstream_token_query->slipstream_token,
 					$listing_page_size,
-					$market
+					$market,
+					'OC17200911'
 				);
 				//160045736
 				//130048559
@@ -35,12 +37,13 @@ get_header(); ?>
 				$parameters = false;
 				//$parameters = array( 'status' => 'active', 'price_min' => '102342', 'cap_rate_min' => '3' );
 				//$parameters = array( 'status' => 'sold' );
-				//$parameters = array( 'property_type' => '&listingType=Commercial', 'status' => 'sold' );
-				$parameters = array( 'zip' => '92108' );
+				$parameters = array( 'property_type' => '&listingType=Commercial', 'status' => 'active' );
+				//$parameters = array( 'zip' => '92108' );
 				//$parameters = array( 'property_type' => '&propertyType=Mixed Usage' );
 				//$parameters = array( 'property_type' => '&propertyType=Other/Remarks' );
 				//					$parameters['property_type'] = '&propertyType=Res Income 2-4 Units';
 				$search->search_listings( $parameters );
+				//$search->search_listings();
 				var_dump( $search );
 				echo "<h1>Listings</h1>";
 				//var_dump( $search );
