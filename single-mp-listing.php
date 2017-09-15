@@ -123,7 +123,7 @@ if ( $request_details[2] == 'idx' ) {
 					if ( $listing_data->sub_type ) { ?>
                         <div class="detail">
                             <div class="detail-label">Sub Type</div>
-                            <div class="detail-content"><?php echo $listing_data->sub_type; ?></div>
+                            <div class="detail-content"><?php echo ucfirst( $listing_data->sub_type ); ?></div>
                         </div>
 					<?php }
 					if ( $listing_data->building_size ) { ?>

@@ -87,11 +87,22 @@ class api_listing_search {
 		if ( $id = $this->mls_number ) {
 			$id_string = '&id=' . $id;
 		}
-		if ( $zip = $parameters['zip'] ) {
-			$zip_string = '&address.zip=' . $zip;
-		}
-		if ( $city = $parameters['city'] ) {
-			$city_string = '&address.city=' . $city;
+		if ( $active_sold_key === 'sales' ) {
+
+			if ( $zip = $parameters['zip'] ) {
+				$zip_string = '&zip=' . $zip;
+			}
+			if ( $city = $parameters['city'] ) {
+				$city_string = '&city=' . $city;
+			}
+		} else {
+
+			if ( $zip = $parameters['zip'] ) {
+				$zip_string = '&address.zip=' . $zip;
+			}
+			if ( $city = $parameters['city'] ) {
+				$city_string = '&address.city=' . $city;
+			}
 		}
 		if ( $size = $parameters['size'] ) {
 			$size_string = '&size=' . $size;

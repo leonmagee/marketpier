@@ -113,8 +113,7 @@ get_header();
                     <a class="active-sold-link current">Sold Listings</a>
 				<?php } ?>
                 <a class="active-sold-link"
-                   href="<?php echo site_url(); ?>/search-listings/?status=active&for_sale_lease=for_sale">Reset
-                    Search</a>
+                   href="<?php echo site_url(); ?>/search-listings/?status=active&for_sale_lease=for_sale&property_type=all_property_types&page_number=1">Reset Search</a>
             </div>
 			<?php
 			/**
