@@ -9,7 +9,7 @@ $username = $user->user_login;
     </a>
     <a href="<?php echo site_url(); ?>/your-profile" class="sidebar-option update-profile">
         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-        <span>Update Profile</span>
+        <span>Profile Settings</span>
     </a>
     <a href="<?php echo site_url(); ?>/profile/<?php echo $username; ?>" class="sidebar-option view-profile">
         <i class="fa fa-user"></i>

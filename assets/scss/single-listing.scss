@@ -464,7 +464,7 @@ h5.section-title {
     margin: 20px 0 30px;
     background-color: #FCFCFC;
     border: 1px solid #EEE;
-    color: #555;
+    color: #333;
     font-size: 12px;
     width: auto;
     @media(min-width: $screen-sm) {
@@ -479,17 +479,18 @@ h5.section-title {
       text-align: center;
       color: #444;
       font-weight: 600;
-      background: rgba(0,0,0,0.03);
+      background: rgba(0, 0, 0, 0.03);
     }
-    .listing-agent-name {
+    .listing-agent-item {
       padding: 3px 15px;
-    }
-    .listing-agent-phone, .listing-agent-id {
-      padding: 3px 15px;
-    }
-    span {
-      color: #777;
-      margin-right: 5px;
+      display: flex;
+      span {
+        color: #777;
+        margin-right: 10px;
+        width: 100px;
+        text-align: right;
+        flex: 0 1 18%;
+      }
     }
   }
 }

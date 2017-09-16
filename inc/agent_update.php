@@ -11,12 +11,10 @@ class agent_update {
 
 		$input_fields = array();
 
-		$input_fields[] = new agent_update_input_user_meta( 'First Name', 'first_name', $agent_id );
-		$input_fields[] = new agent_update_input_user_meta( 'Last Name', 'last_name', $agent_id );
-
-		$input_fields[] = new agent_update_input_user( 'Email Address', 'user_email', $agent_id );
-
-		$input_fields[] = new agent_update_input_acf( 'Phone Number', 'phone_number', $agent_id );
+//		$input_fields[] = new agent_update_input_user_meta( 'First Name', 'first_name', $agent_id );
+//		$input_fields[] = new agent_update_input_user_meta( 'Last Name', 'last_name', $agent_id );
+//		$input_fields[] = new agent_update_input_user( 'Email Address', 'user_email', $agent_id );
+//		$input_fields[] = new agent_update_input_acf( 'Phone Number', 'phone_number', $agent_id );
 
 		$input_fields[] = new agent_update_input_user_meta( 'Bio', 'description', $agent_id, 'textarea' );
 

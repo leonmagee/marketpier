@@ -335,13 +335,18 @@ if ( $request_details[2] == 'idx' ) {
                     <div class="listing-agent-attribution">
                         <div class="title-block">Listing Agent</div>
                         <div class="listing-agent-attribution-inner-wrap">
-                            <div class="listing-agent-name"><span>Name:</span><?php echo $listing_agent_name; ?></div>
+                            <div class="listing-agent-item"><span>Name:</span>
+                                <div><?php echo $listing_agent_name; ?></div>
+                            </div>
 							<?php if ( $listing_agent_phone = $listing_data->listing_agent_phone ) { ?>
-                                <div class="listing-agent-phone"><span>Phone:</span><?php echo $listing_agent_phone; ?>
+                                <div class="listing-agent-item"><span>Phone:</span>
+                                    <div><?php echo $listing_agent_phone; ?></div>
                                 </div>
 							<?php } ?>
 							<?php if ( $listing_agent_id = $listing_data->listing_agent_id ) { ?>
-                                <div class="listing-agent-id"><span>ID:</span>#<?php echo $listing_agent_id; ?></div>
+                                <div class="listing-agent-item"><span>ID:</span>
+                                    <div>#<?php echo $listing_agent_id; ?></div>
+                                </div>
 							<?php } ?>
                         </div>
                     </div>
@@ -349,13 +354,21 @@ if ( $request_details[2] == 'idx' ) {
 				<?php if ( $listing_office_name = $listing_data->listing_office_name ) { ?>
                     <div class="listing-agent-attribution">
                         <div class="title-block">Listing Office</div>
-                        <div class="listing-agent-name"><?php echo $listing_office_name; ?></div>
-						<?php if ( $listing_office_phone = $listing_data->listing_office_phone ) { ?>
-                            <div class="listing-agent-phone"><?php echo $listing_office_phone; ?></div>
-						<?php } ?>
-						<?php if ( $listing_office_id = $listing_data->listing_office_id ) { ?>
-                            <div class="listing-agent-id">#<?php echo $listing_office_id; ?></div>
-						<?php } ?>
+                        <div class="listing-agent-attribution-inner-wrap">
+                            <div class="listing-agent-item"><span>Name:</span>
+                                <div><?php echo $listing_office_name; ?></div>
+                            </div>
+							<?php if ( $listing_office_phone = $listing_data->listing_office_phone ) { ?>
+                                <div class="listing-agent-item"><span>Phone:</span>
+                                    <div><?php echo $listing_office_phone; ?></div>
+                                </div>
+							<?php } ?>
+							<?php if ( $listing_office_id = $listing_data->listing_office_id ) { ?>
+                                <div class="listing-agent-item"><span>ID:</span>
+                                    <div>#<?php echo $listing_office_id; ?></div>
+                                </div>
+							<?php } ?>
+                        </div>
                     </div>
 				<?php } ?>
             </div>

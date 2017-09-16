@@ -22,6 +22,7 @@ if ( is_user_logged_in() ) {
  */
 require_once( 'inc/helper-functions.php' );
 require_once( 'inc/agent_update.php' );
+require_once( 'inc/account_settings.php' );
 require_once( 'inc/agent_update_input.php' );
 require_once( 'inc/agent_update_user_input_meta.php' );
 require_once( 'inc/agent_update_input_user.php' );
