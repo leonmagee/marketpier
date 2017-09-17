@@ -382,9 +382,9 @@ class snippet_data_search {
 		$property_type_data = get_field( 'home_junction_property_types', 'option' );
 		$key                = get_key( $property_type_data, $this->market, 'industrial' );
 
-		var_dump( $key );
+		//var_dump( $key );
 		$all_keys = get_all_keys( $property_type_data, $this->market );
-		var_dump( $all_keys );
+		//var_dump( $all_keys );
 		/**
 		 * @todo loop through to get all property types and combine in one string...
 		 */
