@@ -395,7 +395,7 @@ class snippet_data_search {
 			if ( $property_type !== 'all_property_types' ) {
 
 				$parameters['property_type'] = '&propertyType=' . get_key( $property_type_data, $this->market, $property_type );
-				var_dump( $parameters['property_type'] );
+				//var_dump( $parameters['property_type'] );
 
 			} else {
 				$parameters['property_type'] = '&propertyType=' . $all_keys;
