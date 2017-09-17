@@ -9,6 +9,7 @@
  * @todo and returning the WordPress data first.
  */
 class snippet_data_search {
+	public $market;
 	public $total_results; // @todo add up WP and IDX search?
 	public $total_wp_results;
 	public $page_number;
@@ -34,6 +35,8 @@ class snippet_data_search {
 	public $status_all; // @todo is this needed? - fix to show all listings on author.php
 
 	public function __construct( $author_id = false, $status_all = false ) {
+		//$this->market = 'sandicor';
+		$this->market = 'crmls';
 		/**
 		 * Data from $_GET
 		 */
@@ -214,8 +217,8 @@ class snippet_data_search {
 			);
 		}
 		if ( $sold_in_last = $this->sold_in_last ) {
-			$current_time = time();
-			$days_seconds = $current_time - ( $sold_in_last * 60 * 60 * 24 );
+			$current_time        = time();
+			$days_seconds        = $current_time - ( $sold_in_last * 60 * 60 * 24 );
 			$meta_search_array[] = array(
 				'key'     => 'sale_date',
 				'value'   => $days_seconds,
@@ -281,7 +284,7 @@ class snippet_data_search {
 			//if ( ( $listing_data->lat && $listing_data->long ) || $listing_data->combined_address ) {
 			if ( $listing_data->combined_address ) {
 
-				$address_new = str_replace( "'", "\'", $listing_data->combined_address );
+				$address_new  = str_replace( "'", "\'", $listing_data->combined_address );
 				$address_new2 = str_replace( '"', '\"', $address_new );
 
 				$map_data_array_src[] = array(
@@ -375,47 +378,46 @@ class snippet_data_search {
 		/**
 		 * Property Type
 		 */
+
+		$property_type_data = get_field( 'home_junction_property_types', 'option' );
+		$key                = get_key( $property_type_data, $this->market, 'industrial' );
+
+		var_dump( $key );
+		$all_keys = get_all_keys( $property_type_data, $this->market );
+		var_dump( $all_keys );
+		/**
+		 * @todo loop through to get all property types and combine in one string...
+		 */
+
+
 		if ( $property_type = $this->property_type ) {
 			$parameters['property_type_key'] = $property_type;
 			if ( $property_type !== 'all_property_types' ) {
-				if ( $property_type === 'industrial' ) { // working
-					$parameters['property_type'] = '&propertyType=Warehouse|Heavy Mfg|Light Mfg';
-				} elseif ( $property_type === 'business_opportunity' ) { // working
-					$parameters['property_type'] = '&propertyType=Com-BusOp';
-				} elseif ( $property_type === 'multifamily' ) {
-					$parameters['property_type'] = '&propertyType=Res Income 2-4 Units|Com-Res Income|Com-MobHmPark';
-				} elseif ( $property_type === 'office' ) {
-					$parameters['property_type'] = '&propertyType=Office';
-				} elseif ( $property_type === 'retail' ) {
-					$parameters['property_type'] = '&propertyType=Retail';
-				} elseif ( $property_type === 'hotel_motel' ) {
-					$parameters['property_type'] = '&propertyType=Com-Hotel Motel';
-				} elseif ( $property_type === 'land' ) {
-					$parameters['property_type'] = '&propertyType=Lots/Land';
-				} elseif ( $property_type === 'residential_income' ) {
-					//@todo ?????
-				}
+
+				$parameters['property_type'] = '&propertyType=' . get_key( $property_type_data, $this->market, $property_type );
+				var_dump( $parameters['property_type'] );
+
 			} else {
-				//$parameters['property_type'] = '&listingType=Commercial';
-				$parameters['property_type'] = '&propertyType=Warehouse|Heavy Mfg|Light Mfg|Com-BusOp|Res Income 2-4 Units|Com-Res Income|Com-MobHmPark|Office|Retail|Com-Hotel Motel|Lots/Land|Other/Remarks|Mixed Usage';
+				$parameters['property_type'] = '&propertyType=' . $all_keys;
 			}
 		}
 
+		/**
+		 * @todo does this do anything?
+		 */
 		if ( $lot_size_min = $this->lot_size_min ) {
 		}
-		if ( $days_on_market = $this->days_on_market ) {
-		} else {
-		}
+//		if ( $days_on_market = $this->days_on_market ) {
+//		} else {
+//		}
 
 
 		$slipstream_token_query = new get_slipstream_token();
-		//$market                 = 'sandicor';
-		$market                 = 'crmls';
-		$listing_page_size = $this->page_size;
-		$search            = new api_listing_search(
+		$listing_page_size      = $this->page_size;
+		$search                 = new api_listing_search(
 			$slipstream_token_query->slipstream_token,
 			$listing_page_size,
-			$market,
+			$this->market,
 			false,
 			$this->total_wp_results
 		);
@@ -445,7 +447,7 @@ class snippet_data_search {
 
 				if ( $listing_data->combined_address ) {
 
-					$address_new = str_replace( "'", "\'", $listing_data->combined_address );
+					$address_new  = str_replace( "'", "\'", $listing_data->combined_address );
 					$address_new2 = str_replace( '"', '\"', $address_new );
 
 					$map_data_array_src[] = array(

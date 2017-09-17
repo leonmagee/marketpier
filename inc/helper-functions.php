@@ -102,6 +102,20 @@ function get_key( $extended_fields, $market, $field_name ) {
 	return $key;
 }
 
+function get_all_keys( $extended_fields, $market ) {
+	foreach ( $extended_fields as $fields ) {
+		if ( $fields['market'] === $market ) {
+			$key_array = array();
+			foreach ( $fields['fields'] as $field ) {
+				$key_array[] = $field['key'];
+			}
+		}
+	}
+	$fields_new = implode( '|', $key_array );
+
+	return $fields_new;
+}
+
 /**
  * Determine how many idx listings to return based on page size, wp listing count, and current page
  *
