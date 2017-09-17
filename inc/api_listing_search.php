@@ -165,6 +165,7 @@ class api_listing_search {
 				$page_number,
 				$total_num_listings
 			);
+			var_dump( 'IDX NEEDED', $idx_listings_needed );
 			//var_dump( 'IDX Needed', $idx_listings_needed );
 
 			$page_number = idx_listings_current_page( $this->page_size, $this->wp_listing_count, $page_number );
