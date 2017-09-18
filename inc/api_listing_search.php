@@ -26,20 +26,21 @@ class api_listing_search {
 	public $transient_name;
 	public $is_search;
 	public $sold_single;
+	public $default_property_types;
 
-	public function __construct( $token, $page_size, $market, $mls_number = false, $wp_listing_count = false, $is_search = true, $sold_single = false ) {
-		$this->market        = $market;
-		$this->token         = $token;
-		$this->details       = true;
-		$this->extended      = true;
-		$this->features      = true;
-		$this->page_size     = $page_size;
-		$this->network_error = false;
-		$this->mls_number    = $mls_number;
-		//$this->listing_type     = 'Commercial';
-		$this->wp_listing_count = $wp_listing_count;
-		$this->is_search        = $is_search;
-		$this->sold_single      = $sold_single;
+	public function __construct( $token, $page_size, $market, $mls_number = false, $wp_listing_count = false, $is_search = true, $sold_single = false, $default_property_types = false ) {
+		$this->market                 = $market;
+		$this->token                  = $token;
+		$this->details                = true;
+		$this->extended               = true;
+		$this->features               = true;
+		$this->page_size              = $page_size;
+		$this->network_error          = false;
+		$this->mls_number             = $mls_number;
+		$this->wp_listing_count       = $wp_listing_count;
+		$this->is_search              = $is_search;
+		$this->sold_single            = $sold_single;
+		$this->default_property_types = $default_property_types;
 		debug_dump( $this->market );
 	}
 
@@ -82,7 +83,8 @@ class api_listing_search {
 					/**
 					 * @todo This needs to pull from theme settings too? in one place? passed as parameter to this class?
 					 */
-					$listing_type_string = '&propertyType=Warehouse|Heavy Mfg|Light Mfg|Com-BusOp|Res Income 2-4 Units|Com-Res Income|Com-MobHmPark|Office|Retail|Com-Hotel Motel|Lots/Land|Other/Remarks|Mixed Usage';
+					//$listing_type_string = '&propertyType=Warehouse|Heavy Mfg|Light Mfg|Com-BusOp|Res Income 2-4 Units|Com-Res Income|Com-MobHmPark|Office|Retail|Com-Hotel Motel|Lots/Land|Other/Remarks|Mixed Usage';
+					$listing_type_string = $this->default_property_types;
 				}
 			}
 		}

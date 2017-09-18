@@ -33,6 +33,7 @@ class snippet_data_search {
 	public $days_on_market;
 	public $author_id;
 	public $status_all; // @todo is this needed? - fix to show all listings on author.php
+	public $all_keys;
 
 	public function __construct( $author_id = false, $status_all = false ) {
 		/**
@@ -64,7 +65,7 @@ class snippet_data_search {
 			$this->page_number = 1;
 		}
 		//$this->market = 'sandicor';
-		$this->market = 'crmls';
+		$this->market    = 'crmls';
 		$this->page_size = 500;
 		//$this->page_size = 10;
 		//$this->page_size = 3;
@@ -396,10 +397,9 @@ class snippet_data_search {
 		 */
 
 		$property_type_data = get_field( 'home_junction_property_types', 'option' );
-		//$key                = get_key( $property_type_data, $this->market, 'industrial' );
-		//var_dump( $key );
-		$all_keys = get_all_keys( $property_type_data, $this->market );
-		debug_dump( $all_keys );
+		//$all_keys = get_all_keys( $property_type_data, $this->market );
+		$this->all_keys = get_all_keys( $property_type_data, $this->market );
+		debug_dump( $this->all_keys );
 		/**
 		 * @todo loop through to get all property types and combine in one string...
 		 */
@@ -412,7 +412,7 @@ class snippet_data_search {
 				debug_dump( $parameters['property_type'] );
 
 			} else {
-				$parameters['property_type'] = '&propertyType=' . $all_keys;
+				$parameters['property_type'] = '&propertyType=' . $this->all_keys;
 			}
 		}
 
@@ -433,7 +433,8 @@ class snippet_data_search {
 			$listing_page_size,
 			$this->market,
 			false,
-			$this->total_wp_results
+			$this->total_wp_results,
+			$this->all_keys
 		);
 		$search->search_listings( $parameters, $page_number );
 
@@ -446,7 +447,7 @@ class snippet_data_search {
 
 			foreach ( $listings as $listing ) {
 
-				$listing_data = new snippet_data($this->market);
+				$listing_data = new snippet_data( $this->market );
 				$listing_data->listing_data_from_IDX( $listing );
 
 				$snippet_objects[] = $listing_data;
