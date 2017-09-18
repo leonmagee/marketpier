@@ -65,8 +65,8 @@ class snippet_data_search {
 		}
 		//$this->market = 'sandicor';
 		$this->market = 'crmls';
-		//$this->page_size = 500;
-		$this->page_size = 10;
+		$this->page_size = 500;
+		//$this->page_size = 10;
 		//$this->page_size = 3;
 
 		/**
@@ -334,6 +334,7 @@ class snippet_data_search {
 					if ( in_array( $city_zip, $zip_zip_array ) ) {
 						$market_new   = $item['market'];
 						$this->market = $market_new;
+						break;
 					}
 				}
 				$parameters['zip'] = $city_zip;
