@@ -385,8 +385,11 @@
       //text-align: left;
       //padding: 3px 15px;
       //color: #444;
+      color: #666;
+      font-size: 0.9em;
+      text-transform: uppercase;
       &:hover {
-        //color: $brand-primary;
+        color: $brand-primary;
       }
     }
   }
