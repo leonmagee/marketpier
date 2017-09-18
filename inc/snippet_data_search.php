@@ -446,7 +446,7 @@ class snippet_data_search {
 
 			foreach ( $listings as $listing ) {
 
-				$listing_data = new snippet_data();
+				$listing_data = new snippet_data($this->market);
 				$listing_data->listing_data_from_IDX( $listing );
 
 				$snippet_objects[] = $listing_data;

@@ -29,6 +29,11 @@ class snippet_data {
 	public $combined_address;
 	public $listing_url;
 	public $favorite_listing;
+	public $market;
+
+	public function __construct( $market = false ) {
+		$this->market = $market;
+	}
 
 	/**
 	 * @param $image_gallery
@@ -128,7 +133,7 @@ class snippet_data {
 
 		$this->listing_id  = $listing->id; // mls number
 		$this->status      = $listing->status;
-		$this->listing_url = site_url() . '/listing/idx/' . strtolower( $this->status ) . '/' . $this->listing_id;
+		$this->listing_url = site_url() . '/listing/idx/' . $this->market . '/' . strtolower( $this->status ) . '/' . $this->listing_id;
 		//var_dump( $this->listing_url );
 		$this->price          = $listing->listPrice;
 		$this->address        = $listing->address->deliveryLine;

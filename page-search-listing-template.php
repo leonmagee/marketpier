@@ -155,7 +155,7 @@ get_header();
                             <a href="" class="contact-link"><i class="fa fa-envelope" aria-hidden="true"></i>
                                 Contact</a>
                         </div>
-                        <a class="snippet-link-outer" href="<?php echo $snippet->listing_url; ?>">
+                        <a class="snippet-link-outer" target="_blank" href="<?php echo $snippet->listing_url; ?>">
                             <div class="snippet-outer-wrap">
                                 <div class="image-wrap"
                                      style="background-image: url(<?php echo $snippet->image_gallery_first; ?>);">
