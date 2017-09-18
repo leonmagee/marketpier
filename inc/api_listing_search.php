@@ -40,6 +40,7 @@ class api_listing_search {
 		$this->wp_listing_count = $wp_listing_count;
 		$this->is_search        = $is_search;
 		$this->sold_single      = $sold_single;
+		debug_dump( $this->market );
 	}
 
 	public function search_listings( $parameters = null, $page_number = 1 ) {
@@ -165,7 +166,7 @@ class api_listing_search {
 				$page_number,
 				$total_num_listings
 			);
-			var_dump( 'IDX NEEDED', $idx_listings_needed );
+			debug_dump( 'IDX NEEDED', $idx_listings_needed );
 			//var_dump( 'IDX Needed', $idx_listings_needed );
 
 			$page_number = idx_listings_current_page( $this->page_size, $this->wp_listing_count, $page_number );

@@ -35,8 +35,6 @@ class snippet_data_search {
 	public $status_all; // @todo is this needed? - fix to show all listings on author.php
 
 	public function __construct( $author_id = false, $status_all = false ) {
-		//$this->market = 'sandicor';
-		$this->market = 'crmls';
 		/**
 		 * Data from $_GET
 		 */
@@ -65,8 +63,10 @@ class snippet_data_search {
 		} else {
 			$this->page_number = 1;
 		}
-		$this->page_size = 500;
-		//$this->page_size = 10;
+		//$this->market = 'sandicor';
+		$this->market = 'crmls';
+		//$this->page_size = 500;
+		$this->page_size = 10;
 		//$this->page_size = 3;
 
 		/**
@@ -95,6 +95,10 @@ class snippet_data_search {
 		/**
 		 * @todo use this same function for IDX city or zip code search?
 		 * @todo test this with WP and then IDX data to make it work
+		 */
+
+		/**
+		 * @todo maybe change the market here? this way it doesn't need to check the zip code array unless one has been set.
 		 */
 		$meta_search_array = array();
 		if ( $city_zip = $this->city_zip ) {
@@ -322,7 +326,18 @@ class snippet_data_search {
 		 */
 		if ( $city_zip = $this->city_zip ) {
 			if ( is_numeric( $city_zip ) ) {
+
+				$zip_array = get_field( 'market_zip_codes', 'option' );
+
+				foreach ( $zip_array as $item ) {
+					$zip_zip_array = explode( "\n", str_replace( "\r", "", $item['zip_codes'] ) );
+					if ( in_array( $city_zip, $zip_zip_array ) ) {
+						$market_new   = $item['market'];
+						$this->market = $market_new;
+					}
+				}
 				$parameters['zip'] = $city_zip;
+
 			} else {
 				$parameters['city'] = $city_zip;
 			}
@@ -383,7 +398,7 @@ class snippet_data_search {
 		//$key                = get_key( $property_type_data, $this->market, 'industrial' );
 		//var_dump( $key );
 		$all_keys = get_all_keys( $property_type_data, $this->market );
-		var_dump( $all_keys );
+		debug_dump( $all_keys );
 		/**
 		 * @todo loop through to get all property types and combine in one string...
 		 */
@@ -393,7 +408,7 @@ class snippet_data_search {
 			if ( $property_type !== 'all_property_types' ) {
 
 				$parameters['property_type'] = '&propertyType=' . get_key( $property_type_data, $this->market, $property_type );
-				var_dump( $parameters['property_type'] );
+				debug_dump( $parameters['property_type'] );
 
 			} else {
 				$parameters['property_type'] = '&propertyType=' . $all_keys;

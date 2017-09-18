@@ -181,3 +181,22 @@ function idx_listings_current_page( $page_size, $wp_count, $page_number ) {
 
 	return $page_number_new;
 }
+
+/**
+ * Use this function to do var dumps - it can be toggled on and off by changing $debug value
+ * @todo remove instances of this function when site goes live
+ *
+ * @param null $one
+ * @param null $two
+ * @param bool $debug
+ */
+function debug_dump( $one = null, $two = null, $debug = true ) {
+	if ( $debug ) {
+		if ( $one ) {
+			var_dump( $one );
+		}
+		if ( $two ) {
+			var_dump( $two );
+		}
+	}
+}
