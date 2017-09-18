@@ -341,6 +341,16 @@ class snippet_data_search {
 				$parameters['zip'] = $city_zip;
 
 			} else {
+				$cities_array = get_field( 'market_cities', 'option' );
+				$city_lower   = strtolower( $city_zip );
+				foreach ( $cities_array as $item ) {
+					$city_city_array = explode( "\n", str_replace( "\r", "", strtolower( $item['cities'] ) ) );
+					if ( in_array( $city_lower, $city_city_array ) ) {
+						$market_new   = $item['market'];
+						$this->market = $market_new;
+						break;
+					}
+				}
 				$parameters['city'] = $city_zip;
 			}
 		}
