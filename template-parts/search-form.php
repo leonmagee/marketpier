@@ -77,6 +77,14 @@ if ( isset( $_GET['status'] ) ) {
                     <input type="text" placeholder="<?php echo get_field( 'search_input_placeholder', 'option' ); ?>"
                            name="city-zip"/>
 				<?php } ?>
+                <div class="county-choices">
+		            <?php
+		            $counties_array = get_field( 'market_counties', 'option' );
+		            $counties       = all_counties_array( $counties_array );
+		            foreach ( $counties as $county ) { ?>
+                        <a><?php echo $county; ?></a>
+		            <?php } ?>
+                </div>
             </div>
             <input class="submit-input" type="submit" value="Search"/>
         </div>

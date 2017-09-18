@@ -190,7 +190,7 @@ function idx_listings_current_page( $page_size, $wp_count, $page_number ) {
  * @param null $two
  * @param bool $debug
  */
-function debug_dump( $one = null, $two = null, $debug = true ) {
+function debug_dump( $one = null, $two = null, $debug = false ) {
 	if ( $debug ) {
 		if ( $one ) {
 			var_dump( $one );
@@ -199,4 +199,17 @@ function debug_dump( $one = null, $two = null, $debug = true ) {
 			var_dump( $two );
 		}
 	}
+}
+
+function all_counties_array( $counties ) {
+	$all_counties = array();
+
+	foreach ( $counties as $county ) {
+		$county_county_array = explode( "\n", str_replace( "\r", "", $county['counties'] ) );
+		foreach ( $county_county_array as $county_item ) {
+			$all_counties[] = $county_item;
+		}
+	}
+
+	return $all_counties;
 }

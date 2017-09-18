@@ -173,6 +173,19 @@
         $('input[name="page-number"]').val(1);
     });
 
+
+    /**
+     * Form County Select
+     */
+
+    $('.county-choices a').click(function () {
+        //console.log($(this).html());
+        var county_name = $(this).html();
+
+        $('input[name="city-zip"]').val(county_name);
+    })
+
+
     // $('.two-buttons #sale-listing').click(function () {
     //     $('div[data-name="listing_for_sale_or_for_lease"] select').val('for_sale');
     //     $('.two-buttons #lease-listing').removeClass('active');

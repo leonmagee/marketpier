@@ -50,6 +50,11 @@
       @media(min-width: $screen-sm) {
         flex: 1 1 44%;
       }
+      &:hover {
+        .county-choices {
+          display: block;
+        }
+      }
     }
     i {
       font-size: 20px;
@@ -149,6 +154,7 @@
     }
     .input-wrap {
       padding: 5px;
+      position: relative;
       @media(min-width: $screen-sm) {
         padding: 0 5px;
       }
@@ -165,6 +171,11 @@
       &.main-input {
         @media(min-width: $screen-sm) {
           flex: 1 1 40%;
+        }
+        &:hover {
+          .county-choices {
+            display: block;
+          }
         }
       }
       input, select {
@@ -332,6 +343,51 @@
   .input-style-snippet-wrap {
     input, select {
       @include form_text_snippet_adv;
+    }
+  }
+}
+
+.county-choices {
+  position: absolute;
+  background: #FFF;
+  width: 95%;
+  top: 45px;
+  border-radius: 5px;
+  padding: 10px 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  z-index: 1000000000000;
+  display: none;
+  a {
+    display: block;
+    text-align: left;
+    padding: 3px 15px;
+    color: #444;
+    &:hover {
+      color: $brand-primary;
+    }
+  }
+}
+
+.search-form-wrap-snippets {
+  .county-choices {
+    //position: absolute;
+    //background: #FFF;
+    //width: 95%;
+    top: 36px;
+    border-radius: 0;
+    left: 8px;
+    //padding: 10px 0;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    //z-index: 1000000000000;
+    //display: none;
+    a {
+      //display: block;
+      //text-align: left;
+      //padding: 3px 15px;
+      //color: #444;
+      &:hover {
+        //color: $brand-primary;
+      }
     }
   }
 }
