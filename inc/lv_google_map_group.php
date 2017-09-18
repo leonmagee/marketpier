@@ -168,9 +168,14 @@ class lv_google_map_group {
 
                             var current_link = url_array[index];
                             new_marker_link(marker, current_link);
+                            function openInNewTab(url) {
+                                var win = window.open(url, '_blank');
+                                win.focus();
+                            }
                             function new_marker_link(marker, current_link) {
                                 marker.addListener('click', function () {
-                                    window.location.href = current_link;
+                                    //window.location.href = current_link;
+                                    openInNewTab(current_link);
                                 });
                             }
                         }
