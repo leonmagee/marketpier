@@ -341,17 +341,41 @@ class snippet_data_search {
 				$parameters['zip'] = $city_zip;
 
 			} else {
-				$cities_array = get_field( 'market_cities', 'option' );
-				$city_lower   = strtolower( $city_zip );
-				foreach ( $cities_array as $item ) {
-					$city_city_array = explode( "\n", str_replace( "\r", "", strtolower( $item['cities'] ) ) );
-					if ( in_array( $city_lower, $city_city_array ) ) {
-						$market_new   = $item['market'];
-						$this->market = $market_new;
-						break;
+				/**
+				 * First Check if this is a county search
+				 * @todo this needs to pull from a repeater field as well
+				 */
+				if ( strpos( strtolower( $city_zip ), 'county' ) ) {
+					$counties_array = get_field( 'market_counties', 'option' );
+					foreach ( $counties_array as $item ) {
+						$county_lower        = strtolower( $city_zip );
+						$county_county_array = explode( "\n", str_replace( "\r", "", strtolower( $item['counties'] ) ) );
+						if ( in_array( $county_lower, $county_county_array ) ) {
+							$market_new           = $item['market'];
+							$this->market         = $market_new;
+							$county               = str_replace( ' county', '', $county_lower );
+							$parameters['county'] = $county;
+							break;
+						}
 					}
+
+
+				} else {
+					/**
+					 * Proceed with city search
+					 */
+					$cities_array = get_field( 'market_cities', 'option' );
+					$city_lower   = strtolower( $city_zip );
+					foreach ( $cities_array as $item ) {
+						$city_city_array = explode( "\n", str_replace( "\r", "", strtolower( $item['cities'] ) ) );
+						if ( in_array( $city_lower, $city_city_array ) ) {
+							$market_new   = $item['market'];
+							$this->market = $market_new;
+							break;
+						}
+					}
+					$parameters['city'] = $city_zip;
 				}
-				$parameters['city'] = $city_zip;
 			}
 		}
 		/**

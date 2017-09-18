@@ -114,6 +114,10 @@ class api_listing_search {
 				$city_string = '&address.city=' . $city;
 			}
 		}
+		if ( $county = $parameters['county'] ) {
+			$county_string = '&county=' . $county;
+		}
+
 		if ( $size = $parameters['size'] ) {
 			$size_string = '&size=' . $size;
 		}
