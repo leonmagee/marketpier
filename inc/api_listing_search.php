@@ -74,6 +74,7 @@ class api_listing_search {
 		if ( $status !== 'sold' ) {
 			if ( $listing_property_type = $parameters['property_type'] ) {
 				$listing_type_string = $listing_property_type;
+				debug_dump( $listing_type_string );
 				/**
 				 * @todo if the property type here returns 'no-idx' then we need to return no results.
 				 */
@@ -85,6 +86,7 @@ class api_listing_search {
 					 */
 					//$listing_type_string = '&propertyType=Warehouse|Heavy Mfg|Light Mfg|Com-BusOp|Res Income 2-4 Units|Com-Res Income|Com-MobHmPark|Office|Retail|Com-Hotel Motel|Lots/Land|Other/Remarks|Mixed Usage';
 					$listing_type_string = $this->default_property_types;
+					debug_dump( $listing_type_string );
 				}
 			}
 		}
@@ -179,6 +181,7 @@ class api_listing_search {
 			$url = 'https://slipstream.homejunction.com/ws/sales/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $sold_in_last_string . '&pageNumber=' . $page_number;
 		} else {
 			$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $days_on_market_string . '&pageNumber=' . $page_number;
+			debug_dump($url);
 		}
 
 		$listings = wp_remote_get( $url, array( 'headers' => array( 'HJI-Slipstream-Token' => $this->token ) ) );

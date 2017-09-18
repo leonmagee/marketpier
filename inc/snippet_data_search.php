@@ -411,9 +411,10 @@ class snippet_data_search {
 				$parameters['property_type'] = '&propertyType=' . get_key( $property_type_data, $this->market, $property_type );
 				debug_dump( $parameters['property_type'] );
 
-			} else {
-				$parameters['property_type'] = '&propertyType=' . $this->all_keys;
 			}
+//			else {
+//				$parameters['property_type'] = '&propertyType=' . $this->all_keys;
+//			}
 		}
 
 		/**
@@ -434,7 +435,9 @@ class snippet_data_search {
 			$this->market,
 			false,
 			$this->total_wp_results,
-			$this->all_keys
+			true,
+			false,
+			'&propertyType=' . $this->all_keys
 		);
 		$search->search_listings( $parameters, $page_number );
 
