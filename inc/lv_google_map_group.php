@@ -125,17 +125,24 @@ class lv_google_map_group {
                         /**
                          *  Create Map Markers
                          */
+//                        var squareBg = {
+//                            path: 'M95.62,34.988c0,5.522-4.478,10-10,10H14.38c-5.523,0-10-4.478-10-10V15.011c0-5.522,4.477-9.999,10-9.999h71.24c5.522,0,10,4.477,10,9.999V34.988z',
+//                            fillColor: '#00A3E4',
+//                            fillOpacity: 1,
+//                            scale: 0.47,
+//                            strokeColor: '#FFF',
+//                            strokeWeight: 3,
+//                            color: '#FFF',
+//                            labelOrigin: new google.maps.Point(47, 25),
+//                            anchor: new google.maps.Point(9, 35),
+//                        };
+                        var marker_url = '<?php echo get_stylesheet_directory_uri() . '/assets/img/map_marker_shadow.png'; ?>';
                         var squareBg = {
-                            path: 'M95.62,34.988c0,5.522-4.478,10-10,10H14.38c-5.523,0-10-4.478-10-10V15.011c0-5.522,4.477-9.999,10-9.999h71.24c5.522,0,10,4.477,10,9.999V34.988z',
-                            fillColor: '#00A3E4',
-                            fillOpacity: 1,
-                            scale: 0.47,
-                            strokeColor: '#FFF',
-                            strokeWeight: 3,
-                            color: '#FFF',
-                            labelOrigin: new google.maps.Point(47, 25),
-                            anchor: new google.maps.Point(9, 35),
-                        };
+                            url: marker_url,
+                            scaledSize: new google.maps.Size(50, 25),
+                            labelOrigin: new google.maps.Point(25, 13),
+                            anchor: new google.maps.Point(9, 35)
+                        }
                         for (var index = 0; index < array_length; ++index) {
                             var current_price = price_array[index];
                             if (current_price) {

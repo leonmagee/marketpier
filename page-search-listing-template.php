@@ -11,21 +11,15 @@ require_once( 'inc/snippet_data_search.php' );
 require_once( 'inc/lv_google_map_group.php' );
 require_once( 'inc/form-process-submit.php' );
 $snippets_query = new snippet_data_search();
-//var_dump( $snippets_query->status );
-//var_dump( $snippets_query );
-$snippets = $snippets_query->snippet_object_array;
-//var_dump( $snippets );
-//var_dump( $snippets_query );
-$page_number   = $snippets_query->page_number;
-$page_size     = $snippets_query->page_size;
-$total_results = $snippets_query->total_results;
-$total_pages   = intval( ceil( ( $total_results / $page_size ) ) );
-//var_dump( $page_number );
-//var_dump( $page_size );
-//var_dump( $total_results );
-//var_dump( $total_pages );
+$snippets       = $snippets_query->snippet_object_array;
+$page_number    = $snippets_query->page_number;
+$page_size      = $snippets_query->page_size;
+$total_results  = $snippets_query->total_results;
+$total_pages    = intval( ceil( ( $total_results / $page_size ) ) );
 
 get_header();
+//$map_marker_url = get_stylesheet_directory_uri() . '/assets/img/map_marker_shadow.png';
+//debug_dump( $map_marker_url );
 ?>
     <div class="search-listings-wrap">
         <div class="search-listings-half map-half">
@@ -113,7 +107,8 @@ get_header();
                     <a class="active-sold-link current">Sold Listings</a>
 				<?php } ?>
                 <a class="active-sold-link"
-                   href="<?php echo site_url(); ?>/search-listings/?status=active&for_sale_lease=for_sale&property_type=all_property_types&page_number=1">Reset Search</a>
+                   href="<?php echo site_url(); ?>/search-listings/?status=active&for_sale_lease=for_sale&property_type=all_property_types&page_number=1">Reset
+                    Search</a>
             </div>
 			<?php
 			/**
