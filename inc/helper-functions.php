@@ -201,14 +201,19 @@ function debug_dump( $one = null, $two = null, $debug = false ) {
 	}
 }
 
-function all_counties_array( $counties ) {
+/**
+ * Used output counties saved in repeater field for dropdown.
+ *
+ * @param $counties
+ *
+ * @return array
+ */
+function all_counties_array() {
 	$all_counties = array();
 
-	foreach ( $counties as $county ) {
-		$county_county_array = explode( "\n", str_replace( "\r", "", $county['counties'] ) );
-		foreach ( $county_county_array as $county_item ) {
-			$all_counties[] = $county_item;
-		}
+	$counties_array = get_field( 'search_dropdown_counties', 'option' );
+	foreach ( $counties_array as $county ) {
+		$all_counties[] = $county['county'];
 	}
 
 	return $all_counties;
