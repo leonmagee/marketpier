@@ -58,6 +58,9 @@ $input_fields = account_settings::output_input_array( $agent_id ); ?>
 			<?php } ?>
 
         </div>
+        <div class="reset-password-link">
+            <a href="/wp-login.php?action=lostpassword">Reset Password</a>
+        </div>
 
         <div class="agent-update-submit-wrap">
             <a type="submit" class="mp-button" id="account-settings-submit">Update</a>
