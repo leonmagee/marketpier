@@ -141,14 +141,13 @@ add_action( 'wp_ajax_nopriv_mp_register_user', 'mp_register_user' );
  *  Favorite Listing
  */
 function mp_save_favorite_listing() {
+
 	if ( isset( $_POST['listing_id'] ) ) {
 
 		$listing_id      = $_POST['listing_id'];
 		$listing_address = $_POST['listing_address'];
 		$listing_url     = $_POST['listing_url'];
 		$user_id         = $_POST['user_id'];
-
-		wp_die($listing_address);
 
 		global $wpdb;
 		$prefix     = $wpdb->prefix;
@@ -164,11 +163,11 @@ function mp_save_favorite_listing() {
 		} else {
 
 			$wpdb->insert( $table_name, array(
-				'time'            => current_time( 'mysql' ),
-				'user_id'         => $user_id,
-				'listing_id'      => $listing_id,
-				'listing_address' => $listing_address,
-				'listing_url'     => $listing_url
+				'time'          => current_time( 'mysql' ),
+				'user_id'       => $user_id,
+				'listing_id'    => $listing_id,
+				'listing_title' => $listing_address,
+				'listing_url'   => $listing_url
 			) );
 		}
 	}

@@ -27,35 +27,19 @@ get_header(); ?>
 						global $wpdb;
 						$prefix     = $wpdb->prefix;
 						$table_name = $prefix . 'mp_favorite_listings';
-						$user_id = MP_LOGGED_IN_ID;
+						$user_id    = MP_LOGGED_IN_ID;
 
-						$favorite_query         = "SELECT * FROM `{$table_name}` WHERE `user_id` = '{$user_id}'";
+						$favorite_query = "SELECT * FROM `{$table_name}` WHERE `user_id` = '{$user_id}'";
 
-						$favorite_result = $wpdb->get_results($favorite_query);
-
-						$favorite_array = array();
-						foreach( $favorite_result as $favorite ) {
-							var_dump(  $favorite );
-						   $favorite_array[] = $favorite->listing_id;
-                        }
-
-						$args = array(
-							'post_type'   => 'mp-listing',
-                            'post__in' => $favorite_array
-						);
-
-						$mp_listing_query = new WP_Query( $args ); ?>
+						$favorite_result = $wpdb->get_results( $favorite_query ); ?>
 
                         <div class="user-listings-wrap">
-							<?php if ( $mp_listing_query->have_posts() && $favorite_array) {
-								while ( $mp_listing_query->have_posts() ) {
-									$mp_listing_query->the_post();
-									$listing_id = $post->ID;
-									?>
+							<?php if ( $favorite_result ) {
+								foreach ( $favorite_result as $favorite ) { ?>
                                     <div class="logged-in-user-listing">
-                                        <span><?php the_title(); ?></span>
+                                        <span><?php echo $favorite->listing_title ?></span>
                                         <span class="view-edit-links">
-                                    <a href="<?php the_permalink(); ?>">view</a>
+                                    <a href="<?php echo $favorite->listing_url ?>">view</a>
                                     </span>
                                     </div>
 								<?php }
@@ -67,7 +51,7 @@ get_header(); ?>
                         </div>
                     </div>
 
-	                <?php get_template_part( 'template-parts/logged-in-user-sidebar' ); ?>
+					<?php get_template_part( 'template-parts/logged-in-user-sidebar' ); ?>
                 </div>
             </div>
         </main>

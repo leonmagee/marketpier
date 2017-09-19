@@ -26,7 +26,7 @@ get_header(); ?>
 					$slipstream_token_query->slipstream_token,
 					$listing_page_size,
 					$market,
-					'OC17200911'
+					'OC16184742'
 				);
 				//160045736
 				//130048559
@@ -44,7 +44,8 @@ get_header(); ?>
 				//					$parameters['property_type'] = '&propertyType=Res Income 2-4 Units';
 				$search->search_listings( $parameters );
 				//$search->search_listings();
-				var_dump( $search );
+				//var_dump( $search );
+				var_dump( $search->search_result );
 				echo "<h1>Listings</h1>";
 				//var_dump( $search );
 				//				if ( $search->search_result ) {
