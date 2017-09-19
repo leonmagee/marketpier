@@ -13,8 +13,8 @@ class lv_create_table {
 	public static function create_table_favorite_listings() {
 
 		global $wpdb;
-		$prefix     = $wpdb->prefix;
-		$table_name = $prefix . 'mp_favorite_listings';
+		$prefix          = $wpdb->prefix;
+		$table_name      = $prefix . 'mp_favorite_listings';
 		$charset_collate = $wpdb->get_charset_collate();
 
 		$sql = "CREATE TABLE $table_name (
@@ -22,6 +22,8 @@ class lv_create_table {
 		time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
 		user_id mediumint(9) NOT NULL,
 		listing_id bigint(9) NOT NULL,
+		listing_title text NOT NULL,
+		listing_url text NOT NULL
 		PRIMARY KEY  (id)
 	) $charset_collate;";
 
@@ -32,8 +34,8 @@ class lv_create_table {
 	public static function create_table_saved_searches() {
 
 		global $wpdb;
-		$prefix     = $wpdb->prefix;
-		$table_name = $prefix . 'mp_saved_searches';
+		$prefix          = $wpdb->prefix;
+		$table_name      = $prefix . 'mp_saved_searches';
 		$charset_collate = $wpdb->get_charset_collate();
 
 		$sql = "CREATE TABLE $table_name (

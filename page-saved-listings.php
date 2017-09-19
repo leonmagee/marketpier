@@ -35,6 +35,7 @@ get_header(); ?>
 
 						$favorite_array = array();
 						foreach( $favorite_result as $favorite ) {
+							var_dump(  $favorite );
 						   $favorite_array[] = $favorite->listing_id;
                         }
 

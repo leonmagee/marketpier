@@ -78,6 +78,9 @@ if ( $request_details[2] == 'idx' ) {
 					} else {
 						$saved_class = '';
 					}
+					/**
+					 * @todo here we want to replace the 'listing-id' with 'listing-title' and 'listing-url'
+					 */
 					?>
                     <a href="#" user_id="<?php echo MP_LOGGED_IN_ID; ?>"
                        listing_id="<?php echo $listing_data->listing_id; ?>"
