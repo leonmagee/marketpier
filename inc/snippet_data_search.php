@@ -75,7 +75,9 @@ class snippet_data_search {
 		 */
 		$this->process_wp_search();
 
-		$this->process_idx_search();
+		if ( ! $author_id ) {
+			$this->process_idx_search();
+		}
 	}
 
 	public function process_wp_search() {

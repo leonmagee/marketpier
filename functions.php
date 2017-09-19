@@ -319,6 +319,7 @@ function create_agent_role() {
 	$role->add_cap( 'read' );
 	$role->add_cap( 'upload_files' );
 	$role->add_cap( 'unfiltered_upload' );
+	$role->add_cap( 'level_1' );
 }
 
 

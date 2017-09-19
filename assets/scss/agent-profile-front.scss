@@ -82,6 +82,9 @@
         height: auto;
       }
     }
+    //.search-listings-wrap {
+    //  opacity: 0;
+    //}
 
   }
   .testimonials-bio-section {
@@ -96,25 +99,18 @@
       text-align: center;
       height: auto;
       display: block;
+      max-width: 700px;
+      margin: 35px auto;
       .search-listings-half {
-        //margin: 0 auto;
         .snippet-outer-outer-wrap {
           margin: 20px 0;
           border-right: 1px solid #EEE;
 
-          .image-wrap { // @todo something is weird about sizing the images like this
-            position: relative;
-            img {
-              width: 100%;
-              @media(min-width: $screen-sm) {
-                width: auto;
-                max-width: 275px;
-                min-height: 197px;
-              }
-            }
-          }
         }
       }
+    }
+    .testimonials {
+      margin-bottom: 50px;
     }
   }
 }
