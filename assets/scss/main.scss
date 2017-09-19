@@ -40,18 +40,23 @@ div.tos-cation-0 {
 }
 
 header.entry-header {
+  text-align: center;
+  padding: 30px 0 15px;
   h1.entry-title {
     color: #111;
-    font-size: 28px;
+    font-size: 25px;
     text-transform: uppercase;
     border-bottom: 1px solid #F2F2F2;
-    margin: 20px 0 5px;
+    margin: 0 0 5px;
     text-align: center;
     padding-bottom: 1px;
     @media(min-width: $screen-sm) {
-      font-size: 40px;
-      margin: 30px 0 5px;
-      text-align: left;
+      border-top: 1px solid #F2F2F2;
+      font-size: 30px;
+      //margin: 30px 0 5px;
+      padding: 0 25px 1px;
+      display: inline;
+      //text-align: left;
     }
   }
 }
