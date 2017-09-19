@@ -217,13 +217,20 @@ function marketpier_scripts() {
 //	$google_maps_url = "https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyCicY4hdtrXeGNvBQSivkxAKOseNIDWZdc";
 //	wp_register_script( 'google-maps-api', $google_maps_url, '1.0.0', false );
 //	wp_enqueue_script( 'google-maps-api' );
-
-
-	//wp_enqueue_script( 'foundation-js' );
-
+//  wp_enqueue_script( 'foundation-js' );
 }
 
 add_action( 'wp_enqueue_scripts', 'marketpier_scripts' );
+
+function marketpier_admin_scripts() {
+	$google_fonts_libre_baskerville = 'https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700';
+
+	wp_register_style( 'google-fonts-libre-baskerville', $google_fonts_libre_baskerville, '', '1.0.1' );
+
+	wp_enqueue_style( 'google-fonts-libre-baskerville' );
+}
+
+add_action( 'login_enqueue_scripts', 'marketpier_admin_scripts' );
 
 /**
  * Implement the Custom Header feature.
@@ -416,3 +423,31 @@ function link_slipstream_url() {
 		}
 	}
 }
+
+/**
+ * Change admin logo
+ */
+
+function remove_login_logo() { ?>
+    <style type="text/css">
+        body.login div#login h1 a {
+            background-image: none;
+            background-size: 0 0;
+            height: 0;
+            margin: 0 auto 0;
+            width: 0;
+        }
+
+        }
+    </style>
+<?php }
+
+add_action( 'login_enqueue_scripts', 'remove_login_logo' );
+
+function marketpier_admin_logo_text() {
+	$message = "<div style='color: #111; margin: 30px 0 30px; text-align: center; font-size: 45px; font-family: Libre Baskerville; font-weight: 700;'>MarketPier</div>";
+
+	return $message;
+}
+
+add_filter( 'login_message', 'marketpier_admin_logo_text' );
