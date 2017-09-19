@@ -22,6 +22,41 @@ function mp_ajaxurl() {
 
 add_action( 'wp_head', 'mp_ajaxurl' );
 
+
+/**
+ *  Update Account Settings
+ */
+function mp_settings_update() {
+
+	if ( isset( $_POST['mp_agent_update_click'] ) ) {
+
+		$user = wp_get_current_user();
+
+		$agent_id = $user->ID;
+
+		/**
+		 *  Loop through agent fields
+		 *
+		 *  Process form submit method
+		 * @todo this might not work for each form - I might need to make this into two classes?
+		 */
+		$input_fields = account_settings::output_input_array( $agent_id );
+
+		foreach ( $input_fields as $input ) {
+
+			$input->update_value();
+		}
+	}
+}
+
+
+/**
+ *  Ajax Action Hooks - references name of JS function
+ */
+add_action( 'wp_ajax_mp_settings_update', 'mp_settings_update' );
+
+
+
 /**
  *  Update Agent Settings
  */
@@ -36,7 +71,8 @@ function mp_agent_update() {
 		/**
 		 *  Loop through agent fields
 		 *
-		 *  Process form submittal method
+		 *  Process form submit method
+         * @todo this might not work for each form - I might need to make this into two classes?
 		 */
 		$input_fields = agent_update::output_input_array( $agent_id );
 

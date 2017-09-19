@@ -60,7 +60,7 @@ $input_fields = account_settings::output_input_array( $agent_id ); ?>
         </div>
 
         <div class="agent-update-submit-wrap">
-            <a type="submit" class="mp-button" id="agent-update-submit">Update</a>
+            <a type="submit" class="mp-button" id="account-settings-submit">Update</a>
         </div>
 
     </form>
