@@ -62,6 +62,7 @@ class listing_data {
 	public $operating_expenses;  // net oerating income = gross income - oerating expenses
 	public $market;
 	public $sale_date;
+	public $listing_url;
 
 	public function standardize_image_gallery_WP( $image_gallery ) {
 		$image_gallery_array = array();
@@ -148,6 +149,7 @@ class listing_data {
 		$days_passed_timestamp = $current_date - $post_date;
 		$days_passed           = floor( $days_passed_timestamp / ( 60 * 60 * 24 ) );
 		$this->days_on_market  = $days_passed;
+		$this->listing_url     = get_the_permalink();
 
 		$this->standardize_image_gallery_WP( get_field( 'listing_image_gallery' ) );
 
@@ -253,6 +255,8 @@ class listing_data {
 		if ( $this->gross_operating_income && $this->operating_expenses ) {
 			$this->net_operating_income = ( $this->gross_operating_income - $this->operating_expenses );
 		}
+
+		$this->listing_url = site_url() . '/listing/idx/' . $this->market . '/' . strtolower( $this->status ) . '/' . $this->listing_id;
 
 		$this->standardize_image_gallery_IDX( $listing->images );
 		$this->listing_data_update();

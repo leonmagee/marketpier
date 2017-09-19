@@ -82,9 +82,7 @@ if ( $request_details[2] == 'idx' ) {
 					 * @todo here we want to replace the 'listing-id' with 'listing-title' and 'listing-url'
 					 */
 					?>
-                    <a href="#" user_id="<?php echo MP_LOGGED_IN_ID; ?>"
-                       listing_id="<?php echo $listing_data->listing_id; ?>"
-                       class="save-link <?php echo $saved_class; ?>"><i class="fa fa-heart"></i> Save<span>d</span><i
+                    <a href="#" user_id="<?php echo MP_LOGGED_IN_ID; ?>" listing_id="<?php echo $listing_data->listing_id; ?>" listing_address="<?php echo $listing_data->combined_address; ?>" listing_url="<?php echo $listing_data->listing_url; ?>" class="save-link <?php echo $saved_class; ?>"><i class="fa fa-heart"></i> Save<span>d</span><i
                                 class="fa fa-refresh fa-spin" aria-hidden="true"></i></a>
 				<?php } else { ?>
                     <a href="#" data-open="login-modal" class="save-link"><i class="fa fa-heart"></i> Save</a>

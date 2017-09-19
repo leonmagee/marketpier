@@ -56,7 +56,6 @@ function mp_settings_update() {
 add_action( 'wp_ajax_mp_settings_update', 'mp_settings_update' );
 
 
-
 /**
  *  Update Agent Settings
  */
@@ -72,7 +71,7 @@ function mp_agent_update() {
 		 *  Loop through agent fields
 		 *
 		 *  Process form submit method
-         * @todo this might not work for each form - I might need to make this into two classes?
+		 * @todo this might not work for each form - I might need to make this into two classes?
 		 */
 		$input_fields = agent_update::output_input_array( $agent_id );
 
@@ -144,8 +143,12 @@ add_action( 'wp_ajax_nopriv_mp_register_user', 'mp_register_user' );
 function mp_save_favorite_listing() {
 	if ( isset( $_POST['listing_id'] ) ) {
 
-		$listing_id = $_POST['listing_id'];
-		$user_id    = $_POST['user_id'];
+		$listing_id      = $_POST['listing_id'];
+		$listing_address = $_POST['listing_address'];
+		$listing_url     = $_POST['listing_url'];
+		$user_id         = $_POST['user_id'];
+
+		wp_die($listing_address);
 
 		global $wpdb;
 		$prefix     = $wpdb->prefix;
@@ -161,9 +164,11 @@ function mp_save_favorite_listing() {
 		} else {
 
 			$wpdb->insert( $table_name, array(
-				'time'       => current_time( 'mysql' ),
-				'user_id'    => $user_id,
-				'listing_id' => $listing_id
+				'time'            => current_time( 'mysql' ),
+				'user_id'         => $user_id,
+				'listing_id'      => $listing_id,
+				'listing_address' => $listing_address,
+				'listing_url'     => $listing_url
 			) );
 		}
 	}

@@ -136,8 +136,7 @@ get_header();
 									$saved_class = '';
 								}
 								?>
-                                <a href="#" user_id="<?php echo MP_LOGGED_IN_ID; ?>"
-                                   listing_id="<?php echo $snippet->listing_id; ?>"
+                                <a href="#" user_id="<?php echo MP_LOGGED_IN_ID; ?>" listing_id="<?php echo $snippet->listing_id; ?>" listing_address="<?php echo $snippet->combined_address; ?>" listing_url="<?php echo $snippet->listing_url; ?>"
                                    class="contact-link save-listing <?php echo $saved_class; ?>"><i
                                             class="fa fa-heart"></i> Save<span>d</span><i class="fa fa-refresh fa-spin"
                                                                                           aria-hidden="true"></i></a>

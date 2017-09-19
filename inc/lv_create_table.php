@@ -21,7 +21,7 @@ class lv_create_table {
 		id mediumint(9) NOT NULL AUTO_INCREMENT,
 		time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
 		user_id mediumint(9) NOT NULL,
-		listing_id bigint(9) NOT NULL,
+		listing_id text NOT NULL,
 		listing_title text NOT NULL,
 		listing_url text NOT NULL
 		PRIMARY KEY  (id)
