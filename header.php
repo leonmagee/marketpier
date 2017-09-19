@@ -74,10 +74,12 @@
                     </div>
 				<?php } else { ?>
                     <div class="create-listing-link">
-                        <a href="<?php echo site_url(); ?>/add-listing">Create Listing</a>
+                        <!--                        <a href="-->
+						<?php //echo site_url(); ?><!--/add-listing">Create Listing</a>-->
+                        <a data-open="login-modal">Create Listing</a>
                     </div>
                     <div class="login-sign-in">
-                        <a data-open="login-modal" href="#">
+                        <a data-open="login-modal">
                             Log In
                             <sep>/</sep>
                             Sign Up
@@ -95,12 +97,11 @@
 			'[caldera_form id="CF56d5c71c8a908"]',
 			'login-modal',
 			'Log In',
-            true
+			true
 		);
 
 		$log_in_modal->output_modal();
 		?>
-
 
     </header><!-- #masthead -->
 

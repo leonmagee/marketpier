@@ -4,6 +4,10 @@
  */
 if ( isset( $_POST['listing-search-form'] ) ) {
 
+	/**
+	 * @todo default for main search form
+	 * @todo - ?status=active&for_sale_lease=for_sale&property_type=all_property_types&page_number=1
+	 */
 
 	$page_number           = filter_input( INPUT_POST, 'page-number', FILTER_SANITIZE_ENCODED );
 	$search_for_sale_lease = filter_input( INPUT_POST, 'for-sale-lease', FILTER_SANITIZE_ENCODED );
@@ -70,6 +74,9 @@ if ( isset( $_POST['listing-search-form'] ) ) {
 	if ( $search_property_type ) {
 		$property_type_string = 'property_type=' . $search_property_type;
 		$search_input_array[] = $property_type_string;
+	} else {
+		$property_type_string = 'property_type=all_property_types';
+		$search_input_array[] = $property_type_string;
 	}
 
 	if ( $search_city_zip ) {
@@ -118,12 +125,15 @@ if ( isset( $_POST['listing-search-form'] ) ) {
 	}
 
 	if ( $sold_in_last ) {
-		$sold_in_last_string = 'sold_in_last=' . $sold_in_last;
-		$search_input_array[]  = $sold_in_last_string;
+		$sold_in_last_string  = 'sold_in_last=' . $sold_in_last;
+		$search_input_array[] = $sold_in_last_string;
 	}
 
 	if ( $page_number ) {
 		$page_number_string   = 'page_number=' . $page_number;
+		$search_input_array[] = $page_number_string;
+	} else {
+		$page_number_string   = 'page_number=1';
 		$search_input_array[] = $page_number_string;
 	}
 
