@@ -53,9 +53,10 @@
     display: none;
   }
   div[data-name="lease_type"], div[data-name="listing_type"] {
-    width: 100% !important;
+    //width: 100% !important;
     @media(min-width: $screen-md) {
-      padding: 0 250px;
+      //width: 35% !important;
+      //padding: 0 250px;
     }
   }
   .acf-field {
