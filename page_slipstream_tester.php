@@ -25,8 +25,8 @@ get_header(); ?>
 				$search = new api_listing_search(
 					$slipstream_token_query->slipstream_token,
 					$listing_page_size,
-					$market,
-					'OC16184742'
+					$market
+					//'OC16184742'
 				);
 				//160045736
 				//130048559

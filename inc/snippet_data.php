@@ -8,6 +8,7 @@ class snippet_data {
 	public $listing_id; // @todo idx vs. WP?
 	public $title;
 	public $price;
+	public $rent;
 	public $status;
 	//public $main_image;
 	public $property_name;
@@ -84,6 +85,7 @@ class snippet_data {
 		//$this->main_image           = get_field( 'listing_main_image' );
 		$this->property_name = get_field( 'listing_property_name' );
 		$this->price         = get_field( 'listing_price' );
+		$this->rent          = get_field( 'listing_monthly_rent' );
 		$this->address       = get_field( 'listing_address' );
 		$this->city          = get_field( 'listing_city' );
 		$this->state         = get_field( 'listing_state' );

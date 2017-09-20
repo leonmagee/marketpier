@@ -433,7 +433,6 @@ class snippet_data_search {
 		 */
 
 		$property_type_data = get_field( 'home_junction_property_types', 'option' );
-		//$all_keys = get_all_keys( $property_type_data, $this->market );
 		$this->all_keys = get_all_keys( $property_type_data, $this->market );
 		debug_dump( $this->all_keys );
 		/**
@@ -448,19 +447,11 @@ class snippet_data_search {
 				debug_dump( $parameters['property_type'] );
 
 			}
-//			else {
-//				$parameters['property_type'] = '&propertyType=' . $this->all_keys;
-//			}
 		}
 
-		/**
-		 * @todo does this do anything?
-		 */
 		if ( $lot_size_min = $this->lot_size_min ) {
+			$parameters['lot_size'] = $lot_size_min;
 		}
-//		if ( $days_on_market = $this->days_on_market ) {
-//		} else {
-//		}
 
 
 		$slipstream_token_query = new get_slipstream_token();

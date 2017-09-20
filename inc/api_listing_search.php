@@ -50,7 +50,7 @@ class api_listing_search {
 		/**
 		 * Get submitted fields
 		 */
-		$listing_type_string = $id_string = $zip_string = $city_string = $size_string = $cap_rate_string = $county_string = $list_price_string = $keyword_string = $days_on_market_string = $sold_in_last_string = '';
+		$listing_type_string = $id_string = $zip_string = $city_string = $size_string = $cap_rate_string = $county_string = $list_price_string = $keyword_string = $days_on_market_string = $sold_in_last_string = $lot_size_string = '';
 
 		/**
 		 * I need to make it sold here when it's a single sold listing....
@@ -121,6 +121,9 @@ class api_listing_search {
 		if ( $size = $parameters['size'] ) {
 			$size_string = '&size=' . $size;
 		}
+		if ( $lot_size = $parameters['lot_size'] ) {
+			$lot_size_string = '&lotSize.sqft=' . $lot_size . ':1000000000000';
+		}
 		if ( $cap_rate_range = $parameters['cap_rate'] ) {
 			$cap_rate_field  = get_key( $extended_fields, $this->market, 'cap_rate' );
 			$cap_rate_string = '&' . $cap_rate_field . '=' . $cap_rate_range;
@@ -184,8 +187,8 @@ class api_listing_search {
 		if ( $status === 'sold' ) {
 			$url = 'https://slipstream.homejunction.com/ws/sales/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $sold_in_last_string . '&pageNumber=' . $page_number;
 		} else {
-			$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $days_on_market_string . '&pageNumber=' . $page_number;
-			debug_dump($url);
+			$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $days_on_market_string . $lot_size_string . '&pageNumber=' . $page_number;
+			debug_dump( $url );
 		}
 
 		$listings = wp_remote_get( $url, array( 'headers' => array( 'HJI-Slipstream-Token' => $this->token ) ) );

@@ -136,7 +136,10 @@ get_header();
 									$saved_class = '';
 								}
 								?>
-                                <a href="#" user_id="<?php echo MP_LOGGED_IN_ID; ?>" listing_id="<?php echo $snippet->listing_id; ?>" listing_address="<?php echo $snippet->combined_address; ?>" listing_url="<?php echo $snippet->listing_url; ?>"
+                                <a href="#" user_id="<?php echo MP_LOGGED_IN_ID; ?>"
+                                   listing_id="<?php echo $snippet->listing_id; ?>"
+                                   listing_address="<?php echo $snippet->combined_address; ?>"
+                                   listing_url="<?php echo $snippet->listing_url; ?>"
                                    class="contact-link save-listing <?php echo $saved_class; ?>"><i
                                             class="fa fa-heart"></i> Save<span>d</span><i class="fa fa-refresh fa-spin"
                                                                                           aria-hidden="true"></i></a>
@@ -180,6 +183,13 @@ get_header();
                                                     $<?php echo number_format( $price ); ?>
                                                 </div>
                                                 <label>Price</label>
+                                            </div>
+										<?php } elseif ( $rent = $snippet->rent ) { ?>
+                                            <div class="details-item-wrap">
+                                                <div class="details-item price-item">
+                                                    $<?php echo number_format( $rent ); ?>
+                                                </div>
+                                                <label>Per Month</label>
                                             </div>
 										<?php } ?>
 										<?php if ( $units = $snippet->number_of_units ) { ?>
