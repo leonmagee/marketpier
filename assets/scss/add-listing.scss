@@ -27,7 +27,7 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  @media(min-width: $screen-sm) {
+  @media(min-width: $screen-md) {
     justify-content: space-around;
     background-color: #FAFAFA;
     border: 1px solid #EEE;
@@ -38,7 +38,7 @@
     padding: 22px 13px;
     min-width: 320px;
     margin: 10px 0;
-    @media(min-width: $screen-sm) {
+    @media(min-width: $screen-md) {
       margin: 0;
     }
   }
@@ -54,7 +54,7 @@
   }
   div[data-name="lease_type"], div[data-name="listing_type"] {
     width: 100% !important;
-    @media(min-width: $screen-sm) {
+    @media(min-width: $screen-md) {
       padding: 0 250px;
     }
   }

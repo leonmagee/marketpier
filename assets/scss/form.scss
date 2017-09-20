@@ -8,7 +8,7 @@
   border-radius: 15px;
   form {
     .main-form-inner {
-      @media(min-width: $screen-sm) {
+      @media(min-width: $screen-md) {
         display: flex;
         justify-content: space-between;
       }
@@ -32,22 +32,22 @@
     //&.selected { //@todo not currently changing selected style
     //  color: $brand-primary;
     //}
-    @media(min-width: $screen-sm) {
+    @media(min-width: $screen-md) {
       //justify-content: space-around;
       margin: 0 5px;
     }
     &.for-sale-for-lease {
-      @media(min-width: $screen-sm) {
+      @media(min-width: $screen-md) {
         flex: 1 1 18%;
       }
     }
     &.property-type {
-      @media(min-width: $screen-sm) {
+      @media(min-width: $screen-md) {
         flex: 1 1 23%;
       }
     }
     &.main-input {
-      @media(min-width: $screen-sm) {
+      @media(min-width: $screen-md) {
         flex: 1 1 44%;
       }
       &:hover {
@@ -123,7 +123,7 @@
     font-weight: 700;
     font-size: 22px;
     width: 100%;
-    @media(min-width: $screen-sm) {
+    @media(min-width: $screen-md) {
       flex: 1 1 15%;
       margin: 0 5px;
     }
@@ -146,7 +146,7 @@
       .main-form-inner {
         margin: 15px;
         //padding: 10px;
-        @media(min-width: $screen-sm) {
+        @media(min-width: $screen-md) {
           display: flex;
           justify-content: space-between;
         }
@@ -155,21 +155,21 @@
     .input-wrap {
       padding: 5px;
       position: relative;
-      @media(min-width: $screen-sm) {
+      @media(min-width: $screen-md) {
         padding: 0 5px;
       }
       &.for-sale-for-lease {
-        @media(min-width: $screen-sm) {
+        @media(min-width: $screen-md) {
           flex: 0 1 18%;
         }
       }
       &.property-type {
-        @media(min-width: $screen-sm) {
+        @media(min-width: $screen-md) {
           flex: 0 1 27%;
         }
       }
       &.main-input {
-        @media(min-width: $screen-sm) {
+        @media(min-width: $screen-md) {
           flex: 1 1 40%;
         }
         &:hover {
@@ -214,7 +214,7 @@
       font-weight: 700;
       font-size: 20px;
       margin: 15px auto;
-      @media(min-width: $screen-sm) {
+      @media(min-width: $screen-md) {
         margin: 0 5px;
         font-size: 14px;
       }
@@ -270,12 +270,12 @@
 
       .advanced-options-item {
         flex: 0 1 100%;
-        @media(min-width: $screen-sm) {
+        @media(min-width: $screen-md) {
           flex: 0 1 50%;
         }
         &.quarter {
           flex: 0 1 50%;
-          @media(min-width: $screen-sm) {
+          @media(min-width: $screen-md) {
             flex: 0 1 25%;
           }
         }

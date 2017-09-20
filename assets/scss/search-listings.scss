@@ -1,5 +1,5 @@
 .search-listings-wrap {
-  @media(min-width: $screen-sm) {
+  @media(min-width: $screen-md) {
     display: flex;
     height: 88vh;
   }
@@ -7,7 +7,7 @@
     &.map-half {
       background-color: #EEE;
       height: 100%;
-      @media(min-width: $screen-sm) {
+      @media(min-width: $screen-md) {
         flex: 0 1 50%;
       }
       .google-map-outer-wrapper {
@@ -34,7 +34,7 @@
     }
     &.snippet-half {
       background: #EEE;
-      @media(min-width: $screen-sm) {
+      @media(min-width: $screen-md) {
         flex: 0 1 50%;
         overflow: scroll;
       }
@@ -57,7 +57,7 @@
       text-transform: uppercase;
       padding: 10px;
       text-shadow: 1px 1px rgba(0, 0, 0, 0.3);
-      @media(min-width: $screen-sm) {
+      @media(min-width: $screen-md) {
         color: $brand-primary;
         text-shadow: none;
       }
@@ -97,7 +97,7 @@ a.snippet-link-outer {
     border-bottom: 1px solid #EEE;
     //border-bottom: 1px solid #DDD;
     background-color: #FAFAFA;
-    @media(min-width: $screen-sm) {
+    @media(min-width: $screen-md) {
       display: flex;
     }
     &:last-child {
@@ -112,7 +112,7 @@ a.snippet-link-outer {
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
-      @media(min-width: $screen-sm) {
+      @media(min-width: $screen-md) {
         width: 320px;
         height: 160px;
       }
@@ -130,7 +130,7 @@ a.snippet-link-outer {
         justify-content: flex-start;
         font-size: 13px;
         text-transform: uppercase;
-        @media(min-width: $screen-sm) {
+        @media(min-width: $screen-md) {
           justify-content: center;
         }
       }
@@ -138,7 +138,7 @@ a.snippet-link-outer {
       //  //max-height: 200px;
       //  //min-width: 100px;
       //  width: 100%;
-      //  @media(min-width: $screen-sm) {
+      //  @media(min-width: $screen-md) {
       //    width: auto;
       //    //max-width: 275px;
       //    max-width: 210px;
@@ -169,7 +169,7 @@ a.snippet-link-outer {
             font-size: 17px;
             color: #FFF;
             text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
-            @media(min-width: $screen-sm) {
+            @media(min-width: $screen-md) {
               font-size: 14px;
             }
           }
@@ -193,7 +193,7 @@ a.snippet-link-outer {
         padding: 15px 20px;
         font-size: 14px;
         color: #AAA;
-        @media(min-width: $screen-sm) {
+        @media(min-width: $screen-md) {
           padding: 5px 20px;
         }
       }
@@ -203,14 +203,14 @@ a.snippet-link-outer {
         flex-wrap: wrap;
         //justify-content: space-between;
         width: 100%;
-        @media(min-width: $screen-sm) {
+        @media(min-width: $screen-md) {
           //justify-content: flex-start;
         }
         .details-item-wrap {
           text-align: center;
           flex: 0 1 33.3%;
           padding: 10px 0;
-          @media(min-width: $screen-sm) {
+          @media(min-width: $screen-md) {
             flex: 0 1 17%;
             padding: 0;
           }
@@ -230,7 +230,7 @@ a.snippet-link-outer {
           color: #CCC;
           flex: 0 1 2%;
           display: none;
-          @media(min-width: $screen-sm) {
+          @media(min-width: $screen-md) {
             display: block;
           }
         }
@@ -300,7 +300,7 @@ a.snippet-link-outer {
     font-size: 11px;
     flex: 0 1 31%;
     text-transform: uppercase;
-    @media(min-width: $screen-sm) {
+    @media(min-width: $screen-md) {
       flex: 0 1 27%;
       font-size: 13px;
     }

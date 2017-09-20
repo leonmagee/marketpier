@@ -1,5 +1,5 @@
 .agent-profile-flex {
-  @media(min-width: $screen-sm) {
+  @media(min-width: $screen-md) {
     display: flex;
     justify-content: space-between;
   }
@@ -76,7 +76,7 @@
     &.agent-head {
       background-color: transparent;
       border: none;
-      @media(min-width: $screen-sm) {
+      @media(min-width: $screen-md) {
         flex: 0 1 22%;
         max-width: 22%;
         height: auto;
@@ -88,7 +88,7 @@
 
   }
   .testimonials-bio-section {
-    @media(min-width: $screen-sm) {
+    @media(min-width: $screen-md) {
       flex: 0 1 76%;
     }
     h4 {

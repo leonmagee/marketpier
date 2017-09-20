@@ -4,7 +4,7 @@ header#masthead {
   .header-inner {
     align-items: center;
     @include max_width;
-    @media(min-width: $screen-sm) {
+    @media(min-width: $screen-md) {
       display: flex;
       justify-content: space-between;
       height: 12vh;
@@ -35,7 +35,7 @@ header#masthead {
     margin: 0 20px;
     img {
       max-width: 130px;
-      @media(min-width: $screen-sm) {
+      @media(min-width: $screen-md) {
         max-width: 150px;
       }
     }
@@ -44,7 +44,7 @@ header#masthead {
 
 .header-right {
   align-items: center;
-  @media(min-width: $screen-sm) {
+  @media(min-width: $screen-md) {
     display: flex;
   }
   .logged-in-agent-headshot-wrap {
@@ -53,7 +53,7 @@ header#masthead {
     padding: 10px 10px;
     display: flex;
     align-items: center;
-    //@media(min-width: $screen-sm) {
+    //@media(min-width: $screen-md) {
     //  display: flex;
     //  align-items: center;
     //}
@@ -88,7 +88,7 @@ header#masthead {
     font-family: 'Open Sans';
     font-weight: 500;
     font-size: 15px;
-    @media(min-width: $screen-sm) {
+    @media(min-width: $screen-md) {
       margin: 0 5px;
     }
     a {
@@ -122,7 +122,7 @@ header#masthead {
     margin: 5px 15px 30px;
     text-align: center;
 
-    @media(min-width: $screen-sm) {
+    @media(min-width: $screen-md) {
       margin: 0 15px;
     }
     a {

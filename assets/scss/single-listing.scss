@@ -6,7 +6,7 @@
   border: 1px solid #EEE;
   font-family: 'Open Sans';
   font-weight: 500;
-  @media(min-width: $screen-sm) {
+  @media(min-width: $screen-md) {
     display: flex;
     flex-wrap: wrap;
   }
@@ -15,7 +15,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    @media(min-width: $screen-sm) {
+    @media(min-width: $screen-md) {
       width: 50%;
     }
     h2 {
@@ -26,12 +26,12 @@
       font-family: 'Open Sans'; // @todo control this globally?
       margin-bottom: 0;
       padding-bottom: 0;
-      @media(min-width: $screen-sm) {
+      @media(min-width: $screen-md) {
         font-size: 30px;
       }
       &.address {
         font-size: 17px;
-        @media(min-width: $screen-sm) {
+        @media(min-width: $screen-md) {
           font-size: 25px;
         }
       }
@@ -54,7 +54,7 @@
       &.no-price {
         font-size: 20px;
       }
-      @media(min-width: $screen-sm) {
+      @media(min-width: $screen-md) {
         font-size: 35px;
         span {
           font-size: 25px;
@@ -127,7 +127,7 @@
   .single-listing-right-side-wrap {
     //height: 0%;
     padding: 10px;
-    @media(min-width: $screen-sm) {
+    @media(min-width: $screen-md) {
       display: flex;
       width: 49%;
       flex-wrap: wrap;
@@ -135,7 +135,7 @@
     .all-images-outer-wrap {
       width: 100%;
       //height: 0%;
-      @media(min-width: $screen-sm) {
+      @media(min-width: $screen-md) {
         display: flex;
         flex-wrap: wrap;
       }
@@ -143,7 +143,7 @@
       .image-wrap-outer {
         display: flex;
         flex-direction: column;
-        @media(min-width: $screen-sm) {
+        @media(min-width: $screen-md) {
           height: 300px; // @todo replace this? or use media queries? try percentage height? test on large monitor
           justify-content: center;
           flex-wrap: wrap;
@@ -173,7 +173,7 @@
           opacity: 0.8;
           cursor: pointer;
         }
-        @media(min-width: $screen-sm) {
+        @media(min-width: $screen-md) {
           flex: 0 1 98.5%;
           &.image-1 {
             flex: 0 1 98.5%;
@@ -191,7 +191,7 @@
       }
       &.number-images-1 {
         .image-wrap-outer {
-          @media(min-width: $screen-sm) {
+          @media(min-width: $screen-md) {
             &.wrap-1 {
               flex: 0 1 100%;
             }
@@ -201,7 +201,7 @@
 
       &.number-images-2 {
         a.image-container-wrap {
-          @media(min-width: $screen-sm) {
+          @media(min-width: $screen-md) {
             &.image-2 {
               flex: 0 1 98%;
             }
@@ -227,20 +227,20 @@
         flex: 0 1 36%;
         margin-top: 7px;
         margin-bottom: 7px;
-        @media(min-width: $screen-sm) {
+        @media(min-width: $screen-md) {
           margin-top: 0;
           margin-bottom: 0;
           flex: 0 1 18%;
         }
         &.unit-mix-plan {
           flex: 0 1 50%;
-          @media(min-width: $screen-sm) {
+          @media(min-width: $screen-md) {
             flex: 0 1 25%;
           }
         }
         &.unit-mix-units, &.unit-mix-beds, &.unit-mix-baths {
           flex: 0 1 25%;
-          @media(min-width: $screen-sm) {
+          @media(min-width: $screen-md) {
             flex: 0 1 13%;
           }
         }
@@ -270,7 +270,7 @@ h5.section-title {
 .details-wrap-outer {
   margin-top: 20px;
   .details-wrap {
-    @media(min-width: $screen-sm) {
+    @media(min-width: $screen-md) {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
@@ -320,7 +320,7 @@ h5.section-title {
     font-size: 20px;
     margin: 0 0 10px;
   }
-  @media(min-width: $screen-sm) {
+  @media(min-width: $screen-md) {
     margin: 30px;
   }
   form {
@@ -348,7 +348,7 @@ h5.section-title {
       padding: 13px 15px;
       font-size: 15px;
       //border-radius: 5px;
-      @media(min-width: $screen-sm) {
+      @media(min-width: $screen-md) {
         //max-width: 40%;
         margin: 0 auto;
         flex: 0 1 auto;
@@ -362,11 +362,11 @@ h5.section-title {
       margin-bottom: 15px;
       display: flex;
       flex: 1 1 100%;
-      @media(min-width: $screen-sm) {
+      @media(min-width: $screen-md) {
         flex: 1 1 50%;
       }
       &.one-link {
-        @media(min-width: $screen-sm) {
+        @media(min-width: $screen-md) {
           flex: 1 1 100%;
           padding: 0 18%;
         }
@@ -455,7 +455,7 @@ h5.section-title {
 }
 
 .listing-agent-attribution-wrap {
-  @media(min-width: $screen-sm) {
+  @media(min-width: $screen-md) {
     display: flex;
     justify-content: space-between;
     padding-right: 10px;
@@ -467,7 +467,7 @@ h5.section-title {
     color: #333;
     font-size: 12px;
     width: auto;
-    @media(min-width: $screen-sm) {
+    @media(min-width: $screen-md) {
       flex: 0 1 47%;
       margin: 15px 0;
     }
