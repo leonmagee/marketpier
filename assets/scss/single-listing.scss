@@ -165,7 +165,8 @@
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
-        @media(max-width: 767px) {
+        //@media(max-width: 767px) {
+        @media(max-width: 991px) {
           padding-bottom: 70%;
           margin: 10px 0;
         }

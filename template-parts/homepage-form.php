@@ -39,11 +39,13 @@
                        name="city-zip"/>
                 <i class="fa fa-search" aria-hidden="true"></i>
                 <div class="county-choices">
+                    <ul>
 					<?php
 					$counties = all_counties_array();
 					foreach ( $counties as $county ) { ?>
-                        <a><?php echo $county; ?></a>
+                        <li><?php echo $county; ?></li>
 					<?php } ?>
+                    </ul>
                 </div>
             </div>
             <input class="submit-input" type="submit" value="Search"/>

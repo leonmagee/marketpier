@@ -348,15 +348,17 @@
 }
 
 .county-choices {
+  // this one applies ot the homepage - I should standardize this to look like the other dropdowns.
   position: absolute;
   background: #FFF;
-  width: 95%;
-  top: 45px;
-  border-radius: 5px;
-  padding: 10px 0;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  top: 40px;
+  left: 0;
+  //padding: 10px 0;
+  border: 1px solid #CACACA;
   z-index: 1000000000000;
   display: none;
+  width: 400px;
   a {
     display: block;
     text-align: left;
@@ -366,25 +368,36 @@
       color: $brand-primary;
     }
   }
+  ul {
+    padding: 0;
+    margin: 0;
+    li {
+      list-style-type: none;
+      width: 100%;
+      padding: 4px 15px;
+      font-size: 13px;
+      margin: 0;
+      text-align: left;
+      &:hover {
+        cursor: pointer;
+        background-color: #EEE;
+      }
+      &.selected {
+        background-color: $brand-primary;
+        color: #FFF;
+      }
+    }
+  }
 }
 
 .search-form-wrap-snippets {
   .county-choices {
-    //position: absolute;
-    //background: #FFF;
-    //width: 95%;
+    padding: 10px 0;
     top: 36px;
-    border-radius: 0;
     left: 8px;
-    //padding: 10px 0;
     border: 1px solid rgba(0, 0, 0, 0.2);
-    //z-index: 1000000000000;
-    //display: none;
+    width: 94%;
     a {
-      //display: block;
-      //text-align: left;
-      //padding: 3px 15px;
-      //color: #444;
       color: #666;
       font-size: 0.9em;
       text-transform: uppercase;
