@@ -181,6 +181,7 @@ class listing_data {
 		//$parameters             = array( 'status' => 'sold' ); // @todo remove this - conditional for sold listing?
 		//$search->search_listings( $parameters );
 		$search->search_listings();
+		//var_dump( $search );
 
 		$listing      = $search->search_result[0];
 		$listing_type = $listing->listingType;

@@ -27,8 +27,8 @@ if ( $request_details[2] == 'idx' ) {
 	} else {
 		$sold_single = false;
 	}
-	//var_dump( $mls_number );
-	$listing_data->listing_data_from_IDX( $mls_number, $sold_single, $market ); // @todo pass something here to make it a sales query?
+	//var_dump( $mls_number, $sold_single, $market );
+	$listing_data->listing_data_from_IDX( $mls_number, $sold_single, $market );
 	//var_dump( $listing_data );
 } else {
 	$listing_data->listing_data_from_WP();

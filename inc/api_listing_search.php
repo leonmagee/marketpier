@@ -138,7 +138,9 @@ class api_listing_search {
 					$list_price_string = '&listPrice=99999:1000000000000';
 				}
 			} else {
-				$list_price_string = '&listPrice=99999:1000000000000';
+				if ( $this->is_search ) {
+					$list_price_string = '&listPrice=99999:1000000000000';
+				}
 			}
 		}
 		if ( $days_on_market = $parameters['days_on_market'] ) {
