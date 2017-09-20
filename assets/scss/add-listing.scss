@@ -7,6 +7,10 @@
     font-size: 12px;
     border-radius: 0;
     box-shadow: none;
+    &.validation-error {
+      background-color: #FFF3D9;
+      border-color: #CCC;
+    }
   }
   select {
     //height: auto;
@@ -83,6 +87,7 @@
   div[data-name='listing_space_available'],
   div[data-name='listing_monthly_rent'],
   div[data-name='rental_rate_sf_month'],
+  div[data-name='listing_property_name'],
     // page 2
   div[data-name='listing_mls_number'],
   div[data-name='listing_apn_parcel_id'],
@@ -117,7 +122,8 @@
     div[data-name='listing_description'],
     div[data-name='listing_space_available'],
     div[data-name='listing_monthly_rent'],
-    div[data-name='rental_rate_sf_month'] {
+    div[data-name='rental_rate_sf_month'],
+    div[data-name='listing_property_name'] {
       display: block;
     }
   }
@@ -146,6 +152,7 @@
     }
   }
 }
+// @todo add required labels here as well...
 
 .listing-choice {
   max-width: 350px;

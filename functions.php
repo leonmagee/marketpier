@@ -360,6 +360,9 @@ function save_post_handler_acf_listing( $post_id ) {
 			//				update_field( 'hidden_form_status', 'listing_created', $post_id );
 
 			$monthly_rent = get_field( 'listing_monthly_rent', $post_id );
+			/**
+			 * @todo this is messing up my ability to change this in the edit form...
+			 */
 			if ( $monthly_rent ) {
 				update_field( 'listing_for_sale_or_for_lease', 'for_lease', $post_id );
 			}
@@ -451,3 +454,22 @@ function marketpier_admin_logo_text() {
 }
 
 add_filter( 'login_message', 'marketpier_admin_logo_text' );
+
+
+function restrict_media_library_to_current_user( $wp_query_obj ) {
+
+	if ( ! current_user_can( 'level_5' ) ) {
+
+		global $current_user, $pagenow;
+
+		if ( ! is_a( $current_user, 'WP_User' ) || 'admin-ajax.php' != $pagenow || $_REQUEST['action'] != 'query-attachments' ) {
+			return;
+		}
+
+		$wp_query_obj->set( 'author', $current_user->ID );
+
+		return;
+	}
+}
+
+add_action( 'pre_get_posts', 'restrict_media_library_to_current_user' );

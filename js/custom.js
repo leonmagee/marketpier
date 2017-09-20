@@ -108,16 +108,54 @@
      */
     var active_page = 1;
     $('.add-listing-navigation .nav-button.next.enabled').click(function () {
-        if (active_page <= 2) {
-            //console.log( 'next', active_page);
-            $('.add-listing-navigation .nav-button.prev').addClass('enabled');
-            active_page = ( active_page + 1);
-            if (active_page === 2) {
-                $('.add-a-listing-wrap.page-1').removeClass('page-1').addClass('page-2');
+
+        /**
+         * Navigation is contingent on required fields - so we can have a popup that blocks everything? or we can just
+         * highlight the effected field ( and then remove the highlighting when the user navs away?) - this last one is
+         * prob better...
+         */
+        /**
+         * Required Fields
+         */
+
+        var validation_succeeds = true;
+
+        function check_validation(data_name, type) {
+            if (type === 'input') {
+                var selector = $("div[data-name='" + data_name + "'] input");
+            } else if (type === 'select') {
+                var selector = $("div[data-name='" + data_name + "'] select");
+            } else if (type === 'textarea') {
+                var selector = $("div[data-name='" + data_name + "'] textarea");
             }
-            if (active_page === 3) {
-                $('.add-a-listing-wrap.page-2').removeClass('page-2').addClass('page-3');
-                $(this).removeClass('enabled');
+            var current_value = selector.val();
+
+            if (!current_value) {
+                selector.addClass('validation-error');
+                validation_succeeds = false;
+            }
+        }
+
+        check_validation('listing_address', 'input');
+        check_validation('listing_city', 'input');
+        check_validation('listing_state', 'input');
+        check_validation('listing_zip', 'input');
+        check_validation('listing_description', 'textarea');
+
+        //console.log('Address: ', listing_address);
+
+        if (validation_succeeds) {
+            if (active_page <= 2) {
+                //console.log( 'next', active_page);
+                $('.add-listing-navigation .nav-button.prev').addClass('enabled');
+                active_page = ( active_page + 1);
+                if (active_page === 2) {
+                    $('.add-a-listing-wrap.page-1').removeClass('page-1').addClass('page-2');
+                }
+                if (active_page === 3) {
+                    $('.add-a-listing-wrap.page-2').removeClass('page-2').addClass('page-3');
+                    $(this).removeClass('enabled');
+                }
             }
         }
     });
@@ -162,12 +200,8 @@
         submit_form();
     });
 
-
     /**
      * Reset Page Number on Submit click
-     * @todo maybe when you have pagination available for a search ('next'), and then you change any of the search terms, that
-     * @todo should then disable the pagination features, since you will be going to the 'next' page of a search' you haven't
-     * @todo seen page one of yet... and the pagination will probably be off.
      */
     $('.search-form-wrap-snippets input.submit-input').click(function () {
         $('input[name="page-number"]').val(1);
