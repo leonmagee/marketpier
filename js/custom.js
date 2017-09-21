@@ -110,29 +110,26 @@
     $('.add-listing-navigation .nav-button.next.enabled').click(function () {
 
         /**
-         * Navigation is contingent on required fields - so we can have a popup that blocks everything? or we can just
-         * highlight the effected field ( and then remove the highlighting when the user navs away?) - this last one is
-         * prob better...
-         */
-        /**
          * Required Fields
          */
-
         var validation_succeeds = true;
+        var val_message = $('.add-listing-validation-callout');
 
         function check_validation(data_name, type) {
             if (type === 'input') {
                 var selector = $("div[data-name='" + data_name + "'] input");
-            } else if (type === 'select') {
-                var selector = $("div[data-name='" + data_name + "'] select");
             } else if (type === 'textarea') {
                 var selector = $("div[data-name='" + data_name + "'] textarea");
             }
             var current_value = selector.val();
 
             if (!current_value) {
-                selector.addClass('validation-error');
-                validation_succeeds = false;
+                if (selector.length) {
+                    console.log(selector);
+                    selector.addClass('validation-error');
+                    validation_succeeds = false;
+                    val_message.show();
+                }
             }
         }
 
@@ -140,13 +137,14 @@
         check_validation('listing_city', 'input');
         check_validation('listing_state', 'input');
         check_validation('listing_zip', 'input');
+        check_validation('listing_space_available', 'input');
+        check_validation('listing_monthly_rent', 'input');
         check_validation('listing_description', 'textarea');
 
-        //console.log('Address: ', listing_address);
-
         if (validation_succeeds) {
+            val_message.hide();
+            $('.validation-error').removeClass('validation-error');
             if (active_page <= 2) {
-                //console.log( 'next', active_page);
                 $('.add-listing-navigation .nav-button.prev').addClass('enabled');
                 active_page = ( active_page + 1);
                 if (active_page === 2) {

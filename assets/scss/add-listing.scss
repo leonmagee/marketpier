@@ -1,3 +1,7 @@
+.add-listing-validation-callout {
+  display: none;
+}
+
 .add-or-edit-listing {
 
   label {
@@ -7,10 +11,6 @@
     font-size: 12px;
     border-radius: 0;
     box-shadow: none;
-    &.validation-error {
-      background-color: #FFF3D9;
-      border-color: #CCC;
-    }
   }
   select {
     //height: auto;
@@ -19,6 +19,13 @@
   input, select {
     font-size: 12px !important;
     padding-left: 10px;
+  }
+
+  input, textarea {
+    &.validation-error {
+      background-color: #FFF3D9;
+      border-color: rgba(10, 10, 10, 0.25);
+    }
   }
 
   .acf-field select {
@@ -110,6 +117,26 @@
   }
 }
 
+// add required indicator
+div[data-name='listing_type'],
+div[data-name='lease_type'],
+div[data-name='listing_address'],
+div[data-name='listing_city'],
+div[data-name='listing_state'],
+div[data-name='listing_zip'],
+div[data-name='listing_space_available'],
+div[data-name='listing_monthly_rent'],
+div[data-name='listing_description'] {
+  label {
+    &:after {
+      content: '*';
+      color: lighten(red, 5%);
+      padding-left: 5px;
+      font-size: 1.1em;
+    }
+  }
+}
+
 .add-a-listing-wrap {
   &.page-1 {
     div[data-name='listing_type'],
@@ -152,6 +179,7 @@
     }
   }
 }
+
 // @todo add required labels here as well...
 
 .listing-choice {

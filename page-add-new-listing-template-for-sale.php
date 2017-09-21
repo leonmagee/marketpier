@@ -19,6 +19,7 @@ get_header(); ?>
                     <div class="logged-in-user-content logged-in-user-add-listings add-or-edit-listing">
 
                         <div class="for-sale-listing add-a-listing-wrap page-1">
+                            <div class="add-listing-validation-callout callout warning">Please Complete All Required Fields.</div>
 							<?php
 							/**
 							 * Add For Sale Form
