@@ -72,11 +72,12 @@ get_header(); ?>
 							//'uploader'     => 'basic',
 							'fields'       => array(
 								'listing_mls_number',
+								'listing_for_sale_or_for_lease',
 								'listing_price',
 								'listing_monthly_rent',
 								'listing_type',
+								'lease_type',
 								'listing_status',
-								'listing_for_sale_or_for_lease',
 								'listing_property_name',
 								'listing_address',
 								'listing_city',
