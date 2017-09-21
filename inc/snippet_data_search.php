@@ -126,10 +126,12 @@ class snippet_data_search {
 				'value' => $for_sale_lease
 			);
 		} else {
-			$meta_search_array[] = array(
-				'key'   => 'listing_for_sale_or_for_lease',
-				'value' => 'for_sale'
-			);
+			if ( ! $this->author_id ) {
+				$meta_search_array[] = array(
+					'key'   => 'listing_for_sale_or_for_lease',
+					'value' => 'for_sale'
+				);
+			}
 		}
 
 		if ( $status = $this->status ) {
@@ -138,10 +140,12 @@ class snippet_data_search {
 				'value' => $status
 			);
 		} else {
-			$meta_search_array[] = array(
-				'key'   => 'listing_status',
-				'value' => 'active'
-			);
+			if ( ! $this->author_id ) {
+				$meta_search_array[] = array(
+					'key'   => 'listing_status',
+					'value' => 'active'
+				);
+			}
 		}
 
 //		if ( $status_array ) {
@@ -257,7 +261,7 @@ class snippet_data_search {
 		$this->total_results    = intval( $listing_query_count->found_posts );
 		$this->total_wp_results = $this->total_results;
 
-		$args          = array(
+		$args = array(
 			'post_type'      => 'mp-listing',
 			'author'         => $this->author_id,
 			'meta_query'     => $meta_search_array,
@@ -434,7 +438,7 @@ class snippet_data_search {
 		 */
 
 		$property_type_data = get_field( 'home_junction_property_types', 'option' );
-		$this->all_keys = get_all_keys( $property_type_data, $this->market );
+		$this->all_keys     = get_all_keys( $property_type_data, $this->market );
 		debug_dump( $this->all_keys );
 		/**
 		 * @todo loop through to get all property types and combine in one string...
