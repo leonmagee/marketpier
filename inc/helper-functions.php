@@ -190,7 +190,7 @@ function idx_listings_current_page( $page_size, $wp_count, $page_number ) {
  * @param null $two
  * @param bool $debug
  */
-function debug_dump( $one = null, $two = null, $debug = false ) {
+function debug_dump( $one = null, $two = null, $debug = true ) {
 	if ( $debug ) {
 		if ( $one ) {
 			var_dump( $one );

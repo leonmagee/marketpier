@@ -331,71 +331,59 @@ function create_agent_role() {
 
 
 /**
- * Add title automatically to listings
+ * Hook into ACF Save functionality - add title to listings - automatically set new listings as active
+ *
+ * @param $post_id
  */
-
-add_action( 'acf/save_post', 'save_post_handler_acf_listing', 20 );
-
 function save_post_handler_acf_listing( $post_id ) {
+
 	if ( ! is_admin() ) {
+
 		if ( get_post_type( $post_id ) == 'mp-listing' ) {
-			$data['ID'] = $post_id;
-			/**
-			 * I can be tricky here and set the field to 'for_lease' if one of the required lease fields is set.
-			 * I just need to make sure the user does not have the option to update that field in the future.
-			 */
-			$prop_name = get_field( 'listing_property_name', $post_id );
-			$address   = get_field( 'listing_address', $post_id );
-			$city      = get_field( 'listing_city', $post_id );
-			$state     = get_field( 'listing_state', $post_id );
-			$zip       = get_field( 'listing_zip', $post_id );
-			//$form_status        = get_field( 'hidden_form_status', $post_id );
+
+			$data['ID']         = $post_id;
+			$prop_name          = get_field( 'listing_property_name', $post_id );
+			$address            = get_field( 'listing_address', $post_id );
+			$city               = get_field( 'listing_city', $post_id );
+			$state              = get_field( 'listing_state', $post_id );
+			$zip                = get_field( 'listing_zip', $post_id );
 			$title_array        = array_filter( array( $prop_name, $address, $city, $state, $zip ) );
 			$title_string       = implode( ' - ', $title_array );
 			$title              = $title_string;
 			$data['post_title'] = $title;
 			$data['post_name']  = sanitize_title( $title );
 			wp_update_post( $data );
-//				update_field( 'hidden_form_status', 'listing_created', $post_id );
-			//				update_field( 'hidden_form_status', 'listing_created', $post_id );
 
-			$monthly_rent = get_field( 'listing_monthly_rent', $post_id );
 			/**
-			 * @todo this is messing up my ability to change this in the edit form...
+			 * Auto set Active status
 			 */
-			if ( $monthly_rent ) {
-				update_field( 'listing_for_sale_or_for_lease', 'for_lease', $post_id );
+			if ( ! get_field( 'listing_status', $post_id ) ) {
+				update_field( 'listing_status', 'active', $post_id );
 			}
 
 			/**
-			 * Toggle Redirects based on custom field value
-			 * @todo redirect to different pages depending on for sale vs. for lease?
+			 * Auto set for sale vs. for lease
 			 */
-//			if ( ! $form_status ) {
-//				update_field( 'hidden_form_status', 'listing_created', $post_id );
-//
-//				wp_redirect( site_url() . '/add-listing-2?post_id=' . $post_id );
-//				exit;
-//			}
-
-//			if ( $form_status == 'listing_created' ) {
-//				update_field( 'hidden_form_status', 'listing_created_2', $post_id );
-//
-//				wp_redirect( site_url() . '/add-listing-3?post_id=' . $post_id );
-//				exit;
-//			}
-
-//			if ( $form_status == 'listing_created_2' ) {
-//				update_field( 'hidden_form_status', 'listing_created_final', $post_id );
-//
-//				wp_redirect( site_url() . '/listing-creation-complete');
-//				exit;
-//			}
-
+			if ( ! get_field( 'listing_for_sale_or_for_lease', $post_id ) ) {
+				if ( get_field( 'listing_monthly_rent', $post_id ) ) {
+					update_field( 'listing_for_sale_or_for_lease', 'for_lease', $post_id );
+				} else {
+					update_field( 'listing_for_sale_or_for_lease', 'for_sale', $post_id );
+				}
+			}
 		}
 	}
 }
 
+add_action( 'acf/save_post', 'save_post_handler_acf_listing', 20 );
+
+/**
+ * Disable ACF Fields
+ *
+ * @param $field
+ *
+ * @return mixed
+ */
 function disable_acf_load_field( $field ) {
 //	if ( $field['name'] == 'rental_rate_sf_month' || $field['name'] == 'listing_net_operating_income' ) {
 //		$field['disabled'] = true;
@@ -410,12 +398,9 @@ function disable_acf_load_field( $field ) {
 add_filter( 'acf/load_field', 'disable_acf_load_field' );
 
 /**
- * Link Slipstream API URL to page template
+ * Link Slipstream API URL to 'single-mp-listings.php' template
  * This checks to see if '/idx/' is present in the url, and if so it uses the appropriate template.
  */
-
-add_action( 'init', 'link_slipstream_url' );
-
 function link_slipstream_url() {
 	$url_path = trim( parse_url( add_query_arg( array() ), PHP_URL_PATH ), '/' );
 	$str_pos  = strpos( $url_path, '/idx/' );
@@ -427,10 +412,11 @@ function link_slipstream_url() {
 	}
 }
 
-/**
- * Change admin logo
- */
+add_action( 'init', 'link_slipstream_url' );
 
+/**
+ * Remove WordPress Logo
+ */
 function remove_login_logo() { ?>
     <style type="text/css">
         body.login div#login h1 a {
@@ -447,6 +433,10 @@ function remove_login_logo() { ?>
 
 add_action( 'login_enqueue_scripts', 'remove_login_logo' );
 
+/**
+ * Add MarketPier Logo
+ * @return string
+ */
 function marketpier_admin_logo_text() {
 	$message = "<div style='color: #111; margin: 30px 0 30px; text-align: center; font-size: 45px; font-family: Libre Baskerville; font-weight: 700;'>MarketPier</div>";
 
@@ -455,7 +445,11 @@ function marketpier_admin_logo_text() {
 
 add_filter( 'login_message', 'marketpier_admin_logo_text' );
 
-
+/**
+ * Restrict Media Library to current user
+ *
+ * @param $wp_query_obj
+ */
 function restrict_media_library_to_current_user( $wp_query_obj ) {
 
 	if ( ! current_user_can( 'level_5' ) ) {
@@ -474,17 +468,18 @@ function restrict_media_library_to_current_user( $wp_query_obj ) {
 
 add_action( 'pre_get_posts', 'restrict_media_library_to_current_user' );
 
-function update_caldera_form($data) {
+function update_caldera_form( $data ) {
 	/**
 	 * Make sure I only output the form link if there is an email address...
 	 */
-	$author_info = get_user_by( 'slug', get_query_var( 'author_name' ) );
-	$author_id   = $author_info->ID;
-	$author_data = get_userdata( intval( $author_id ) );
-	$email = $author_data->data->user_email;
-    $data['config']['default'] = $email;
-    return $data;
+	$author_info               = get_user_by( 'slug', get_query_var( 'author_name' ) );
+	$author_id                 = $author_info->ID;
+	$author_data               = get_userdata( intval( $author_id ) );
+	$email                     = $author_data->data->user_email;
+	$data['config']['default'] = $email;
+
+	return $data;
 }
 
-add_action( 'caldera_forms_render_get_field_slug-agent_email_address_hidden', 'update_caldera_form');
+add_action( 'caldera_forms_render_get_field_slug-agent_email_address_hidden', 'update_caldera_form' );
 //add_action( 'caldera_forms_render_get_field_slug-{field_slug}', 'update_caldera_form');

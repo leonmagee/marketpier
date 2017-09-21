@@ -265,6 +265,7 @@ class snippet_data_search {
 			'paged'          => $this->page_number,
 			'date_query'     => $date_query
 		);
+		debug_dump( $args );
 		$listing_query = new WP_Query( $args );
 		//$this->total_results = intval( $listing_query->found_posts );
 		/**

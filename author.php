@@ -28,8 +28,6 @@ if ( $first_name && $last_name ) {
 }
 $email = $author_data->data->user_email;
 
-global $author_global_email;
-$author_global_email = $email;
 /**
  *  User Meta
  */
@@ -99,9 +97,11 @@ $testimonials    = get_field( 'testimonials', 'user_' . $author_id );
                                 <a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a>
                             </div>
 
-                            <div class="contact-me-wrap">
-                                <a data-open="agent-form-modal" class="mp-button">Contact Me</a>
-                            </div>
+							<?php if ( $email ) { ?>
+                                <div class="contact-me-wrap">
+                                    <a data-open="agent-form-modal" class="mp-button">Contact Me</a>
+                                </div>
+							<?php } ?>
 
 							<?php
 							$form_modal = new mp_output_modal_shortcode(
@@ -173,7 +173,6 @@ $testimonials    = get_field( 'testimonials', 'user_' . $author_id );
 					?>
 
 
-
                     <div class="search-listings-wrap">
 
                         <div class="search-listings-half">
@@ -205,66 +204,66 @@ $testimonials    = get_field( 'testimonials', 'user_' . $author_id );
                                                      style="background-image: url(<?php echo $snippet->image_gallery_first; ?>);">
                                                     <div class="image-overlay">
                                                         <div class="image-overlay-text">
-					                                        <?php if ( $title = $snippet->property_name ) { ?>
+															<?php if ( $title = $snippet->property_name ) { ?>
                                                                 <h3><?php echo $title; ?></h3>
-					                                        <?php } ?>
-					                                        <?php if ( $address ) { ?>
+															<?php } ?>
+															<?php if ( $address ) { ?>
                                                                 <h5><?php echo $address; ?></h5>
-					                                        <?php } ?>
+															<?php } ?>
                                                         </div>
                                                     </div>
-			                                        <?php if ( $status = $snippet->status ) { ?>
+													<?php if ( $status = $snippet->status ) { ?>
                                                         <div class="status-bar">
                                                             <span><?php echo $status; ?></span>
                                                         </div>
-			                                        <?php } ?>
+													<?php } ?>
                                                 </div>
                                                 <div class="right-side-outer">
                                                     <div class="top-line">
-				                                        <?php echo $snippet->type; ?>
+														<?php echo $snippet->type; ?>
                                                     </div>
                                                     <div class="details-wrap">
-				                                        <?php if ( $price = $snippet->price ) { ?>
+														<?php if ( $price = $snippet->price ) { ?>
                                                             <div class="details-item-wrap">
                                                                 <div class="details-item price-item">
                                                                     $<?php echo number_format( $price ); ?>
                                                                 </div>
                                                                 <label>Price</label>
                                                             </div>
-				                                        <?php } ?>
-				                                        <?php if ( $units = $snippet->number_of_units ) { ?>
+														<?php } ?>
+														<?php if ( $units = $snippet->number_of_units ) { ?>
                                                             <sep>|</sep>
                                                             <div class="details-item-wrap">
                                                                 <div class="details-item units-item"><?php echo $units; ?></div>
                                                                 <label>Units</label>
                                                             </div>
-				                                        <?php } ?>
-				                                        <?php if ( $building_size = $snippet->building_size ) { ?>
+														<?php } ?>
+														<?php if ( $building_size = $snippet->building_size ) { ?>
                                                             <sep>|</sep>
                                                             <div class="details-item-wrap">
                                                                 <div class="details-item sqft-item"><?php echo number_format( $building_size ); ?></div>
                                                                 <label>Bldg SF</label>
                                                             </div>
-				                                        <?php } ?>
-				                                        <?php if ( $cap_rate = $snippet->cap_rate ) { ?>
+														<?php } ?>
+														<?php if ( $cap_rate = $snippet->cap_rate ) { ?>
                                                             <sep>|</sep>
                                                             <div class="details-item-wrap">
                                                                 <div class="details-item cap-rate-item"><?php echo $cap_rate; ?></div>
                                                                 <label>Cap Rate</label>
                                                             </div>
-				                                        <?php } ?>
-				                                        <?php if ( $lot_size = $snippet->lot_size ) { ?>
+														<?php } ?>
+														<?php if ( $lot_size = $snippet->lot_size ) { ?>
                                                             <sep>|</sep>
                                                             <div class="details-item-wrap">
                                                                 <div class="details-item lot-size-item"><?php echo number_format( $lot_size ); ?></div>
                                                                 <label>Lot SF</label>
                                                             </div>
-				                                        <?php } ?>
+														<?php } ?>
                                                     </div>
                                                     <div class="bottom-line">
-				                                        <?php if ( $days = $snippet->days_on_market ) {
-					                                        echo $days . 'd';
-				                                        } ?>
+														<?php if ( $days = $snippet->days_on_market ) {
+															echo $days . 'd';
+														} ?>
                                                     </div>
                                                 </div>
                                             </div>
