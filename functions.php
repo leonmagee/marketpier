@@ -364,7 +364,9 @@ function save_post_handler_acf_listing( $post_id ) {
 			/**
 			 * Auto set for sale vs. for lease
 			 */
+			//update_field( 'listing_for_sale_or_for_lease', 'for_lease', $post_id );
 			if ( ! get_field( 'listing_for_sale_or_for_lease', $post_id ) ) {
+				//update_field( 'listing_for_sale_or_for_lease', 'for_lease', $post_id );
 				if ( get_field( 'listing_monthly_rent', $post_id ) ) {
 					update_field( 'listing_for_sale_or_for_lease', 'for_lease', $post_id );
 				} else {
