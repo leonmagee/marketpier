@@ -473,3 +473,18 @@ function restrict_media_library_to_current_user( $wp_query_obj ) {
 }
 
 add_action( 'pre_get_posts', 'restrict_media_library_to_current_user' );
+
+function update_caldera_form($data) {
+	/**
+	 * Make sure I only output the form link if there is an email address...
+	 */
+	$author_info = get_user_by( 'slug', get_query_var( 'author_name' ) );
+	$author_id   = $author_info->ID;
+	$author_data = get_userdata( intval( $author_id ) );
+	$email = $author_data->data->user_email;
+    $data['config']['default'] = $email;
+    return $data;
+}
+
+add_action( 'caldera_forms_render_get_field_slug-agent_email_address_hidden', 'update_caldera_form');
+//add_action( 'caldera_forms_render_get_field_slug-{field_slug}', 'update_caldera_form');

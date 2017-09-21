@@ -28,6 +28,8 @@ if ( $first_name && $last_name ) {
 }
 $email = $author_data->data->user_email;
 
+global $author_global_email;
+$author_global_email = $email;
 /**
  *  User Meta
  */
@@ -102,7 +104,6 @@ $testimonials    = get_field( 'testimonials', 'user_' . $author_id );
                             </div>
 
 							<?php
-
 							$form_modal = new mp_output_modal_shortcode(
 								'[caldera_form id="CF5994d75066284"]',
 								'agent-form-modal',
