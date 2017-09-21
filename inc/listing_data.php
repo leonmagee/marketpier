@@ -91,8 +91,7 @@ class listing_data {
 	}
 
 	public function listing_data_from_WP() {
-		$this->listing_id = get_the_ID();
-		//$this->main_image           = get_field( 'listing_main_image' );
+		$this->listing_id         = get_the_ID();
 		$this->mls                = get_field( 'listing_mls_number' );
 		$this->property_name      = get_field( 'listing_property_name' );
 		$this->price              = get_field( 'listing_price' );
@@ -142,7 +141,7 @@ class listing_data {
 			$this->author_name = $this->author;
 		}
 		//get the listing date as post date
-		$this->listing_date = get_the_date();
+		$this->listing_date = get_the_date('n/j/Y');
 		$post_date          = get_the_date( 'U' );
 		//$post_date = get_the_date( 'U', true ); // for GMT
 		$current_date          = time();
@@ -166,10 +165,8 @@ class listing_data {
 		$extended_fields = get_field( 'home_junction_extended_fields', 'option' );
 
 		$slipstream_token_query = new get_slipstream_token();
-		//$market                 = 'sandicor';
-		//$market            = 'crmls';
-		$listing_page_size = 1;
-		$search            = new api_listing_search(
+		$listing_page_size      = 1;
+		$search                 = new api_listing_search(
 			$slipstream_token_query->slipstream_token,
 			$listing_page_size,
 			$market,

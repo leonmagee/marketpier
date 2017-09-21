@@ -355,6 +355,14 @@ function save_post_handler_acf_listing( $post_id ) {
 			wp_update_post( $data );
 
 			/**
+			 * Auto Set Listing ID
+			 */
+			$listing_id = 'mp-' . time();
+			if ( ! get_field( 'listing_id', $post_id ) ) {
+				update_field( 'listing_id', $listing_id, $post_id );
+			}
+
+			/**
 			 * Auto set Active status
 			 */
 			if ( ! get_field( 'listing_status', $post_id ) ) {

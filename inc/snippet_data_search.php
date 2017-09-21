@@ -18,9 +18,6 @@ class snippet_data_search {
 	public $map_data_array;
 	public $for_sale_lease;
 	public $status;
-	//public $status_active;
-	//public $status_pending;
-	//public $status_sold;
 	public $property_type;
 	public $city_zip;
 	public $price_min;
@@ -44,9 +41,6 @@ class snippet_data_search {
 		$this->page_number    = filter_input( INPUT_GET, 'page_number', FILTER_SANITIZE_ENCODED );
 		$this->for_sale_lease = filter_input( INPUT_GET, 'for_sale_lease', FILTER_SANITIZE_ENCODED );
 		$this->status         = filter_input( INPUT_GET, 'status', FILTER_SANITIZE_ENCODED );
-		//$this->status_active  = filter_input( INPUT_GET, 'status_active', FILTER_SANITIZE_ENCODED );
-		//$this->status_pending = filter_input( INPUT_GET, 'status_pending', FILTER_SANITIZE_ENCODED );
-		//$this->status_sold    = filter_input( INPUT_GET, 'status_sold', FILTER_SANITIZE_ENCODED );
 		$this->property_type  = filter_input( INPUT_GET, 'property_type', FILTER_SANITIZE_SPECIAL_CHARS );
 		$city_zip             = filter_input( INPUT_GET, 'city_zip', FILTER_SANITIZE_SPECIAL_CHARS );
 		$this->city_zip       = rawurldecode( $city_zip );
@@ -81,28 +75,7 @@ class snippet_data_search {
 	}
 
 	public function process_wp_search() {
-		/**
-		 * @todo step 1 - get data - step 2 - process WP search terms?
-		 */
-//		$status_array = array();
-//		if ( $this->status_active ) {
-//			$status_array[] = 'active';
-//		}
-//		if ( $this->status_pending ) {
-//			$status_array[] = 'pending';
-//		}
-//		if ( $this->status_sold ) {
-//			$status_array[] = 'sold';
-//		}
 
-		/**
-		 * @todo use this same function for IDX city or zip code search?
-		 * @todo test this with WP and then IDX data to make it work
-		 */
-
-		/**
-		 * @todo maybe change the market here? this way it doesn't need to check the zip code array unless one has been set.
-		 */
 		$meta_search_array = array();
 		if ( $city_zip = $this->city_zip ) {
 			if ( is_numeric( $city_zip ) ) {
@@ -148,21 +121,6 @@ class snippet_data_search {
 			}
 		}
 
-//		if ( $status_array ) {
-//			$meta_search_array[] = array(
-//				'key'     => 'listing_status',
-//				'value'   => $status_array,
-//				'compare' => 'IN'
-//			);
-//		} else {
-//			if ( ! $this->status_all ) {
-//
-//				$meta_search_array[] = array(
-//					'key'   => 'listing_status',
-//					'value' => 'active'
-//				);
-//			}
-//		}
 		if ( $property_type = $this->property_type ) {
 			if ( $property_type !== 'all_property_types' ) {
 				$meta_search_array[] = array(
@@ -236,7 +194,6 @@ class snippet_data_search {
 				'compare' => '>=',
 				'type'    => 'NUMERIC'
 			);
-			//$parameters['sold_in_last'] = $sold_in_last;
 		}
 
 		if ( $days_on_market = $this->days_on_market ) {
@@ -271,12 +228,6 @@ class snippet_data_search {
 		);
 		debug_dump( $args );
 		$listing_query = new WP_Query( $args );
-		//$this->total_results = intval( $listing_query->found_posts );
-		/**
-		 * so you really need to have all of this data (for total number of posts), I think before you are submitting
-		 * requests for other posts - this will need to be it's own query - for both this and the listing query, and then
-		 * you'll use this info in the wrapper to choose which listings get displayed.
-		 */
 
 		while ( $listing_query->have_posts() ) {
 
@@ -350,7 +301,6 @@ class snippet_data_search {
 			} else {
 				/**
 				 * First Check if this is a county search
-				 * @todo this needs to pull from a repeater field as well
 				 */
 				if ( strpos( strtolower( $city_zip ), 'county' ) ) {
 					$counties_array = get_field( 'market_counties', 'option' );
@@ -365,7 +315,6 @@ class snippet_data_search {
 							break;
 						}
 					}
-
 
 				} else {
 					/**
@@ -449,7 +398,7 @@ class snippet_data_search {
 			if ( $property_type !== 'all_property_types' ) {
 
 				$parameters['property_type'] = '&propertyType=' . get_key( $property_type_data, $this->market, $property_type );
-				debug_dump( $parameters['property_type'] );
+				//debug_dump( $parameters['property_type'] );
 
 			}
 		}
@@ -473,7 +422,6 @@ class snippet_data_search {
 		);
 		$search->search_listings( $parameters, $page_number );
 
-		//$listings = $search->search_result->listings;
 		$listings = $search->search_result;
 
 		$this->total_results = ( $this->total_results + $search->total_listings );
