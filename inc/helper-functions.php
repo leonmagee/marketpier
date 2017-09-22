@@ -232,3 +232,17 @@ function get_disclaimer( $market ) {
 
 	return $disclaimer;
 }
+
+/**
+ * Restrict wp-admin to administrators
+ */
+function restrict_user_access() {
+	if ( is_admin() && ! current_user_can( 'administrator' ) &&
+	     ! ( defined( 'DOING_AJAX' ) && DOING_AJAX )
+	) {
+		wp_redirect( site_url() );
+		exit;
+	}
+}
+
+add_action( 'init', 'restrict_user_access' );
