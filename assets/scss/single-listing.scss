@@ -87,9 +87,17 @@
     }
     .save-share-links {
       margin-bottom: 15px;
+      @media(min-width: $screen-sm) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
       a {
         //display: block;
-        font-size: 17px;
+        font-size: 14px;
+        @media(min-width: $screen-sm) {
+          font-size: 17px;
+        }
         //padding-bottom: 200px;
         margin: 0 10px;
         &.profile-link {
@@ -117,6 +125,21 @@
           span {
             display: inline;
           }
+        }
+      }
+
+      .company-logo-wrap {
+        display: block;
+        margin: 20px 0;
+        width: 100%;
+        text-align: center;
+        @media(min-width: $screen-sm) {
+          width: auto;
+          margin: 0;
+        }
+        img {
+          max-width: 140px;
+          max-height: 70px;
         }
       }
 

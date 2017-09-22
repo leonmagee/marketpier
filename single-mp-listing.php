@@ -97,6 +97,18 @@ if ( $request_details[2] == 'idx' ) {
                        class="profile-link"><i
                                 class="fa fa-user"></i>
                         Submitter Profile</a>
+					<?php
+					/**
+					 * Add listing data author image here..
+					 */
+					if ( $author_id = $listing_data->author_id ) {
+						if ( $company_logo = get_field( 'company_logo', 'user_' . $author_id ) ) { ?>
+                            <span class="company-logo-wrap">
+                            <img src="<?php echo $company_logo; ?>"/>
+                           </span>
+						<?php }
+					}
+					?>
 				<?php } ?>
             </div>
 
