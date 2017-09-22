@@ -22,7 +22,7 @@ class mp_output_modal_shortcode {
 
         <div id="<?php echo $this->link_id; ?>" class="reveal" data-reveal>
 			<?php if ( $this->link_reg ) { ?>
-                <h2 id="modalTitle"><?php echo $this->form_title; ?> / <a href="<?php echo site_url(); ?>/register-account">Sign Up</a></h2>
+                <h2 class="sign-up-modal-title" id="modalTitle"><?php echo $this->form_title; ?> or <a href="<?php echo site_url(); ?>/register-account">Sign Up for New Account</a></h2>
 			<?php } else { ?>
                 <h2 id="modalTitle"><?php echo $this->form_title; ?></h2>
 			<?php } ?>
