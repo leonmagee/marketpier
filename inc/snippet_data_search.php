@@ -218,13 +218,23 @@ class snippet_data_search {
 		$this->total_results    = intval( $listing_query_count->found_posts );
 		$this->total_wp_results = $this->total_results;
 
+//		$meta_search_array[] = array(
+//			'meta_key' => 'marketpier_listing_type',
+//			'orderby'  => 'meta_value',
+//			'order'    => 'DESC'
+//		);
+
 		$args = array(
 			'post_type'      => 'mp-listing',
 			'author'         => $this->author_id,
 			'meta_query'     => $meta_search_array,
 			'posts_per_page' => $this->page_size,
 			'paged'          => $this->page_number,
-			'date_query'     => $date_query
+			'date_query'     => $date_query,
+			'meta_key'       => 'marketpier_listing_type',
+			'orderby'        => 'meta_value',
+			//'order'          => 'DESC'
+			//'order_by'       => 'marketpier_listing_type',
 		);
 		debug_dump( $args );
 		$listing_query = new WP_Query( $args );
