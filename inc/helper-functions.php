@@ -218,3 +218,17 @@ function all_counties_array() {
 
 	return $all_counties;
 }
+
+
+function get_disclaimer( $market ) {
+	$disclaimers_array = get_field( 'market_disclaimers', 'option' );
+	$disclaimer        = '';
+	foreach ( $disclaimers_array as $disclaimer ) {
+		if ( $market === $disclaimer['market'] ) {
+			$disclaimer = $disclaimer['disclaimer'];
+			break;
+		}
+	}
+
+	return $disclaimer;
+}
