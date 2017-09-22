@@ -91,7 +91,7 @@ if ( $request_details[2] == 'idx' ) {
 				<?php } else { ?>
                     <a href="#" data-open="login-modal" class="save-link"><i class="fa fa-heart"></i> Save</a>
 				<?php } ?>
-                <a href="#"><i class="fa fa-share"></i> Share</a>
+                <a class="a2a_dd addtoany_share_save" href="#"><i class="fa fa-share"></i> Share</a>
 				<?php if ( $listing_data->author ) { ?>
                     <a href="<?php echo site_url(); ?>/profile/<?php echo $listing_data->author; ?>"
                        class="profile-link"><i
