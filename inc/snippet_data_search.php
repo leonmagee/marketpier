@@ -232,11 +232,12 @@ class snippet_data_search {
 			'paged'          => $this->page_number,
 			'date_query'     => $date_query,
 			'meta_key'       => 'marketpier_listing_type',
-			'orderby'        => 'meta_value',
-			//'order'          => 'DESC'
-			//'order_by'       => 'marketpier_listing_type',
+			'orderby'        => array(
+				'meta_value' => 'DESC',
+				'date'       => 'DESC'
+			),
 		);
-		debug_dump( $args );
+		//debug_dump( $args );
 		$listing_query = new WP_Query( $args );
 
 		while ( $listing_query->have_posts() ) {
