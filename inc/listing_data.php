@@ -63,6 +63,7 @@ class listing_data {
 	public $market;
 	public $sale_date;
 	public $listing_url;
+	public $last_updated;
 
 	public function standardize_image_gallery_WP( $image_gallery ) {
 		$image_gallery_array = array();
@@ -141,7 +142,7 @@ class listing_data {
 			$this->author_name = $this->author;
 		}
 		//get the listing date as post date
-		$this->listing_date = get_the_date('n/j/Y');
+		$this->listing_date = get_the_date( 'n/j/Y' );
 		$post_date          = get_the_date( 'U' );
 		//$post_date = get_the_date( 'U', true ); // for GMT
 		$current_date          = time();
@@ -219,6 +220,7 @@ class listing_data {
 		$this->listing_office_id    = $listing->listingOffice->id;
 		$this->lat                  = $listing->coordinates->latitude;
 		$this->long                 = $listing->coordinates->longitude;
+		$this->last_updated         = date( 'n/j/Y', $listing->lastUpdated );
 		$gross_rent_field           = get_key( $extended_fields, $this->market, 'gross_rent_multiplier' );
 		if ( $gross_rent_field ) {
 			$this->gross_rent_multiplier = $listing->$gross_rent_field; // gross rent multiplier

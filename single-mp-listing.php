@@ -199,6 +199,12 @@ if ( $request_details[2] == 'idx' ) {
                             <div class="detail-content"><?php echo $listing_data->listing_date; ?></div>
                         </div>
 					<?php }
+					if ( $listing_data->last_updated ) { ?>
+                        <div class="detail">
+                            <div class="detail-label">Last Updated</div>
+                            <div class="detail-content"><?php echo $listing_data->last_updated; ?></div>
+                        </div>
+					<?php }
 					if ( $listing_data->days_on_market ) { ?>
                         <!-- @todo auto generate this number -->
                         <div class="detail">
