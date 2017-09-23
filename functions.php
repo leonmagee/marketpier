@@ -370,6 +370,13 @@ function save_post_handler_acf_listing( $post_id ) {
 			}
 
 			/**
+			 * Auto set Standard Status
+			 */
+			if ( ! get_field( 'marketpier_listing_type', $post_id ) ) {
+				update_field( 'marketpier_listing_type', 111, $post_id );
+			}
+
+			/**
 			 * Auto set for sale vs. for lease
 			 */
 			//update_field( 'listing_for_sale_or_for_lease', 'for_lease', $post_id );
