@@ -143,6 +143,7 @@ class listing_data {
 		}
 		//get the listing date as post date
 		$this->listing_date = get_the_date( 'n/j/Y' );
+		$this->last_updated = $this->listing_date;
 		$post_date          = get_the_date( 'U' );
 		//$post_date = get_the_date( 'U', true ); // for GMT
 		$current_date          = time();
