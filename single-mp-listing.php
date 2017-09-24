@@ -544,8 +544,8 @@ if ( $request_details[2] == 'idx' ) {
                                 <div class="marketpier-fav-logo">MP</div>
                             </div>
                             <div class="details-wrap">
-                                <div class="agent-name">MarketPier Agent</div>
-                                <div class="broker-name">Real Estate Pro</div>
+                                <div class="agent-name marketpier">MarketPier</div>
+                                <div class="broker-name">Buyer Agent</div>
 								<?php $admin_email = get_option( 'admin_email' ); ?>
                                 <div class="agent-email"><?php echo $admin_email; ?></div>
                             </div>

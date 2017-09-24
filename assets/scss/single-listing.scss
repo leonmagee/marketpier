@@ -433,6 +433,10 @@ h5.section-title {
           padding-left: 10px;
           .agent-name {
             color: #333;
+            &.marketpier {
+              font-family: 'Libre Baskerville';
+              font-weight: 700;
+            }
           }
           .broker-name {
             color: #AAA;
