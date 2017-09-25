@@ -161,6 +161,7 @@
       @media(min-width: $screen-md) {
         display: flex;
         flex-wrap: wrap;
+        align-content: flex-start;
       }
 
       .image-wrap-outer {

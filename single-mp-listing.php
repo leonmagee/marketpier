@@ -206,21 +206,18 @@ if ( $request_details[2] == 'idx' ) {
                         </div>
 					<?php }
 					if ( $listing_data->days_on_market ) { ?>
-                        <!-- @todo auto generate this number -->
                         <div class="detail">
                             <div class="detail-label">Days Active</div>
                             <div class="detail-content"><?php echo $listing_data->days_on_market; ?></div>
                         </div>
 					<?php }
 					if ( $listing_data->sale_date ) { ?>
-                        <!-- @todo auto generate this number -->
                         <div class="detail">
                             <div class="detail-label">Sale Date</div>
                             <div class="detail-content"><?php echo $listing_data->sale_date; ?></div>
                         </div>
 					<?php }
 					if ( $listing_data->space_available ) { ?>
-                        <!-- @todo auto generate this number -->
                         <div class="detail">
                             <div class="detail-label">Space Available</div>
                             <div class="detail-content"><?php echo number_format( $listing_data->space_available ); ?>
@@ -229,7 +226,6 @@ if ( $request_details[2] == 'idx' ) {
                         </div>
 					<?php }
 					if ( $listing_data->is_for_lease && $listing_data->rate_sf_month ) { ?>
-                        <!-- @todo auto generate this number -->
                         <div class="detail">
                             <div class="detail-label">Rate/SF/Month</div>
                             <div class="detail-content"><?php echo '$' . number_format( $listing_data->rate_sf_month, 2 ); ?></div>
@@ -239,9 +235,6 @@ if ( $request_details[2] == 'idx' ) {
                 </div>
             </div>
 			<?php
-			/**
-			 * @todo - move unit mix to different file?
-			 */
 			if ( $listing_data->is_for_sale ) {
 				if ( $unit_mix = $listing_data->unit_mix ) {
 					?>
