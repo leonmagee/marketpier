@@ -23,7 +23,7 @@ class lv_create_table {
 		user_id mediumint(9) NOT NULL,
 		listing_id text NOT NULL,
 		listing_title text NOT NULL,
-		listing_url text NOT NULL
+		listing_url text NOT NULL,
 		PRIMARY KEY  (id)
 	) $charset_collate;";
 
