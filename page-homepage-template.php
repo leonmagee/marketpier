@@ -48,8 +48,15 @@ if ( $background = get_field( 'homepage_background_image', 'option' ) ) {
                                         </h3>
                                     </div>
                                     <p><?php echo $cta_box['excerpt']; ?></p>
-                                    <a class='cta-link'
-                                       href="<?php echo site_url() . '/' . $cta_box['url']; ?>"><?php echo $cta_box['link_text']; ?></a>
+									<?php
+									// check to verify logged in user for create listing link
+									if ( $cta_box['url'] === 'add-listing' && ! is_user_logged_in() ) { ?>
+                                        <a class='cta-link' data-open="login-modal"><?php echo $cta_box['link_text']; ?></a>
+									<?php } else {
+										?>
+                                        <a class='cta-link'
+                                           href="<?php echo site_url() . '/' . $cta_box['url']; ?>"><?php echo $cta_box['link_text']; ?></a>
+									<?php } ?>
                                 </div>
                             </div>
 						<?php } ?>
