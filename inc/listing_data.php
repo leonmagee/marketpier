@@ -141,10 +141,25 @@ class listing_data {
 		} else {
 			$this->author_name = $this->author;
 		}
+		/**
+		 * Create listing agent data from author data?
+		 */
+		$this->listing_agent_name = $this->author_name;
+		if ( $company = get_user_meta( $this->author_id, 'company', true ) ) {
+			$this->listing_office_name = $company;
+		}
+		if ( $agent_phone = get_user_meta( $this->author_id, 'phone_number', true ) ) {
+			$this->listing_agent_phone = $agent_phone;
+		}
+//		public $listing_agent_name;
+//		public $listing_agent_phone;
+//		public $listing_office_name;
+
+
 		//get the listing date as post date
 		$this->listing_date = get_the_date( 'n/j/Y' );
 		$this->last_updated = get_the_modified_date( 'n/j/Y' );
-		$post_date = get_the_date( 'U' );
+		$post_date          = get_the_date( 'U' );
 		//$post_date = get_the_date( 'U', true ); // for GMT
 		$current_date          = time();
 		$days_passed_timestamp = $current_date - $post_date;
