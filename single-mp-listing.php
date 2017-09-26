@@ -23,13 +23,10 @@ if ( $request_details[2] == 'idx' ) {
 	$market     = $request_details[3];
 	if ( $status === 'sold' ) {
 		$sold_single = true;
-		//die('true!!!');
 	} else {
 		$sold_single = false;
 	}
-	//var_dump( $mls_number, $sold_single, $market );
 	$listing_data->listing_data_from_IDX( $mls_number, $sold_single, $market );
-	//var_dump( $listing_data );
 } else {
 	$listing_data->listing_data_from_WP();
 }
@@ -350,39 +347,37 @@ if ( $request_details[2] == 'idx' ) {
             <div class="listing-agent-attribution-wrap">
 				<?php if ( $listing_agent_name = $listing_data->listing_agent_name ) { ?>
                     <div class="listing-agent-attribution">
-                        <div class="title-block">Listing Agent</div>
+                        <div class="title-block">Listing Provided By</div>
                         <div class="listing-agent-attribution-inner-wrap">
-                            <div class="listing-agent-item"><span>Name:</span>
-                                <div><?php echo $listing_agent_name; ?></div>
+                            <div class="listing-agent-item agent-name">
+								<?php echo $listing_agent_name; ?>
                             </div>
+							<?php if ( $listing_office_name = $listing_data->listing_office_name ) { ?>
+                                <div class="listing-agent-item office-name">
+									<?php echo $listing_office_name; ?>
+                                </div>
+							<?php } ?>
 							<?php if ( $listing_agent_phone = $listing_data->listing_agent_phone ) { ?>
-                                <div class="listing-agent-item"><span>Phone:</span>
-                                    <div><?php echo $listing_agent_phone; ?></div>
+                                <div class="listing-agent-item">
+									<?php echo $listing_agent_phone; ?>
                                 </div>
 							<?php } ?>
-							<?php if ( $listing_agent_id = $listing_data->listing_agent_id ) { ?>
-                                <div class="listing-agent-item"><span>ID:</span>
-                                    <div>#<?php echo $listing_agent_id; ?></div>
-                                </div>
-							<?php } ?>
-                        </div>
-                    </div>
-				<?php } ?>
-				<?php if ( $listing_office_name = $listing_data->listing_office_name ) { ?>
-                    <div class="listing-agent-attribution">
-                        <div class="title-block">Listing Office</div>
-                        <div class="listing-agent-attribution-inner-wrap">
-                            <div class="listing-agent-item"><span>Name:</span>
-                                <div><?php echo $listing_office_name; ?></div>
-                            </div>
 							<?php if ( $listing_office_phone = $listing_data->listing_office_phone ) { ?>
-                                <div class="listing-agent-item"><span>Phone:</span>
-                                    <div><?php echo $listing_office_phone; ?></div>
+                                <div class="listing-agent-item">
+									<?php echo $listing_office_phone; ?>
                                 </div>
 							<?php } ?>
-							<?php if ( $listing_office_id = $listing_data->listing_office_id ) { ?>
-                                <div class="listing-agent-item"><span>ID:</span>
-                                    <div>#<?php echo $listing_office_id; ?></div>
+							<?php if ( ( $listing_agent_id = $listing_data->listing_agent_id ) && ( $listing_office_id = $listing_data->listing_office_id ) ) { ?>
+                                <div class="listing-agent-item">
+									<?php echo $listing_agent_id . ' / ' . $listing_office_id; ?>
+                                </div>
+							<?php } elseif ( $listing_agent_id = $listing_data->listing_agent_id ) { ?>
+                                <div class="listing-agent-item">
+									<?php echo $listing_agent_id; ?>
+                                </div>
+							<?php } elseif ( $listing_office_id = $listing_data->listing_office_id ) { ?>
+                                <div class="listing-agent-item">
+									<?php echo $listing_office_id; ?>
                                 </div>
 							<?php } ?>
                         </div>
@@ -548,7 +543,6 @@ if ( $request_details[2] == 'idx' ) {
                     <input type="submit" class="submit" name="Contact Agent" value="Contact Agent"/>
                 </form>
             </div>
-            <!--            <div class="pushbottom"></div>-->
         </div>
 
         <div class="google-map-wrapper">
@@ -567,12 +561,8 @@ if ( $request_details[2] == 'idx' ) {
     </div>
 
 <?php if ( $listing_market = $listing_data->market ) {
-	// helper function to get disclaimer
-	$disclaimer = get_disclaimer( $listing_market );
-
-	?>
+	$disclaimer = get_disclaimer( $listing_market ); ?>
     <div class="disclaimer-wrapper"><?php echo $disclaimer; ?></div>
-<?php } ?>
+<?php }
 
-<?php
 get_footer();

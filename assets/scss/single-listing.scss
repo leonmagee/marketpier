@@ -519,14 +519,21 @@ h5.section-title {
     }
     .listing-agent-item {
       padding: 3px 15px;
-      display: flex;
-      span {
-        color: #777;
-        margin-right: 10px;
-        width: 100px;
-        text-align: right;
-        flex: 0 1 18%;
+      &.agent-name {
+        font-size: 14px;
+        font-weight: 600;
       }
+      &.office-name {
+        font-size: 14px;
+      }
+      //display: flex;
+      //span {
+      //  color: #777;
+      //  margin-right: 10px;
+      //  width: 100px;
+      //  text-align: right;
+      //  flex: 0 1 18%;
+      //}
     }
   }
 }
