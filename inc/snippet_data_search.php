@@ -2,15 +2,10 @@
 
 /**
  * Class snippet_data_search
- *
- * Returns data for snippets
- * Handles form submission - just for WordPress
- * @todo make separate method? to query data for Slipstream API - you will want to be searching them both at once
- * @todo and returning the WordPress data first.
  */
 class snippet_data_search {
 	public $market;
-	public $total_results; // @todo add up WP and IDX search?
+	public $total_results;
 	public $total_wp_results;
 	public $page_number;
 	public $page_size;
@@ -29,7 +24,7 @@ class snippet_data_search {
 	public $lot_size_min;
 	public $days_on_market;
 	public $author_id;
-	public $status_all; // @todo is this needed? - fix to show all listings on author.php
+	public $status_all;
 	public $all_keys;
 
 	public function __construct( $author_id = false, $status_all = false ) {
@@ -58,14 +53,17 @@ class snippet_data_search {
 		} else {
 			$this->page_number = 1;
 		}
-		//$this->market = 'sandicor';
-		$this->market    = 'crmls';
+		/**
+		 * Set Default Market
+		 */
+		$this->market = 'crmls';
+		/**
+		 * Set Page Size
+		 */
 		$this->page_size = 500;
-		//$this->page_size = 10;
-		//$this->page_size = 3;
 
 		/**
-		 * Here you can process the WP search and then the IDX search
+		 * Process the WP search and then the IDX search (if it's not an author page)
 		 */
 		$this->process_wp_search();
 
@@ -106,7 +104,6 @@ class snippet_data_search {
 				);
 			}
 		}
-
 		if ( $status = $this->status ) {
 			$meta_search_array[] = array(
 				'key'   => 'listing_status',
@@ -120,7 +117,6 @@ class snippet_data_search {
 				);
 			}
 		}
-
 		if ( $property_type = $this->property_type ) {
 			if ( $property_type !== 'all_property_types' ) {
 				$meta_search_array[] = array(
@@ -195,7 +191,6 @@ class snippet_data_search {
 				'type'    => 'NUMERIC'
 			);
 		}
-
 		if ( $days_on_market = $this->days_on_market ) {
 			$date_query = array(
 				'column' => 'post_date',
@@ -204,7 +199,6 @@ class snippet_data_search {
 		} else {
 			$date_query = null;
 		}
-
 		$snippet_objects        = array();
 		$map_data_array_src     = array();
 		$count_args             = array(
@@ -218,13 +212,7 @@ class snippet_data_search {
 		$this->total_results    = intval( $listing_query_count->found_posts );
 		$this->total_wp_results = $this->total_results;
 
-//		$meta_search_array[] = array(
-//			'meta_key' => 'marketpier_listing_type',
-//			'orderby'  => 'meta_value',
-//			'order'    => 'DESC'
-//		);
-
-		$args = array(
+		$args          = array(
 			'post_type'      => 'mp-listing',
 			'author'         => $this->author_id,
 			'meta_query'     => $meta_search_array,
@@ -237,7 +225,6 @@ class snippet_data_search {
 				'date'       => 'DESC'
 			),
 		);
-		//debug_dump( $args );
 		$listing_query = new WP_Query( $args );
 
 		while ( $listing_query->have_posts() ) {
@@ -409,15 +396,12 @@ class snippet_data_search {
 			if ( $property_type !== 'all_property_types' ) {
 
 				$parameters['property_type'] = '&propertyType=' . get_key( $property_type_data, $this->market, $property_type );
-				//debug_dump( $parameters['property_type'] );
-
 			}
 		}
 
 		if ( $lot_size_min = $this->lot_size_min ) {
 			$parameters['lot_size'] = $lot_size_min;
 		}
-
 
 		$slipstream_token_query = new get_slipstream_token();
 		$listing_page_size      = $this->page_size;

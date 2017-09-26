@@ -1,14 +1,7 @@
 <?php
 
 /**
- * Class api_listing_search_new
- * This should really just be a method inside the search class that I already have.
- * I need to read through this and see exactly what it does. Then I can tweak out a method to just populate the fields that I
- * already have. For the other class, I need to break apart things that are specific for WP for not specific. Any functionality
- * that is manipulating the data after having been retrieved needs to be abstracted to a different method.
- *
- * @todo I broke this for single listngs when I made the changes for the searh.. there needs to be a conditional in here somewhere
- * when this is for snippets vs. for a single listing?
+ * Class api_listing_search
  */
 class api_listing_search {
 
@@ -21,7 +14,6 @@ class api_listing_search {
 	public $page_size;
 	public $network_error;
 	public $mls_number;
-	//public $listing_type;
 	public $wp_listing_count;
 	public $transient_name;
 	public $is_search;
@@ -41,7 +33,6 @@ class api_listing_search {
 		$this->is_search              = $is_search;
 		$this->sold_single            = $sold_single;
 		$this->default_property_types = $default_property_types;
-		debug_dump( $this->market );
 	}
 
 	public function search_listings( $parameters = null, $page_number = 1 ) {
@@ -74,19 +65,9 @@ class api_listing_search {
 		if ( $status !== 'sold' ) {
 			if ( $listing_property_type = $parameters['property_type'] ) {
 				$listing_type_string = $listing_property_type;
-				debug_dump( $listing_type_string );
-				/**
-				 * @todo if the property type here returns 'no-idx' then we need to return no results.
-				 */
 			} else {
 				if ( $this->is_search ) {
-					//$listing_type_string = '&listingType=Commercial';
-					/**
-					 * @todo This needs to pull from theme settings too? in one place? passed as parameter to this class?
-					 */
-					//$listing_type_string = '&propertyType=Warehouse|Heavy Mfg|Light Mfg|Com-BusOp|Res Income 2-4 Units|Com-Res Income|Com-MobHmPark|Office|Retail|Com-Hotel Motel|Lots/Land|Other/Remarks|Mixed Usage';
 					$listing_type_string = $this->default_property_types;
-					debug_dump( $listing_type_string );
 				}
 			}
 		}
@@ -167,10 +148,7 @@ class api_listing_search {
 		$this->transient_name = str_replace( ' ', '', $transient_name_string );
 
 		$count_listings_trans = 'n_' . $this->transient_name;
-		//var_dump( 'trans name 1?' );
-		//var_dump( $count_listings_trans );
-		$total_num_listings = get_transient( $count_listings_trans );
-		//var_dump( $total_num_listings );
+		$total_num_listings   = get_transient( $count_listings_trans );
 
 		if ( $this->is_search ) {
 			$idx_listings_needed = idx_listings_page_size(
@@ -179,29 +157,17 @@ class api_listing_search {
 				$page_number,
 				$total_num_listings
 			);
-			debug_dump( 'IDX NEEDED', $idx_listings_needed );
-			//var_dump( 'IDX Needed', $idx_listings_needed );
 
 			$page_number = idx_listings_current_page( $this->page_size, $this->wp_listing_count, $page_number );
-			//var_dump( 'IDX Page Number', $page_number );
 		}
 
 		if ( $status === 'sold' ) {
 			$url = 'https://slipstream.homejunction.com/ws/sales/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $sold_in_last_string . '&pageNumber=' . $page_number;
 		} else {
 			$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $days_on_market_string . $lot_size_string . '&pageNumber=' . $page_number . '&sortField=daysOnMarket';
-
-			//$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . $id_string;
-			debug_dump( $url );
 		}
 
 		$listings = wp_remote_get( $url, array( 'headers' => array( 'HJI-Slipstream-Token' => $this->token ) ) );
-
-		/**
-		 * data will need to be accessed differently if these are sold results
-		 */
-		//var_dump( $listings );
-
 
 		if ( $listings->errors['http_request_failed'] ) {
 
@@ -209,57 +175,29 @@ class api_listing_search {
 
 		} else {
 			$listing_data = json_decode( $listings['body'] );
-			//var_dump( $listing_data );
-
-			/**
-			 * I need a big conditional here to check to see if this is a snippet search or a single listing...
-			 *
-			 */
 
 			if ( $this->is_search ) {
-//				$this->transient_name = 'ex-' . $this->market . $listing_type_string . $this->page_size . $status_string . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $listing_date_string;
 				if ( $idx_listings_needed ) {
-					//$number_results_returned = count( $listing_data->result->listings );
 					$number_results_returned = count( $listing_data->result->$active_sold_key );
-					//var_dump( $listing_data->result->listings );
-					//var_dump( 'count results: ', $number_results_returned );
-					/**
-					 * I need to remove two items here.
-					 * @todo how to tell if this is one of the last two pages?
-					 * maybe simply check to see if the returned IDX results are less than the page size, and if they are, then
-					 * we can paste the transient back on...
-					 */
 					if ( $number_results_returned > $idx_listings_needed ) {
 						/**
 						 * Store extras in transient
 						 */
-						$extra_amount = ( $number_results_returned - $idx_listings_needed );
-						//var_dump( 'extra: ', $extra_amount );
-
-						//var_dump( $this->transient_name );
+						$extra_amount       = ( $number_results_returned - $idx_listings_needed );
 						$save_listing_array = array();
 
 						for ( $x = 0; $x < $extra_amount; ++ $x ) {
-							//$save_listing_array[] = array_pop( $listing_data->result->listings );
 							$save_listing_array[] = array_pop( $listing_data->result->$active_sold_key );
 						}
 						$extra_listings_serial = serialize( $save_listing_array );
 						set_transient( $this->transient_name, $extra_listings_serial, 7200 );
-						//var_dump( $save_listing_array );
-						//$this->search_result = $listing_data->result->listings;
 
 					} elseif ( $number_results_returned < $idx_listings_needed ) {
 
 						$transient_listings_needed = ( $idx_listings_needed - $number_results_returned );
-						//var_dump( 'trans needed: ' . $transient_listings_needed );
 
-						//var_dump( 'this is happening!' );
 						/**
-						 * @todo I can do math here to see how many we need?
 						 * here we get the transient data.
-						 * Here we need to deal with situations where the number of extra IDX listings falls to two pages,
-						 * in this case I need to pop off the required items from the transient (data should aways be retrieved
-						 * like this, and then if the transient array still exists you can re-save it.
 						 */
 						$extra_data_serial = get_transient( $this->transient_name );
 						if ( $extra_data_serial ) {
@@ -271,62 +209,38 @@ class api_listing_search {
 
 							if ( $extra_data ) {
 								$extra_listings_serial = serialize( $extra_data );
-								// @todo resave transient with less data...
 								set_transient( $this->transient_name, $extra_listings_serial, 7200 );
 							}
 
-							//$listing_data->result->listings = array_merge( $listing_data->result->listings, $new_data_array );
 							$listing_data->result->$active_sold_key = array_merge( $listing_data->result->$active_sold_key, $new_data_array );
 						}
 					}
 
-					//$this->search_result = $listing_data->result->listings;
 					$this->search_result = $listing_data->result->$active_sold_key;
 				} elseif ( $page_number > 1 ) {
-					/**
-					 * Code repeated here, should be more try
-					 */
 
 					$extra_data_serial = get_transient( $this->transient_name );
-					if ( $extra_data_serial ) { // here we can assume this will all go on one page
-						$extra_data = unserialize( $extra_data_serial );
-						//var_dump( $extra_data );
-//						$new_data_array = array();
-//						for ( $x = 0; $x < $transient_listings_needed; ++ $x ) {
-//							$new_data_array[] = array_pop( $extra_data );
-//						}
-
-//						if ( $extra_data ) {
-//							$extra_listings_serial = serialize( $extra_data );
-//							// @todo resave transient with less data...
-//							set_transient( $this->transient_name, $extra_listings_serial, 60000 );
-//						}
-
+					if ( $extra_data_serial ) {
+						/**
+						 * Here we can assume this will all go on one page
+						 */
+						$extra_data                             = unserialize( $extra_data_serial );
 						$listing_data->result->$active_sold_key = $extra_data;
 					}
-					//$this->search_result = $listing_data->result->listings;/
 					$this->search_result = $listing_data->result->$active_sold_key;
 				}
 			} else {
 				/**
 				 * Just a single listing
-				 * @todo this needs to change when it's a single 'sales' listing.
 				 */
-				//var_dump( $listing_data->result );
 				$this->search_result = $listing_data->result->$active_sold_key;
 			}
 
-			//$count_listings_trans = 'n_' . $this->transient_name;
 			if ( ! get_transient( $count_listings_trans ) ) {
-//				var_dump( $listing_data->result->total );
-//				var_dump( $count_listings_trans );
 				set_transient( $count_listings_trans, $listing_data->result->total, 7200 );
 			}
 
 			$this->total_listings = $listing_data->result->total;
-			/**
-			 * Here we need to save the total number of listings into a transient
-			 */
 		}
 	}
 }

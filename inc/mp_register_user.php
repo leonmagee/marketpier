@@ -37,7 +37,6 @@ class mp_register_user {
 
 	private function register_user() {
 
-		//$this->user_id = register_new_user( $this->username, $this->email );
 		$this->user_id = wp_create_user( $this->username, $this->password, $this->email );
 
 		wp_update_user( array(
@@ -54,7 +53,6 @@ class mp_register_user {
 	public function process_registration_form() {
 		if ( isset( $_POST['username'] ) ) {
 			$this->register_user();
-			//wp_redirect( site_url() .'/log-in' ); //doesn't work with ajax
 		}
 	}
 
