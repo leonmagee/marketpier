@@ -254,4 +254,4 @@ function restrict_user_access() {
 //}
 // @todo this needs to work, possibly messing with adding a new listing???
 // @todo this was breaking adding new listing on the live site?
-add_action( 'init', 'restrict_user_access' );
+//add_action( 'init', 'restrict_user_access' );
