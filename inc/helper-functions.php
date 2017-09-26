@@ -244,5 +244,5 @@ function restrict_user_access() {
 		exit;
 	}
 }
-
-add_action( 'init', 'restrict_user_access' );
+// @todo this needs to work, possibly messing with adding a new listing???
+//add_action( 'init', 'restrict_user_access' );
