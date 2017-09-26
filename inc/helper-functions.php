@@ -237,7 +237,7 @@ function get_disclaimer( $market ) {
  * Restrict wp-admin to administrators
  */
 function restrict_user_access() {
-	if ( is_admin() && ! current_user_can( 'administrator' ) &&
+	if ( is_user_logged_in() && is_admin() && ! current_user_can( 'administrator' ) &&
 	     ! ( defined( 'DOING_AJAX' ) && DOING_AJAX )
 	) {
 		wp_redirect( site_url() );
