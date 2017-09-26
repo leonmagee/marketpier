@@ -237,12 +237,21 @@ function get_disclaimer( $market ) {
  * Restrict wp-admin to administrators
  */
 function restrict_user_access() {
-	if ( is_user_logged_in() && is_admin() && ! current_user_can( 'administrator' ) &&
-	     ! ( defined( 'DOING_AJAX' ) && DOING_AJAX )
+	if ( is_user_logged_in() && is_admin() && ( ! current_user_can( 'administrator' ) ) &&
+	     ( ! ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) && ( '/wp-admin/admin-ajax.php' != $_SERVER['PHP_SELF'] )
 	) {
 		wp_redirect( site_url() );
 		exit;
 	}
 }
+
+//
+//function redirect_non_admin_users() {
+//	if ( ! current_user_can( 'manage_options' ) && '/wp-admin/admin-ajax.php' != $_SERVER['PHP_SELF'] ) {
+//		wp_redirect( home_url() );
+//		exit;
+//	}
+//}
 // @todo this needs to work, possibly messing with adding a new listing???
-//add_action( 'init', 'restrict_user_access' );
+// @todo this was breaking adding new listing on the live site?
+add_action( 'init', 'restrict_user_access' );
