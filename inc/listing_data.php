@@ -151,10 +151,6 @@ class listing_data {
 		if ( $agent_phone = get_user_meta( $this->author_id, 'phone_number', true ) ) {
 			$this->listing_agent_phone = $agent_phone;
 		}
-//		public $listing_agent_name;
-//		public $listing_agent_phone;
-//		public $listing_office_name;
-
 
 		//get the listing date as post date
 		$this->listing_date = get_the_date( 'n/j/Y' );
