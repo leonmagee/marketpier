@@ -63,6 +63,9 @@ function shorten_string( $text, $length = 150 ) {
 
 }
 
+/**
+ * @todo Add checks for these to see if it's admin ajax happening...
+ */
 function logged_in_check_redirect() {
 	if ( ! is_user_logged_in() ) {
 		wp_redirect( site_url() );

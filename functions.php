@@ -392,8 +392,8 @@ function save_post_handler_acf_listing( $post_id ) {
 	}
 }
 
-add_action( 'acf/save_post', 'save_post_handler_acf_listing', 20 );
-
+//add_action( 'acf/save_post', 'save_post_handler_acf_listing', 20 );
+var_dump( 'acf save function disabled' );
 /**
  * Disable ACF Fields
  *

@@ -125,7 +125,7 @@
 
             if (!current_value) {
                 if (selector.length) {
-                    console.log(selector);
+                    //console.log(selector);
                     selector.addClass('validation-error');
                     validation_succeeds = false;
                     val_message.show();
