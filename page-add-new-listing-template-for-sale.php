@@ -5,7 +5,7 @@
  * @package MarketPier
  */
 
-logged_in_check_redirect();
+//logged_in_check_redirect();
 acf_form_head();
 get_header(); ?>
 

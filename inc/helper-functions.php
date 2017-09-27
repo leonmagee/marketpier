@@ -245,13 +245,5 @@ function restrict_user_access() {
 	}
 }
 
-//
-//function redirect_non_admin_users() {
-//	if ( ! current_user_can( 'manage_options' ) && '/wp-admin/admin-ajax.php' != $_SERVER['PHP_SELF'] ) {
-//		wp_redirect( home_url() );
-//		exit;
-//	}
-//}
-// @todo this needs to work, possibly messing with adding a new listing???
 // @todo this was breaking adding new listing on the live site?
 //add_action( 'init', 'restrict_user_access' );
