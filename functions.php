@@ -308,6 +308,9 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 
 add_action( 'init', 'create_agent_role' );
 
+/**
+ * @todo some of these capabilities probably aren't necessary, and some are probably necessary.
+ */
 function create_agent_role() {
 
 	add_role( 'agent', 'Agent' );
@@ -320,7 +323,7 @@ function create_agent_role() {
 	$role->add_cap( 'edit_posts' );
 	$role->add_cap( 'edit_published_posts' );
 	$role->add_cap( 'edit_private_posts' );
-	$role->add_cap( 'edit_others_posts' );
+	$role->add_cap( 'edit_others_posts' ); // not sure if this is good
 	$role->add_cap( 'publish_pages' );
 	$role->add_cap( 'edit_pages' );
 	$role->add_cap( 'edit_others_pages' );
@@ -328,6 +331,38 @@ function create_agent_role() {
 	$role->add_cap( 'upload_files' );
 	$role->add_cap( 'unfiltered_upload' );
 	$role->add_cap( 'level_1' );
+    //edit_dashboard ???
+    //edit_theme_options ???
+    //export
+    //import
+    //customize
+
+
+//activate_plugins
+//delete_others_pages
+//delete_others_posts
+//delete_pages
+//delete_private_pages
+//delete_private_posts
+//delete_published_pages
+//edit_dashboard
+//edit_private_pages
+//edit_published_pages
+//edit_theme_options
+//export
+//import
+//list_users
+//manage_categories
+//manage_links
+//manage_options
+//moderate_comments
+//promote_users
+//read_private_pages
+//read_private_posts
+//remove_users
+//switch_themes
+//customize
+//delete_site
 }
 
 
