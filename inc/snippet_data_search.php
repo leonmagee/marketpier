@@ -61,6 +61,7 @@ class snippet_data_search {
 		 * Set Page Size
 		 */
 		$this->page_size = 500;
+		//$this->page_size = 10;
 
 		/**
 		 * Process the WP search and then the IDX search (if it's not an author page)

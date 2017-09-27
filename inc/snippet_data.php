@@ -132,31 +132,62 @@ class snippet_data {
 		} else {
 			$this->for_sale_for_lease = 'for_sale';
 		}
-
-		$this->listing_id  = $listing->id; // mls number
-		$this->status      = $listing->status;
+		if ( isset( $listing->id ) ) {
+			$this->listing_id = $listing->id; // mls number
+		}
+		if ( isset( $listing->status ) ) {
+			$this->status = $listing->status;
+		}
 		$this->listing_url = site_url() . '/listing/idx/' . $this->market . '/' . strtolower( $this->status ) . '/' . $this->listing_id;
 		//var_dump( $this->listing_url );
-		$this->price          = $listing->listPrice;
-		$this->address        = $listing->address->deliveryLine;
-		$this->city           = $listing->address->city;
-		$this->state          = $listing->address->state;
-		$this->zip            = $listing->address->zip;
-		$this->type           = $listing_type;
-		$this->building_size  = $listing->size;
-		$this->days_on_market = $listing->daysOnMarket;
-		$this->lat            = $listing->coordinates->latitude;
-		$this->long           = $listing->coordinates->longitude;
-		$cap_rate_field       = get_key( $extended_fields, $listing->market, 'cap_rate' );
+		if ( isset( $listing->listPrice ) ) {
+			$this->price = $listing->listPrice;
+		}
+		if ( isset( $listing->address->deliveryLine ) ) {
+			$this->address = $listing->address->deliveryLine;
+		}
+		if ( isset( $listing->address->city ) ) {
+			$this->city = $listing->address->city;
+		}
+		if ( isset( $listing->address->state ) ) {
+			$this->state = $listing->address->state;
+		}
+		if ( isset( $listing->address->zip ) ) {
+			$this->zip = $listing->address->zip;
+		}
+		if ( $listing_type ) {
+			$this->type = $listing_type;
+		}
+		if ( isset( $listing->size ) ) {
+			$this->building_size = $listing->size;
+		}
+		if ( isset( $listing->daysOnMarket ) ) {
+			$this->days_on_market = $listing->daysOnMarket;
+		}
+		if ( isset( $listing->coordinates->latitude ) ) {
+			$this->lat = $listing->coordinates->latitude;
+		}
+		if ( isset( $listing->coordinates->longitude ) ) {
+			$this->long = $listing->coordinates->longitude;
+		}
+		$cap_rate_field = get_key( $extended_fields, $listing->market, 'cap_rate' );
 		if ( $cap_rate_field ) {
-			$this->cap_rate = $listing->$cap_rate_field; // cap rate
+			if ( isset( $listing->$cap_rate_field ) ) {
+				$this->cap_rate = $listing->$cap_rate_field; // cap rate
+			}
 		}
 		$number_of_units_field = get_key( $extended_fields, $listing->market, 'number_of_units' );
 		if ( $number_of_units_field ) {
-			$this->number_of_units = $listing->$number_of_units_field; // number of units
+			if ( isset( $listing->$number_of_units_field ) ) {
+				$this->number_of_units = $listing->$number_of_units_field; // number of units
+			}
 		}
-		$this->lot_size = $listing->lotSize->sqft; // @todo use acres if > 1 - can process this on front end?
-		$this->standardize_snippet_image_IDX( $listing->images );
+		if ( isset( $listing->lotSize->sqft ) ) {
+			$this->lot_size = $listing->lotSize->sqft; // @todo use acres if > 1 - can process this on front end?
+		}
+		if ( isset( $listing->images ) ) {
+			$this->standardize_snippet_image_IDX( $listing->images );
+		}
 		$this->favorite_listing();
 		$this->snippet_data_update();
 	}

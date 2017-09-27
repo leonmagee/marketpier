@@ -63,8 +63,10 @@ class api_listing_search {
 		 * Property Type (Listing Type Not required if we are always specifying a property type)
 		 */
 		if ( $status !== 'sold' ) {
-			if ( $listing_property_type = $parameters['property_type'] ) {
-				$listing_type_string = $listing_property_type;
+			if ( isset( $parameters['property_type'] ) ) {
+				if ( $listing_property_type = $parameters['property_type'] ) {
+					$listing_type_string = $listing_property_type;
+				}
 			} else {
 				if ( $this->is_search ) {
 					$listing_type_string = $this->default_property_types;
@@ -80,43 +82,45 @@ class api_listing_search {
 		}
 		if ( $active_sold_key === 'sales' ) {
 
-			if ( $zip = $parameters['zip'] ) {
-				$zip_string = '&zip=' . $zip;
+			if ( isset( $parameters['zip'] ) ) {
+				$zip_string = '&zip=' . $parameters['zip'];
 			}
-			if ( $city = $parameters['city'] ) {
-				$city_string = '&city=' . $city;
+			if ( isset( $parameters['city'] ) ) {
+				$city_string = '&city=' . $parameters['city'];
 			}
 		} else {
-
-			if ( $zip = $parameters['zip'] ) {
-				$zip_string = '&address.zip=' . $zip;
+			if ( isset( $parameters['zip'] ) ) {
+				$zip_string = '&address.zip=' . $parameters['zip'];
 			}
-			if ( $city = $parameters['city'] ) {
-				$city_string = '&address.city=' . $city;
+			if ( isset( $parameters['city'] ) ) {
+				$city_string = '&address.city=' . $parameters['city'];
 			}
 		}
-		if ( $county = $parameters['county'] ) {
-			$county_string = '&county=' . $county;
+		if ( isset( $parameters['county'] ) ) {
+			$county_string = '&county=' . $parameters['county'];
 		}
-
-		if ( $size = $parameters['size'] ) {
-			$size_string = '&size=' . $size;
+		if ( isset( $parameters['size'] ) ) {
+			$size_string = '&size=' . $parameters['size'];
 		}
-		if ( $lot_size = $parameters['lot_size'] ) {
-			$lot_size_string = '&lotSize.sqft=' . $lot_size . ':1000000000000';
+		if ( isset( $parameters['lot_size'] ) ) {
+			$lot_size_string = '&lotSize.sqft=' . $parameters['lot_size'] . ':1000000000000';
 		}
-		if ( $cap_rate_range = $parameters['cap_rate'] ) {
+		if ( isset( $parameters['cap_rate'] ) ) {
 			$cap_rate_field  = get_key( $extended_fields, $this->market, 'cap_rate' );
-			$cap_rate_string = '&' . $cap_rate_field . '=' . $cap_rate_range;
+			$cap_rate_string = '&' . $cap_rate_field . '=' . $parameters['cap_rate'];
 		}
-		if ( ( $list_price = $parameters['price_range'] ) && ( $parameters['for_sale_for_lease'] !== 'for_lease' ) ) {
-			$list_price_string = '&listPrice=' . $list_price;
+		if ( isset( $parameters['price_range'] ) && isset( $parameters['for_sale_for_lease'] ) ) {
+			if ( ( $list_price = $parameters['price_range'] ) && ( $parameters['for_sale_for_lease'] !== 'for_lease' ) ) {
+				$list_price_string = '&listPrice=' . $list_price;
+			}
 		} else {
-			if ( $for_sale_for_lease = $parameters['for_sale_for_lease'] ) {
-				if ( $for_sale_for_lease === 'for_lease' ) {
-					$list_price_string = '&listPrice=0:100000';
-				} else {
-					$list_price_string = '&listPrice=99999:1000000000000';
+			if ( isset( $parameters['for_sale_for_lease'] ) ) {
+				if ( $for_sale_for_lease = $parameters['for_sale_for_lease'] ) {
+					if ( $for_sale_for_lease === 'for_lease' ) {
+						$list_price_string = '&listPrice=0:100000';
+					} else {
+						$list_price_string = '&listPrice=99999:1000000000000';
+					}
 				}
 			} else {
 				if ( $this->is_search ) {
@@ -124,21 +128,21 @@ class api_listing_search {
 				}
 			}
 		}
-		if ( $days_on_market = $parameters['days_on_market'] ) {
+		if ( isset( $parameters['days_on_market'] ) ) {
 			$current_time          = time();
-			$days_seconds          = $current_time - ( $days_on_market * 60 * 60 * 24 );
+			$days_seconds          = $current_time - ( $parameters['days_on_market'] * 60 * 60 * 24 );
 			$days_on_market_string = '&listingDate=' . $days_seconds . ':' . $current_time;
 		}
-		if ( $sold_in_last = $parameters['sold_in_last'] ) {
+		if ( isset( $parameters['sold_in_last'] ) ) {
 			$current_time        = time();
-			$days_seconds        = $current_time - ( $sold_in_last * 60 * 60 * 24 );
+			$days_seconds        = $current_time - ( $parameters['sold_in_last'] * 60 * 60 * 24 );
 			$sold_in_last_string = '&saleDate=' . $days_seconds . ':' . $current_time;
 		}
-		if ( $for_sale_for_lease = $parameters['for_sale_for_lease'] ) {
+		if ( isset( $parameters['for_sale_for_lease'] ) ) {
 			/**
 			 * For rental search, max price is $100 - there is no 'rental price', we must filter by listPrice
 			 */
-			if ( $for_sale_for_lease === 'for_lease' ) {
+			if ( $parameters['for_sale_for_lease']  === 'for_lease' ) {
 				$list_price_string = '&listPrice=0:100000';
 			}
 		}

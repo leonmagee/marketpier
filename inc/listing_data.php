@@ -403,7 +403,7 @@ class listing_data {
 			$this->price_per_unit = false;
 		}
 
-		if ( isset( $this->price ) && isset( $this->building_size ) ) {
+		if ( $this->price && $this->building_size ) {
 			$this->price_per_sqft = ( $this->price / $this->building_size );
 		} else {
 			$this->price_per_sqft = false;

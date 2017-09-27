@@ -390,7 +390,7 @@ if ( $request_details[2] == 'idx' ) {
 			/**
 			 * Make sure that any images exist before outputting anything.
 			 */
-			if ( $listing_data->image_gallery[0] ) {
+			if ( isset( $listing_data->image_gallery[0] ) ) {
 				$count_class = 'number-images-' . count( $listing_data->image_gallery );
 				?>
                 <div class="all-images-outer-wrap <?php echo $count_class; ?>">
@@ -432,27 +432,33 @@ if ( $request_details[2] == 'idx' ) {
                                    style="background-image: url(<?php echo $img_src; ?>);">
                                 </a>
 							<?php }
-							if ( $img_src = $listing_data->image_gallery[4]['image'] ) { ?>
-                                <a rel="lightbox"
-                                   href="<?php echo $listing_data->image_gallery[4]['link']; ?>"
-                                   class="image-container-wrap image-5"
-                                   style="background-image: url(<?php echo $img_src; ?>);">
-                                </a>
-							<?php }
-							if ( $img_src = $listing_data->image_gallery[5]['image'] ) { ?>
-                                <a rel="lightbox"
-                                   href="<?php echo $listing_data->image_gallery[5]['link']; ?>"
-                                   class="image-container-wrap image-6"
-                                   style="background-image: url(<?php echo $img_src; ?>);">
-                                </a>
-							<?php }
-							if ( $img_src = $listing_data->image_gallery[6]['image'] ) { ?>
-                                <a rel="lightbox"
-                                   href="<?php echo $listing_data->image_gallery[6]['link']; ?>"
-                                   class="image-container-wrap image-7"
-                                   style="background-image: url(<?php echo $img_src; ?>);">
-                                </a>
-							<?php } ?>
+							if ( isset( $listing_data->image_gallery[4] ) ) {
+								if ( $img_src = $listing_data->image_gallery[4]['image'] ) { ?>
+                                    <a rel="lightbox"
+                                       href="<?php echo $listing_data->image_gallery[4]['link']; ?>"
+                                       class="image-container-wrap image-5"
+                                       style="background-image: url(<?php echo $img_src; ?>);">
+                                    </a>
+								<?php }
+							}
+							if ( isset( $listing_data->image_gallery[5] ) ) {
+								if ( $img_src = $listing_data->image_gallery[5]['image'] ) { ?>
+                                    <a rel="lightbox"
+                                       href="<?php echo $listing_data->image_gallery[5]['link']; ?>"
+                                       class="image-container-wrap image-6"
+                                       style="background-image: url(<?php echo $img_src; ?>);">
+                                    </a>
+								<?php }
+							}
+							if ( isset( $listing_data->image_gallery[6] ) ) {
+								if ( $img_src = $listing_data->image_gallery[6]['image'] ) { ?>
+                                    <a rel="lightbox"
+                                       href="<?php echo $listing_data->image_gallery[6]['link']; ?>"
+                                       class="image-container-wrap image-7"
+                                       style="background-image: url(<?php echo $img_src; ?>);">
+                                    </a>
+								<?php }
+							} ?>
                         </div>
 					<?php } ?>
                 </div>
