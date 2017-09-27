@@ -322,6 +322,7 @@ function create_agent_role() {
 	$role->add_cap( 'delete_published_posts' );
 	$role->add_cap( 'edit_posts' );
 	$role->add_cap( 'edit_published_posts' );
+	$role->add_cap( 'edit_published_pages' );
 	$role->add_cap( 'edit_private_posts' );
 	$role->add_cap( 'edit_others_posts' ); // not sure if this is good
 	$role->add_cap( 'publish_pages' );
