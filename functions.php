@@ -7,6 +7,8 @@
  * @package MarketPier
  */
 
+phpinfo();
+
 /**
  * Constants
  * @todo move to different file
