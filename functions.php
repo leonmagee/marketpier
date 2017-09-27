@@ -7,7 +7,6 @@
  * @package MarketPier
  */
 
-phpinfo();
 
 /**
  * Constants
