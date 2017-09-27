@@ -40,7 +40,6 @@ if ( $background = get_field( 'homepage_background_image', 'option' ) ) {
                             <div class="homepage-cta-boxes-inner">
                                 <div class="cta-inside">
                                     <div class="title-wrap">
-                                        <img src="<?php echo $cta_box['icon']; ?>"/>
                                         <h3>
                                             <a href="<?php echo site_url() . '/' . $cta_box['url']; ?>">
 												<?php echo $cta_box['title']; ?>
