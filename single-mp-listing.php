@@ -403,7 +403,7 @@ if ( $request_details[2] == 'idx' ) {
                             </a>
 						<?php } ?>
                     </div>
-					<?php if ( $listing_data->image_gallery[1] ) { ?>
+					<?php if ( isset( $listing_data->image_gallery[1] ) ) { ?>
                         <div class="image-wrap-outer wrap-2">
 							<?php if ( $img_src = $listing_data->image_gallery[1]['image'] ) { ?>
                                 <a rel="lightbox"
@@ -412,16 +412,18 @@ if ( $request_details[2] == 'idx' ) {
                                    style="background-image: url(<?php echo $img_src; ?>);">
                                 </a>
 							<?php }
-							if ( $img_src = $listing_data->image_gallery[2]['image'] ) { ?>
-                                <a rel="lightbox"
-                                   href="<?php echo $listing_data->image_gallery[2]['link']; ?>"
-                                   class="image-container-wrap image-3"
-                                   style="background-image: url(<?php echo $img_src; ?>);">
-                                </a>
-							<?php } ?>
+							if ( isset( $listing_data->image_gallery[2] ) ) {
+								if ( $img_src = $listing_data->image_gallery[2]['image'] ) { ?>
+                                    <a rel="lightbox"
+                                       href="<?php echo $listing_data->image_gallery[2]['link']; ?>"
+                                       class="image-container-wrap image-3"
+                                       style="background-image: url(<?php echo $img_src; ?>);">
+                                    </a>
+								<?php }
+							} ?>
                         </div>
 					<?php } ?>
-					<?php if ( $listing_data->image_gallery[3] ) { ?>
+					<?php if ( isset( $listing_data->image_gallery[3] ) ) { ?>
                         <div class="image-wrap-outer wrap-3">
 							<?php if ( $img_src = $listing_data->image_gallery[3]['image'] ) { ?>
                                 <a rel="lightbox"

@@ -208,59 +208,125 @@ class listing_data {
 		// @todo what does 'rent' look like? - check api docs for rent data?
 		//$this->rent          = $listing->???
 
-		$this->market               = $listing->market;
-		$this->listing_id           = $mls_number; // @todo test with saving listing? do I need this twice?
-		$this->mls                  = $mls_number;
-		$this->price                = $listing->listPrice;
-		$this->address              = $listing->address->deliveryLine;
-		$this->city                 = $listing->address->city;
-		$this->state                = $listing->address->state;
-		$this->zip                  = $listing->address->zip;
-		$this->neighborhood         = $listing->area;
-		$this->county               = $listing->county;
-		$this->year                 = $listing->yearBuilt;
-		$this->status               = $listing->status;
-		$this->type                 = $listing_type;
-		$this->sub_type             = $listing->propertyType;
-		$this->building_size        = $listing->size;
-		$this->description          = $listing->description;
-		$this->listing_agent_name   = $listing->listingAgent->name;
-		$this->listing_agent_phone  = $listing->listingAgent->phone;
-		$this->listing_agent_id     = $listing->listingAgent->id;
-		$this->listing_office_name  = $listing->listingOffice->name;
-		$this->listing_office_phone = $listing->listingOffice->phone;
-		$this->listing_office_id    = $listing->listingOffice->id;
-		$this->lat                  = $listing->coordinates->latitude;
-		$this->long                 = $listing->coordinates->longitude;
-		$this->last_updated         = date( 'n/j/Y', $listing->lastUpdated );
-		$gross_rent_field           = get_key( $extended_fields, $this->market, 'gross_rent_multiplier' );
+		if ( isset( $listing->market ) ) {
+			$this->market = $listing->market;
+		}
+		if ( $mls_number ) {
+			$this->listing_id = $mls_number;
+			$this->mls        = $mls_number;
+		}
+		if ( isset( $listing->listPrice ) ) {
+			$this->price = $listing->listPrice;
+		}
+		if ( isset( $listing->address->deliveryLine ) ) {
+			$this->address = $listing->address->deliveryLine;
+		}
+		if ( isset( $listing->address->city ) ) {
+			$this->city = $listing->address->city;
+		}
+		if ( isset( $listing->address->state ) ) {
+			$this->state = $listing->address->state;
+		}
+		if ( isset( $listing->address->zip ) ) {
+			$this->zip = $listing->address->zip;
+		}
+		if ( isset( $listing->area ) ) {
+			$this->neighborhood = $listing->area;
+		}
+		if ( isset( $listing->county ) ) {
+			$this->county = $listing->county;
+		}
+		if ( isset( $listing->yearBuilt ) ) {
+			$this->year = $listing->yearBuilt;
+		}
+		if ( isset( $listing->status ) ) {
+			$this->status = $listing->status;
+		}
+		if ( $listing_type ) {
+			$this->type = $listing_type;
+		}
+		if ( isset( $listing->propertyType ) ) {
+			$this->sub_type = $listing->propertyType;
+		}
+		if ( isset( $listing->size ) ) {
+			$this->building_size = $listing->size;
+		}
+		if ( isset( $listing->description ) ) {
+			$this->description = $listing->description;
+		}
+		if ( isset( $listing->listingAgent->name ) ) {
+			$this->listing_agent_name = $listing->listingAgent->name;
+		}
+		if ( isset( $listing->listingAgent->phone ) ) {
+			$this->listing_agent_phone = $listing->listingAgent->phone;
+		}
+		if ( isset( $listing->listingAgent->id ) ) {
+			$this->listing_agent_id = $listing->listingAgent->id;
+		}
+		if ( isset( $listing->listingOffice->name ) ) {
+			$this->listing_office_name = $listing->listingOffice->name;
+		}
+		if ( isset( $listing->listingOffice->phone ) ) {
+			$this->listing_office_phone = $listing->listingOffice->phone;
+		}
+		if ( isset( $listing->listingOffice->id ) ) {
+			$this->listing_office_id = $listing->listingOffice->id;
+		}
+		if ( isset( $listing->coordinates->latitude ) ) {
+			$this->lat = $listing->coordinates->latitude;
+		}
+		if ( isset( $listing->coordinates->longitude ) ) {
+			$this->long = $listing->coordinates->longitude;
+		}
+		if ( isset( $listing->lastUpdated ) ) {
+			$this->last_updated = date( 'n/j/Y', $listing->lastUpdated );
+		}
+		$gross_rent_field = get_key( $extended_fields, $this->market, 'gross_rent_multiplier' );
 		if ( $gross_rent_field ) {
-			$this->gross_rent_multiplier = $listing->$gross_rent_field; // gross rent multiplier
+			if ( isset( $listing->$gross_rent_field ) ) {
+				$this->gross_rent_multiplier = $listing->$gross_rent_field; // gross rent multiplier
+			}
 		}
 		$gross_income_field = get_key( $extended_fields, $this->market, 'gross_operating_income' );
 		if ( $gross_income_field ) {
-			$this->gross_operating_income = $listing->$gross_income_field; // gross operating income
+			if ( isset( $listing->$gross_income_field ) ) {
+				$this->gross_operating_income = $listing->$gross_income_field; // gross operating income
+			}
 		}
 		$op_expenses_field = get_key( $extended_fields, $this->market, 'operating_expenses' );
 		if ( $op_expenses_field ) {
-			$this->operating_expenses = $listing->$op_expenses_field; // operating expenses
+			if ( isset( $listing->$op_expenses_field ) ) {
+				$this->operating_expenses = $listing->$op_expenses_field; // operating expenses
+			}
 		}
-		$this->lot_size = $listing->lotSize->sqft; // @todo use acres if > 1 - can process this on fron end?
-		$apn_id_field   = get_key( $extended_fields, $this->market, 'apn_parcel_id' );
+		if ( isset( $listing->lotSize->sqft ) ) {
+			$this->lot_size = $listing->lotSize->sqft; // @todo use acres if > 1 - can process this on fron end?
+		}
+		$apn_id_field = get_key( $extended_fields, $this->market, 'apn_parcel_id' );
 		if ( $apn_id_field ) {
-			$this->apn_parcel_id = $listing->$apn_id_field;
+			if ( isset( $listing->$apn_id_field ) ) {
+				$this->apn_parcel_id = $listing->$apn_id_field;
+			}
 		}
 		$number_of_units_field = get_key( $extended_fields, $this->market, 'number_of_units' );
 		if ( $number_of_units_field ) {
-			$this->number_of_units = $listing->$number_of_units_field; // number of units
+			if ( isset( $listing->$number_of_units_field ) ) {
+				$this->number_of_units = $listing->$number_of_units_field; // number of units
+			}
 		}
 		$cap_rate_field = get_key( $extended_fields, $this->market, 'cap_rate' );
 		if ( $cap_rate_field ) {
-			$this->cap_rate = $listing->$cap_rate_field; // cap rate
+			if ( isset( $listing->$cap_rate_field ) ) {
+				$this->cap_rate = $listing->$cap_rate_field; // cap rate
+			}
 		}
-		$this->listing_date   = date( 'n/j/Y', $listing->listingDate );
-		$this->days_on_market = $listing->daysOnMarket;
-		if ( $listing->saleDate ) {
+		if ( isset( $listing->listingDate ) ) {
+			$this->listing_date = date( 'n/j/Y', $listing->listingDate );
+		}
+		if ( isset( $listing->daysOnMarket ) ) {
+			$this->days_on_market = $listing->daysOnMarket;
+		}
+		if ( isset( $listing->saleDate ) ) {
 			$this->sale_date = date( 'n/j/Y', $listing->saleDate );
 		}
 
@@ -277,7 +343,7 @@ class listing_data {
 	}
 
 	public function listing_data_update() {
-		if ( $this->property_name ) {
+		if ( isset( $this->property_name ) ) {
 			$this->title = $this->property_name;
 		} else {
 			$this->title = false;
@@ -337,7 +403,7 @@ class listing_data {
 			$this->price_per_unit = false;
 		}
 
-		if ( $this->price && $this->building_size ) {
+		if ( isset( $this->price ) && isset( $this->building_size ) ) {
 			$this->price_per_sqft = ( $this->price / $this->building_size );
 		} else {
 			$this->price_per_sqft = false;

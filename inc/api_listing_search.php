@@ -169,10 +169,11 @@ class api_listing_search {
 
 		$listings = wp_remote_get( $url, array( 'headers' => array( 'HJI-Slipstream-Token' => $this->token ) ) );
 
-		if ( $listings->errors['http_request_failed'] ) {
+		if ( is_object( $listings ) ) {
+			if ( $listings->errors['http_request_failed'] ) {
 
-			$this->network_error = true;
-
+				$this->network_error = true;
+			}
 		} else {
 			$listing_data = json_decode( $listings['body'] );
 
