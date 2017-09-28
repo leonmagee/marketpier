@@ -20,6 +20,8 @@
 
 if ( isset( $_GET['status'] ) ) {
 	$active_sold = $_GET['status'];
+} else {
+	$active_sold = 'active';
 }
 
 ?>
