@@ -94,7 +94,8 @@
 		 *  Button Modals
 		 */
 		$log_in_modal = new mp_output_modal_shortcode(
-			'[caldera_form id="CF56d5c71c8a908"]',
+		//'[caldera_form id="CF56d5c71c8a908"]',
+			'[clean-login]',
 			'login-modal',
 			'Log In',
 			true
