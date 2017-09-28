@@ -348,28 +348,10 @@ if ( $request_details[2] == 'idx' ) {
                                 <div class="listing-agent-item office-name">
 									<?php echo $listing_office_name; ?>
                                 </div>
-							<?php } ?>
-							<?php if ( $listing_agent_phone = $listing_data->listing_agent_phone ) { ?>
+							<?php }
+							if ( $listing_agent_id = $listing_data->listing_agent_id ) { ?>
                                 <div class="listing-agent-item">
-									<?php echo $listing_agent_phone; ?>
-                                </div>
-							<?php } ?>
-							<?php if ( $listing_office_phone = $listing_data->listing_office_phone ) { ?>
-                                <div class="listing-agent-item">
-									<?php echo $listing_office_phone; ?>
-                                </div>
-							<?php } ?>
-							<?php if ( ( $listing_agent_id = $listing_data->listing_agent_id ) && ( $listing_office_id = $listing_data->listing_office_id ) ) { ?>
-                                <div class="listing-agent-item">
-									<?php echo $listing_agent_id . ' / ' . $listing_office_id; ?>
-                                </div>
-							<?php } elseif ( $listing_agent_id = $listing_data->listing_agent_id ) { ?>
-                                <div class="listing-agent-item">
-									<?php echo $listing_agent_id; ?>
-                                </div>
-							<?php } elseif ( $listing_office_id = $listing_data->listing_office_id ) { ?>
-                                <div class="listing-agent-item">
-									<?php echo $listing_office_id; ?>
+									BRE# <?php echo $listing_agent_id; ?>
                                 </div>
 							<?php } ?>
                         </div>

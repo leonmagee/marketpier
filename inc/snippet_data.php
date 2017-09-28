@@ -124,7 +124,10 @@ class snippet_data {
 
 		$extended_fields = get_field( 'home_junction_extended_fields', 'option' );
 
-		$listing_type = $listing->listingType;
+		$listing_type = null;
+		if ( isset( $listing->listingType ) ) {
+			$listing_type = $listing->listingType;
+		}
 		if ( $listing_type == 'residential' ) {
 			$this->for_sale_for_lease = 'for_sale';
 		} elseif ( $listing_type == 'rental' ) {
