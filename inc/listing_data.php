@@ -110,9 +110,18 @@ class listing_data {
 		$this->for_sale_for_lease = get_field( 'listing_for_sale_or_for_lease' );
 //		$this->lat                  = get_field( 'listing_latitude' );
 //		$this->long                 = get_field( 'listing_longitude' );
-		$selected_type              = get_field( 'listing_type' );
-		$field_object_type          = get_field_object( 'listing_type' );
-		$this->type                 = $field_object_type['choices'][ $selected_type ];
+		if ( $this->for_sale_for_lease === 'for_sale' ) {
+			$selected_type     = get_field( 'listing_type' );
+			$field_object_type = get_field_object( 'listing_type' );
+			$this->type        = $field_object_type['choices'][ $selected_type ];
+		} elseif ( $this->for_sale_for_lease === 'for_lease' ) {
+			$selected_type     = get_field( 'lease_type' );
+			$field_object_type = get_field_object( 'lease_type' );
+			$this->type        = $field_object_type['choices'][ $selected_type ];
+
+		}
+
+
 		$this->sub_type             = get_field( 'listing_sub_type' );
 		$this->building_size        = get_field( 'listing_building_size' );
 		$this->lot_size             = get_field( 'listing_lot_size' );
