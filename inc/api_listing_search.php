@@ -52,7 +52,9 @@ class api_listing_search {
 		}
 
 		$active_sold_key = 'listings';
-		if ( $status = $parameters['status'] ) {
+		$status          = 'active';
+		if ( isset( $parameters['status'] ) ) {
+			$status = $parameters['status'];
 			if ( $status === 'sold' ) {
 				$active_sold_key = 'sales';
 			} else {
@@ -74,8 +76,10 @@ class api_listing_search {
 			}
 		}
 		// just used for transient names
-		if ( ! ( $prop_type_key = $parameters['property_type_key'] ) ) {
+		if ( ! ( isset( $parameters['property_type_key'] ) ) ) {
 			$prop_type_key = 'all_types';
+		} else {
+			$prop_type_key = $parameters['property_type_key'];
 		}
 		if ( $id = $this->mls_number ) {
 			$id_string = '&id=' . $id;
@@ -142,7 +146,7 @@ class api_listing_search {
 			/**
 			 * For rental search, max price is $100 - there is no 'rental price', we must filter by listPrice
 			 */
-			if ( $parameters['for_sale_for_lease']  === 'for_lease' ) {
+			if ( $parameters['for_sale_for_lease'] === 'for_lease' ) {
 				$list_price_string = '&listPrice=0:100000';
 			}
 		}
