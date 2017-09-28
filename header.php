@@ -36,6 +36,7 @@
                     </div>
 				<?php } ?>
             </div><!-- .site-branding -->
+
             <div class="header-right">
 				<?php if ( is_user_logged_in() ) {
 					$logged_in_user = wp_get_current_user();

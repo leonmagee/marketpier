@@ -4,11 +4,6 @@
  * Class mp_send_email
  */
 class mp_send_email {
-	/**
-	 * @todo at first this will just be for sending emails to the listing agent, but I might want to extend this class
-	 * @todo for different email purposes?
-	 * @todo this should send 2 emails to start
-	 */
 
 	public $user_email;
 	public $user_name;
@@ -63,7 +58,7 @@ class mp_send_email {
 			We will contact you as soon as possible. 	
 		</div>
 			<div style="margin-top: 30px; margin-bottom: 15px;">
-				<a style="text-decoration: none; font-size: 13px; background-color: #27A2DB; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; margin-right: 15px;" href="' . $website_url . '">VISIT WEBSITE</a>
+				<a style="text-decoration: none; font-size: 13px; background-color: #00A3E4; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; margin-right: 15px;" href="' . $website_url . '">VISIT WEBSITE</a>
 			</div>
 		</div>
 	</div>';

@@ -36,6 +36,7 @@ require_once( 'inc/mp_ajax.php' );
 require_once( 'inc/get_slipstream_token.php' );
 require_once( 'inc/api_listing_search.php' );
 require_once( 'inc/mp_send_email.php' );
+require_once( 'inc/mp_send_email_misc.php' );
 
 /**
  * Create Tables

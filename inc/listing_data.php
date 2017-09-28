@@ -59,7 +59,7 @@ class listing_data {
 	public $listing_office_id;
 	public $gross_rent_multiplier;
 	public $gross_operating_income;
-	public $operating_expenses;  // net oerating income = gross income - oerating expenses
+	public $operating_expenses;
 	public $market;
 	public $sale_date;
 	public $listing_url;
@@ -188,10 +188,7 @@ class listing_data {
 			false,
 			$sold_single
 		);
-		//$parameters             = array( 'status' => 'sold' ); // @todo remove this - conditional for sold listing?
-		//$search->search_listings( $parameters );
 		$search->search_listings();
-		//var_dump( $search );
 
 		$listing      = $search->search_result[0];
 		$listing_type = null;
@@ -206,10 +203,6 @@ class listing_data {
 		} else {
 			$this->for_sale_for_lease = 'for_sale';
 		}
-
-
-		// @todo what does 'rent' look like? - check api docs for rent data?
-		//$this->rent          = $listing->???
 
 		if ( isset( $listing->market ) ) {
 			$this->market = $listing->market;
@@ -355,31 +348,6 @@ class listing_data {
 		if ( $this->rent && $this->space_available ) {
 			$this->rate_sf_month = ( $this->rent / $this->space_available );
 		}
-
-		/**
-		 * Not sure if this will be in IDX data too - should we pull info about listing agent?
-		 */
-//		$first_name   = get_user_meta( $author_id, 'first_name', true );
-//		$last_name    = get_user_meta( $author_id, 'last_name', true );
-//		if ( $first_name && $last_name ) {
-//			$this->author_name = $first_name . ' ' . $last_name;
-//		} elseif ( $first_name ) {
-//			$this->author_name = $first_name;
-//		} else {
-//			$this->author_name = $this->author;
-//		}
-		/**
-		 * @todo probably we can just get days on market and listing data right from slipstream data?
-		 */
-		//get the listing date as post date
-//		$this->listing_date = get_the_date();
-//		$post_date          = get_the_date( 'U' ); // this is the same as listing data?
-//		//$post_date = get_the_date( 'U', true ); // for GMT
-//		$current_date          = time();
-//		$days_passed_timestamp = $current_date - $post_date;
-//		$days_passed           = floor( $days_passed_timestamp / ( 60 * 60 * 24 ) );
-//		$this->days_on_market  = $days_passed;
-
 
 		if ( $this->for_sale_for_lease == 'for_sale' ) {
 			$this->is_for_sale  = true;

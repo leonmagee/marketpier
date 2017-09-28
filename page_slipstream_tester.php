@@ -13,9 +13,9 @@ get_header(); ?>
             <div class="page-content-wrap">
                 <h1>Slipstream Testing</h1>
 				<?php var_dump( $slipstream_token_query->slipstream_token );
-				//$market            = 'sandicor';
-				$market            = 'crmls';
-				$listing_page_size = 10;
+				$market            = 'sandicor';
+				//$market            = 'crmls';
+				$listing_page_size = 50;
 				//				$search            = new api_listing_search(
 				//					$slipstream_token_query->slipstream_token,
 				//					$listing_page_size,
@@ -42,7 +42,7 @@ get_header(); ?>
 				//$parameters = array( 'status' => 'active', 'price_min' => '102342', 'cap_rate_min' => '3' );
 				//$parameters = array( 'status' => 'sold' );
 				//$parameters = array( 'property_type' => '&listingType=Commercial', 'status' => 'active' );
-				$parameters = array( 'price_range' => '0:1000000000000' );
+				$parameters = array( 'price_range' => '0:1000000000000', 'status' => 'sold' );
 				//$parameters = array( 'zip' => '92108' );
 				//$parameters = array( 'property_type' => '&propertyType=Mixed Usage' );
 				//$parameters = array( 'property_type' => '&propertyType=Other/Remarks' );
