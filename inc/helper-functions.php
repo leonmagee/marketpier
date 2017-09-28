@@ -67,17 +67,17 @@ function shorten_string( $text, $length = 150 ) {
  * @todo Add checks for these to see if it's admin ajax happening...
  */
 function logged_in_check_redirect() {
-//	if ( ! is_user_logged_in() ) {
-//		wp_redirect( site_url() );
-//		exit;
-//	}
+	if ( ! is_user_logged_in() ) {
+		wp_redirect( site_url() );
+		exit;
+	}
 }
 
 function logged_in_check_redirect_profile() {
-//	if ( is_user_logged_in() ) {
-//		wp_redirect( site_url() . '/your-profile' );
-//		exit;
-//	}
+	if ( is_user_logged_in() ) {
+		wp_redirect( site_url() . '/your-profile' );
+		exit;
+	}
 }
 
 /**
@@ -243,10 +243,10 @@ function restrict_user_access() {
 	if ( is_user_logged_in() && is_admin() && ( ! current_user_can( 'administrator' ) ) &&
 	     ( ! ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) && ( '/wp-admin/admin-ajax.php' != $_SERVER['PHP_SELF'] )
 	) {
-		wp_redirect( site_url() );
+		wp_redirect( site_url() . '/your-profile' );
 		exit;
 	}
 }
 
 // @todo this was breaking adding new listing on the live site?
-//add_action( 'init', 'restrict_user_access' );
+add_action( 'init', 'restrict_user_access' );
