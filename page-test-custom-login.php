@@ -47,7 +47,7 @@ get_header(); ?>
 			// Login form arguments.
 			$args = array(
 				'echo'           => true,
-				'redirect'       => home_url( '/your-profile/' ),
+				'redirect'       => home_url( '/your-profile', 'https' ),
 				'form_id'        => 'loginform',
 				'label_username' => __( 'Username' ),
 				'label_password' => __( 'Password' ),
