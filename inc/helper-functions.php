@@ -222,7 +222,6 @@ function all_counties_array() {
 	return $all_counties;
 }
 
-
 function get_disclaimer( $market ) {
 	$disclaimers_array = get_field( 'market_disclaimers', 'option' );
 	$disclaimer        = '';
@@ -248,5 +247,4 @@ function restrict_user_access() {
 	}
 }
 
-// @todo this was breaking adding new listing on the live site?
 add_action( 'init', 'restrict_user_access' );

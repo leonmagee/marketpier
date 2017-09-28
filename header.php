@@ -94,12 +94,17 @@
 		 *  Button Modals
 		 * @todo change modal to use custom login
 		 */
-		$log_in_modal = new mp_output_modal_shortcode(
-			'[caldera_form id="CF56d5c71c8a908"]',
+		$log_in_modal = new mp_output_modal_login(
 			'login-modal',
 			'Log In',
 			true
 		);
+		//		$log_in_modal = new mp_output_modal_shortcode(
+		//			'[caldera_form id="CF56d5c71c8a908"]',
+		//			'login-modal',
+		//			'Log In',
+		//			true
+		//		);
 
 		$log_in_modal->output_modal();
 		?>
