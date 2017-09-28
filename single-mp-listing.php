@@ -239,7 +239,7 @@ if ( $request_details[2] == 'idx' ) {
                         <h5 class="section-title">Unit Mix</h5>
 						<?php foreach ( $unit_mix as $unit ) { ?>
                             <div class="unit-mix-row">
-								<?php if ( $unit['unit_name_plan'] ) { ?>
+								<?php if ( isset( $unit['unit_name_plan'] ) ) { ?>
                                     <div class="unit-mix-item unit-mix-plan">
                                         <label>Unit Name / Plan</label>
                                         <div class="unit-mix-value">
@@ -247,7 +247,7 @@ if ( $request_details[2] == 'idx' ) {
                                         </div>
                                     </div>
 								<?php }
-								if ( $unit['number_of_units'] ) { ?>
+								if ( isset( $unit['number_of_units'] ) ) { ?>
                                     <div class="unit-mix-item unit-mix-units">
                                         <label>Units</label>
                                         <div class="unit-mix-value">
@@ -255,7 +255,7 @@ if ( $request_details[2] == 'idx' ) {
                                         </div>
                                     </div>
 								<?php }
-								if ( $unit['number_of_beds'] ) { ?>
+								if ( isset( $unit['number_of_beds'] ) ) { ?>
                                     <div class="unit-mix-item unit-mix-beds">
                                         <label>Beds</label>
                                         <div class="unit-mix-value">
@@ -263,7 +263,7 @@ if ( $request_details[2] == 'idx' ) {
                                         </div>
                                     </div>
 								<?php }
-								if ( $unit['number_of_baths'] ) { ?>
+								if ( isset( $unit['number_of_baths'] ) ) { ?>
                                     <div class="unit-mix-item unit-mix-baths">
                                         <label>Baths</label>
                                         <div class="unit-mix-value">
@@ -271,7 +271,7 @@ if ( $request_details[2] == 'idx' ) {
                                         </div>
                                     </div>
 								<?php }
-								if ( $unit['average_sq_ft'] ) { ?>
+								if ( isset( $unit['average_sq_ft'] ) ) { ?>
                                     <div class="unit-mix-item unit-mix-sqft">
                                         <label>Average Sqft</label>
                                         <div class="unit-mix-value">
@@ -279,7 +279,7 @@ if ( $request_details[2] == 'idx' ) {
                                         </div>
                                     </div>
 								<?php }
-								if ( $unit['average_rent'] ) { ?>
+								if ( isset( $unit['average_rent'] ) ) { ?>
                                     <div class="unit-mix-item unit-mix-average-rent">
                                         <label>Average Rent</label>
                                         <div class="unit-mix-value">
@@ -297,7 +297,7 @@ if ( $request_details[2] == 'idx' ) {
                         <h5 class="section-title">Rental Unit Mix</h5>
 						<?php foreach ( $unit_mix as $unit ) { ?>
                             <div class="unit-mix-row">
-								<?php if ( $unit['unit_number'] ) { ?>
+								<?php if ( isset( $unit['unit_number'] ) ) { ?>
                                     <div class="unit-mix-item unit-mix-unit-number">
                                         <label>Unit Number</label>
                                         <div class="unit-mix-value">
@@ -305,7 +305,7 @@ if ( $request_details[2] == 'idx' ) {
                                         </div>
                                     </div>
 								<?php }
-								if ( $unit['monthly_asking_rent'] ) { ?>
+								if ( isset( $unit['monthly_asking_rent'] ) ) { ?>
                                     <div class="unit-mix-item unit-mix-asking-rent">
                                         <label>Monthly Rent</label>
                                         <div class="unit-mix-value">
@@ -313,19 +313,11 @@ if ( $request_details[2] == 'idx' ) {
                                         </div>
                                     </div>
 								<?php }
-								if ( $unit['unit_size_sf'] ) { ?>
+								if ( isset( $unit['unit_size_sf'] ) ) { ?>
                                     <div class="unit-mix-item unit-mix-size-sf">
                                         <label>Unit Size (SF)</label>
                                         <div class="unit-mix-value">
 											<?php echo $unit['unit_size_sf']; ?>
-                                        </div>
-                                    </div>
-								<?php }
-								if ( $unit['lease_term'] ) { ?>
-                                    <div class="unit-mix-item unit-mix-lease-term">
-                                        <label>Lease Term</label>
-                                        <div class="unit-mix-value">
-											<?php echo ucfirst( $unit['lease_term'] ); ?>
                                         </div>
                                     </div>
 								<?php } ?>
