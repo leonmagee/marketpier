@@ -39,7 +39,7 @@ $premium_features  = get_field( 'premium_features', 'option' );
                                 </a>
                             </div>
                             <div class="listing-choice premium">
-                                <a href="<?php echo site_url(); ?>/listing-creation-complete">
+                                <a href="<?php echo site_url(); ?>/checkout/?level=1">
                                     <div class="choice-header">Premium Listing</div>
                                     <div class="details">
                                         <h3><?php echo $premium_text; ?></h3>
