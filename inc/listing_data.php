@@ -260,8 +260,8 @@ class listing_data {
 		if ( isset( $listing->listingAgent->phone ) ) {
 			$this->listing_agent_phone = $listing->listingAgent->phone;
 		}
-		if ( isset( $listing->listingAgent->id ) ) {
-			$this->listing_agent_id = $listing->listingAgent->id;
+		if ( isset( $listing->listingAgent->licenseNumber ) ) {
+			$this->listing_agent_id = $listing->listingAgent->licenseNumber;
 		}
 		if ( isset( $listing->listingOffice->name ) ) {
 			$this->listing_office_name = $listing->listingOffice->name;
