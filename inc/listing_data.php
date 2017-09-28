@@ -332,7 +332,9 @@ class listing_data {
 
 		$this->listing_url = site_url() . '/listing/idx/' . $this->market . '/' . strtolower( $this->status ) . '/' . $this->listing_id;
 
-		$this->standardize_image_gallery_IDX( $listing->images );
+		if ( isset( $listing->images ) ) {
+			$this->standardize_image_gallery_IDX( $listing->images );
+		}
 		$this->listing_data_update();
 
 
