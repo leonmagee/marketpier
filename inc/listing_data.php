@@ -194,7 +194,10 @@ class listing_data {
 		//var_dump( $search );
 
 		$listing      = $search->search_result[0];
-		$listing_type = $listing->listingType;
+		$listing_type = null;
+		if ( isset( $listing->listingType ) ) {
+			$listing_type = $listing->listingType;
+		}
 		// also - public 'geoType' => string 'listing' (length=7)
 		if ( $listing_type == 'residential' ) {
 			$this->for_sale_for_lease = 'for_sale';
