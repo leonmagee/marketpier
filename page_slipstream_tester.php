@@ -42,7 +42,8 @@ get_header(); ?>
 				//$parameters = array( 'status' => 'active', 'price_min' => '102342', 'cap_rate_min' => '3' );
 				//$parameters = array( 'status' => 'sold' );
 				//$parameters = array( 'property_type' => '&listingType=Commercial', 'status' => 'active' );
-				$parameters = array( 'price_range' => '0:1000000000000', 'status' => 'sold' );
+				//$parameters = array( 'price_range' => '0:1000000000000', 'status' => 'sold' );
+				$parameters = array( 'price_range' => '0:1000000000000' );
 				//$parameters = array( 'zip' => '92108' );
 				//$parameters = array( 'property_type' => '&propertyType=Mixed Usage' );
 				//$parameters = array( 'property_type' => '&propertyType=Other/Remarks' );

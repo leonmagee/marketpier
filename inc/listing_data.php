@@ -118,10 +118,7 @@ class listing_data {
 			$selected_type     = get_field( 'lease_type' );
 			$field_object_type = get_field_object( 'lease_type' );
 			$this->type        = $field_object_type['choices'][ $selected_type ];
-
 		}
-
-
 		$this->sub_type             = get_field( 'listing_sub_type' );
 		$this->building_size        = get_field( 'listing_building_size' );
 		$this->lot_size             = get_field( 'listing_lot_size' );
