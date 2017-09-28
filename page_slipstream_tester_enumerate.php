@@ -17,8 +17,6 @@ $slipstream_token = new get_slipstream_token();
 //$trans = get_transient( $trans_key );
 //var_dump( $trans );
 //
-//$array            = array( 'leon', 'bonnie', array( 'maryana', 'kara' ) );
-//$serialized_array = serialize( $array );
 //var_dump( $serialized_array );
 //
 //set_transient( 'test_transient', $serialized_array, 600 );

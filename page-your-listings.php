@@ -7,13 +7,7 @@
 
 logged_in_check_redirect();
 
-//$user = wp_get_current_user();
-
-//$user_id = $user->ID;
-
 $user_id = MP_LOGGED_IN_ID;
-
-//$username = $user->user_login;
 
 get_header(); ?>
 

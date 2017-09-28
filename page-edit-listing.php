@@ -8,14 +8,7 @@ logged_in_check_redirect();
 
 if ( isset( $_GET['listing'] ) ) {
 
-	//$post_hash = $_GET['listing'];
 	$post_id = $_GET['listing'];
-
-	/**
-	 * @todo use encryption for listing ID here? helper functions...
-	 */
-
-	//$post_id = skyrises_decrypt( $post_hash );
 }
 
 $args = array( 'post_type' => 'mp-listing', 'post__in' => array( $post_id ) );
@@ -44,7 +37,6 @@ if ( $listing_query->have_posts() ) {
 
 	die( '<div class="skyrises-alert visible">you do not have access</div>' );
 }
-
 
 acf_form_head();
 get_template_part( 'template-parts/spinner' );
