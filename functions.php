@@ -432,9 +432,15 @@ function save_post_handler_acf_listing( $post_id ) {
 				 * Hijacking this conditional to send emails - this should happen only when listing is first created
 				 * And not when form is updated.
 				 */
-				$admin_email_text = 'New Listing Created: ' . $title . ' - ' . $permalink;
+				$admin_email_text = 'New Listing Created: ' . $permalink;
 				$admin_email      = get_bloginfo( 'admin_email' );
 				$send_admin_email = new mp_send_email_misc( $admin_email, 'MarketPier Admin', 'MarketPier Listing Creation', $admin_email_text );
+				$send_admin_email->send_email();
+
+				$logged_in_user = wp_get_current_user();
+				$logged_in_user_email = $logged_in_user->user_email;
+				$admin_email_text = 'New Listing Created: ' . $permalink;
+				$send_admin_email = new mp_send_email_misc( $logged_in_user_email, 'MarketPier User', 'MarketPier Listing Creation', $admin_email_text );
 				$send_admin_email->send_email();
 			}
 		}
