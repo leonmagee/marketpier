@@ -435,8 +435,7 @@ function save_post_handler_acf_listing( $post_id ) {
 				 */
 
 				$admin_email_text = 'New Listing Created: ' . $title . ' - ' . $permalink;
-				//$admin_email      = bloginfo( 'admin_email' );
-				$admin_email      = 'leonmagee@hotmail.com';
+				$admin_email      = get_bloginfo( 'admin_email' );
 				$send_admin_email = new mp_send_email_misc( $admin_email, 'MarketPier Admin', 'MarketPier Listing Creation', $admin_email_text );
 				$send_admin_email->send_email();
 			}

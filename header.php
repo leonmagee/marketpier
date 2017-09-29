@@ -43,11 +43,6 @@
 					$logged_in_id   = $logged_in_user->ID;
 					if ( $first_name = $logged_in_user->first_name ) {
 						$logged_in_name = $first_name;
-//						if ( $last_name = $logged_in_user->last_name ) {
-//							$logged_in_name = $first_name . ' ' . $last_name;
-//						} else {
-//							$logged_in_name = $first_name;
-//						}
 					} else {
 						$logged_in_name = $logged_in_user->user_login;
 					}
@@ -89,27 +84,17 @@
 				<?php } ?>
             </div>
         </div>
-
 		<?php
 		/**
-		 *  Button Modals
-		 * @todo change modal to use custom login
+		 *  Login Modal
 		 */
 		$log_in_modal = new mp_output_modal_login(
 			'login-modal',
 			'Log In',
 			true
 		);
-		//		$log_in_modal = new mp_output_modal_shortcode(
-		//			'[caldera_form id="CF56d5c71c8a908"]',
-		//			'login-modal',
-		//			'Log In',
-		//			true
-		//		);
-
 		$log_in_modal->output_modal();
 		?>
-
     </header><!-- #masthead -->
 
     <div id="content" class="site-content">

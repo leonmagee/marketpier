@@ -66,7 +66,7 @@ class mp_register_user {
 
 
 		$admin_email_text = 'New user registered: ' . $email_name . ' - ' . $this->company . ' - ' . $this->phone_number;
-		$admin_email      = bloginfo( 'admin_email' );
+		$admin_email      = get_bloginfo( 'admin_email' );
 		$send_admin_email = new mp_send_email_misc( $admin_email, 'MarketPier Admin', 'MarketPier User Registration', $admin_email_text );
 		$send_admin_email->send_email();
 	}
