@@ -334,11 +334,11 @@ function create_agent_role() {
 	$role->add_cap( 'upload_files' );
 	$role->add_cap( 'unfiltered_upload' );
 	$role->add_cap( 'level_1' );
-    //edit_dashboard ???
-    //edit_theme_options ???
-    //export
-    //import
-    //customize
+	//edit_dashboard ???
+	//edit_theme_options ???
+	//export
+	//import
+	//customize
 
 
 //activate_plugins
@@ -391,6 +391,7 @@ function save_post_handler_acf_listing( $post_id ) {
 			$title              = $title_string;
 			$data['post_title'] = $title;
 			$data['post_name']  = sanitize_title( $title );
+			$permalink          = get_permalink( $post_id );
 			wp_update_post( $data );
 
 			/**
@@ -426,13 +427,25 @@ function save_post_handler_acf_listing( $post_id ) {
 				} else {
 					update_field( 'listing_for_sale_or_for_lease', 'for_sale', $post_id );
 				}
+
+				/**
+				 * Hijacking this conditional to send emails - this should happen only when listing is first created
+				 * And not when form is updated.
+				 * @todo maybe I can hook into somewhere else here?
+				 */
+
+				$admin_email_text = 'New Listing Created: ' . $title . ' - ' . $permalink;
+				//$admin_email      = bloginfo( 'admin_email' );
+				$admin_email      = 'leonmagee@hotmail.com';
+				$send_admin_email = new mp_send_email_misc( $admin_email, 'MarketPier Admin', 'MarketPier Listing Creation', $admin_email_text );
+				$send_admin_email->send_email();
 			}
 		}
 	}
 }
 
 add_action( 'acf/save_post', 'save_post_handler_acf_listing', 20 );
-//var_dump( 'acf save function disabled' );
+
 /**
  * Disable ACF Fields
  *
