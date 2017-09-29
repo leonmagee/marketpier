@@ -391,7 +391,7 @@ function save_post_handler_acf_listing( $post_id ) {
 			$title              = $title_string;
 			$data['post_title'] = $title;
 			$data['post_name']  = sanitize_title( $title );
-			$permalink          = get_permalink( $post_id );
+			$permalink          = site_url() . '/listings/' . $data['post_name'];
 			wp_update_post( $data );
 
 			/**
@@ -431,9 +431,7 @@ function save_post_handler_acf_listing( $post_id ) {
 				/**
 				 * Hijacking this conditional to send emails - this should happen only when listing is first created
 				 * And not when form is updated.
-				 * @todo maybe I can hook into somewhere else here?
 				 */
-
 				$admin_email_text = 'New Listing Created: ' . $title . ' - ' . $permalink;
 				$admin_email      = get_bloginfo( 'admin_email' );
 				$send_admin_email = new mp_send_email_misc( $admin_email, 'MarketPier Admin', 'MarketPier Listing Creation', $admin_email_text );
