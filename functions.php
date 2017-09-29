@@ -437,10 +437,11 @@ function save_post_handler_acf_listing( $post_id ) {
 				$send_admin_email = new mp_send_email_misc( $admin_email, 'MarketPier Admin', 'MarketPier Listing Creation', $admin_email_text );
 				$send_admin_email->send_email();
 
-				$logged_in_user = wp_get_current_user();
+				$logged_in_user       = wp_get_current_user();
 				$logged_in_user_email = $logged_in_user->user_email;
-				$admin_email_text = 'New Listing Created: ' . $permalink;
-				$send_user_email = new mp_send_email_misc( $logged_in_user_email, 'MarketPier User', 'MarketPier Listing Creation', $admin_email_text );
+				$admin_email_text     = get_field( 'new_listing_email_text', 'option' );
+				$admin_email_text     .= '<br />New Listing Created: ' . $permalink;
+				$send_user_email      = new mp_send_email_misc( $logged_in_user_email, 'MarketPier User', 'MarketPier Listing Creation', $admin_email_text );
 				$send_user_email->send_email();
 			}
 		}

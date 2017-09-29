@@ -42,6 +42,7 @@ get_header(); ?>
                                         <span class="view-edit-links">
                                     <a href="<?php the_permalink(); ?>">view</a>
                                     <a href="<?php echo site_url(); ?>/edit-listing?listing=<?php echo $listing_id; ?>">edit</a>
+                                    <a class="delete-listing-link">delete</a>
                                     </span>
                                     </div>
 								<?php }

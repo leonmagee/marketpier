@@ -181,4 +181,13 @@
         $(this).addClass('selected');
     });
 
+    /**
+     * Delete Listings
+     * @todo this will use ajax
+     * @todo this will send an are you sure notice
+     */
+    $('.delete-listing-link').click(function () {
+        alert('are you sure?');
+    });
+
 }(jQuery));
