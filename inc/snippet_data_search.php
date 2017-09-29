@@ -120,10 +120,17 @@ class snippet_data_search {
 		}
 		if ( $property_type = $this->property_type ) {
 			if ( $property_type !== 'all_property_types' ) {
-				$meta_search_array[] = array(
-					'key'   => 'listing_type',
-					'value' => $property_type
-				);
+				if ( $this->for_sale_lease === 'for_lease' ) {
+					$meta_search_array[] = array(
+						'key'   => 'lease_type',
+						'value' => $property_type
+					);
+				} else {
+					$meta_search_array[] = array(
+						'key'   => 'listing_type',
+						'value' => $property_type
+					);
+				}
 			}
 		}
 		if ( $price_min = $this->price_min ) {
