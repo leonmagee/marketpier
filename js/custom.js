@@ -187,7 +187,47 @@
      * @todo this will send an are you sure notice
      */
     $('.delete-listing-link').click(function () {
-        alert('are you sure?');
+        var listing_id = $(this).attr('listing-id');
+        $(this).parent().find('span[listing-id="' + listing_id + '"]').addClass('display-link');
+    });
+
+    $('.user-listings-wrap .logged-in-user-listing .delete-listing-link-hidden a.cancel').click(function () {
+        console.log('so far');
+        $(this).parent().removeClass('display-link');
+    });
+
+    $('.user-listings-wrap .logged-in-user-listing .delete-listing-link-hidden a.finalize').click(function () {
+        var listing_id_new = $(this).parent().attr('listing-id');
+        console.log('finalize: ' + listing_id_new);
+
+        //$(this).parent().parent().parent().fadeOut();
+
+        var parent_element = $(this).parent().parent().parent();
+
+        var formdata = new FormData();
+
+        formdata.append("listing_id", listing_id_new);
+
+        formdata.append("action", "mp_user_delete_listing");
+
+        $.ajax({
+            type: 'POST',
+            url: ajaxurl,
+            data: formdata,
+            contentType: false,
+            processData: false,
+            success: function (data, textStatus, XMLHttpRequest) {
+                console.log('listing deleted?', data);
+                if (data) {
+                    parent_element.fadeOut();
+                }
+            },
+            error: function (MLHttpRequest, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
+        });
+
+
     });
 
 }(jQuery));

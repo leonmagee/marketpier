@@ -40,9 +40,11 @@ get_header(); ?>
                                     <div class="logged-in-user-listing">
                                         <span><?php the_title(); ?></span>
                                         <span class="view-edit-links">
+                                            <span class="delete-listing-link-hidden" listing-id="<?php echo $listing_id; ?>">are you sure?<a class="finalize">yes</a><a class="cancel">cancel</a></span>
                                     <a href="<?php the_permalink(); ?>">view</a>
                                     <a href="<?php echo site_url(); ?>/edit-listing?listing=<?php echo $listing_id; ?>">edit</a>
-                                    <a class="delete-listing-link">delete</a>
+                                    <a listing-id=<?php echo $listing_id; ?> class="delete-listing-link">delete</a>
+
                                     </span>
                                     </div>
 								<?php }

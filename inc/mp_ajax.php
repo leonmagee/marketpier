@@ -233,3 +233,24 @@ function mp_send_listing_agent_email() {
 // should work whether or not logged in
 add_action( 'wp_ajax_mp_send_listing_agent_email', 'mp_send_listing_agent_email' );
 add_action( 'wp_ajax_nopriv_mp_send_listing_agent_email', 'mp_send_listing_agent_email' );
+
+
+/**
+ *  User Delete Listing
+ */
+function mp_user_delete_listing() {
+
+	if ( isset( $_POST['listing_id'] ) ) {
+
+		$listing_id = $_POST['listing_id'];
+
+		if ( wp_delete_post( $listing_id ) ) {
+			wp_die( true );
+		} else {
+			wp_die( false );
+		}
+	}
+}
+
+add_action( 'wp_ajax_mp_user_delete_listing', 'mp_user_delete_listing' );
+
