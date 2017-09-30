@@ -177,19 +177,19 @@ get_header();
 										<?php echo $snippet->type; ?>
                                     </div>
                                     <div class="details-wrap">
-										<?php if ( $price = $snippet->price ) { ?>
-                                            <div class="details-item-wrap">
-                                                <div class="details-item price-item">
-                                                    $<?php echo number_format( $price ); ?>
-                                                </div>
-                                                <label>Price</label>
-                                            </div>
-										<?php } elseif ( $rent = $snippet->rent ) { ?>
+										<?php if ( $rent = $snippet->rent ) { ?>
                                             <div class="details-item-wrap">
                                                 <div class="details-item price-item">
                                                     $<?php echo number_format( $rent ); ?>
                                                 </div>
                                                 <label>Per Month</label>
+                                            </div>
+										<?php } elseif ( $price = $snippet->price ) { ?>
+                                            <div class="details-item-wrap">
+                                                <div class="details-item price-item">
+                                                    $<?php echo number_format( $price ); ?>
+                                                </div>
+                                                <label>Price</label>
                                             </div>
 										<?php } ?>
 										<?php if ( $units = $snippet->number_of_units ) { ?>

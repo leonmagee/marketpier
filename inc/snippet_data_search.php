@@ -244,7 +244,11 @@ class snippet_data_search {
 
 			$snippet_objects[] = $listing_data;
 
-			$price_label = $this->map_price_label( $listing_data->price );
+			if ( $this->for_sale_lease === 'for_lease' ) {
+				$price_label = $this->map_price_label( $listing_data->rent );
+			} else {
+				$price_label = $this->map_price_label( $listing_data->price );
+			}
 
 			/**
 			 * Only add to this array if there are both lat and long, OR a complete address
