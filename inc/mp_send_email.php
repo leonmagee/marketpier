@@ -28,11 +28,9 @@ class mp_send_email {
 
 		$website_url = 'https://marketpier.com';
 		$user_email  = $this->user_email;
-		$subject     = 'Welcome to MarketPier';
+		$subject     = 'MarketPier Property Inquiry';
 
 		$body_admin = '<div style="padding-left: 10px; padding-right: 10px;">
-
-		<h2 style="color: #00A3E4">MarketPier</h2>
 
 		<div>
 			User Request for <strong>MarketPier</strong>.
@@ -41,19 +39,10 @@ class mp_send_email {
 		<div style="margin: 5px 0">Name: <strong>' . $this->user_name . '</strong></div>
 		<div style="margin: 5px 0">Phone: <strong>' . $this->user_phone . '</strong></div>
 		<div style="margin: 5px 0">Comment: <strong>' . $this->user_comment . '</strong></div>
-		<div>
-			<div style="margin-top: 30px; margin-bottom: 15px;">
-				<a style="text-decoration: none; font-size: 13px; background-color: #27A2DB; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; margin-right: 15px;" href="' . $website_url . '">VISIT WEBSITE</a>
-			</div>
-		</div>
 	</div>';
 
 
 		$body_user = '<div style="padding-left: 10px; padding-right: 10px;">
-		<h2 style="color: #D62839">MarketPier</h2>
-		<div>
-			Thank you for choosing <strong>MarketPier</strong>. 
-		</div>
 		<div>' . get_field( 'single_listing_email_text', 'option' ) . '</div>
 			<div style="margin-top: 30px; margin-bottom: 15px;">
 				<a style="text-decoration: none; font-size: 13px; background-color: #00A3E4; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; margin-right: 15px;" href="' . $website_url . '">VISIT WEBSITE</a>
