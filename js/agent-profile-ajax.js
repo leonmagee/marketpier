@@ -289,11 +289,37 @@ jQuery(function ($) {
 
 
     /**
+     * Required Fields
+     */
+
+    //var val_message = $('.add-listing-validation-callout');
+
+    // function check_validation_listing(data_name, validation_succeeds) {
+    //     var selector = $("div[data-name='" + data_name + "'] input");
+    //     var current_value = selector.val();
+    //
+    //     if (!current_value) {
+    //         if (selector.length) {
+    //             selector.addClass('validation-error');
+    //             validation_succeeds = false;
+    //             val_message.show();
+    //             console.log('working?');
+    //             return false;
+    //         }
+    //     } else {
+    //         return true;
+    //     }
+    // }
+
+    /**
      * Process ajax to submit contact agent form
      */
     $(".listing-agent-form-wrap input.submit").click(function (event) {
 
+        var validation_succeeds = true;
+
         event.preventDefault();
+
         $('.uploads-spinner').css({'display': 'flex'});
 
         var user_name = $(".listing-agent-form-wrap input.name").val();
@@ -303,35 +329,55 @@ jQuery(function ($) {
         var agent_email = $(".listing-agent-form-wrap input.agent_email").val();
         //console.log(user_name, user_phone, user_email, user_comment, agent_email);
 
-        var formdata = new FormData();
 
-        formdata.append("mp_email_listing_agent_click", 'click');
+        if (!user_name) {
+            $('input[name="your-name"]').addClass('validation-error');
+            $('.add-listing-validation-callout').show();
+            validation_succeeds = false;
+            $('.uploads-spinner').hide();
+        }
+        if (!user_email) {
+            $('input[name="your-email"]').addClass('validation-error');
+            $('.add-listing-validation-callout').show();
+            validation_succeeds = false;
+            $('.uploads-spinner').hide();
+        }
 
-        formdata.append("user_name", user_name);
-        formdata.append("user_phone", user_phone);
-        formdata.append("user_email", user_email);
-        formdata.append("user_comment", user_comment);
-        formdata.append("agent_email", agent_email);
+        if (validation_succeeds) {
 
-        formdata.append("action", "mp_send_listing_agent_email");
+            $('.add-listing-validation-callout').hide();
+            $('input').removeClass('validation-error');
 
-        $.ajax({
-            type: 'POST',
-            url: ajaxurl,
-            data: formdata,
-            contentType: false,
-            processData: false,
-            success: function (data, textStatus, XMLHttpRequest) {
-                //console.log('data!', data);
-                $('.uploads-spinner').hide();
-                var agent_modal = $('#contact-agent-modal');
-                agent_modal.foundation('open');
-            },
-            error: function (MLHttpRequest, textStatus, errorThrown) {
-                alert(errorThrown);
-            }
-        });
+            var formdata = new FormData();
 
+            formdata.append("mp_email_listing_agent_click", 'click');
+
+            formdata.append("user_name", user_name);
+            formdata.append("user_phone", user_phone);
+            formdata.append("user_email", user_email);
+            formdata.append("user_comment", user_comment);
+            formdata.append("agent_email", agent_email);
+
+            formdata.append("action", "mp_send_listing_agent_email");
+
+            $.ajax({
+                type: 'POST',
+                url: ajaxurl,
+                data: formdata,
+                contentType: false,
+                processData: false,
+                success: function (data, textStatus, XMLHttpRequest) {
+                    //console.log('data!', data);
+                    $('.uploads-spinner').hide();
+                    var agent_modal = $('#contact-agent-modal');
+                    agent_modal.foundation('open');
+                },
+                error: function (MLHttpRequest, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+
+        }
 
     });
 

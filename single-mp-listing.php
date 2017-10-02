@@ -467,10 +467,11 @@ if ( $request_details[2] == 'idx' ) {
 
             <div class="listing-agent-form-wrap">
                 <h3>Contact Agent</h3>
+                <div class="add-listing-validation-callout callout warning">Please Complete All Required Fields.</div>
                 <form method="post">
-                    <input class='name' type="text" name="your-name" placeholder="Your Name"/>
+                    <input class='name' type="text" name="your-name" placeholder="Your Name (required)"/>
                     <input class='phone' type="number" name="your-phone" placeholder="Phone"/>
-                    <input class='email' type="email" name="your-email" placeholder="Email"/>
+                    <input class='email' type="email" name="your-email" placeholder="Email (required)"/>
                     <textarea class='comment'
                               ame="listing-comment">I am interested in <?php echo $address; ?></textarea>
                     <!-- @todo conditional based on email and name existing? -->

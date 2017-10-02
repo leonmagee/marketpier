@@ -280,6 +280,7 @@
     }
   }
 }
+
 .disclaimer-wrapper {
   max-width: 1220px;
   padding: 0 20px 20px;
@@ -368,6 +369,10 @@ h5.section-title {
       flex: 1 1 100%;
       &.name, &.phone {
         flex: 0 1 49%;
+      }
+      &.validation-error {
+        background-color: #FFF3D9;
+        border-color: rgba(10, 10, 10, 0.25);
       }
     }
 
