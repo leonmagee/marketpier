@@ -105,7 +105,8 @@ $testimonials    = get_field( 'testimonials', 'user_' . $author_id );
 
 							<?php
 							$form_modal = new mp_output_modal_shortcode(
-								'[caldera_form id="CF5994d75066284"]',
+								//'[caldera_form id="CF5994d75066284"]',
+								'CF5994d75066284',
 								'agent-form-modal',
 								'Contact Agent'
 							);
