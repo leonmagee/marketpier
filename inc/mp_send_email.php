@@ -54,9 +54,7 @@ class mp_send_email {
 		<div>
 			Thank you for choosing <strong>MarketPier</strong>. 
 		</div>
-		<div>
-			We will contact you as soon as possible. 	
-		</div>
+		<div>' . get_field( 'single_listing_email_text', 'option' ) . '</div>
 			<div style="margin-top: 30px; margin-bottom: 15px;">
 				<a style="text-decoration: none; font-size: 13px; background-color: #00A3E4; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; margin-right: 15px;" href="' . $website_url . '">VISIT WEBSITE</a>
 			</div>
