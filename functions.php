@@ -543,52 +543,13 @@ add_action( 'pre_get_posts', 'restrict_media_library_to_current_user' );
 
 function update_caldera_form( $data ) {
 
-//	$exploded    = explode( '/', $_SERVER['REQUEST_URI'] );
-//	$final_array = array_filter( $exploded );
-//	$user_name   = array_pop( $final_array );
-//	$user        = get_user_by( 'slug', $user_name );
-//	$email       = $user->data->user_email;
-
 	global $author_bio_email_address;
 	if ( $author_bio_email_address ) {
 		$data['config']['default'] = $author_bio_email_address;
-    }
+	}
 
 	return $data;
 }
 
 add_action( 'caldera_forms_render_get_field_slug-agent_email_address_hidden', 'update_caldera_form' );
 //add_action( 'caldera_forms_render_get_field_slug-{field_slug}', 'update_caldera_form');
-
-
-//global $wp;
-//$request = add_query_arg(array(),$wp->request);
-//var_dump( $request );
-//
-//$author_info               = get_user_by( 'slug', get_query_var( 'author_name' ) );
-//var_dump( $author_info );
-//$author_id                 = $author_info->ID;
-//var_dump( $author_id );
-//
-//function get_information() {
-//	global $wp;
-//
-//// get current url with query string.
-//	$current_url = home_url( $wp->request );
-//
-//// get the position where '/page.. ' text start.
-//	$pos = strpos( $current_url, '/page' );
-//
-//// remove string from the specific postion
-//	$finalurl = substr( $current_url, 0, $pos );
-//
-//	var_dump( $_SERVER['REQUEST_URI'] );
-//
-//	$exploded    = explode( '/', $_SERVER['REQUEST_URI'] );
-//	$final_array = array_filter( $exploded );
-//	$user_name   = array_pop( $final_array );
-//	$user        = get_user_by( 'slug', $user_name );
-//	var_dump( $user->data->user_email );
-//}
-
-//add_action( 'init', 'get_information' );
