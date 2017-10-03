@@ -28,6 +28,10 @@ if ( $first_name && $last_name ) {
 }
 $email = $author_data->data->user_email;
 
+global $author_bio_email_address;
+
+$author_bio_email_address = $email;
+
 /**
  *  User Meta
  */
@@ -105,7 +109,7 @@ $testimonials    = get_field( 'testimonials', 'user_' . $author_id );
 
 							<?php
 							$form_modal = new mp_output_modal_shortcode(
-								//'[caldera_form id="CF5994d75066284"]',
+							//'[caldera_form id="CF5994d75066284"]',
 								'CF5994d75066284',
 								'agent-form-modal',
 								'Contact Agent'
@@ -192,25 +196,27 @@ $testimonials    = get_field( 'testimonials', 'user_' . $author_id );
 
                                     <div class="snippet-outer-outer-wrap">
                                         <div class="contact-wrap">
-	                                        <?php if ( is_user_logged_in() ) {
-		                                        if ( $snippet->favorite_listing == true ) {
-			                                        $saved_class = 'saved';
-		                                        } else {
-			                                        $saved_class = '';
-		                                        }
-		                                        ?>
+											<?php if ( is_user_logged_in() ) {
+												if ( $snippet->favorite_listing == true ) {
+													$saved_class = 'saved';
+												} else {
+													$saved_class = '';
+												}
+												?>
                                                 <a href="#" user_id="<?php echo MP_LOGGED_IN_ID; ?>"
                                                    listing_id="<?php echo $snippet->listing_id; ?>"
                                                    listing_address="<?php echo $snippet->combined_address; ?>"
                                                    listing_url="<?php echo $snippet->listing_url; ?>"
                                                    class="contact-link save-listing <?php echo $saved_class; ?>"><i
-                                                            class="fa fa-heart"></i> Save<span>d</span><i class="fa fa-refresh fa-spin"
-                                                                                                          aria-hidden="true"></i></a>
-	                                        <?php } else { ?>
-                                                <a href="" data-open="login-modal" class="contact-link"><i class="fa fa-heart"
-                                                                                                           aria-hidden="true"></i> Save</a>
+                                                            class="fa fa-heart"></i> Save<span>d</span><i
+                                                            class="fa fa-refresh fa-spin"
+                                                            aria-hidden="true"></i></a>
+											<?php } else { ?>
+                                                <a href="" data-open="login-modal" class="contact-link"><i
+                                                            class="fa fa-heart"
+                                                            aria-hidden="true"></i> Save</a>
 
-	                                        <?php } ?>
+											<?php } ?>
                                             <a href="" class="contact-link"><i class="fa fa-envelope"
                                                                                aria-hidden="true"></i>
                                                 Contact</a>
