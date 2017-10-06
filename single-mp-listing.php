@@ -169,6 +169,27 @@ if ( $request_details[2] == 'idx' ) {
                                 $<?php echo number_format( $income ); ?></div>
                         </div>
 					<?php }
+					if ( $gross_income = $listing_data->gross_operating_income ) { ?>
+                        <div class="detail">
+                            <div class="detail-label">Gross Income</div>
+                            <div class="detail-content">
+                                $<?php echo number_format( $gross_income ); ?></div>
+                        </div>
+					<?php }
+					if ( $rent_multiplier = $listing_data->gross_rent_multiplier ) { ?>
+                        <div class="detail">
+                            <div class="detail-label">Rent Multiplier</div>
+                            <div class="detail-content">
+								<?php echo $rent_multiplier; ?></div>
+                        </div>
+					<?php }
+					if ( $operating_expenses = $listing_data->operating_expenses ) { ?>
+                        <div class="detail">
+                            <div class="detail-label">Expenses</div>
+                            <div class="detail-content">
+                                $<?php echo $operating_expenses; ?></div>
+                        </div>
+					<?php }
 					if ( $listing_data->cap_rate ) { ?>
                         <div class="detail">
                             <div class="detail-label">Cap Rate</div>
@@ -351,7 +372,7 @@ if ( $request_details[2] == 'idx' ) {
 							<?php }
 							if ( $listing_agent_id = $listing_data->listing_agent_id ) { ?>
                                 <div class="listing-agent-item">
-									BRE# <?php echo $listing_agent_id; ?>
+                                    BRE# <?php echo $listing_agent_id; ?>
                                 </div>
 							<?php } ?>
                         </div>
