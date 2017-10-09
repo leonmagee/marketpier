@@ -41,7 +41,7 @@ get_header(); ?>
 				$parameters = false;
 				$parameters = array( 'price_range' => '0:1000000000000' );
 				$search->search_listings( $parameters );
-				var_dump( $search->search_result );
+				d( $search->search_result );
 				?>
             </div>
         </main><!-- #main -->
