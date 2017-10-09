@@ -336,3 +336,11 @@ a.snippet-link-outer {
     }
   }
 }
+
+//@todo temporary - remove sold listings
+.search-active-sold-wrap {
+
+  .active-sold-link.sold-link {
+    display: none;
+  }
+}

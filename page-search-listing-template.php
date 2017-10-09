@@ -93,20 +93,20 @@ get_header();
 			?>
             <div class="search-active-sold-wrap">
 				<?php if ( $snippets_query->status !== 'active' ) { ?>
-                    <a class="active-sold-link"
+                    <a class="active-sold-link active-link"
                        href="<?php echo site_url(); ?>/search-listings/?status=active&for_sale_lease=for_sale">Active
                         Listings</a>
 				<?php } else { ?>
-                    <a class="active-sold-link current">Active Listings</a>
+                    <a class="active-sold-link active-link current">Active Listings</a>
 				<?php } ?>
 				<?php if ( $snippets_query->status !== 'sold' ) { ?>
-                    <a class="active-sold-link"
+                    <a class="active-sold-link sold-link"
                        href="<?php echo site_url(); ?>/search-listings/?status=sold&for_sale_lease=for_sale">Sold
                         Listings</a>
 				<?php } else { ?>
-                    <a class="active-sold-link current">Sold Listings</a>
+                    <a class="active-sold-link sold-link current">Sold Listings</a>
 				<?php } ?>
-                <a class="active-sold-link"
+                <a class="active-sold-link reset-link"
                    href="<?php echo site_url(); ?>/search-listings/?status=active&for_sale_lease=for_sale&property_type=all_property_types&page_number=1">Reset
                     Search</a>
             </div>
