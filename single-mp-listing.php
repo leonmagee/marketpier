@@ -156,45 +156,17 @@ if ( $request_details[2] == 'idx' ) {
                             </div>
                         </div>
 					<?php }
+					if ( $listing_data->price_per_sqft ) { ?>
+                        <div class="detail">
+                            <div class="detail-label">Price / SQFT</div>
+                            <div class="detail-content">
+                                $<?php echo number_format( $listing_data->price_per_sqft ); ?></div>
+                        </div>
+					<?php }
 					if ( $listing_data->number_of_units ) { ?>
                         <div class="detail">
                             <div class="detail-label">No Units</div>
                             <div class="detail-content"><?php echo $listing_data->number_of_units; ?></div>
-                        </div>
-					<?php }
-					if ( $income = $listing_data->net_operating_income ) { ?>
-                        <div class="detail">
-                            <div class="detail-label">Net Income</div>
-                            <div class="detail-content">
-                                $<?php echo number_format( $income ); ?></div>
-                        </div>
-					<?php }
-					if ( $gross_income = $listing_data->gross_operating_income ) { ?>
-                        <div class="detail">
-                            <div class="detail-label">Gross Income</div>
-                            <div class="detail-content">
-                                $<?php echo number_format( $gross_income ); ?></div>
-                        </div>
-					<?php }
-					if ( $rent_multiplier = $listing_data->gross_rent_multiplier ) { ?>
-                        <div class="detail">
-                            <div class="detail-label">Rent Multiplier</div>
-                            <div class="detail-content">
-								<?php echo $rent_multiplier; ?></div>
-                        </div>
-					<?php }
-					if ( $operating_expenses = $listing_data->operating_expenses ) { ?>
-                        <div class="detail">
-                            <div class="detail-label">Expenses</div>
-                            <div class="detail-content">
-                                $<?php echo $operating_expenses; ?></div>
-                        </div>
-					<?php }
-					if ( $listing_data->cap_rate ) { ?>
-                        <div class="detail">
-                            <div class="detail-label">Cap Rate</div>
-                            <div class="detail-content"><?php echo number_format( $listing_data->cap_rate, 2 ); ?>%
-                            </div>
                         </div>
 					<?php }
 					if ( $listing_data->price_per_unit ) { ?>
@@ -204,11 +176,39 @@ if ( $request_details[2] == 'idx' ) {
                                 $<?php echo number_format( $listing_data->price_per_unit ); ?></div>
                         </div>
 					<?php }
-					if ( $listing_data->price_per_sqft ) { ?>
+					if ( $gross_income = $listing_data->gross_operating_income ) { ?>
                         <div class="detail">
-                            <div class="detail-label">Price / SQFT</div>
+                            <div class="detail-label">Gross Income</div>
                             <div class="detail-content">
-                                $<?php echo number_format( $listing_data->price_per_sqft ); ?></div>
+                                $<?php echo number_format( $gross_income ); ?></div>
+                        </div>
+					<?php }
+					if ( $operating_expenses = $listing_data->operating_expenses ) { ?>
+                        <div class="detail">
+                            <div class="detail-label">Expenses</div>
+                            <div class="detail-content">
+                                $<?php echo $operating_expenses; ?></div>
+                        </div>
+					<?php }
+					if ( $income = $listing_data->net_operating_income ) { ?>
+                        <div class="detail">
+                            <div class="detail-label">Net Income</div>
+                            <div class="detail-content">
+                                $<?php echo number_format( $income ); ?></div>
+                        </div>
+					<?php }
+					if ( $rent_multiplier = $listing_data->gross_rent_multiplier ) { ?>
+                        <div class="detail">
+                            <div class="detail-label">Rent Multiplier</div>
+                            <div class="detail-content">
+								<?php echo $rent_multiplier; ?></div>
+                        </div>
+					<?php }
+					if ( $listing_data->cap_rate ) { ?>
+                        <div class="detail">
+                            <div class="detail-label">Cap Rate</div>
+                            <div class="detail-content"><?php echo number_format( $listing_data->cap_rate, 2 ); ?>%
+                            </div>
                         </div>
 					<?php }
 					if ( $listing_data->listing_date ) { ?>
@@ -217,10 +217,10 @@ if ( $request_details[2] == 'idx' ) {
                             <div class="detail-content"><?php echo $listing_data->listing_date; ?></div>
                         </div>
 					<?php }
-					if ( $listing_data->last_updated ) { ?>
+					if ( $listing_data->sale_date ) { ?>
                         <div class="detail">
-                            <div class="detail-label">Last Updated</div>
-                            <div class="detail-content"><?php echo $listing_data->last_updated; ?></div>
+                            <div class="detail-label">Sale Date</div>
+                            <div class="detail-content"><?php echo $listing_data->sale_date; ?></div>
                         </div>
 					<?php }
 					if ( $listing_data->days_on_market ) { ?>
@@ -229,10 +229,10 @@ if ( $request_details[2] == 'idx' ) {
                             <div class="detail-content"><?php echo $listing_data->days_on_market; ?></div>
                         </div>
 					<?php }
-					if ( $listing_data->sale_date ) { ?>
+					if ( $listing_data->last_updated ) { ?>
                         <div class="detail">
-                            <div class="detail-label">Sale Date</div>
-                            <div class="detail-content"><?php echo $listing_data->sale_date; ?></div>
+                            <div class="detail-label">Last Updated</div>
+                            <div class="detail-content"><?php echo $listing_data->last_updated; ?></div>
                         </div>
 					<?php }
 					if ( $listing_data->space_available ) { ?>
