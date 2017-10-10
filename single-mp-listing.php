@@ -141,11 +141,24 @@ if ( $request_details[2] == 'idx' ) {
                             <div class="detail-content"><?php echo ucfirst( $listing_data->sub_type ); ?></div>
                         </div>
 					<?php }
+					if ( $listing_data->is_for_lease && $listing_data->rate_sf_month ) { ?>
+                        <div class="detail">
+                            <div class="detail-label">Rate/SF/Month</div>
+                            <div class="detail-content"><?php echo '$' . number_format( $listing_data->rate_sf_month, 2 ); ?></div>
+                        </div>
+					<?php }
 					if ( $listing_data->building_size ) { ?>
                         <div class="detail">
                             <div class="detail-label">Building Size</div>
                             <div class="detail-content"><?php echo number_format( $listing_data->building_size ); ?>
                                 sqft
+                            </div>
+                        </div>
+					<?php }
+					if ( $listing_data->space_available ) { ?>
+                        <div class="detail">
+                            <div class="detail-label">Space Available</div>
+                            <div class="detail-content"><?php echo number_format( $listing_data->space_available ); ?> sqft
                             </div>
                         </div>
 					<?php }
@@ -234,22 +247,7 @@ if ( $request_details[2] == 'idx' ) {
                             <div class="detail-label">Last Updated</div>
                             <div class="detail-content"><?php echo $listing_data->last_updated; ?></div>
                         </div>
-					<?php }
-					if ( $listing_data->space_available ) { ?>
-                        <div class="detail">
-                            <div class="detail-label">Space Available</div>
-                            <div class="detail-content"><?php echo number_format( $listing_data->space_available ); ?>
-                                sqft
-                            </div>
-                        </div>
-					<?php }
-					if ( $listing_data->is_for_lease && $listing_data->rate_sf_month ) { ?>
-                        <div class="detail">
-                            <div class="detail-label">Rate/SF/Month</div>
-                            <div class="detail-content"><?php echo '$' . number_format( $listing_data->rate_sf_month, 2 ); ?></div>
-                        </div>
-					<?php }
-					?>
+					<?php } ?>
                 </div>
             </div>
 			<?php

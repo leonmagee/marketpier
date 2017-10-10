@@ -22,7 +22,7 @@ get_header(); ?>
             <div class="page-content-wrap">
                 <h1>Slipstream Testing</h1>
 				<?php //var_dump( $slipstream_token_query->slipstream_token );
-				$listing_page_size = 50;
+				$listing_page_size = 250;
 				if ( $mls_number ) {
 					$search = new api_listing_search(
 						$slipstream_token_query->slipstream_token,
@@ -42,6 +42,7 @@ get_header(); ?>
 				$parameters = array( 'price_range' => '0:1000000000000' );
 				$search->search_listings( $parameters );
 				d( $search->search_result );
+				var_dump( $search->search_result );
 				?>
             </div>
         </main><!-- #main -->
