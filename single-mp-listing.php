@@ -141,7 +141,7 @@ if ( $request_details[2] == 'idx' ) {
                             <div class="detail-content"><?php echo ucfirst( $listing_data->sub_type ); ?></div>
                         </div>
 					<?php }
-					if ( $listing_data->is_for_lease && $listing_data->rate_sf_month ) { ?>
+					if ( $listing_data->rate_sf_month ) { ?>
                         <div class="detail">
                             <div class="detail-label">Price/SF/Month</div>
                             <div class="detail-content"><?php echo '$' . number_format( $listing_data->rate_sf_month, 2 ); ?></div>

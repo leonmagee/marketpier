@@ -169,6 +169,10 @@ class listing_data {
 		$this->days_on_market  = $days_passed;
 		$this->listing_url     = get_the_permalink();
 
+		if ( $this->rent && $this->space_available ) {
+			$this->rate_sf_month = ( $this->rent / $this->space_available );
+		}
+
 		$this->standardize_image_gallery_WP( get_field( 'listing_image_gallery' ) );
 
 		$this->listing_data_update();
@@ -301,6 +305,14 @@ class listing_data {
 				$this->operating_expenses = $listing->$op_expenses_field; // operating expenses
 			}
 		}
+
+		$price_sqft_month = get_key( $extended_fields, $this->market, 'price_sqft_month' );
+		if ( $price_sqft_month ) {
+			if ( isset( $listing->$price_sqft_month ) ) {
+				$this->rate_sf_month = $listing->$price_sqft_month; // operating expenses
+			}
+		}
+
 		if ( isset( $listing->lotSize->sqft ) ) {
 			$this->lot_size = $listing->lotSize->sqft; // @todo use acres if > 1 - can process this on fron end?
 		}
@@ -352,11 +364,6 @@ class listing_data {
 		} else {
 			$this->title = false;
 		}
-
-		if ( $this->rent && $this->space_available ) {
-			$this->rate_sf_month = ( $this->rent / $this->space_available );
-		}
-
 		if ( $this->for_sale_for_lease == 'for_sale' ) {
 			$this->is_for_sale  = true;
 			$this->is_for_lease = false;

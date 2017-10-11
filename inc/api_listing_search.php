@@ -128,7 +128,12 @@ class api_listing_search {
 				}
 			} else {
 				if ( $this->is_search ) {
-					$list_price_string = '&listPrice=99999:1000000000000';
+					if ( isset( $parameters['price_range'] ) ) {
+						$list_price        = $parameters['price_range'];
+						$list_price_string = '&listPrice=' . $list_price;
+					} else {
+						$list_price_string = '&listPrice=99999:1000000000000';
+					}
 				}
 			}
 		}
