@@ -38,7 +38,7 @@
                        name="city-zip"/>
                 <i class="fa fa-search" aria-hidden="true"></i>
             </div>
-            <a href="https://google.com" class="compliance-a-tag">
+            <a href="<?php echo site_url(); ?>/listing-search-results" class="compliance-a-tag">
                 <input class="submit-input compliance" value="SEARCH"/>
             </a>
         </div>

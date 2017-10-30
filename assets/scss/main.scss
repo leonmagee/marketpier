@@ -22,6 +22,20 @@ body {
       }
     }
   }
+
+  &.page-id-3507, &.parent-pageid-3507 {
+    div#page.site {
+      @media(min-width: $screen-md) {
+        height: auto;
+        //display: flex;
+        //flex-direction: column;
+        //justify-content: space-between;
+        //div#content.site-content {
+        //  flex: 1;
+        //}
+      }
+    }
+  }
   a, a:visited {
     color: $brand-primary;
     text-decoration: none;
