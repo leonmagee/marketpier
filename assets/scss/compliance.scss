@@ -19,3 +19,8 @@ input.compliance {
 a.compliance-a-tag {
   flex: 1 1 15%;
 }
+
+// hide ridx compliance
+div#recently-viewed {
+  display: none !important;
+}

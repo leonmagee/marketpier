@@ -27,12 +27,6 @@ body {
     div#page.site {
       @media(min-width: $screen-md) {
         height: auto;
-        //display: flex;
-        //flex-direction: column;
-        //justify-content: space-between;
-        //div#content.site-content {
-        //  flex: 1;
-        //}
       }
     }
   }
