@@ -66,7 +66,7 @@ class listing_data {
 	public $last_updated;
 
 	public function standardize_image_gallery_WP( $image_gallery ) {
-		$image_gallery_array = array();
+		 $image_gallery_array = array();
 		if ( $image_gallery ) {
 			foreach ( $image_gallery as $image ) {
 				$image_gallery_array[] = array(
@@ -75,7 +75,7 @@ class listing_data {
 				);
 			}
 		}
-		$this->image_gallery = $image_gallery_array;
+		 $this->image_gallery = $image_gallery_array;
 	}
 
 	public function standardize_image_gallery_IDX( $image_gallery ) {
