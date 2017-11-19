@@ -26,6 +26,7 @@ class snippet_data_search {
 	public $author_id;
 	public $status_all;
 	public $all_keys;
+	public $replacement_array;
 
 	public function __construct( $author_id = false, $status_all = false ) {
 		/**
@@ -53,6 +54,8 @@ class snippet_data_search {
 		} else {
 			$this->page_number = 1;
 		}
+
+		$this->replacement_array = array(',','-','/','|','.',' AL',' AK',' AZ',' AR',' CA',' CO',' CT',' DE',' FL',' GA',' HI',' ID',' IL',' IN',' IA',' KS',' KY',' LA',' ME',' MD',' MA',' MI',' MN',' MS',' MO',' MT',' NE',' NV',' NH',' NJ',' NM',' NY',' NC',' ND',' OH',' OK',' OR',' PA',' RI',' SC',' SD',' TN',' TX',' UT',' VT',' VA',' WA',' WV',' WI',' WY',' al',' ak',' az',' ar',' ca',' co',' ct',' de',' fl',' ga',' hi',' id',' il',' in',' ia',' ks',' ky',' la',' me',' md',' ma',' mi',' mn',' ms',' mo',' mt',' ne',' nv',' nh',' nj',' nm',' ny',' nc',' nd',' oh',' ok',' or',' pa',' ri',' sc',' sd',' tn',' tx',' ut',' vt',' va',' wa',' wv',' wi',' wy');
 		/**
 		 * Set Default Market
 		 */
@@ -83,7 +86,8 @@ class snippet_data_search {
 					'value' => $city_zip
 				);
 			} else {
-				$city_zip_strip      = str_replace( array( ',', '-', '/', '|', '.' ), '', $city_zip );
+				//$city_zip_strip      = str_replace( array( ',', '-', '/', '|', '.' ), '', $city_zip );
+				$city_zip_strip      = str_replace( $this->replacement_array, '', $city_zip );
 				$city_zip_array      = $this->get_string_array( $city_zip_strip );
 				$meta_search_array[] = array(
 					'key'     => 'listing_city',
@@ -330,6 +334,8 @@ class snippet_data_search {
 					/**
 					 * Proceed with city search
 					 */
+					$city_zip      = str_replace( $this->replacement_array, '', $city_zip );
+					
 					$cities_array = get_field( 'market_cities', 'option' );
 					$city_lower   = strtolower( $city_zip );
 					foreach ( $cities_array as $item ) {
@@ -340,6 +346,7 @@ class snippet_data_search {
 							break;
 						}
 					}
+
 					$parameters['city'] = $city_zip;
 				}
 			}
