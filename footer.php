@@ -24,6 +24,10 @@
                 <div class="attribution-line">
                     <a href="<?php echo site_url(); ?>/contact">Contact Us</a>
                 </div>
+                <span class="sep"> | </span>
+                <div class="attribution-line">
+                    <a href="<?php echo site_url(); ?>/blog">Blog</a>
+                </div>
             </div>
             <div class="attribution-middle">
                 <div class="attribution-line">
