@@ -22,7 +22,9 @@ get_header(); ?>
                     $wp_blog_query->the_post(); ?>
                     <div class="blog-post-wrap">
                         <div class="blog-thumbnail">
-                            <?php the_post_thumbnail('medium'); ?>
+                            <a href="<?php the_permalink(); ?>">
+                                <?php the_post_thumbnail('medium'); ?>
+                            </a>
                         </div>
                         <div class="blog-content">
                         <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
