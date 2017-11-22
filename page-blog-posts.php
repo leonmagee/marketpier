@@ -21,11 +21,13 @@ get_header(); ?>
                 while ( $wp_blog_query->have_posts() ) {
                     $wp_blog_query->the_post(); ?>
                     <div class="blog-post-wrap">
+                        <?php if (has_post_thumbnail() ) { ?>
                         <div class="blog-thumbnail">
                             <a href="<?php the_permalink(); ?>">
                                 <?php the_post_thumbnail('listing-gallery'); ?>
                             </a>
                         </div>
+                        <?php } ?>
                         <div class="blog-content">
                         <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
                         <div class="blog-post-excerpt">
