@@ -23,7 +23,7 @@ get_header(); ?>
                     <div class="blog-post-wrap">
                         <div class="blog-thumbnail">
                             <a href="<?php the_permalink(); ?>">
-                                <?php the_post_thumbnail('medium'); ?>
+                                <?php the_post_thumbnail('listing-gallery'); ?>
                             </a>
                         </div>
                         <div class="blog-content">

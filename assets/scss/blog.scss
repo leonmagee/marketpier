@@ -12,6 +12,9 @@
             &:hover {
                 opacity: 0.9;
             }
+            img {
+                border: 1px solid #DDD;
+            }
         }
         .blog-content {
             @media(min-width: $screen-sm) {
