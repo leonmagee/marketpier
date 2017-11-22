@@ -105,6 +105,50 @@ function get_key( $extended_fields, $market, $field_name ) {
 	return $key;
 }
 
+/**
+ * Return key for Slipstream market - these property names and keys are
+ * entered into theme options in an ACF repeater field.
+ *
+ * @param $extended_fields
+ * @param $market
+ * @param $field_name
+ * @param $class_name
+ *
+ * @return string, bool
+ * @todo I can make this only count the class name when the market is sandicor... 
+ * Then I can remove the extra string from the CRMLS data
+ */
+function get_key_class( $extended_fields, $market, $field_name, $class_name ) {
+	$key = false;
+	foreach ( $extended_fields as $fields ) {
+
+		//var_dump($fields['market']); 
+		$market_class = explode('|', $fields['market']);
+		//var_dump($market_class);
+		$market_acf = $market_class[0];
+		if ( $market_acf === 'sandicor' ) {
+		$class_acf = $market_class[1];
+		if ( ($market_acf === $market) && ($class_acf === $class_name) ) {
+			foreach ( $fields['fields'] as $field ) {
+				if ( $field['field'] === $field_name ) {
+					$key = $field['key'];
+				}
+			}
+		}
+		} else {
+			if ($market_acf === $market) {
+				foreach ( $fields['fields'] as $field ) {
+					if ( $field['field'] === $field_name ) {
+						$key = $field['key'];
+					}
+				}
+			}	
+		}
+	}
+
+	return $key;
+}
+
 function get_all_keys( $extended_fields, $market ) {
 	foreach ( $extended_fields as $fields ) {
 		if ( $fields['market'] === $market ) {

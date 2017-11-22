@@ -173,7 +173,11 @@ if ( $request_details[2] == 'idx' ) {
                         <div class="detail">
                             <div class="detail-label">Price / SQFT</div>
                             <div class="detail-content">
+                                <?php if($listing_data->price < 100000 ) { ?>
+                                $<?php echo number_format( $listing_data->price_per_sqft, 2 ); ?></div>
+                                <?php } else { ?>
                                 $<?php echo number_format( $listing_data->price_per_sqft ); ?></div>
+                                <?php } ?>
                         </div>
 					<?php }
 					if ( $listing_data->number_of_units ) { ?>

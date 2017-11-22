@@ -287,26 +287,32 @@ class listing_data {
 		if ( isset( $listing->lastUpdated ) ) {
 			$this->last_updated = date( 'n/j/Y', $listing->lastUpdated );
 		}
-		$gross_rent_field = get_key( $extended_fields, $this->market, 'gross_rent_multiplier' );
+		if ( isset($listing->xf_l_class) ){
+			$listing_class = $listing->xf_l_class;
+		} else {
+			$listing_class = null;
+		}
+
+		$gross_rent_field = get_key_class( $extended_fields, $this->market, 'gross_rent_multiplier', $listing_class );
 		if ( $gross_rent_field ) {
 			if ( isset( $listing->$gross_rent_field ) ) {
 				$this->gross_rent_multiplier = $listing->$gross_rent_field; // gross rent multiplier
 			}
 		}
-		$gross_income_field = get_key( $extended_fields, $this->market, 'gross_operating_income' );
+		$gross_income_field = get_key_class( $extended_fields, $this->market, 'gross_operating_income', $listing_class );
 		if ( $gross_income_field ) {
 			if ( isset( $listing->$gross_income_field ) ) {
 				$this->gross_operating_income = $listing->$gross_income_field; // gross operating income
 			}
 		}
-		$op_expenses_field = get_key( $extended_fields, $this->market, 'operating_expenses' );
+		$op_expenses_field = get_key_class( $extended_fields, $this->market, 'operating_expenses', $listing_class );
 		if ( $op_expenses_field ) {
 			if ( isset( $listing->$op_expenses_field ) ) {
 				$this->operating_expenses = $listing->$op_expenses_field; // operating expenses
 			}
 		}
 
-		$price_sqft_month = get_key( $extended_fields, $this->market, 'price_sqft_month' );
+		$price_sqft_month = get_key_class( $extended_fields, $this->market, 'price_sqft_month', $listing_class );
 		if ( $price_sqft_month ) {
 			if ( isset( $listing->$price_sqft_month ) ) {
 				$this->rate_sf_month = $listing->$price_sqft_month; // operating expenses
@@ -316,19 +322,19 @@ class listing_data {
 		if ( isset( $listing->lotSize->sqft ) ) {
 			$this->lot_size = $listing->lotSize->sqft; // @todo use acres if > 1 - can process this on fron end?
 		}
-		$apn_id_field = get_key( $extended_fields, $this->market, 'apn_parcel_id' );
+		$apn_id_field = get_key_class( $extended_fields, $this->market, 'apn_parcel_id', $listing_class );
 		if ( $apn_id_field ) {
 			if ( isset( $listing->$apn_id_field ) ) {
 				$this->apn_parcel_id = $listing->$apn_id_field;
 			}
 		}
-		$number_of_units_field = get_key( $extended_fields, $this->market, 'number_of_units' );
+		$number_of_units_field = get_key_class( $extended_fields, $this->market, 'number_of_units', $listing_class );
 		if ( $number_of_units_field ) {
 			if ( isset( $listing->$number_of_units_field ) ) {
 				$this->number_of_units = $listing->$number_of_units_field; // number of units
 			}
 		}
-		$cap_rate_field = get_key( $extended_fields, $this->market, 'cap_rate' );
+		$cap_rate_field = get_key_class( $extended_fields, $this->market, 'cap_rate', $listing_class );
 		if ( $cap_rate_field ) {
 			if ( isset( $listing->$cap_rate_field ) ) {
 				$this->cap_rate = $listing->$cap_rate_field; // cap rate
