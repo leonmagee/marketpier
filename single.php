@@ -11,7 +11,7 @@ get_header(); ?>
 			<div class="page-content-wrap">
 				<?php
 				while ( have_posts() ) : the_post();
-					get_template_part( 'template-parts/content', 'page' );
+					get_template_part( 'template-parts/content' );
 				endwhile; // End of the loop.
 					the_post_navigation();
 						// If comments are open or we have at least one comment, load up the comment template.

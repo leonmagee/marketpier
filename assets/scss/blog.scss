@@ -35,4 +35,53 @@
             }
         }
     }
+
+    a.blog-read-more {
+        font-size: 1.1em;
+        font-weight: bold;
+    }
 }
+
+header.entry-header-blog {
+    h1 {
+        font-size: 35px;
+        margin-top: 30px;
+    }
+    span.posted-on {
+        color: #555;
+    }
+}
+
+.single.single-post {
+    .entry-content {
+        margin-top: 0;
+    }
+}
+
+.comments-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #111;
+}
+
+h3#reply-title {
+    font-size: 20px;
+}
+
+#commentform {
+    input#submit {
+        background: $brand-primary;
+        color: #FFF;
+        border-radius: 3px;
+        padding: 10px 15px;
+        font-family: 'Open Sans';
+        font-weight: 700;
+        font-size: 17px;
+        margin: 0;
+        border: none;
+        &:hover {
+          background: lighten($brand-primary, 5%);
+        }
+    }
+}
+

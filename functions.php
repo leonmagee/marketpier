@@ -553,3 +553,16 @@ function update_caldera_form( $data ) {
 
 add_action( 'caldera_forms_render_get_field_slug-agent_email_address_hidden', 'update_caldera_form' );
 //add_action( 'caldera_forms_render_get_field_slug-{field_slug}', 'update_caldera_form');
+
+
+
+// function remove_more_link_scroll( $link ) {
+// 	$link = preg_replace( '|#more-[0-9]+|', '', $link );
+// 	return $link;
+// }
+// add_filter( 'the_content_more_link', 'remove_more_link_scroll' );
+
+function new_excerpt_more( $more ) {
+    return '...';
+}
+add_filter('excerpt_more', 'new_excerpt_more');
