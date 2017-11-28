@@ -566,3 +566,19 @@ function new_excerpt_more( $more ) {
     return '...';
 }
 add_filter('excerpt_more', 'new_excerpt_more');
+
+
+
+function content_featured_image($content) {
+	//var_dump($content);
+	global $post;
+	$current_id = $post->ID;
+	if ( has_post_thumbnail() ) {
+		$post_thumbz = get_the_post_thumbnail($current_id,'listing-gallery');
+		return $post_thumbz . $content;
+	} else {
+		return $content;
+	}
+}
+
+add_filter('the_content', 'content_featured_image');

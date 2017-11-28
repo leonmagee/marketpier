@@ -1,5 +1,6 @@
 .blog-wrap {
     padding: 20px 0;
+
     .blog-post-wrap {
         padding: 10px 10px 30px;
         @media(min-width: $screen-sm) {
@@ -124,4 +125,17 @@ header.entry-header {
         font-weight: 600;
         //font-weigth: 
     }
+}
+
+.single-post {
+
+    img.wp-post-image {
+        margin-bottom: 20px;
+        @media( min-width: $screen-sm ) {
+        max-width: 400px;
+            float: left;
+            margin: 0 20px 10px 0;
+        }
+    }
+
 }
