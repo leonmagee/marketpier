@@ -1,6 +1,5 @@
 .blog-wrap {
     padding: 20px 0;
-
     .blog-post-wrap {
         padding: 10px 10px 30px;
         @media(min-width: $screen-sm) {
@@ -36,14 +35,13 @@
                 }
                 @media(min-width: $screen-sm) {
                     margin-top: 0;
-                } 
+                }
             }
             .blog-post-excerpt {
                 margin-bottom: 20px;
             }
         }
     }
-
     a.blog-read-more {
         font-size: 1.1em;
         font-weight: bold;
@@ -62,8 +60,29 @@ header.entry-header-blog {
 }
 
 .single.single-post {
-    .entry-content {
-        margin: 0;
+    .entry-content-wrap {
+        @media( min-width: $screen-sm ) {
+            display: flex;
+            align-items: space-between;
+        }
+        .blog-sidebar {
+            background: #FAFAFA;
+            border: 1px solid #EEE;
+            padding: 10px;
+            input {
+                margin-top: 10px;
+            }
+            //text-align: center;
+        @media( min-width: $screen-sm ) {
+            flex: 0 1 20%;
+        }
+        }
+        .entry-content {
+            margin: 0;
+        @media( min-width: $screen-sm ) {
+            flex: 0 1 79%;
+        }
+        }
     }
 }
 
@@ -89,7 +108,7 @@ h3#reply-title {
         margin: 0;
         border: none;
         &:hover {
-          background: lighten($brand-primary, 5%);
+            background: lighten($brand-primary, 5%);
         }
     }
 }
@@ -99,43 +118,37 @@ h3#reply-title {
     border: 1px solid #EEE;
     padding: 10px 20px;
     margin-bottom: 15px;
-
     .navigation.post-navigation {
         margin: 0;
     }
-
     .nav-previous {
         &:before {
             content: '<< ';
-            color: #CCC;
-            //font-weight: bold;
+            color: #CCC; //font-weight: bold;
         }
     }
     .nav-next {
         &:after {
             content: ' >>';
-            color: #CCC;
-            //font-weight: bold;
+            color: #CCC; //font-weight: bold;
         }
     }
 }
+
 header.entry-header {
     h1.entry-title.blog-header {
         text-transform: none;
-        font-weight: 600;
-        //font-weigth: 
+        font-weight: 600; //font-weigth: 
     }
 }
 
 .single-post {
-
     img.wp-post-image {
         margin-bottom: 20px;
-        @media( min-width: $screen-sm ) {
-        max-width: 400px;
+        @media( min-width: $screen-sm) {
+            max-width: 400px;
             float: left;
             margin: 0 20px 10px 0;
         }
     }
-
 }

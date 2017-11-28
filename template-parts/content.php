@@ -26,6 +26,7 @@
 		endif; ?>
 	</header><!-- .entry-header -->
 
+	<div class="entry-content-wrap">
 	<div class="entry-content">
 		<?php
 
@@ -48,6 +49,10 @@
 			) );
 		?>
 	</div><!-- .entry-content -->
+	<div class="blog-sidebar">
+		<?php echo do_shortcode('[caldera_form id="CF5a1dd37b48484"]'); ?>
+	</div>
+	</div><!-- entry content wrap -->
 
 	<footer class="entry-footer">
 		<?php //marketpier_entry_footer(); ?>
