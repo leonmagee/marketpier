@@ -26,6 +26,13 @@
                 padding-bottom: 5px;
                 margin-bottom: 5px;
                 margin-top: 10px;
+                font-weight: 600;
+                a {
+                    color: #222;
+                    &:hover {
+                        color: $brand-primary;
+                    }
+                }
                 @media(min-width: $screen-sm) {
                     margin-top: 0;
                 } 
@@ -43,9 +50,10 @@
 }
 
 header.entry-header-blog {
-    h1 {
+    h1.entry-title-blog {
         font-size: 35px;
         margin-top: 30px;
+        font-weight: 600;
     }
     span.posted-on {
         color: #555;
@@ -108,5 +116,12 @@ h3#reply-title {
             color: #CCC;
             //font-weight: bold;
         }
+    }
+}
+header.entry-header {
+    h1.entry-title.blog-header {
+        text-transform: none;
+        font-weight: 600;
+        //font-weigth: 
     }
 }

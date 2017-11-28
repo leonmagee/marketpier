@@ -28,6 +28,9 @@
 
 	<div class="entry-content">
 		<?php
+		if ( has_post_thumbnail() ) {
+			the_post_thumbnail('medium');
+		}
 			the_content( sprintf(
 				wp_kses(
 					/* translators: %s: Name of current post. Only visible to screen readers */

@@ -11,7 +11,7 @@ get_header(); ?>
         <main id="main" class="site-main">
             <div class="page-content-wrap">
                 <header class="entry-header">
-                    <h1 class="entry-title">Blog Archive</h1>
+                    <h1 class="entry-title blog-header">MarketPier Blog</h1>
                 </header>
 
             <div class="blog-wrap">
