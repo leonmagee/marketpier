@@ -340,7 +340,7 @@ class snippet_data_search {
 					 */
 					$city_zip      = str_replace( $this->replacement_array, '', $city_zip );
 					$city_zip      = preg_replace( $this->replacement_regex, '', $city_zip );
-					var_dump($city_zip);
+					//var_dump($city_zip);
 					$cities_array = get_field( 'market_cities', 'option' );
 					$city_lower   = strtolower( $city_zip );
 					foreach ( $cities_array as $item ) {
