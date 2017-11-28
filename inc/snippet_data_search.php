@@ -57,7 +57,8 @@ class snippet_data_search {
 
 		//$this->replacement_array = array(',','-','/','|','.',' AL',' AK',' AZ',' AR',' CA',' CO',' CT',' DE',' FL',' GA',' HI',' ID',' IL',' IN',' IA',' KS',' KY',' LA',' ME',' MD',' MA',' MI',' MN',' MS',' MO',' MT',' NE',' NV',' NH',' NJ',' NM',' NY',' NC',' ND',' OH',' OK',' OR',' PA',' RI',' SC',' SD',' TN',' TX',' UT',' VT',' VA',' WA',' WV',' WI',' WY',' al',' ak',' az',' ar',' ca',' co',' ct',' de',' fl',' ga',' hi',' id',' il',' in',' ia',' ks',' ky',' la',' me',' md',' ma',' mi',' mn',' ms',' mo',' mt',' ne',' nv',' nh',' nj',' nm',' ny',' nc',' nd',' oh',' ok',' or',' pa',' ri',' sc',' sd',' tn',' tx',' ut',' vt',' va',' wa',' wv',' wi',' wy');
 		$this->replacement_array = array(',','-','/','|','.');
-		$this->replacement_regex = '/[^\w]ca\b/i';
+		//$this->replacement_regex = '/[^\w]ca\b/i';
+		$this->replacement_regex = array('/[^\w]al\b/i','/[^\w]ak\b/i','/[^\w]az\b/i','/[^\w]ar\b/i','/[^\w]ca\b/i','/[^\w]co\b/i','/[^\w]ct\b/i','/[^\w]de\b/i','/[^\w]fl\b/i','/[^\w]ga\b/i','/[^\w]hi\b/i','/[^\w]id\b/i','/[^\w]il\b/i','/[^\w]in\b/i','/[^\w]ia\b/i','/[^\w]ks\b/i','/[^\w]ky\b/i','/[^\w]la\b/i','/[^\w]me\b/i','/[^\w]md\b/i','/[^\w]ma\b/i','/[^\w]mi\b/i','/[^\w]mn\b/i','/[^\w]ms\b/i','/[^\w]mo\b/i','/[^\w]mt\b/i','/[^\w]ne\b/i','/[^\w]nv\b/i','/[^\w]nh\b/i','/[^\w]nj\b/i','/[^\w]nm\b/i','/[^\w]ny\b/i','/[^\w]nc\b/i','/[^\w]nd\b/i','/[^\w]oh\b/i','/[^\w]ok\b/i','/[^\w]or\b/i','/[^\w]pa\b/i','/[^\w]ri\b/i','/[^\w]sc\b/i','/[^\w]sd\b/i','/[^\w]tn\b/i','/[^\w]tx\b/i','/[^\w]ut\b/i','/[^\w]vt\b/i','/[^\w]va\b/i','/[^\w]wa\b/i','/[^\w]wv\b/i','/[^\w]wi\b/i','/[^\w]wy\b/i');
 		
 		/**
 		 * Set Default Market
@@ -90,8 +91,8 @@ class snippet_data_search {
 				);
 			} else {
 				//$city_zip_strip      = str_replace( array( ',', '-', '/', '|', '.' ), '', $city_zip );
-				$city_zip_strip      = str_replace( $this->replacement_array, '', $city_zip );
-				$city_zip_strip      = preg_replace( $this->replacement_regex, '', $city_zip_strip );
+				$city_zip_strip      = preg_replace( $this->replacement_regex, '', $city_zip );
+				$city_zip_strip      = str_replace( $this->replacement_array, '', $city_zip_strip );
 				$city_zip_array      = $this->get_string_array( $city_zip_strip );
 				$meta_search_array[] = array(
 					'key'     => 'listing_city',
@@ -338,8 +339,8 @@ class snippet_data_search {
 					/**
 					 * Proceed with city search
 					 */
-					$city_zip      = str_replace( $this->replacement_array, '', $city_zip );
 					$city_zip      = preg_replace( $this->replacement_regex, '', $city_zip );
+					$city_zip      = str_replace( $this->replacement_array, '', $city_zip );
 					//var_dump($city_zip);
 					$cities_array = get_field( 'market_cities', 'option' );
 					$city_lower   = strtolower( $city_zip );
