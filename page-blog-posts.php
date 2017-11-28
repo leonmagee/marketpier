@@ -40,8 +40,10 @@ get_header(); ?>
                     <?php } ?> 
                 </div>
                 <div class="blog-sidebar">
-		<?php echo do_shortcode('[caldera_form id="CF5a1dd37b48484"]'); ?>
-                        </div>
+                <div class="blog-sidebar-inner">
+                    <?php echo do_shortcode('[caldera_form id="CF5a1dd37b48484"]'); ?>
+                </div>
+                </div>
                             </div>
             </div>
         </main>

@@ -50,7 +50,9 @@
 		?>
 	</div><!-- .entry-content -->
 	<div class="blog-sidebar">
+	<div class="blog-sidebar-inner">
 		<?php echo do_shortcode('[caldera_form id="CF5a1dd37b48484"]'); ?>
+	</div>
 	</div>
 	</div><!-- entry content wrap -->
 
