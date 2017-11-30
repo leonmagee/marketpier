@@ -199,7 +199,14 @@ if ( $request_details[2] == 'idx' ) {
                             <div class="detail-content">
                                 $<?php echo number_format( $gross_income ); ?></div>
                         </div>
-					<?php }
+                    <?php }
+                    if ( $gross_scheduled_income = $listing_data->gross_scheduled_income ) { ?>
+                        <div class="detail">
+                            <div class="detail-label">Gross Scheduled Income</div>
+                            <div class="detail-content">
+                                $<?php echo number_format( $gross_scheduled_income ); ?></div>
+                        </div>
+                    <?php }
 					if ( $operating_expenses = $listing_data->operating_expenses ) { ?>
                         <div class="detail">
                             <div class="detail-label">Expenses</div>

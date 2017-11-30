@@ -59,6 +59,7 @@ class listing_data {
 	public $listing_office_id;
 	public $gross_rent_multiplier;
 	public $gross_operating_income;
+	public $gross_scheduled_income;
 	public $operating_expenses;
 	public $total_expenses;
 	public $market;
@@ -302,19 +303,27 @@ class listing_data {
 			$this->last_updated = date( 'n/j/Y', $listing->lastUpdated );
 		}
 
-
 		$gross_rent_field = get_key_class( $extended_fields, $this->market, 'gross_rent_multiplier', $listing_class );
 		if ( $gross_rent_field ) {
 			if ( isset( $listing->$gross_rent_field ) ) {
 				$this->gross_rent_multiplier = $listing->$gross_rent_field; // gross rent multiplier
 			}
 		}
+
 		$gross_income_field = get_key_class( $extended_fields, $this->market, 'gross_operating_income', $listing_class );
 		if ( $gross_income_field ) {
 			if ( isset( $listing->$gross_income_field ) ) {
 				$this->gross_operating_income = $listing->$gross_income_field; // gross operating income
 			}
 		}
+
+		$gross_scheduled_income = get_key_class( $extended_fields, $this->market, 'gross_scheduled_income', $listing_class );
+		if ( $gross_scheduled_income ) {
+			if ( isset( $listing->$gross_scheduled_income ) ) {
+				$this->gross_scheduled_income = $listing->$gross_scheduled_income; // number of units
+			}
+		}
+
 		$op_expenses_field = get_key_class( $extended_fields, $this->market, 'operating_expenses', $listing_class );
 		if ( $op_expenses_field ) {
 			if ( isset( $listing->$op_expenses_field ) ) {
@@ -358,6 +367,7 @@ class listing_data {
 				$this->number_of_units = $listing->$number_of_units_field; // number of units
 			}
 		}
+
 		$cap_rate_field = get_key_class( $extended_fields, $this->market, 'cap_rate', $listing_class );
 		if ( $cap_rate_field ) {
 			if ( isset( $listing->$cap_rate_field ) ) {
