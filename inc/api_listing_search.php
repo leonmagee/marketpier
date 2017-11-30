@@ -163,7 +163,7 @@ class api_listing_search {
 				$commercial_lease = get_commercial_lease_keys($comm_custom_field, $this->market);
 				if ( $commercial_lease ) {
 					$commercial_lease_string = '&' . $commercial_lease['key'] . '=' . $commercial_lease['value']; 
-				var_dump( $commercial_lease_string );
+				//var_dump( $commercial_lease_string );
 				}
 			}
 		}
