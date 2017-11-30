@@ -568,7 +568,12 @@ function new_excerpt_more( $more ) {
 add_filter('excerpt_more', 'new_excerpt_more');
 
 
-
+/**
+ * Undocumented function
+ *
+ * @param [type] $content
+ * @return void
+ */
 function content_featured_image($content) {
 	//var_dump($content);
 	global $post;

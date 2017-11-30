@@ -97,6 +97,7 @@ function get_key( $extended_fields, $market, $field_name ) {
 			foreach ( $fields['fields'] as $field ) {
 				if ( $field['field'] === $field_name ) {
 					$key = $field['key'];
+					continue;
 				}
 			}
 		}
@@ -132,6 +133,7 @@ function get_key_class( $extended_fields, $market, $field_name, $class_name ) {
 			foreach ( $fields['fields'] as $field ) {
 				if ( $field['field'] === $field_name ) {
 					$key = $field['key'];
+					continue;
 				}
 			}
 		}
@@ -140,6 +142,7 @@ function get_key_class( $extended_fields, $market, $field_name, $class_name ) {
 				foreach ( $fields['fields'] as $field ) {
 					if ( $field['field'] === $field_name ) {
 						$key = $field['key'];
+						continue;
 					}
 				}
 			}	

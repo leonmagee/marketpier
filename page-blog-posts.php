@@ -15,6 +15,7 @@ get_header(); ?>
                 </header>
 
                 <div class="blog-wrap-outer">
+
                 <div class="blog-wrap">
                     <?php 
                     $args = array('post_type' => 'post');
