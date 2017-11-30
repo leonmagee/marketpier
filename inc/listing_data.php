@@ -431,8 +431,13 @@ class listing_data {
 
 		$this->city_state_zip = $this->city . ', ' . $this->state . ' ' . $this->zip;
 
-		if ( $this->price && $this->number_of_units ) {
-			$this->price_per_unit = ( $this->price / $this->number_of_units );
+		if ( $this->price > 100000 ) {
+
+			if ( $this->price && $this->number_of_units ) {
+				$this->price_per_unit = ( $this->price / $this->number_of_units );
+			} else {
+				$this->price_per_unit = false;
+			}
 		} else {
 			$this->price_per_unit = false;
 		}
