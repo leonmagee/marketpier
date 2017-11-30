@@ -60,6 +60,7 @@ class listing_data {
 	public $gross_rent_multiplier;
 	public $gross_operating_income;
 	public $operating_expenses;
+	public $total_expenses;
 	public $market;
 	public $sale_date;
 	public $listing_url;
@@ -321,10 +322,17 @@ class listing_data {
 			}
 		}
 
+		$total_expenses_field = get_key_class( $extended_fields, $this->market, 'total_expenses', $listing_class );
+		if ( $total_expenses_field ) {
+			if ( isset( $listing->$total_expenses_field ) ) {
+				$this->total_expenses = $listing->$total_expenses_field; // total expenses
+			}
+		}
+
 		$price_sqft_month = get_key_class( $extended_fields, $this->market, 'price_sqft_month', $listing_class );
 		if ( $price_sqft_month ) {
 			if ( isset( $listing->$price_sqft_month ) ) {
-				$this->rate_sf_month = $listing->$price_sqft_month; // operating expenses
+				$this->rate_sf_month = $listing->$price_sqft_month; // price / sqft / month
 			}
 		}
 
