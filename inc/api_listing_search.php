@@ -41,7 +41,7 @@ class api_listing_search {
 		/**
 		 * Get submitted fields
 		 */
-		$listing_type_string = $id_string = $zip_string = $city_string = $size_string = $cap_rate_string = $county_string = $list_price_string = $keyword_string = $days_on_market_string = $sold_in_last_string = $lot_size_string = '';
+		$listing_type_string = $id_string = $zip_string = $city_string = $size_string = $cap_rate_string = $county_string = $list_price_string = $keyword_string = $days_on_market_string = $sold_in_last_string = $lot_size_string = $commercial_lease_string = '';
 
 		/**
 		 * I need to make it sold here when it's a single sold listing....
@@ -77,7 +77,7 @@ class api_listing_search {
 		}
 		// just used for transient names
 		if ( ! ( isset( $parameters['property_type_key'] ) ) ) {
-			$prop_type_key = 'all_types';
+			$prop_type_key = 'all_property_types';
 		} else {
 			$prop_type_key = $parameters['property_type_key'];
 		}
@@ -156,6 +156,16 @@ class api_listing_search {
 			}
 		}
 
+		//var_dump($prop_type_key);
+		if ( ( isset( $parameters['for_sale_for_lease'] ) ) && ( $prop_type_key == 'all_property_types') ) {
+				$comm_custom_field = get_field('home_junction_commercial_search', 'option');
+				$commercial_lease = get_commercial_lease_keys($comm_custom_field, $this->market);
+				if ( $commercial_lease ) {
+					$commercial_lease_string = '&' . $commercial_lease['key'] . '=' . $commercial_lease['value']; 
+				//var_dump( $commercial_lease_string );
+				}
+		}
+
 		$transient_name_string = 'ex-' . $this->market . $prop_type_key . $this->page_size . $active_sold_key . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $days_on_market_string . $sold_in_last_string;
 
 		$this->transient_name = str_replace( ' ', '', $transient_name_string );
@@ -175,9 +185,9 @@ class api_listing_search {
 		}
 
 		if ( $status === 'sold' ) {
-			$url = 'https://slipstream.homejunction.com/ws/sales/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $sold_in_last_string . '&pageNumber=' . $page_number;
+			$url = 'https://slipstream.homejunction.com/ws/sales/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $commercial_lease_string . $sold_in_last_string . '&pageNumber=' . $page_number;
 		} else {
-			$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $days_on_market_string . $lot_size_string . '&pageNumber=' . $page_number . '&sortField=daysOnMarket';
+			$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $days_on_market_string . $lot_size_string . $commercial_lease_string . '&pageNumber=' . $page_number . '&sortField=daysOnMarket';
 		}
 
 		$listings = wp_remote_get( $url, array( 'headers' => array( 'HJI-Slipstream-Token' => $this->token ) ) );

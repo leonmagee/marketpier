@@ -152,6 +152,13 @@ function get_key_class( $extended_fields, $market, $field_name, $class_name ) {
 	return $key;
 }
 
+/**
+ * Get all keys
+ *
+ * @param [type] $extended_fields
+ * @param [type] $market
+ * @return void
+ */
 function get_all_keys( $extended_fields, $market ) {
 	foreach ( $extended_fields as $fields ) {
 		if ( $fields['market'] === $market ) {
@@ -164,6 +171,27 @@ function get_all_keys( $extended_fields, $market ) {
 	$fields_new = implode( '|', $key_array );
 
 	return $fields_new;
+}
+
+
+
+/**
+ * Get commercial search key and value
+ *
+ * @param [type] $extended_fields
+ * @param [type] $market
+ * @return void
+ */
+function get_commercial_lease_keys( $repeater_field, $market ) {
+	foreach ( $repeater_field as $field ) {
+		$key_array = null;
+		if ( $field['market'] === $market ) {
+			$key_array = array();					
+			$key_array['key'] = $field['key'];
+			$key_array['value'] = $field['value'];
+		}
+	}
+	return $key_array;
 }
 
 /**
