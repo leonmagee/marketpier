@@ -205,6 +205,12 @@ class listing_data {
 		if ( isset( $listing->listingType ) ) {
 			$listing_type = $listing->listingType;
 		}
+
+		if ( isset($listing->xf_l_class) ){
+			$listing_class = $listing->xf_l_class;
+		} else {
+			$listing_class = null;
+		}
 		// also - public 'geoType' => string 'listing' (length=7)
 		if ( $listing_type == 'residential' ) {
 			$this->for_sale_for_lease = 'for_sale';
@@ -256,6 +262,13 @@ class listing_data {
 		}
 		if ( isset( $listing->size ) ) {
 			$this->building_size = $listing->size;
+		} else {
+			$custom_size_field = get_key_class( $extended_fields, $this->market, 'building_size', $listing_class );
+			if ( $custom_size_field ) {
+				if ( isset( $listing->$custom_size_field ) ) {
+					$this->building_size = $listing->$custom_size_field; // gross operating income
+				}
+			}	
 		}
 		if ( isset( $listing->description ) ) {
 			$this->description = $listing->description;
@@ -287,11 +300,7 @@ class listing_data {
 		if ( isset( $listing->lastUpdated ) ) {
 			$this->last_updated = date( 'n/j/Y', $listing->lastUpdated );
 		}
-		if ( isset($listing->xf_l_class) ){
-			$listing_class = $listing->xf_l_class;
-		} else {
-			$listing_class = null;
-		}
+
 
 		$gross_rent_field = get_key_class( $extended_fields, $this->market, 'gross_rent_multiplier', $listing_class );
 		if ( $gross_rent_field ) {
