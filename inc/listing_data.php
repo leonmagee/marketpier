@@ -338,6 +338,13 @@ class listing_data {
 
 		if ( isset( $listing->lotSize->sqft ) ) {
 			$this->lot_size = $listing->lotSize->sqft; // @todo use acres if > 1 - can process this on fron end?
+		} else {
+			$lot_size_custom = get_key_class( $extended_fields, $this->market, 'lot_size', $listing_class );
+			if ( $lot_size_custom ) {
+				if ( isset( $listing->$lot_size_custom ) ) {
+					$this->lot_size = $listing->$lot_size_custom; // price / sqft / month
+				}
+			}	
 		}
 		$apn_id_field = get_key_class( $extended_fields, $this->market, 'apn_parcel_id', $listing_class );
 		if ( $apn_id_field ) {
