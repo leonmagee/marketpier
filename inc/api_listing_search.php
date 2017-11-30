@@ -158,12 +158,14 @@ class api_listing_search {
 
 		//var_dump($prop_type_key);
 		if ( ( isset( $parameters['for_sale_for_lease'] ) ) && ( $prop_type_key == 'all_property_types') ) {
+			if ( $parameters['for_sale_for_lease'] === 'for_lease' ) {
 				$comm_custom_field = get_field('home_junction_commercial_search', 'option');
 				$commercial_lease = get_commercial_lease_keys($comm_custom_field, $this->market);
 				if ( $commercial_lease ) {
 					$commercial_lease_string = '&' . $commercial_lease['key'] . '=' . $commercial_lease['value']; 
-				//var_dump( $commercial_lease_string );
+				var_dump( $commercial_lease_string );
 				}
+			}
 		}
 
 		$transient_name_string = 'ex-' . $this->market . $prop_type_key . $this->page_size . $active_sold_key . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $days_on_market_string . $sold_in_last_string;
