@@ -204,7 +204,7 @@ if ( $request_details[2] == 'idx' ) {
                         <div class="detail">
                             <div class="detail-label">Expenses</div>
                             <div class="detail-content">
-                                $<?php echo $operating_expenses; ?></div>
+                                $<?php echo number_format($operating_expenses); ?></div>
                         </div>
 					<?php }
 					if ( $income = $listing_data->net_operating_income ) { ?>
