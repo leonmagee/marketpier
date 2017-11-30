@@ -213,7 +213,7 @@ if ( $request_details[2] == 'idx' ) {
                             <div class="detail-content">
                                 $<?php echo number_format( $income ); ?></div>
                         </div>
-					<?php }
+                    <?php } 
 					if ( $rent_multiplier = $listing_data->gross_rent_multiplier ) { ?>
                         <div class="detail">
                             <div class="detail-label">Rent Multiplier</div>

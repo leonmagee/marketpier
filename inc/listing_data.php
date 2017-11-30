@@ -359,8 +359,16 @@ class listing_data {
 			$this->sale_date = date( 'n/j/Y', $listing->saleDate );
 		}
 
-		if ( $this->gross_operating_income && $this->operating_expenses ) {
-			$this->net_operating_income = ( $this->gross_operating_income - $this->operating_expenses );
+		//if ( net_operating_income)
+		$net_operating_income = get_key_class( $extended_fields, $this->market, 'net_operating_income', $listing_class );
+		if ( $net_operating_income ) {
+			if ( isset( $listing->$net_operating_income ) ) {
+				$this->net_operating_income = $listing->$net_operating_income; // number of units
+			}
+		} else {
+			if ( $this->gross_operating_income && $this->operating_expenses ) {
+				$this->net_operating_income = ( $this->gross_operating_income - $this->operating_expenses );
+			}
 		}
 
 		$this->listing_url = site_url() . '/listing/idx/' . $this->market . '/' . strtolower( $this->status ) . '/' . $this->listing_id;
