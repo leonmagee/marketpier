@@ -14,7 +14,9 @@ class agent_update_input_user_meta extends agent_update_input {
 
 		$key = $this->name;
 
-		$ajax_post = filter_input( INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS );
+		//$ajax_post = filter_input( INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS );
+
+		$ajax_post = $_POST[$key];
 
 		update_user_meta( $this->agent_id, $key, $ajax_post );
 	}

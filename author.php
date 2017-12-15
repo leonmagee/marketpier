@@ -37,7 +37,7 @@ $author_bio_email_address = $email;
  */
 $agent_meta = get_user_meta( $author_id );
 $agent_bio  = $agent_meta['description'][0];
-$agent_bio  = shorten_string( $agent_bio, 500 );
+//$agent_bio  = shorten_string( $agent_bio, 500 );
 
 /**
  *  ACF Custom Fields
@@ -160,7 +160,7 @@ $testimonials    = get_field( 'testimonials', 'user_' . $author_id );
 					<?php if ( $agent_bio ) { ?>
                         <div class="agent-info-wrap bio">
                             <h4><?php echo 'About ' . $name; ?></h4>
-                            <div class="agent-bio"><?php echo $agent_bio; ?></div>
+                            <div class="agent-bio"><?php echo nl2br($agent_bio); ?></div>
                         </div>
 					<?php }
 
