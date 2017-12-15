@@ -207,13 +207,16 @@ if ( $request_details[2] == 'idx' ) {
                                 $<?php echo number_format( $gross_scheduled_income ); ?></div>
                         </div>
                     <?php }
-					if ( $operating_expenses = $listing_data->operating_expenses ) { ?>
+					if ( $operating_expenses = $listing_data->operating_expenses ) { 
+                        if ( is_numeric($operating_expenses) ) {
+                        ?>
                         <div class="detail">
                             <div class="detail-label">Expenses</div>
                             <div class="detail-content">
                                 $<?php echo number_format($operating_expenses); ?></div>
                         </div>
                     <?php }
+                    }
                     if ( $total_expenses = $listing_data->total_expenses ) { ?>
                         <div class="detail">
                             <div class="detail-label">Total Expenses</div>
