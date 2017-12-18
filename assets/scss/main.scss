@@ -21,6 +21,7 @@ body {
       justify-content: space-between;
       div#content.site-content {
         flex: 0 1 auto;
+        overflow: hidden;
         //background-color: red;
       }
     }
