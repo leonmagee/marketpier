@@ -11,12 +11,14 @@ var minifycss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var util = require('gulp-util');
 var browserSync = require('browser-sync').create();
+var autoprefixer = require('gulp-autoprefixer');
 
 gulp.task('scss', function () {
-    gulp.src(['assets/scss/import.scss'])
+    gulp.src('assets/scss/import.scss')
         .pipe(sass({style: 'compressed', errLogToConsole: true}))
         .pipe(rename('main.min.css'))
         .pipe(minifycss())
+        .pipe(autoprefixer())
         .pipe(gulp.dest('assets/css'))
         .pipe(browserSync.stream());
     util.log(util.colors.red('Compiled!'));
