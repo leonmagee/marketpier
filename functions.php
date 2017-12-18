@@ -185,7 +185,7 @@ function marketpier_scripts() {
 
 	wp_enqueue_style( 'foundation' );
 
-	wp_register_style( 'marketpier-styles', get_template_directory_uri() . '/assets/css/main.min.css', '', '1.0.23' );
+	wp_register_style( 'marketpier-styles', get_template_directory_uri() . '/assets/css/main.min.css', '', '1.0.24' );
 
 	wp_enqueue_style( 'marketpier-styles' );
 
