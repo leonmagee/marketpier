@@ -18,7 +18,7 @@ gulp.task('scss', function () {
         .pipe(sass({style: 'compressed', errLogToConsole: true}))
         .pipe(rename('main.min.css'))
         .pipe(minifycss())
-        .pipe(autoprefixer())
+        //.pipe(autoprefixer())
         .pipe(gulp.dest('assets/css'))
         .pipe(browserSync.stream());
     util.log(util.colors.red('Compiled!'));
