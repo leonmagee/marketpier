@@ -71,16 +71,20 @@
 .homepage-section-cta {
   //margin-bottom: 100px;
   //margin-top: 10px;
-
+  height: 100%;
+  min-height: 100%;
   .homepage-cta-boxes-outer {
     @media(min-width: $screen-md) {
       //padding: 40px 0;
     }
+    height: 100%;
+    min-height: 100%;
     .homepage-cta-boxes-wrap {
       display: flex;
       flex-direction: column;
       height: 100%;
       min-height: 100%;
+      background-color: #DDD;
       @include max_width;
       @media(min-width: $screen-md) {
         flex-direction: row;
