@@ -71,7 +71,6 @@
 .homepage-section-cta {
   //margin-bottom: 100px;
   //margin-top: 10px;
-
   .homepage-cta-boxes-outer {
     @media(min-width: $screen-md) {
       //padding: 40px 0;
@@ -87,8 +86,9 @@
         //background: #FFF;
         background-repeat: no-repeat;
         background-size: cover;
-        flex: 1 0 auto;
+        flex: 1 1 auto;
         background-position: center;
+        background-color: #BBB;
         //padding: 0 30px;
         .cta-inside {
           //background: #FFF;
