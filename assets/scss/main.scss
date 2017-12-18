@@ -22,14 +22,19 @@ body {
       justify-content: space-between;
       .site-content-outer {
         flex-direction: column;
+        //flex: 1 0 auto;
+        height: auto;
+        min-height: initial;
         flex: 1;
-        height: 100%;
-        min-height: 0;
+        // height: 100%;
+        // min-height: 0;
       }
       div#content.site-content {
         flex: 1 1 auto;
-        height: 100%;
-        min-height: 0;
+        height: auto;
+        min-height: initial;
+        //height: 100%;
+        //min-height: auto;
         //height: 100%;
         //background-color: #AAA;
       }
