@@ -1,5 +1,9 @@
 html {
   height: 100%;
+  min-height: 100%;
+  //max-height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 // html, body {
@@ -14,7 +18,9 @@ h1, h2, h3, h4, h5 {
 }
 
 body {
-  height: auto;
+  //height: 100%;
+  min-height: 100%;
+  //max-height: 100%;
   font-family: 'Open Sans';
   font-weight: 500;
   background-color: #FDFDFD;
@@ -22,9 +28,11 @@ body {
   div#page.site {
     background-color: red;
     @media(min-width: $screen-md) {
-      height: auto;
+      //height: 100%;
+      min-height: 100%;
+      //max-height: 100%;
       //min-height: 0;
-      flex: 1 0 auto;
+      flex: 1 1 auto;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -32,15 +40,19 @@ body {
         background-color: blue;
         flex-direction: column;
         //flex: 1 0 auto;
-        height: auto;
+        //height: 100%;
+        min-height: 100%;
+        //max-height: 100%;
         //min-height: initial;
-        flex: 1;
+        flex: 1 1 auto;
         // height: 100%;
         // min-height: 0;
       }
       div#content.site-content {
-        flex: 1 0 auto;
-        height: auto;
+        flex: 1 1 auto;
+        //height: 100%;
+        min-height: 100%;
+        //max-height: 100%;
         // min-height: initial;
         //height: 100%;
         //min-height: auto;
