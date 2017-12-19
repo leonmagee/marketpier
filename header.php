@@ -98,6 +98,5 @@
 		?>
     </header><!-- #masthead -->
 
-    <div class="site-content-outer">
 
     <div id="content" class="site-content">

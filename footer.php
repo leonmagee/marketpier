@@ -12,7 +12,6 @@
 ?>
 
 </div><!-- #content -->
-</div><!--  site content outer -->
 
 <footer id="colophon" class="site-footer">
     <div class="site-footer-inner">

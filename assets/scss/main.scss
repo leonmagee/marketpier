@@ -32,26 +32,27 @@ body {
       min-height: 100%;
       //max-height: 100%;
       //min-height: 0;
+      background-color: green;
       flex: 1 1 auto;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      .site-content-outer {
-        //background-color: blue;
-        flex-direction: column;
-        //flex: 1 0 auto;
-        //height: 100%;
-        min-height: 100%;
-        //max-height: 100%;
-        //min-height: initial;
-        flex: 1 1 auto;
-        // height: 100%;
-        // min-height: 0;
-      }
+      // .site-content-outer {
+      //   //background-color: blue;
+      //   flex-direction: column;
+      //   //flex: 1 0 auto;
+      //   //height: 100%;
+      //   min-height: 100%;
+      //   //max-height: 100%;
+      //   //min-height: initial;
+      //   flex: 1 1 auto;
+      //   // height: 100%;
+      //   // min-height: 0;
+      // }
       div#content.site-content {
         flex: 1 1 auto;
         //height: 100%;
-        min-height: 100%;
+        min-height: auto;
         //max-height: 100%;
         // min-height: initial;
         //height: 100%;
