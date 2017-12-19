@@ -26,7 +26,7 @@ body {
   background-color: #FDFDFD;
   display: flex;
   div#page.site {
-    background-color: red;
+    //background-color: red;
     @media(min-width: $screen-md) {
       //height: 100%;
       min-height: 100%;
@@ -37,7 +37,7 @@ body {
       flex-direction: column;
       justify-content: space-between;
       .site-content-outer {
-        background-color: blue;
+        //background-color: blue;
         flex-direction: column;
         //flex: 1 0 auto;
         //height: 100%;
