@@ -4,10 +4,13 @@ header#masthead {
   .header-inner {
     align-items: center;
     @include max_width;
+    display: flex;
+    justify-content: space-between;
+    height: 12vh;
     @media(min-width: $screen-md) {
-      display: flex;
-      justify-content: space-between;
-      height: 12vh;
+      // display: flex;
+      // justify-content: space-between;
+      // height: 12vh;
     }
   }
 }
@@ -33,6 +36,10 @@ header#masthead {
 
   .broker-logo {
     margin: 0 20px;
+    display: none;
+    @media(min-width: $screen-sm) {
+      display: block;      
+    }
     img {
       max-width: 130px;
       @media(min-width: $screen-md) {
@@ -48,15 +55,17 @@ header#masthead {
     display: flex;
   }
   .logged-in-agent-headshot-wrap {
-    min-width: 225px;
-    position: relative;
+    //min-width: 225px;
     padding: 10px 10px;
     display: flex;
     align-items: center;
-    //@media(min-width: $screen-md) {
-    //  display: flex;
-    //  align-items: center;
-    //}
+    justify-content: flex-end;
+
+    @media(min-width: $screen-sm) {
+      position: relative;
+     // display: flex;
+     // align-items: center;
+    }
     .menu-drop-down-icon {
       i {
         font-size: 1.5em;
@@ -83,11 +92,15 @@ header#masthead {
     }
   }
   .create-listing-link {
-    margin: 15px 0;
+    margin: 20px 0 5px;
     text-align: center;
     font-family: 'Open Sans';
     font-weight: 500;
-    font-size: 15px;
+    font-size: 12px;
+    @media(min-width: $screen-sm) {
+      margin: 15px 0;
+      font-size: 15px;
+    }
     @media(min-width: $screen-md) {
       margin: 0 5px;
     }
@@ -100,18 +113,28 @@ header#masthead {
   }
   .header-headshot {
     img {
-      max-width: 50px;
+      max-width: 38px;
       border: 1px solid #DDD;
       border-radius: 50%;
+      @media(min-width: $screen-sm) {
+        max-width: 50px;
+      }
     }
   }
   .hello-user {
-    margin: 0 15px;
+    margin: 0 10px;
     //color: #555;
     text-align: center;
+    @media(min-width: $screen-sm) {
+      margin: 0 15px;
+    }
     span {
       font-weight: 700;
-      color: #555
+      color: #555;
+      font-size: 0.8rem;
+      @media(min-width: $screen-sm) {
+        font-size: 1rem;
+      }
     }
   }
   .log-out-wrap {
@@ -128,12 +151,14 @@ header#masthead {
     a {
       border: 2px solid #555;
       padding: 5px 15px;
-      font-size: 15px;
       font-family: 'Open Sans';
       font-weight: 500;
-      font-size: 15px;
+      font-size: 12px;
       color: #333;
       transition: 0.1s;
+      @media(min-width: $screen-sm) {
+        font-size: 15px;
+      }
       &:hover {
         color: #FFF;
         background-color: $brand-primary;

@@ -136,7 +136,7 @@ class lv_google_map_group {
 //                            labelOrigin: new google.maps.Point(47, 25),
 //                            anchor: new google.maps.Point(9, 35),
 //                        };
-                        var marker_url = '<?php echo get_stylesheet_directory_uri() . '/assets/img/map_marker_shadow.svg'; ?>';
+                        var marker_url = '<?php echo get_stylesheet_directory_uri() . '/assets/img/map_marker_new.png'; ?>';
                         var squareBg = {
                             url: marker_url,
                             scaledSize: new google.maps.Size(50, 25),

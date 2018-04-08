@@ -53,7 +53,15 @@ class snippet_data {
 
 	public function standardize_snippet_image_IDX( $image_gallery ) {
 		if ( $first_image = $image_gallery[0] ) {
-			$this->image_gallery_first = $first_image;
+			$first_image_width = $first_image . '?width=450';
+			$this->image_gallery_first = $first_image_width;
+			//var_dump($first_image);
+			
+			//var_dump($first_image_width);
+
+			// $default_image             = get_stylesheet_directory_uri() . '/assets/img/image-not-available.jpg';
+			// $this->image_gallery_first = $default_image;
+			
 		} else {
 			$default_image             = get_stylesheet_directory_uri() . '/assets/img/image-not-available.jpg';
 			$this->image_gallery_first = $default_image;
