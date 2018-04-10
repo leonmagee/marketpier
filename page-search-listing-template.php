@@ -17,6 +17,12 @@ $page_size      = $snippets_query->page_size;
 $total_results  = $snippets_query->total_results;
 $total_pages    = intval( ceil( ( $total_results / $page_size ) ) );
 
+//var_dump($snippets_query);
+//var_dump($snippets);
+      
+
+//die('speed tests!');
+
 get_header();
 //$map_marker_url = get_stylesheet_directory_uri() . '/assets/img/map_marker_shadow.png';
 //debug_dump( $map_marker_url );

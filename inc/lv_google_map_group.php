@@ -75,6 +75,7 @@ class lv_google_map_group {
                             //console.log( new_address );
                             //console.log('count' + count, results);
                             if (!latitude || !longitude) {
+                                console.log('this is happenzing?');
                                 if (results[0]) {
                                     latitude = results[0].geometry.location.lat();
                                     longitude = results[0].geometry.location.lng();
@@ -136,7 +137,7 @@ class lv_google_map_group {
 //                            labelOrigin: new google.maps.Point(47, 25),
 //                            anchor: new google.maps.Point(9, 35),
 //                        };
-                        var marker_url = '<?php echo get_stylesheet_directory_uri() . '/assets/img/map_marker_new.png'; ?>';
+                        var marker_url = '<?php echo get_stylesheet_directory_uri() . '/assets/img/map_marker_new_2.png'; ?>';
                         var squareBg = {
                             url: marker_url,
                             scaledSize: new google.maps.Size(50, 25),
