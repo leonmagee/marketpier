@@ -4,6 +4,15 @@
      */
     $(document).foundation();
 
+
+    /**
+    * Handle menu nav toggle
+    */
+    $('.header-right .logged-in-agent-headshot-wrap').click( function() {
+        $(this).toggleClass('show-menu');
+    });
+
+
     /**
      * Handle Listing Search Functionality
      */
@@ -192,7 +201,7 @@
     });
 
     $('.user-listings-wrap .logged-in-user-listing .delete-listing-link-hidden a.cancel').click(function () {
-        console.log('so far');
+        //console.log('so far');
         $(this).parent().removeClass('display-link');
     });
 
@@ -217,7 +226,7 @@
             contentType: false,
             processData: false,
             success: function (data, textStatus, XMLHttpRequest) {
-                console.log('listing deleted?', data);
+                //console.log('listing deleted?', data);
                 if (data) {
                     parent_element.fadeOut();
                 }

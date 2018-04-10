@@ -85,9 +85,16 @@ header#masthead {
       transition: 1s;
     }
     &:hover {
-      //cursor: pointer;
       .menu-drop-down {
        display: block;
+      }
+    }
+
+    @media( max-width: 992px ) {
+      &.show-menu {
+        .menu-drop-down {
+         display: block;
+        }
       }
     }
   }
