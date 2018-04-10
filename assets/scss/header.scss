@@ -93,7 +93,7 @@ header#masthead {
       }
     }
 
-    @media( max-width: $screen-md ) {
+    @media(max-width: 993px) {
       &.show-menu {
         .menu-drop-down {
          display: block;

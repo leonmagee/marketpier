@@ -12,15 +12,46 @@
         $(this).toggleClass('show-menu');
     });
 
+    /**
+    * Homepage search trigger on icon click
+    */
+    $('.homepage-wrap-outer .search-form-wrap .fa-search').click(function() {
+        $('.homepage-wrap-outer .search-form-wrap form').submit();
+    });
+
 
     /**
      * Handle Listing Search Functionality
      */
+    // $('.search-form-wrap').hover(function() {
+    //     //console.log('hovering?');
+    //     //$(this).find('.dropdwon-pane').show();
+    //     $('.search-form-wrap .dropdown-pane').show();
+    // });
+
+
     $('.search-form-wrap .dropdown-pane ul li').click(function () {
+        //console.log('clicky?');
+
+
         var selected_value = $(this).html();
         var selected_name = $(this).attr('name');
         $(this).parent().find('.selected').removeClass('selected');
         $(this).addClass('selected').parent().parent().parent().find('.select-toggle').html(selected_value).parent().find('input.hidden-input').val(selected_name);
+        var current_dropdown = $(this).parent().parent();
+        current_dropdown.hide();
+
+        var show_drop = function() {
+
+            current_dropdown.show();
+        };
+
+        $('body').off('mouseenter', '.search-form-wrap .input-wrap', show_drop);
+
+        setTimeout(function() {
+
+            $('body').on('mouseenter', '.search-form-wrap .input-wrap', show_drop);
+        }, 300);
     });
 
     // handle default value for just property type
