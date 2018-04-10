@@ -29,6 +29,10 @@
     //     $('.search-form-wrap .dropdown-pane').show();
     // });
 
+    // $('.search-form-wrap .input-wrap').click(function() {
+    //     $(this).parent().find('.dropdown-pane').toggle();
+    //     //$('.search-form-wrap .dropdown-pane').toggle();
+    // });
 
     $('.search-form-wrap .dropdown-pane ul li').click(function () {
         //console.log('clicky?');
@@ -219,6 +223,33 @@
 
         $(this).parent().find('.selected').removeClass('selected');
         $(this).addClass('selected');
+        //$('.county-choices').hide();
+
+
+
+
+        var current_dropdown = $(this).parent();
+        current_dropdown.hide();
+
+        var show_drop = function() {
+
+            current_dropdown.show();
+        };
+
+        $('body').off('mouseenter', '.search-form-wrap .input-wrap', show_drop);
+
+        setTimeout(function() {
+
+            $('body').on('mouseenter', '.search-form-wrap .input-wrap', show_drop);
+        }, 300);
+
+
+
+
+
+
+
+
     });
 
     /**
