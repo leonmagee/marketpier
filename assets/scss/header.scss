@@ -107,9 +107,11 @@ header#masthead {
     font-family: 'Open Sans';
     font-weight: 500;
     font-size: 12px;
+    display: none;
     @media(min-width: $screen-sm) {
       margin: 15px 0;
       font-size: 15px;
+      display: block;
     }
     @media(min-width: $screen-md) {
       margin: 0 5px;
@@ -152,8 +154,12 @@ header#masthead {
     text-align: center;
   }
   .login-sign-in {
-    margin: 5px 15px 30px;
+    margin: 27px 15px 30px;
     text-align: center;
+
+    @media(min-width: $screen-sm) {
+      margin-top: 5px;
+    }
 
     @media(min-width: $screen-md) {
       margin: 0 15px;
