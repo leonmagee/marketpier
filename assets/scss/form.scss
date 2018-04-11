@@ -62,7 +62,10 @@
       color: #888;
       @media(max-width: 993px) {
         &.fa-search {
-          color: $brand-primary;
+          color: #FFF;
+          background-color: $brand-primary;
+          padding: 6px 9px;
+          border-radius: 10px;
           font-size: 24px;
           &:hover {
             cursor: pointer;
