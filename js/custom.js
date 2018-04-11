@@ -37,17 +37,20 @@
 
 
 
-    $('.input-wrap').on('mouseenter', function() {
-        $(this).find('.dropdown-pane, .county-choices').css('visibility', 'visible').show();
-    });
+    // $('.input-wrap').on('mouseenter', function() {
+    //     console.log('enter');
+    //     $(this).find('.dropdown-pane, .county-choices').css('visibility', 'visible').show();
+    // });
 
     $('.input-wrap').on('click', function() {
-        $(this).find('.dropdown-pane, .county-choices').css('visibility', 'visible').show();
+        console.log('enter');
+        $(this).find('.dropdown-pane, .county-choices').css('visibility', 'visible').toggle();
     });
 
-    $('.input-wrap').on('mouseleave', function() {
-        $(this).find('.dropdown-pane, .county-choices').css('visibility', 'hidden').hide();
-    });
+    // $('.input-wrap').on('mouseleave', function() {
+    //     console.log('leave');
+    //     $(this).find('.dropdown-pane, .county-choices').css('visibility', 'hidden').hide();
+    // });
 
     $('.search-form-wrap .dropdown-pane ul li').click(function () {
         //console.log('clicky?');
@@ -57,8 +60,8 @@
         var selected_name = $(this).attr('name');
         $(this).parent().find('.selected').removeClass('selected');
         $(this).addClass('selected').parent().parent().parent().find('.select-toggle').html(selected_value).parent().find('input.hidden-input').val(selected_name);
-        var current_dropdown = $(this).parent().parent();
-        current_dropdown.hide();
+        // var current_dropdown = $(this).parent().parent();
+        // current_dropdown.hide();
 
         // var show_drop = function() {
 
@@ -240,8 +243,8 @@
         $(this).addClass('selected');
         //$('.county-choices').hide();
 
-        var current_dropdown = $(this).parent().parent();
-        current_dropdown.hide();
+        // var current_dropdown = $(this).parent().parent();
+        // current_dropdown.hide();
 
         // var show_drop = function() {
 

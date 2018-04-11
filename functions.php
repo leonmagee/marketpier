@@ -208,7 +208,7 @@ function marketpier_scripts() {
 	wp_register_script( 'custom-js', get_template_directory_uri() . '/js/custom.js', array(
 		//'jquery',
 		'foundation-js'
-	), '1.1.12', true );
+	), '1.1.14', true );
 	wp_enqueue_script( 'custom-js' );
 
 	wp_register_script( 'agent-profile-ajax', get_template_directory_uri() . '/js/agent-profile-ajax.js', array(
