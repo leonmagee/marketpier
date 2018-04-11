@@ -6,6 +6,9 @@
   .search-listings-half {
     &.map-half {
       background-color: #EEE;
+      background-image: url('../img/google-map-bg.jpg');
+      background-size: cover;
+      //background-color: red;
       height: 100%;
       @media(min-width: $screen-md) {
         flex: 0 1 50%;

@@ -38,7 +38,6 @@ class lv_google_map_group {
 				$latitude = $location['lat'] ? $location['lat'] : 0;
 				$longitude = $location['long'] ? $location['long'] : 0;
 				?>
-
                 latlngArray.push({
                     latLng: {
                         lat: <?php echo $latitude; ?>,
@@ -57,35 +56,49 @@ class lv_google_map_group {
                 var longitude_array = [];
                 var url_array = [];
                 var price_array = [];
+                var geo = new google.maps.Geocoder();
                 var null_items = 0;
 
-                getLatLngAddress(latlngArray, len);
+                getLatLngAddress(latlngArray, len, geo);
 
-                function getLatLngAddress(latlngArray, array_length) {
+                function getLatLngAddress(latlngArray, array_length, geo) {
 
                     if (count < array_length) {
                         var latitude = latlngArray[count].latLng.lat;
                         var longitude = latlngArray[count].latLng.lng;
+                        //console.log('lat', latitude);
+                        //console.log('long', longitude);
                         var new_address = latlngArray[count].address;
                         var listing_url = latlngArray[count].url;
                         var listing_price = latlngArray[count].price;
-
-                        if (!latitude || !longitude) {
-                            null_items = ( null_items + 1 );
-                                
-                        } else {
-
-                            latTotal = latTotal + latitude;
-                            lngTotal = lngTotal + longitude;
-                            latitude_array.push(latitude);
-                            longitude_array.push(longitude);
-                            url_array.push(listing_url);
-                            price_array.push(listing_price);
-                        }
-
-                        ++count;
-                        getLatLngAddress(latlngArray, array_length);
-
+                        geo.geocode({address: new_address}, function (results, status) {
+                            //console.log( new_address );
+                            //console.log('count' + count, results);
+                            if (!latitude || !longitude) {
+                                console.log('this is happenzing?');
+                                if (results[0]) {
+                                    latitude = results[0].geometry.location.lat();
+                                    longitude = results[0].geometry.location.lng();
+                                    latTotal = latTotal + latitude;
+                                    lngTotal = lngTotal + longitude;
+                                    latitude_array.push(latitude);
+                                    longitude_array.push(longitude);
+                                    url_array.push(listing_url);
+                                    price_array.push(listing_price);
+                                } else {
+                                    null_items = ( null_items + 1 );
+                                }
+                            } else {
+                                latTotal = latTotal + latitude;
+                                lngTotal = lngTotal + longitude;
+                                latitude_array.push(latitude);
+                                longitude_array.push(longitude);
+                                url_array.push(listing_url);
+                                price_array.push(listing_price);
+                            }
+                            ++count;
+                            getLatLngAddress(latlngArray, array_length, geo);
+                        });
                     } else {
                         /**
                          * Reset Array Length
@@ -108,15 +121,22 @@ class lv_google_map_group {
                             center: centerLatLng,
                             zoom: <?php echo $this->zoom; ?>,
                             scrollwheel: false,
-                            draggable: true,
-                            backgroundColor: 'transparent'
+                            draggable: true
                         });
-
-
                         /**
                          *  Create Map Markers
                          */
-
+//                        var squareBg = {
+//                            path: 'M95.62,34.988c0,5.522-4.478,10-10,10H14.38c-5.523,0-10-4.478-10-10V15.011c0-5.522,4.477-9.999,10-9.999h71.24c5.522,0,10,4.477,10,9.999V34.988z',
+//                            fillColor: '#00A3E4',
+//                            fillOpacity: 1,
+//                            scale: 0.47,
+//                            strokeColor: '#FFF',
+//                            strokeWeight: 3,
+//                            color: '#FFF',
+//                            labelOrigin: new google.maps.Point(47, 25),
+//                            anchor: new google.maps.Point(9, 35),
+//                        };
                         var marker_url = '<?php echo get_stylesheet_directory_uri() . '/assets/img/map_marker_new_2.png'; ?>';
                         var squareBg = {
                             url: marker_url,
