@@ -30,9 +30,24 @@
     // });
 
     // $('.search-form-wrap .input-wrap').click(function() {
-    //     $(this).parent().find('.dropdown-pane').toggle();
+    //     $(this).toggleClass('menu-open');
     //     //$('.search-form-wrap .dropdown-pane').toggle();
     // });
+
+
+
+
+    $('.input-wrap').on('mouseenter', function() {
+        $(this).find('.dropdown-pane, .county-choices').css('visibility', 'visible').show();
+    });
+
+    $('.input-wrap').on('click', function() {
+        $(this).find('.dropdown-pane, .county-choices').css('visibility', 'visible').show();
+    });
+
+    $('.input-wrap').on('mouseleave', function() {
+        $(this).find('.dropdown-pane, .county-choices').css('visibility', 'hidden').hide();
+    });
 
     $('.search-form-wrap .dropdown-pane ul li').click(function () {
         //console.log('clicky?');
@@ -45,17 +60,17 @@
         var current_dropdown = $(this).parent().parent();
         current_dropdown.hide();
 
-        var show_drop = function() {
+        // var show_drop = function() {
 
-            current_dropdown.show();
-        };
+        //     current_dropdown.show();
+        // };
 
-        $('body').off('mouseenter', '.search-form-wrap .input-wrap', show_drop);
+        // $('body').off('mouseenter', '.search-form-wrap .input-wrap', show_drop);
 
-        setTimeout(function() {
+        // setTimeout(function() {
 
-            $('body').on('mouseenter', '.search-form-wrap .input-wrap', show_drop);
-        }, 300);
+        //     $('body').on('mouseenter', '.search-form-wrap .input-wrap', show_drop);
+        // }, 300);
     });
 
     // handle default value for just property type
@@ -225,27 +240,20 @@
         $(this).addClass('selected');
         //$('.county-choices').hide();
 
-
-
-
-        var current_dropdown = $(this).parent();
+        var current_dropdown = $(this).parent().parent();
         current_dropdown.hide();
 
-        var show_drop = function() {
+        // var show_drop = function() {
 
-            current_dropdown.show();
-        };
+        //     current_dropdown.show();
+        // };
 
-        $('body').off('mouseenter', '.search-form-wrap .input-wrap', show_drop);
+        // $('body').off('mouseenter', '.search-form-wrap .input-wrap', show_drop);
 
-        setTimeout(function() {
+        // setTimeout(function() {
 
-            $('body').on('mouseenter', '.search-form-wrap .input-wrap', show_drop);
-        }, 300);
-
-
-
-
+        //     $('body').on('mouseenter', '.search-form-wrap .input-wrap', show_drop);
+        // }, 300);
 
 
 
