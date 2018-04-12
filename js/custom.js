@@ -43,8 +43,7 @@
     // });
 
     $('.input-wrap').on('click', function() {
-        console.log('enter');
-        $(this).find('.dropdown-pane, .county-choices').css('visibility', 'visible').toggle();
+        $(this).find('.dropdown-pane').css('visibility', 'visible').toggle();
     });
 
     // $('.input-wrap').on('mouseleave', function() {
@@ -228,40 +227,40 @@
      * Form County Select
      */
 
-    $('.county-choices a').click(function () {
-        var county_name = $(this).html();
+    // $('.county-choices a').click(function () {
+    //     var county_name = $(this).html();
 
-        $('input[name="city-zip"]').val(county_name);
-    });
+    //     $('input[name="city-zip"]').val(county_name);
+    // });
 
-    $('.county-choices li').click(function () {
-        var county_name = $(this).html();
+    // $('.county-choices li').click(function () {
+    //     var county_name = $(this).html();
 
-        $('input[name="city-zip"]').val(county_name);
+    //     $('input[name="city-zip"]').val(county_name);
 
-        $(this).parent().find('.selected').removeClass('selected');
-        $(this).addClass('selected');
-        //$('.county-choices').hide();
+    //     $(this).parent().find('.selected').removeClass('selected');
+    //     $(this).addClass('selected');
+    //     //$('.county-choices').hide();
 
-        // var current_dropdown = $(this).parent().parent();
-        // current_dropdown.hide();
+    //     // var current_dropdown = $(this).parent().parent();
+    //     // current_dropdown.hide();
 
-        // var show_drop = function() {
+    //     // var show_drop = function() {
 
-        //     current_dropdown.show();
-        // };
+    //     //     current_dropdown.show();
+    //     // };
 
-        // $('body').off('mouseenter', '.search-form-wrap .input-wrap', show_drop);
+    //     // $('body').off('mouseenter', '.search-form-wrap .input-wrap', show_drop);
 
-        // setTimeout(function() {
+    //     // setTimeout(function() {
 
-        //     $('body').on('mouseenter', '.search-form-wrap .input-wrap', show_drop);
-        // }, 300);
-
-
+    //     //     $('body').on('mouseenter', '.search-form-wrap .input-wrap', show_drop);
+    //     // }, 300);
 
 
-    });
+
+
+    // });
 
     /**
      * Delete Listings

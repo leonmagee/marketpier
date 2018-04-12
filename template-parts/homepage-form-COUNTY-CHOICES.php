@@ -36,6 +36,15 @@
                 <input type="text" placeholder="<?php echo get_field( 'search_input_placeholder', 'option' ); ?>"
                        name="city-zip"/>
                 <i class="fa fa-search" aria-hidden="true"></i>
+                <div class="county-choices">
+                    <ul>
+					<?php
+					$counties = all_counties_array();
+					foreach ( $counties as $county ) { ?>
+                        <li><?php echo $county; ?></li>
+					<?php } ?>
+                    </ul>
+                </div>
             </div>
             <input class="submit-input" type="submit" value="Search"/>
         </div>
