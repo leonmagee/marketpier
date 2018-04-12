@@ -269,10 +269,8 @@ class snippet_data_search {
 				$address_new2 = str_replace( '"', '\"', $address_new );
 
 				$map_data_array_src[] = array(
-					//'lat'     => $listing_data->lat,
-					//'long'    => $listing_data->long,
-					'lat'     => false,
-					'long'    => false,
+					'lat'     => $listing_data->lat,
+					'long'    => $listing_data->long,
 					'address' => $address_new2,
 					'price'   => $price_label,
 					'url'     => $listing_data->listing_url
