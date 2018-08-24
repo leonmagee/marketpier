@@ -269,17 +269,13 @@
     */
     $('.user-listings-wrap .logged-in-user-listing a.remove-saved-listing').click(function () {
 
-        var listing_id = $(this).parent().parent().attr('listing-id');
-        
-        var user_id = $(this).parent().parent().attr('user-id');
+        var saved_id = $(this).parent().parent().attr('saved-id');
 
         var parent_element = $(this).parent().parent();
 
         var formdata = new FormData();
 
-        formdata.append("listing_id", listing_id);
-        
-        formdata.append("user_id", user_id);
+        formdata.append("saved_id", saved_id);
 
         formdata.append("action", "mp_delete_favorite_listing");
 
@@ -291,7 +287,6 @@
             processData: false,
             success: function (data, textStatus, XMLHttpRequest) {
                 if (data) {
-                    console.log(data);
                     parent_element.fadeOut();
                 }
             },

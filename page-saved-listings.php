@@ -37,7 +37,7 @@ get_header(); ?>
                         <div class="user-listings-wrap">
 							<?php if ( $favorite_result ) {
 								foreach ( $favorite_result as $favorite ) { ?>
-                                    <div class="logged-in-user-listing" listing-id="<?php echo $favorite->id; ?>" user-id="<?php echo $favorite->user_id; ?>">
+                                    <div class="logged-in-user-listing" saved-id="<?php echo $favorite->id; ?>">
                                         <span><?php echo $favorite->listing_title ?></span>
                                         <span class="view-edit-links">
                                     <a href="<?php echo $favorite->listing_url ?>">view</a>
