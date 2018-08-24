@@ -252,6 +252,9 @@ function mp_send_listing_agent_email() {
 		$send_emails->send_email();
 		//wp_die('email sent! ' . $agent_email);
 	}
+
+	// wp_redirect('/thank-you-for-contacting-agent');
+	// exit;
 }
 
 // should work whether or not logged in

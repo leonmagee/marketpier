@@ -371,6 +371,8 @@ jQuery(function ($) {
                     $('.uploads-spinner').hide();
                     var agent_modal = $('#contact-agent-modal');
                     agent_modal.foundation('open');
+                    ga('send', 'event', 'formSubmission', 'submit', 'Agent Form Submit', '', '');
+                    console.log('now working?');
                 },
                 error: function (MLHttpRequest, textStatus, errorThrown) {
                     alert(errorThrown);
