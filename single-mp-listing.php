@@ -559,6 +559,7 @@ if ( $request_details[2] == 'idx' ) {
                                 <div class="broker-name">Buyer Agent</div>
 								<?php $admin_email = get_option( 'admin_email' ); ?>
                                 <div class="agent-email"><?php echo $admin_email; ?></div>
+                                <div class="agent-phone">858-215-4245</div>
                             </div>
                         </div>
                     </div>
