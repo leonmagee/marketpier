@@ -262,6 +262,50 @@
 
     // });
 
+
+
+    /**
+    * Delete Saved Listings
+    */
+    $('.user-listings-wrap .logged-in-user-listing a.remove-saved-listing').click(function () {
+
+        var listing_id = $(this).parent().parent().attr('listing-id');
+        
+        var user_id = $(this).parent().parent().attr('user-id');
+
+        var parent_element = $(this).parent().parent();
+
+        var formdata = new FormData();
+
+        formdata.append("listing_id", listing_id);
+        
+        formdata.append("user_id", user_id);
+
+        formdata.append("action", "mp_delete_favorite_listing");
+
+        $.ajax({
+            type: 'POST',
+            url: ajaxurl,
+            data: formdata,
+            contentType: false,
+            processData: false,
+            success: function (data, textStatus, XMLHttpRequest) {
+                if (data) {
+                    console.log(data);
+                    parent_element.fadeOut();
+                }
+            },
+            error: function (MLHttpRequest, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
+
+        });
+
+    });
+
+
+
+
     /**
      * Delete Listings
      * @todo this will use ajax
@@ -279,7 +323,7 @@
 
     $('.user-listings-wrap .logged-in-user-listing .delete-listing-link-hidden a.finalize').click(function () {
         var listing_id_new = $(this).parent().attr('listing-id');
-        console.log('finalize: ' + listing_id_new);
+        //console.log('finalize: ' + listing_id_new);
 
         //$(this).parent().parent().parent().fadeOut();
 

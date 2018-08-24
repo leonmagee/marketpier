@@ -31,15 +31,17 @@ get_header(); ?>
 
 						$favorite_query = "SELECT * FROM `{$table_name}` WHERE `user_id` = '{$user_id}'";
 
-						$favorite_result = $wpdb->get_results( $favorite_query ); ?>
+						$favorite_result = $wpdb->get_results( $favorite_query ); 
+                        ?>
 
                         <div class="user-listings-wrap">
 							<?php if ( $favorite_result ) {
 								foreach ( $favorite_result as $favorite ) { ?>
-                                    <div class="logged-in-user-listing">
+                                    <div class="logged-in-user-listing" listing-id="<?php echo $favorite->id; ?>" user-id="<?php echo $favorite->user_id; ?>">
                                         <span><?php echo $favorite->listing_title ?></span>
                                         <span class="view-edit-links">
                                     <a href="<?php echo $favorite->listing_url ?>">view</a>
+                                    <a class="remove-saved-listing"><i class="fa fa-trash"></i></a>
                                     </span>
                                     </div>
 								<?php }

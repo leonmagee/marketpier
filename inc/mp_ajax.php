@@ -177,6 +177,35 @@ add_action( 'wp_ajax_mp_favorite_listing', 'mp_save_favorite_listing' );
 
 
 /**
+ *  Delete Favorite Listing
+ */
+function mp_delete_favorite_listing() {
+
+
+	if ( isset( $_POST['listing_id'] ) ) {
+	
+		wp_die('post new');
+
+		$listing_id      = $_POST['listing_id'];
+		$user_id         = $_POST['user_id'];
+
+		global $wpdb;
+		$prefix     = $wpdb->prefix;
+		$table_name = $prefix . 'mp_favorite_listings';
+
+		$favorite_query         = "DELETE FROM `{$table_name}` WHERE `user_id` = '{$user_id}' AND `listing_id` = '{$listing_id}'";
+
+		$favorite_query_delete = "DELETE FROM `{$table_name}` WHERE `id` = '{$entry_id}'";
+
+		$query_favorite_listing = $wpdb->get_results( $favorite_query_delete );
+	}
+}
+
+add_action( 'wp_ajax_mp_delete_favorite_listing', 'mp_delete_favorite_listing' );
+
+
+
+/**
  *  Save Search
  */
 function mp_save_search() {
