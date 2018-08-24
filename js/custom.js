@@ -19,6 +19,38 @@
         $('.homepage-wrap-outer .search-form-wrap form').submit();
     });
 
+    /**
+    * On Caldera Forms submission
+    */
+    $(document).on( 'cf.form.submit', function (event, data ) {
+        //data.$form is a jQuery object for the form that just submitted.
+    
+        var $form = data.$form;
+
+        //get the form that is submiting's ID attribute
+        var formId = $form.attr('id');
+
+        //log form id
+        console.log(formId);
+        //console.log(data.form( 'form-id' ) );
+        //var form_id = data.$form( 'form-id' );
+
+        if ( formId == 'CF5a1dd37b48484_1') {
+            console.log('id matches!');
+        }
+
+        if ( formId = 123 ) {
+            ga('send', 'event', 'formSubmission', 'submit', 'Agent Form Submit', '', '');
+        }
+        
+        //apply a css to form
+        // $form.css( {
+        //   visibility: 'hidden',
+        //   display: 'none'
+        // });
+      
+    });
+
 
     /**
      * Handle Listing Search Functionality
