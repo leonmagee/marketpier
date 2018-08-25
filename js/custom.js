@@ -27,13 +27,9 @@
     
         var $form = data.$form;
 
-        //get the form that is submiting's ID attribute
         var formId = $form.attr('id');
 
-        //log form id
-        console.log(formId);
-        //console.log(data.form( 'form-id' ) );
-        //var form_id = data.$form( 'form-id' );
+        //console.log(formId);
 
         if ( formId == 'CF5a1dd37b48484_1') {
             ga('send', 'event', 'formSubmission', 'submit', 'Subscribe Form Submit', '', '');
