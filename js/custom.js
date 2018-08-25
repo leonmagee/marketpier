@@ -36,19 +36,8 @@
         //var form_id = data.$form( 'form-id' );
 
         if ( formId == 'CF5a1dd37b48484_1') {
-            console.log('id matches!');
+            ga('send', 'event', 'formSubmission', 'submit', 'Subscribe Form Submit', '', '');
         }
-
-        if ( formId = 123 ) {
-            ga('send', 'event', 'formSubmission', 'submit', 'Agent Form Submit', '', '');
-        }
-        
-        //apply a css to form
-        // $form.css( {
-        //   visibility: 'hidden',
-        //   display: 'none'
-        // });
-      
     });
 
 

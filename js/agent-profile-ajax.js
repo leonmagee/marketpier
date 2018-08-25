@@ -187,6 +187,9 @@ jQuery(function ($) {
                     alert(errorThrown);
                 }
             });
+            console.log('new user registered!');
+            ga('send', 'event', 'formSubmission', 'submit', 'New User Form Submit', '', '');
+
         } else {
             $('.uploads-spinner').hide();
             $('.mp-required-fields').show();
