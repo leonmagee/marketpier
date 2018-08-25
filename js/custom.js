@@ -32,7 +32,8 @@
         //console.log(formId);
 
         if ( formId == 'CF5a1dd37b48484_1') {
-            ga('send', 'event', 'formSubmission', 'submit', 'Subscribe Form Submit', '', '');
+            console.log('caldera form was submitted');
+            ga('send', 'event', 'formSubmission', 'submit', 'Subscribe Form Submit');
         }
     });
 
