@@ -208,13 +208,13 @@ function marketpier_scripts() {
 	wp_register_script( 'custom-js', get_template_directory_uri() . '/js/custom.js', array(
 		//'jquery',
 		'foundation-js'
-	), '1.1.21', true );
+	), '1.1.22', true );
 	wp_enqueue_script( 'custom-js' );
 
 	wp_register_script( 'agent-profile-ajax', get_template_directory_uri() . '/js/agent-profile-ajax.js', array(
 		'jquery',
 		'foundation-js'
-	), '1.1.1', true );
+	), '1.1.2', true );
 	wp_enqueue_script( 'agent-profile-ajax' );
 
 //	$google_maps_url = "https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyCicY4hdtrXeGNvBQSivkxAKOseNIDWZdc";

@@ -187,8 +187,7 @@ jQuery(function ($) {
                     alert(errorThrown);
                 }
             });
-            console.log('new user registered!');
-            ga('send', 'event', 'formSubmission', 'submit', 'New User Form Submit', '', '');
+            ga('send', 'event', 'formSubmission', 'submit', 'New User Registration');
 
         } else {
             $('.uploads-spinner').hide();
@@ -374,7 +373,7 @@ jQuery(function ($) {
                     $('.uploads-spinner').hide();
                     var agent_modal = $('#contact-agent-modal');
                     agent_modal.foundation('open');
-                    ga('send', 'event', 'formSubmission', 'submit', 'Agent Form Submit', '', '');
+                    ga('send', 'event', 'formSubmission', 'submit', 'Agent Form Submit');
                 },
                 error: function (MLHttpRequest, textStatus, errorThrown) {
                     alert(errorThrown);
