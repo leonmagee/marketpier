@@ -1,5 +1,40 @@
-.landing-header-image {
-  height: 200px;
-  background-position: center;
+.landing-page-wrap {
+
+	.landing-header-image {
+	  height: 250px;
+	  background-position: center;
+	  background-size: cover;
+	}
+
+	.related-searches {
+		.related-searches-flex {
+			@media(min-width: $screen-md) {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-between;
+
+			}
+			a {
+				background: #F7F7F7;
+				border: 1px solid #EEE;
+				border-radius: 5px;
+				padding: 20px;
+				margin-bottom: 2%;
+				font-weight: bold;
+				font-size: 14px;
+				text-align: center;
+				@media(min-width: $screen-md) {
+					flex: 0 1 32%;	
+				}
+				&:hover {
+					background-color: $brand-primary;
+					border-color: $brand-primary;
+					color: #FFF;
+				}
+			}
+
+		}
+	}
+
 }
 

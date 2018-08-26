@@ -9,7 +9,7 @@ get_header();
 
 $header_image_url = get_field('header_image');
 ?>
-    <div id="primary" class="content-area">
+    <div id="primary" class="content-area landing-page-wrap">
         <main id="main" class="site-main">
             <div class="landing-header-image" style="background-image: url(<?php echo $header_image_url; ?>);">
             </div>
@@ -30,6 +30,25 @@ $header_image_url = get_field('header_image');
                                 the_content();
                             ?>
                         </div><!-- .entry-content -->
+
+                        <div class="related-searches">
+                           <h2>Related Searches</h2> 
+
+                           <div class="related-searches-flex">
+
+                                <?php 
+
+                                $related_searches = get_field('related_searches');
+
+                                foreach( $related_searches as $search ) { ?>
+
+                                    <a href="<?php echo $search['url']; ?>"><?php echo $search['title']; ?></a>
+
+
+                                <?php } ?>
+
+                            </div>
+                        </div>
 
                     </article><!-- #post-<?php the_ID(); ?> -->
 
