@@ -42,7 +42,7 @@ $header_image_url = get_field('header_image');
 
                                 foreach( $related_searches as $search ) { ?>
 
-                                    <a href="<?php echo $search['url']; ?>"><?php echo $search['title']; ?></a>
+                                    <a href="/<?php echo $search['url']; ?>"><?php echo $search['title']; ?></a>
 
 
                                 <?php } ?>
