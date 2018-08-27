@@ -4,6 +4,8 @@
  *
  * @package MarketPier
  */
+require_once( 'inc/snippet_data_search.php' );
+require_once( 'inc/form-process-submit.php' );
 
 get_header(); 
 
