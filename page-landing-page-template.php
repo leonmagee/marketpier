@@ -43,7 +43,9 @@ $header_image_url = get_field('header_image');
                                 <h3>Search</h3>
 
                             <?php }
-                            
+                                if ( ! $default_search_area = get_field('search_default') ) {
+                                    $default_search_area = false;
+                                }
                                 include( locate_template( 'template-parts/search-form.php' ) ); 
                             ?>
 
@@ -63,7 +65,6 @@ $header_image_url = get_field('header_image');
                                 foreach( $related_searches as $search ) { ?>
 
                                     <a href="/<?php echo $search['url']; ?>" target="_blank"><?php echo $search['title']; ?></a>
-
 
                                 <?php } 
                                 } ?>

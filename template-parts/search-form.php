@@ -75,6 +75,9 @@ if ( isset( $_GET['status'] ) ) {
 				<?php if ( $city_zip = $snippets_query->city_zip ) { ?>
                     <input type="text" placeholder="<?php echo get_field( 'search_input_placeholder', 'option' ); ?>"
                            name="city-zip" value="<?php echo $city_zip; ?>"/>
+				<?php } elseif($default_search_area) { ?>
+                    <input type="text" placeholder="<?php echo get_field( 'search_input_placeholder', 'option' ); ?>"
+                           name="city-zip" value="<?php echo $default_search_area; ?>"/>
 				<?php } else { ?>
                     <input type="text" placeholder="<?php echo get_field( 'search_input_placeholder', 'option' ); ?>"
                            name="city-zip"/>
