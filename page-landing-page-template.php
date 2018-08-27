@@ -32,7 +32,7 @@ $header_image_url = get_field('header_image');
                         </div><!-- .entry-content -->
 
                         <div class="related-searches">
-                           <h2>Related Searches</h2> 
+                           <h3>Related Searches</h3> 
 
                            <div class="related-searches-flex">
 
@@ -48,6 +48,24 @@ $header_image_url = get_field('header_image');
                                 <?php } ?>
 
                             </div>
+                        </div>
+
+                        <div class="lower-content-area">
+                            
+                                <?php 
+
+                                $lower_content = get_field('lower_content_areas');
+
+                                foreach( $lower_content as $content ) { ?>
+
+                                    <div class="content-area">
+                                       <h3><?php echo $content['title']; ?></h3> 
+                                        <p><?php echo $content['body']; ?></p>
+
+                                    </div>
+
+                                <?php } ?>
+
                         </div>
 
                     </article><!-- #post-<?php the_ID(); ?> -->
