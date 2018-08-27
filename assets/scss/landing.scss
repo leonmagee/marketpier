@@ -24,8 +24,9 @@
 				font-weight: bold;
 				font-size: 1.1em;
 				text-align: center;
+				display: block;
 				@media(min-width: $screen-md) {
-					flex: 0 1 48%;	
+					flex: 0 1 49%;	
 				}
 				&:hover {
 					background-color: $brand-primary;
