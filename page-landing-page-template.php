@@ -31,6 +31,22 @@ $header_image_url = get_field('header_image');
                             ?>
                         </div><!-- .entry-content -->
 
+                        <div class="search-wrap">
+                            <?php if ( $search_title = get_field('search_title') ) { ?>
+
+                                <h3><?php echo $search_title; ?></h3>
+
+                            <?php } else { ?>
+
+                                <h3>Search</h3>
+
+                            <?php }
+                            
+                                include( locate_template( 'template-parts/search-form.php' ) ); 
+                            ?>
+
+                        </div>
+
                         <div class="related-searches">
                            <h3>Related Searches</h3> 
 

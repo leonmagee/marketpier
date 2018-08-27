@@ -47,5 +47,21 @@
 		}
 	}
 
+	.search-wrap {
+
+		padding: 20px 0;
+
+		.search-form-wrap-snippets {
+			
+			border-bottom: none;
+
+			a.save-search-link {
+				display: none;
+			}
+		}
+
+	}
+
+
 }
 
