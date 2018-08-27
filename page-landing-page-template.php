@@ -40,12 +40,15 @@ $header_image_url = get_field('header_image');
 
                                 $related_searches = get_field('related_searches');
 
+                                if ( $related_searches ) {
+
                                 foreach( $related_searches as $search ) { ?>
 
                                     <a href="/<?php echo $search['url']; ?>" target="_blank"><?php echo $search['title']; ?></a>
 
 
-                                <?php } ?>
+                                <?php } 
+                                } ?>
 
                             </div>
                         </div>
@@ -56,6 +59,8 @@ $header_image_url = get_field('header_image');
 
                                 $lower_content = get_field('lower_content_areas');
 
+                                if ( $lower_content ) {
+
                                 foreach( $lower_content as $content ) { ?>
 
                                     <div class="content-area">
@@ -64,7 +69,9 @@ $header_image_url = get_field('header_image');
 
                                     </div>
 
-                                <?php } ?>
+                                <?php }
+
+                                } ?>
 
                         </div>
 
