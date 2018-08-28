@@ -14,18 +14,37 @@ $header_image_url = get_field('header_image');
     <div id="primary" class="content-area landing-page-wrap">
         <main id="main" class="site-main">
             <div class="landing-header-image" style="background-image: url(<?php echo $header_image_url; ?>);">
+
+                <header class="entry-header">
+                    <?php the_title( '<h1 class="landing-title">', '</h1>' ); ?>
+                </header><!-- .entry-header -->
+
+                <div class="search-wrap">
+                    <?php if ( $search_title = get_field('search_title') ) { ?>
+
+                        <h3><?php echo $search_title; ?></h3>
+
+                    <?php } else { ?>
+
+                        <h3>Search</h3>
+
+                    <?php }
+                        if ( ! $default_search_area = get_field('search_default') ) {
+                            $default_search_area = false;
+                        }
+                        include( locate_template( 'template-parts/search-form.php' ) ); 
+                    ?>
+
+                </div>
+
             </div>
             <div class="page-content-wrap">
 
 				<?php
 				while ( have_posts() ) : the_post(); ?>
 
-
-
                     <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-                        <header class="entry-header">
-                            <?php the_title( '<h1 class="landing-title">', '</h1>' ); ?>
-                        </header><!-- .entry-header -->
+
 
                         <div class="entry-content">
                             <?php
@@ -33,21 +52,27 @@ $header_image_url = get_field('header_image');
                             ?>
                         </div><!-- .entry-content -->
 
-                        <div class="search-wrap">
-                            <?php if ( $search_title = get_field('search_title') ) { ?>
 
-                                <h3><?php echo $search_title; ?></h3>
 
-                            <?php } else { ?>
 
-                                <h3>Search</h3>
+                        <div class="lower-content-area">
+                            
+                                <?php 
 
-                            <?php }
-                                if ( ! $default_search_area = get_field('search_default') ) {
-                                    $default_search_area = false;
-                                }
-                                include( locate_template( 'template-parts/search-form.php' ) ); 
-                            ?>
+                                $lower_content = get_field('lower_content_areas');
+
+                                if ( $lower_content ) {
+
+                                foreach( $lower_content as $content ) { ?>
+
+                                    <div class="content-area">
+                                       <h3><?php echo $content['title']; ?></h3> 
+                                        <?php echo $content['body']; ?>
+                                    </div>
+
+                                <?php }
+
+                                } ?>
 
                         </div>
 
@@ -70,28 +95,6 @@ $header_image_url = get_field('header_image');
                                 } ?>
 
                             </div>
-                        </div>
-
-                        <div class="lower-content-area">
-                            
-                                <?php 
-
-                                $lower_content = get_field('lower_content_areas');
-
-                                if ( $lower_content ) {
-
-                                foreach( $lower_content as $content ) { ?>
-
-                                    <div class="content-area">
-                                       <h3><?php echo $content['title']; ?></h3> 
-                                        <p><?php echo $content['body']; ?></p>
-
-                                    </div>
-
-                                <?php }
-
-                                } ?>
-
                         </div>
 
                     </article><!-- #post-<?php the_ID(); ?> -->
