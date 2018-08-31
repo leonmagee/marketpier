@@ -15,25 +15,17 @@ $header_image_url = get_field('header_image');
         <main id="main" class="site-main">
             <div class="landing-header-image" style="background-image: url(<?php echo $header_image_url; ?>);">
 
-                <header class="entry-header">
-                    <?php the_title( '<h1 class="landing-title">', '</h1>' ); ?>
-                </header><!-- .entry-header -->
-
                 <div class="search-wrap">
-                    <?php if ( $search_title = get_field('search_title') ) { ?>
 
-                        <h3><?php echo $search_title; ?></h3>
+                    <h1><?php the_title(); ?></h1>
+                    
+                    <?php if ( ! $default_search_area = get_field('search_default') ) {
 
-                    <?php } else { ?>
-
-                        <h3>Search</h3>
-
-                    <?php }
-                        if ( ! $default_search_area = get_field('search_default') ) {
                             $default_search_area = false;
+
                         }
-                        include( locate_template( 'template-parts/search-form.php' ) ); 
-                    ?>
+
+                        include( locate_template( 'template-parts/search-form.php' ) ); ?>
 
                 </div>
 
