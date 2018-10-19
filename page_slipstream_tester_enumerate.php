@@ -60,18 +60,24 @@ get_header(); ?>
 
 				//$url = 'https://slipstream.homejunction.com/ws/markets/enumerate?parameters';
 
+
+				$url = 'https://slipstream.homejunction.com/ws/listings/get?market=crmls&id=170050377';
+
 				//$url     = 'https://slipstream.homejunction.com/ws/markets/enumerate?id=' . $market . '&property=propertyType' . $commercial_string;
-				$url     = 'https://slipstream.homejunction.com/ws/markets/enumerate?id=' . $market . '&property=listingType';
+				//$url     = 'https://slipstream.homejunction.com/ws/markets/enumerate?id=' . $market . '&property=listingType';
 				$request = wp_remote_get( $url, array( 'headers' => array( 'HJI-Slipstream-Token' => $token ) ) );
 
 				$request_data = json_decode( $request['body'] );
 
-				var_dump( $request_data );
+				d( $request_data );
 
-				foreach ( $request_data->result->values as $value ) {
-					echo $value;
-					echo "<br />";
-				}
+				// foreach ( $request_data->result->values as $value ) {
+				// 	echo $value;
+				// 	echo "<br />";
+				// }
+
+
+
 				//				foreach ( $search->search_result->listings as $listing ) {
 				//					var_dump( $listing->status );
 				//					//var_dump( $listing);

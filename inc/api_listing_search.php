@@ -191,6 +191,8 @@ class api_listing_search {
 		} else {
 			$url = 'https://slipstream.homejunction.com/ws/listings/search?market=' . $this->market . $listing_type_string . '&pageSize=' . $this->page_size . '&images=true&details=' . $this->details . '&extended=' . $this->extended . '&features=' . $this->features . $id_string . $zip_string . $city_string . $size_string . $cap_rate_string . $keyword_string . $county_string . $list_price_string . $days_on_market_string . $lot_size_string . $commercial_lease_string . '&pageNumber=' . $page_number . '&sortField=daysOnMarket';
 			//var_dump($url);
+			//&listingType=Residential|Commercial|Land|Multifamily|Rental
+			//Commercial Sale?
 		}
 
 		$listings = wp_remote_get( $url, array( 'headers' => array( 'HJI-Slipstream-Token' => $this->token ) ) );
