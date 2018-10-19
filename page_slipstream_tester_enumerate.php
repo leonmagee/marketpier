@@ -44,7 +44,8 @@ get_header(); ?>
 				<?php var_dump( $slipstream_token->slipstream_token );
 				$token = $slipstream_token->slipstream_token;
 				//$market            = 'sandicor';
-				$market            = 'crmls';
+				//$market            = 'crmls';
+				$market            = 'sdmls';
 				$listing_page_size = 10;
 				//$commercial_string = '&listingType=commercial';
 				$commercial_string = '';
@@ -61,7 +62,7 @@ get_header(); ?>
 				//$url = 'https://slipstream.homejunction.com/ws/markets/enumerate?parameters';
 
 
-				$url = 'https://slipstream.homejunction.com/ws/listings/get?market=crmls&id=170050377';
+				$url = 'https://slipstream.homejunction.com/ws/listings/get?market=sdmls&id=170050377';
 
 				//$url     = 'https://slipstream.homejunction.com/ws/markets/enumerate?id=' . $market . '&property=propertyType' . $commercial_string;
 				//$url     = 'https://slipstream.homejunction.com/ws/markets/enumerate?id=' . $market . '&property=listingType';

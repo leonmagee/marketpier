@@ -341,12 +341,14 @@ class snippet_data_search {
 					//var_dump($city_zip);
 					$cities_array = get_field( 'market_cities', 'option' );
 					$city_lower   = strtolower( $city_zip );
+					if ( $cities_array ) {
 					foreach ( $cities_array as $item ) {
-						$city_city_array = explode( "\n", str_replace( "\r", "", strtolower( $item['cities'] ) ) );
-						if ( in_array( $city_lower, $city_city_array ) ) {
-							$market_new   = $item['market'];
-							$this->market = $market_new;
-							break;
+							$city_city_array = explode( "\n", str_replace( "\r", "", strtolower( $item['cities'] ) ) );
+							if ( in_array( $city_lower, $city_city_array ) ) {
+								$market_new   = $item['market'];
+								$this->market = $market_new;
+								break;
+							}
 						}
 					}
 
