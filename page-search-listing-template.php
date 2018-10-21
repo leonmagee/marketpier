@@ -6,13 +6,17 @@
  *
  * @package MarketPier
  */
-get_header();
+//get_header();
 
 require_once( 'inc/snippet_data.php' );
 require_once( 'inc/snippet_data_search.php' );
 require_once( 'inc/lv_google_map_group.php' );
 require_once( 'inc/form-process-submit.php' );
+
+get_header();
+
 $snippets_query = new snippet_data_search();
+
 $snippets       = $snippets_query->snippet_object_array;
 $page_number    = $snippets_query->page_number;
 $page_size      = $snippets_query->page_size;
@@ -22,10 +26,8 @@ $total_pages    = intval( ceil( ( $total_results / $page_size ) ) );
 //var_dump($snippets_query);
 //var_dump($snippets);
       
-
+//get_header();
 //die('speed tests!');
-
-get_header();
 
 
 //$map_marker_url = get_stylesheet_directory_uri() . '/assets/img/map_marker_shadow.png';
