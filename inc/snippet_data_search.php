@@ -302,16 +302,18 @@ class snippet_data_search {
 		if ( $city_zip = $this->city_zip ) {
 			if ( is_numeric( $city_zip ) ) {
 
-				$zip_array = get_field( 'market_zip_codes', 'option' );
+				if( $zip_array = get_field( 'market_zip_codes', 'option' ) ) {
 
-				foreach ( $zip_array as $item ) {
-					$zip_zip_array = explode( "\n", str_replace( "\r", "", $item['zip_codes'] ) );
-					if ( in_array( $city_zip, $zip_zip_array ) ) {
-						$market_new   = $item['market'];
-						$this->market = $market_new;
-						break;
+					foreach ( $zip_array as $item ) {
+						$zip_zip_array = explode( "\n", str_replace( "\r", "", $item['zip_codes'] ) );
+						if ( in_array( $city_zip, $zip_zip_array ) ) {
+							$market_new   = $item['market'];
+							$this->market = $market_new;
+							break;
+						}
 					}
 				}
+
 				$parameters['zip'] = $city_zip;
 
 			} else {

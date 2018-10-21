@@ -6,6 +6,8 @@
  *
  * @package MarketPier
  */
+get_header();
+
 require_once( 'inc/snippet_data.php' );
 require_once( 'inc/snippet_data_search.php' );
 require_once( 'inc/lv_google_map_group.php' );
@@ -24,11 +26,6 @@ $total_pages    = intval( ceil( ( $total_results / $page_size ) ) );
 //die('speed tests!');
 
 get_header();
-
-
-while ( have_posts() ) : the_post();
-    the_content();
-endwhile; // End of the loop.
 
 
 //$map_marker_url = get_stylesheet_directory_uri() . '/assets/img/map_marker_shadow.png';
