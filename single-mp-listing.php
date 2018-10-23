@@ -319,7 +319,8 @@ if ( $request_details[2] == 'idx' ) {
                                         </div>
                                     </div>
 								<?php }
-								if ( isset( $unit['average_rent'] ) ) { ?>
+                                //var_dump($unit['average_rent'] );
+								if ( isset( $unit['average_rent'] ) && ( $unit['average_rent'] != '' ) ) { ?>
                                     <div class="unit-mix-item unit-mix-average-rent">
                                         <label>Average Rent</label>
                                         <div class="unit-mix-value">
