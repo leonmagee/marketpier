@@ -108,7 +108,7 @@ class lv_google_map {
 
 		?>
 
-		<script src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyCicY4hdtrXeGNvBQSivkxAKOseNIDWZdc"
+		<script src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyCKeKMky70N8WI8MXq9PWspwbRFBVSbnA4"
 		        async defer></script>
 
 		<div class="google-map-inner-wrapper">
